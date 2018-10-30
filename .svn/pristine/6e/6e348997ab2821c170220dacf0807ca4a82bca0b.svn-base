@@ -1,0 +1,37 @@
+.container{
+    background-image: url(../images/banner2.jpg);
+    height: auto;
+     background-position: center;
+    background-size: 7.5rem 100%;
+    background-repeat: no-repeat;
+}
+.reportEntry{
+    width: 6.18rem;
+    height: 4.9rem;
+    margin: 0 auto;
+    margin-top: 4.3rem;
+    border-radius: 0.2rem;
+    -webkit-border-radius:0.2rem;
+    border: 1px solid #f5f5f5;
+    background: white
+}
+.reportEntry h3{
+    font-size: 0.32rem;
+    color: #dd2b1d;
+    text-align: center;
+    padding-top:0.4rem ;
+    padding-bottom: 0.25rem
+}
+.reportEntry p{
+    padding: 0 0.3rem;
+    text-indent:2em;
+    color: #666666;
+    font-size: 0.26rem;
+    line-height:0.44rem 
+}
+.checkbox{
+    text-align: center
+}
+.formBtn{
+    margin-top: 0.54rem
+}

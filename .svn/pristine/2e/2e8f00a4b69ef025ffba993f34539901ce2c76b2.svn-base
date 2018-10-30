@@ -1,0 +1,238 @@
+<?php
+
+namespace app\branchadmin\controller;
+
+use think\Controller;
+use think\Request;
+
+class Weixin extends Base
+{
+    public $branch = array();
+    public  $rand = array(); //随机数数组
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $branch =  db('branch')->select();
+        $this->rand  = array_merge(range("A","Z"),range("a","z"),range(0,9));
+    }
+    /**
+     * 显示资源列表
+     *
+     * @return \think\Response
+     */
+    public function index()
+    {
+        //关闭临时模板
+        $this->view->engine->layout(false);
+        #测试svn
+        //查询wixin表的所有数据
+        $list=\app\branchadmin\model\Weixin::select();
+        $res  = $list[0]->data;
+       dump($res);die;
+        return view('index',['list'=>$list]);
+
+    }
+
+    /**
+     * 显示创建资源表单页.
+     *
+     * @return \think\Response
+     */
+    public function create()
+    {
+        //关闭临时模板
+        $this->view->engine->layout(false);
+        //查询支部管理员表pid为0,所有company_id数据
+//        $com=\app\branchadmin\model\BranchAdmin::where('pid',0)->field('company_id')->select()->toArray();
+//        $comid=[];
+//       foreach ($com as $key=>$value)
+//       {
+//           foreach ($com[$key] as $subkey=>$subv){
+//               $comid[]=$subv;
+//           }
+//
+//       }
+//        $comid=implode(',',$comid);
+//        //根据$comid查询company表的数据
+//        $cmy=\app\branchadmin\model\Company::where('id','in',$comid)->select()->toArray();
+
+        $cmy=\app\branchadmin\model\Company::select();
+        //查询角色表（role）的所有name
+        $role_name=db('role')->select();
+        //print_r($role_name);die;
+        return view('create',['cmy'=>$cmy,'role_name'=>$role_name]);
+    }
+
+    /**
+     * 保存新建的资源
+     *
+     * @param  \think\Request  $request
+     * @return \think\Response
+     */
+    public function save(Request $request)
+    {
+        //接收数据
+        $data=$request->param();
+        $data['company_id']=$data['id'];
+        unset($data['id']);
+        //把当前毫秒生成的随机数存入$data中
+        $data['rand']=$this->geturlnonce();
+
+
+
+        //定义验证规则
+        $rule=[
+            'appid'=>'require',
+            'appsecret'=>'require',
+        ];
+
+        //定义提示信息
+        $msg=[
+            'appid.require' =>'appid不能为空',
+            'appsecret' =>'appsecret不能为空',
+        ];
+        //实例化验证类
+        $validata=new \think\validate($rule,$msg);
+        //执行验证
+        if (!$validata->check($data)) {
+            $error = $validata->getError();
+            $this->error($error);
+        }
+        
+        //把数据添加到数据库
+        \app\branchadmin\model\Weixin::create($data,true);
+        //页面跳转
+        //$this->success('添加成功','index');
+        $this->redirect('index');
+    }
+
+    public function check($id){
+        //关闭临时模板
+        $this->view->engine->layout(false);
+        $res=\app\branchadmin\model\Weixin::find($id);
+        //判断token是否为空
+        if(empty($res["check_token"])){
+            $check_token = 'weixin';
+            db('weixin')->where(array("id"=>$id))->update(array("check_token"=>$check_token));
+            $res["check_token"] =$check_token;
+        }
+
+        //判断aeskey是否为空
+        if(empty($res["check_aeskey"])){
+            $check_aeskey = $this->getnonce(25);
+            db('weixin')->where(array("id"=>$id))->update(array("check_aeskey"=>$check_aeskey));
+            $res["check_aeskey"] =$check_aeskey;
+        }
+        //判断地址是否为空
+        if(empty($res["check_url"])) {
+            $res["check_url"] = Config("check_url");
+            //查找当前验证的公众号的随机数
+            $rand=db('weixin')->where(array('id'=>$id))->field('rand')->find();
+            $res["check_url"].='/'.$rand['rand'];
+
+        }
+
+
+        return view('check',['res'=>$res]);
+
+    }
+
+    //随机生成随机数
+    public function getnonce($length = 8){
+        $token ="";
+        $token_arr = $this->rand;
+        shuffle($token_arr);
+        $count = count($token_arr);
+        for($i=0;$i<=$length;$i++){
+            $index = rand(0,$count-1);
+            $token.=$token_arr[$index];
+        }
+        return $token;
+    }
+    //用当前毫秒拼接随机数
+    function geturlnonce(){
+        $time = microtime(true);
+        $str= $time.$this->getnonce(8);
+        return md5($str);
+
+    }
+
+    /**
+     * 显示指定的资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+
+    /**
+     * 显示编辑资源表单页.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit($id)
+    {
+        //关闭临时模板
+        $this->view->engine->layout(false);
+        //根据$id查询weixin表的一条数据
+        $list=\app\branchadmin\model\Weixin::find($id)->toArray();
+
+        //根据$list['company_id']查询公司表的一条数据
+        $pany=\app\branchadmin\model\Company::where('id',$list['company_id'])->find();
+        //print_r($pany);die;
+        //查询支部管理员表pid为0,所有company_id数据
+//        $com=\app\branchadmin\model\BranchAdmin::where('pid',0)->field('company_id')->select()->toArray();
+//        $comid=[];
+//        foreach ($com as $key=>$value)
+//        {
+//            foreach ($com[$key] as $subkey=>$subv){
+//                $comid[]=$subv;
+//            }
+//
+//        }
+//        $comid=implode(',',$comid);
+//        //根据$comid查询company表的数据
+//        $cmy=\app\branchadmin\model\Company::where('id','in',$comid)->select()->toArray();
+        $cmy=\app\branchadmin\model\Company::select();
+       // print_r($cmy);die;
+        //查询微信表的（role_id）查询role表的一条数据
+        $role=\app\branchadmin\model\Role::where($list['role_id'])->find();
+        $roles=\app\branchadmin\model\Role::all();
+        return view('edit',['list'=>$list,'cmy'=>$cmy,'pany'=>$pany,'role'=>$role,'roles'=>$roles]);
+
+    }
+
+    /**
+     * 保存更新的资源
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    //更新党支部数据
+    public function update(Request $request,$id)
+    {
+        //接收数据
+        $data=$request->param();
+        $data['company_id']=$data['0'];
+        unset($data['0']);
+
+        //使用update函数更新数据
+        \app\branchadmin\model\Weixin::update($data, ['id' => $id], true);
+        //页面跳转
+        $this->redirect('index');
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function delete($id)
+    {
+        //删除党支部
+        \app\branchadmin\model\Weixin::destroy($id);
+        $this->redirect('index');
+    }
+}

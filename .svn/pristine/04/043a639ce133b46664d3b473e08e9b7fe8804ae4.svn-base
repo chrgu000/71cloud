@@ -1,0 +1,80 @@
+body{
+    position: relative;
+}
+.historyBanner .swiper-container{
+    height: 4.55rem;
+    margin-top: 0.8rem;
+}
+.historyTab{
+    /*margin-top: -0.88rem;*/
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+    overflow: hidden;
+    height: 0.88rem;
+    font-size: 0;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.historyScroll{
+    line-height: 0.88rem;
+    height: 100%;
+    font-size: 0;
+
+}
+.historyTab .historyScroll p{
+    display: inline-block;
+    color: #666666;
+    font-size: 0.32rem;
+    width: 100px;
+    text-align: center;
+    height: 100%;
+    position: relative;
+}
+.historyTab .historyScroll p.active span{
+    color: #e83329;
+    display: inline-block;
+    height: 100%;
+    border-bottom:0.02rem solid #e83329 ;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.histortContent{
+    padding: 0.2rem 0.3rem;
+    background: #fffaf0;
+}
+.historyItem{
+    border-radius: 0.1rem;
+    -webkit-border-radius: 0.1rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    justify-content: space-between;
+    flex-wrap:  wrap;
+    padding: 0.32rem 0.36rem 0 0.36rem;
+    background: #fffefb;
+
+}
+.historyItem a{
+    display: inline-block;
+    width: 2.8rem;
+    height: 3.23rem;
+
+}
+.historyItem a img{
+    width: 2.8rem;
+    height: 2rem;
+}
+.historyItem a .ito{
+    font-size: 0.28rem;
+    color: #000;
+    text-align: center;
+    padding-top: 0.15rem;
+}
+.histortContentInner{
+    display: none;
+
+}
+.histortContentInner.active{
+    display: block;
+}

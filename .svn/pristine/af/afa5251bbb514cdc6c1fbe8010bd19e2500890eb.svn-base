@@ -1,0 +1,189 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/8/6
+ * Time: 17:01
+ *
+ * 微党校
+ *
+ */
+namespace app\home\controller;
+
+class School extends Base{
+    /**
+     *
+     * 我的课程 GET
+     * @param $uid int 用户id
+     * @param $type int 类型 1表示学习中 2表示已完成
+     *
+     */
+    public function getUserClass(){
+        $uid = intval(input('get.uid'));
+        $type = intval(input('get.type'));
+        if($uid<=0 || $type<=0){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+        }
+
+        $data = model('home/Class')->getUserClass($uid,$type);
+        foreach ($data as &$v){
+            $v['last_time'] = date('Y-m-d',$v['last_time']);
+            $v['thumb'] = addDomain($v['thumb']);
+        }
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+    }
+
+    /**
+     *
+     * 课程分类
+     *
+     */
+    public function getCate(){
+
+        /*$data = M('ClassCate')->field('id,name,pid')->select();
+
+        foreach ($data as &$v){
+            if($v['pid'] == 0){
+                foreach ($data as $key => $value){
+                    if($value['pid'] == $v['id']){
+                        $v['son'][] = $value;
+                        unset($data[$key]);
+                    }
+                }
+            }
+        }*/
+        $data = db('ClassCate')->where(array('pid'=>0))->field('id,name,pid')->select();
+        foreach ($data as $k=>&$v){
+            $zi = db('ClassCate')->field('id,name,pid')->select();
+            foreach ($zi as $k1=>$v1){
+                if($v['id']==$v1['pid']){
+                    $v['son'][]=$v1;
+                }
+            }
+
+        }
+
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+    }
+
+
+    /**
+     *
+     * 课程列表
+     * @param $cate_id int 分类id
+     * @param $p int 页码
+     * @param $pageSize int 页长
+     *
+     *
+     */
+    public function getClassList(){
+        $cate_id = intval(input('get.cate_id'));
+        $p = intval(input('get.p'));
+        $pageSize = intval(input('get.pageSize'));
+
+        $p = !empty($p) ? $p : 1;
+        $pageSize = !empty($pageSize) ? $pageSize : 6;
+
+        $data = model('home/Class')->getClassList($p,$pageSize,$cate_id);
+        foreach ($data as &$v){
+            $v['thumb'] =  addDomain($v['thumb']);
+        }
+
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+    }
+
+    /**
+     *
+     * 课程详情
+     *
+     * @param $uid int 用户id
+     * @param $class_id int 课程id
+     * @param $chapter_id int 视频id  非必须
+     *
+     */
+    public function getDetail(){
+        $uid = intval(input('get.uid'));
+        $class_id = intval(input('get.class_id'));
+        $chapter_id = intval(input('get.chapter_id'));
+
+        if($class_id<=0 || $uid<= 0){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $data = model('home/Class')->getClassDetail($uid,$class_id,$chapter_id);
+
+        foreach ($data['data']['data'] as &$v){
+            $v['thumb'] =  addDomain($v['thumb']);
+        }
+        $data['data']['video']['thumb'] = addDomain($data['data']['video']['thumb']);
+
+        if($data['code'] == 0){
+            return json(['code'=>0,'msg'=>$data['msg'],'data'=>'']);
+            exit();
+        }
+
+        echo json_encode($data);
+
+    }
+
+    /**
+     *
+     * 加入学习计划
+     * @param $uid int 用户id
+     * @param $class_id int 课程id
+     *
+     */
+    public function addStudy(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $class_id = $param->class_id;
+        $uid = $param->uid;
+
+        if($class_id <=0){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $res = model('home/Class')->addStudy($uid,$class_id);
+
+        $this->ajaxReturn($res);
+
+
+    }
+
+    /**
+     *
+     * 记录观看时间
+     * @param $currentTime int 当前观看时间
+     * @param $chapter_id int 当前观看视频id
+     * @param $class_id int 当前课程id
+     * @param $uid int 用户id
+     *
+     */
+    public function saveTime(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $currentTime = $param->currentTime;
+        $chapter_id = $param->chapter_id;
+        $class_id = $param->class_id;
+        $uid = $param->uid;
+
+
+        if(empty($currentTime) || empty($chapter_id) || empty($class_id) || empty($uid)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        model('home/Class')->saveTime($uid,$chapter_id,$class_id,$currentTime);
+        return json(['code'=>1,'msg'=>'记录成功','data'=>'']);
+
+    }
+
+
+
+
+
+
+}

@@ -1,0 +1,194 @@
+<title>添加管理员 - 管理员管理 - H-ui.admin v3.1</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" method="post" id="form-admin-add">
+
+	<!--<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">收件人：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="recipient_id" size="1">
+				{foreach name="data" item="v"}
+					<option value="{$v.id}">{$v.bradmin_username}</option>
+				{/foreach}
+			</select>
+			</span> </div>
+	</div>-->
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-3">收件人：</label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <dl class="permission-list">
+                <dd>
+                    <dl class="cl permission-list2">
+                        <input type="checkbox" class="input_all" /><b>全选</b><br/>
+                        <p>
+                            <dd>
+                                <p>
+                                    {foreach name="data" item="v"}
+                                        <label class="per">
+                                            {in name="v['id']" value="$res"}
+                                                <input type="checkbox" class="module" checked="checked" value="{$v.id}" name="receive_id[]" id="user-Character-0-0-0">
+                                            {else/}
+                                                <input type="checkbox" class="module" value="{$v.id}" name="receive_id[]" id="user-Character-0-0-0">
+                                            {/in}
+                                            {$v.company_name}</br>
+                                        </label>
+                                    {/foreach}
+                                </p>
+                            </dd>
+                        </p>
+                    </dl>
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-3">标题：</label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <textarea name="title" cols="" rows=""  class="textarea"  placeholder="说点什么..." dragonfly="true" onKeyUp="$.Huitextarealength(this,100)">{$content['title']}</textarea>
+            <p class="textarea-numberbar"><em class="textarea-length"></em></p>
+        </div>
+    </div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">发送内容：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<textarea name="content" cols="" rows=""  class="textarea"  placeholder="说点什么..." dragonfly="true" onKeyUp="$.Huitextarealength(this,100)">{$content['content']}</textarea>
+			<p class="textarea-numberbar"><em class="textarea-length"></em></p>
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;发送&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery-1.11.3.min.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		rules:{
+			adminName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			password:{
+				required:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			phone:{
+				required:true,
+				isPhone:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			adminRole:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit({
+				type: 'post',
+				url: "xxxxxxx" ,
+				success: function(data){
+					layer.msg('添加成功!',{icon:1,time:1000});
+				},
+                error: function(XmlHttpRequest, textStatus, errorThrown){
+					layer.msg('error!',{icon:1,time:1000});
+				}
+			});
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
+
+
+//点击全选事件
+$(".input_all").click(function(){
+
+    //第一步 获取当前选择的状态 （勾选/不勾选）
+    //is() 遍历方法 匹配所有元素 返回值 true false
+    var status = $(this).is(":checked");
+    if(status){
+        $(".module,.action").prop("checked","checked");
+        //$(".action").attr("checked","checked");
+    }else{
+        $(".module,.action").prop("checked","");
+        //$(".action").attr("checked","");
+    }
+})
+
+
+//点击模块事件
+$(".module").click(function(){
+
+
+    var status = $(this).is(":checked");
+    if(status){
+        $(this).siblings(".action").prop("checked",true);
+    }else{
+        $(this).siblings(".action").prop("checked",false);
+    }
+    changeAll();
+})
+
+//全选状态随之改变
+function changeAll(){
+    var length = $(".module,.action").length;//获取所有的模块和操作的总个数
+    var change_lenth = $(".module:checked,.action:checked").length; //模块和操作被勾选的总数
+    if(length == change_lenth){
+        $(".input_all").prop("checked",true);
+    }else{
+        $(".input_all").prop("checked",false);
+    }
+}
+
+//点击操作事件
+$(".action").click(function() {
+    var status = $(this).is(":checked");
+    if (status) {
+        $(this).siblings(".module").prop("checked", true);
+    } else {
+        var length = $(this).siblings(".action:checked").length;//获取当前操作（区域）中所有被勾选操作的总数
+        if (length == 0) {
+            $(this).siblings(".module").prop("checked", "");
+        }
+
+    }
+    changeAll();
+
+})
+
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

@@ -1,0 +1,69 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/16
+ * Time: 8:41
+ *
+ * 前台首页
+ *
+ */
+namespace app\home\controller;
+
+use think\Controller;
+use think\Request;
+
+class Index extends Base{
+
+    /**
+     * 首页模块名称
+     */
+    public function module(){
+        $data=db('index')->field('id,index_name')->select();
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+    }
+
+    public function index(){
+
+
+        //通知
+        $notice = M('Notice')-> field('id,title')-> where('is_del=0')-> order('istop desc,ctime desc')->limit(2)->select();
+
+        //党建要闻
+        $cate =  M('NewCate')->field('id,name')->where('pid = 1')->select();
+        $son_cate = getSon($cate);
+        $news = D('News')-> getRecommendNews($son_cate);
+        foreach ($news as &$v){
+            //富文本转化为纯文本  并截取中文字符串
+            $v["content"] =  convertContent($v["content"]);
+        }
+
+        //一颗红心
+        $heart = M('Heart') ->field('id,title') ->  where('recommend = 1 AND is_del = 0 AND status = 2') ->order('ctime desc')->limit(4) -> select();
+
+        //微党校
+        $p = 1;
+        $pageSize = 4;
+        $school =D('Class')->getClassList($p,$pageSize);
+
+
+        //banner 广告位
+        $data = M('Ad')->select();
+        foreach ($data as &$v){
+            if($v['type'] == 1){
+                $ad[] = $v;
+            }elseif ($v['type'] == 2){
+                $banner[] = $v;
+            }
+        }
+
+        $this->assign('notice',$notice);
+        $this->assign('news',$news);
+        $this->assign('heart',$heart);
+        $this->assign('school',$school);
+        $this->assign('ad',$ad);
+        $this->assign('banner',$banner);
+        $this->display();
+    }
+
+}

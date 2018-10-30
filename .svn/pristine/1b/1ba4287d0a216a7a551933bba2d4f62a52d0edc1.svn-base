@@ -1,0 +1,111 @@
+<?php
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+class Message extends Base{
+
+    //消息列表
+    public function index(){
+        //联表查询
+        $data =Db::table('c_message')->alias('a')
+            ->join('c_branch_admin b','a.recipient_id=b.id')
+            ->join('c_company c','b.company_id=c.id')
+            ->where('a.recipient_id=b.id')
+            ->field('b.bradmin_username,a.content,a.admin_addresser_id,a.recipient_id,a.ctime,a.id')
+            ->order('ctime desc')
+            ->select();
+
+        foreach ($data as $k=>&$v){
+            $v['company_id']=db('branch_admin')->where('id','in',$v['recipient_id'])->field('company_id')->select();
+            //把二维数组转成一维数组
+            $v['coid'] = array_column($v['company_id'],'company_id',0);
+            //根据支部管理员id查找对应的公司名
+            $v['company_name']=db('company')->where('id','in',$v['coid'])->field('company_name')->select();
+            //把二维数组转成一维数组
+            $v['company_name'] = array_column($v['company_name'],'company_name',0);
+            //用逗号把公司名称隔开
+            $v['company_name']=implode(',',$v['company_name']);
+        }
+
+        $this->assign('data',$data);
+        return $this->fetch('message/index');
+    }
+
+    //发送消息
+    public function add(){
+        //查找管理员收件人
+        $data=db('branch_admin')->alias('a')
+            ->join('c_company b','a.company_id=b.id')
+            ->where('a.company_id=b.id')
+            ->field('a.id,a.bradmin_username,b.company_name')
+            ->select();
+        if (Request::instance()->isPost()) {
+            $res=input('post.');
+            //当前时间存入数组
+            $res['ctime']=time();
+            //用逗号分隔收件人id
+            $res['recipient_id']=implode(',',$res['recipient_id']);
+            //获取当前管理员(发件人)id
+            $admin_id = input('session.admin.id');
+            $res['admin_addresser_id']=$admin_id;
+
+            $results=db('message')->insert($res);
+
+            if($results){
+                $this->redirect('index');
+            }else{
+                $this->error('发送失败');
+            }
+        }
+        $this->assign('data',$data);
+        return $this->fetch('message/add');
+    }
+
+    //修改消息
+    public function update(){
+        //查找所有管理员收件人
+        $data=db('branch_admin')->alias('a')
+            ->join('c_company b','a.company_id=b.id')
+            ->where('a.company_id=b.id')
+            ->field('a.id,a.bradmin_username,b.company_name,b.id')
+            ->select();
+        //查找修改的管理员收件人
+        $id=input('id');
+        //找收件人id
+        $recipient_id=db('message')->where(array('id'=>$id))->field('recipient_id,content')->find();
+        //根据收件人id找对应的公司id
+        $company_id=db('branch_admin')->where('id','in',$recipient_id['recipient_id'])->field('company_id')->select();
+        //定义一个字符串用逗号拼接起来
+        $res='';
+        foreach ($company_id as $k=>$v){
+            $res.=$v['company_id'].',';
+        }
+
+        if (Request::instance()->isPost()) {
+            $rows=input('post.');
+            $rows['recipient_id']=implode(',',$rows['recipient_id']);
+            //获取修改时间
+            $rows['utime']=time();
+            //获取当前管理员(发件人)id
+            $admin_id = input('session.admin.id');
+            $rows['admin_addresser_id']=$admin_id;
+            $results=db('message')->where(array('id'=>$id))->update($rows);
+            if($results){
+                $this->redirect('index');
+            }else{
+                $this->error('修改失败','','','1');
+            }
+        }
+
+        $this->assign('data',$data);
+        $this->assign('res',$res);
+        return $this->fetch('message/update');
+    }
+
+
+    public function del(){
+
+    }
+}

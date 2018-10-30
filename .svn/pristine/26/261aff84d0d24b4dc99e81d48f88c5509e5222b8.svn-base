@@ -1,0 +1,136 @@
+<?php
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+
+
+
+class Admin extends Controller{
+
+    //角色管理
+    public function index(){
+
+        return $this->fetch('Admin/admin-role');
+    }
+
+    //添加角色
+    public function addrole(){
+
+        return $this->fetch('Admin/admin-role-add');
+    }
+
+    //修改角色
+    public function editrole(){
+        return $this->fetch('admin/admin-edit');
+    }
+
+
+    //权限管理
+    public function permission(){
+        return $this->fetch('Admin/admin-permission');
+    }
+
+    //权限修改
+    public function peredit(){
+        return $this->fetch('Admin/admin-permission-edit');
+    }
+
+    //管理员列表
+    public function adminlist(){
+        //查询branch_admin表
+        $res=db('branch_admin')->select();
+
+        $this->assign('res',$res);
+        return $this->fetch('Admin/admin-list');
+    }
+
+    //启用账号状态
+    public function status(){
+       $id=input('id');
+
+        $res=db('branch_admin')->where(array('id'=>$id))->update(array('status'=>1));
+        if($res){
+            $message=array(
+                "error"=>0,
+                "message"=>"修改成功"
+            );
+        }else{
+            $message=array(
+                "error"=>1,
+                "message"=>"修改失败"
+            );
+        }
+        echo json_encode($message);
+    }
+
+    //停用账号状态
+    public function statu(){
+        $id=input('id');
+
+        $res=db('branch_admin')->where(array('id'=>$id))->update(array('status'=>0));
+        if($res){
+            $message=array(
+                "error"=>0,
+                "message"=>"修改成功"
+            );
+        }else{
+            $message=array(
+                "error"=>1,
+                "message"=>"修改失败"
+            );
+        }
+        echo json_encode($message);
+    }
+
+    //添加管理员
+    public function adminadd()
+    {
+
+        if (Request::instance()->isPost()){
+            //获取post数据
+            $res = input('post.');
+
+            //把当前时间戳存到$res里
+            $res['ctime'] = time();
+
+            //获取后台管理员登录的id
+            $admin_id = input('session.admin.id');
+
+            //把管理员id存入$res里
+            $res['admin_id'] = $admin_id;
+
+
+            if($res['bradmin_password'] != $res['bradmin_password2']){
+
+                echo '<script>alert("两次输入密码不一致，请重新输入")</script>';
+            }else{
+                if(strlen($res['bradmin_password'])<6){
+                    echo '<script>alert("请输入6位数以上密码")</script>';
+                }else{
+
+                //加密密码
+                $res['bradmin_password'] = encrypt_password($res['bradmin_password']);
+
+                //去掉$res中bradmin_password2字段
+                unset($res['bradmin_password2']);
+
+                //将post里的数据插入到数据库
+                $rows = db('branch_admin')->insert($res);
+                $this->success('添加成功！',Url('adminlist'));
+                }
+            }
+            /*$this->assign('rows', $rows);*/
+        }
+
+        return $this->fetch('Admin/admin-add');
+    }
+
+    //管理员删除
+    public function admindel(){
+
+    }
+
+
+}

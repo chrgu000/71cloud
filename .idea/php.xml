@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-mongo" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-captcha" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-image" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-helper" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-installer" />
+      <path value="$PROJECT_DIR$/PHP/vendor/composer" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-migration" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-queue" />
+      <path value="$PROJECT_DIR$/PHP/vendor/topthink/think-oracle" />
+      <path value="$PROJECT_DIR$/PHP/vendor/phpsendmsg/api_sdk" />
+      <path value="$PROJECT_DIR$/PHP/vendor/phpsendmsg/msg_demo" />
+      <path value="$PROJECT_DIR$/PHP/vendor/phpsendmsg/api_demo" />
+      <path value="$PROJECT_DIR$/PHP/vendor/phpsendmsg/msg_sdk" />
+      <path value="$PROJECT_DIR$/PHP/vendor/validate/Verify" />
+      <path value="$PROJECT_DIR$/PHP/vendor/Qiniu/src" />
+      <path value="$PROJECT_DIR$/PHP/vendor/Qiniu/tests" />
+      <path value="$PROJECT_DIR$/PHP/vendor/Qiniu/examples" />
+      <path value="$PROJECT_DIR$/PHP/vendor/Qiniu/docs" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
+</project>

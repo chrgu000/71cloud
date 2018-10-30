@@ -1,0 +1,484 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/30
+ * Time: 16:53
+ *
+ * 登录注册
+ *
+ */
+namespace app\home\controller;
+use think\Controller;
+use think\Session;
+class Login extends Base{
+    public $branch = array();
+    public  $rand = array(); //随机数数组
+    public function __construct()
+    {
+        $this->rand  = array_merge(range("a","z"),range(0,9));
+    }
+    /**
+     *
+     * 注册 POST
+     * @param $tel string 手机号
+     * @param $captcha string 图形验证码
+     * @param $code string 验证码
+     *
+     *
+     */
+    public function register(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $tel = htmlspecialchars_decode($param->tel);
+        $captcha = htmlspecialchars_decode($param->captcha);
+        $code = htmlspecialchars_decode($param->code);
+
+
+        if(empty($tel) || empty($code) || empty($captcha)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        //检测验证码
+        if(time() - session('randStr')['time'] > 5*60){
+            return json(['code'=>0,'msg'=>'手机验证码过期,请重新获取','data'=>'']);
+            exit();
+        }
+
+
+        //手机号是否注册
+        $userModel = db('User');
+        if($userModel->where("tel = '$tel'")->find()){
+            return json(['code'=>0,'msg'=>'手机号已注册,请直接登录','data'=>'']);
+            exit();
+        }
+
+        //获取键值：成功返回String类型键值，若key不存在或不是String类型则返回false
+        $ret = $redis->get('mystr');
+        //图形验证码验证
+        if (!captcha_check($captcha)) {
+            return json(['code' => 0, 'msg' => '图形验证码错误',"data" => ""]);
+        }
+
+
+
+        if(session('randStr')['randStr'] != $code){
+            return json(['code'=>0, 'msg'=>'手机验证码错误','data'=>'']);
+            exit();
+        }
+
+
+        return json(['code'=>1,'msg'=>'手机验证通过','data'=>'']);
+
+
+    }
+    /*public function inc(){
+        $referer = $this->request->header('referer');
+
+        $captcha = new Captcha();
+        if (!$captcha->check($verify, md5($referer))) {
+            return json(["code" => 0, "msg" => "验证码输入错误", 'data'=>'']);
+        }
+    }*/
+
+
+    //生成图片验证码
+    /*public function show_imagecode($id = "")
+    {
+
+        return "<div>" . captcha_img() . "</div>";
+        //return $this->fetch();
+
+    }*/
+
+    //生成随机数 用于验证码
+    /*public function getnonce($length = 3){
+        $captcha ="";
+        $token_arr = $this->rand;
+        shuffle($token_arr);
+        $count = count($token_arr);
+        for($i=0;$i<=$length;$i++){
+            $index = rand(0,$count-1);
+            $captcha.=$token_arr[$index];
+        }
+        Session::set('check_captcha',"$captcha");
+
+        //验证码存数据库
+        $id=db('user')->where(array('id'=>1))->update(['captcha'=>$captcha]);
+        return $captcha;
+
+    }*/
+
+    /**
+     * 注册时的组织
+     */
+    public function tissue(){
+        $data=db('company')->field('id,company_name')->select();
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+    }
+
+    /**
+     * 个人信息录入
+     * @param $realname 真实姓名
+     * @param $password 密码
+     * @param $password1 确认密码
+     * @param $branchs_id 所属组织id
+     * @param $party_status 党员状态
+     *
+     */
+    public function entry(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $username = htmlspecialchars_decode($param->username);
+        $password = htmlspecialchars_decode($param->password);
+        $password1 = htmlspecialchars_decode($param->password1);
+        $branchs_id = htmlspecialchars_decode($param->branchs_id);
+        $party_status = htmlspecialchars_decode($param->party_status);
+        //默认用户名
+        $username = '71cloud_'.rand(100000,999999);
+        //默认头像
+        $face = 'http://pc5hsiop1.bkt.clouddn.com/avaturl.png';
+        //检测密码位数
+        if(strlen($password) < 6){
+            return json(['code'=>0,'msg'=>'密码至少6位','data'=>'']);
+            exit();
+        }
+        if($password==$password1){
+            $user=db('user')->insert(['username'=>$username,'password'=>md5(md5($password)),'branchs_id'=>$branchs_id,'party_status'=>$party_status,'face'=>$face,'ctime'=>time()]);
+                if($user){
+                    return json(['code'=>1,'msg'=>'注册成功','data'=>$user]);
+                }else{
+                    return json(['code'=>0,'msg'=>'注册失败','data'=>'']);
+                }
+        }else{
+            return json(['code'=>0,'msg'=>'两次输入密码不一致','data'=>'']);
+        }
+    }
+
+
+
+    /**
+     *
+     * 手机验证码 GET
+     * @param $tel string 手机号
+     *
+     */
+    public function sendMsg(){
+
+        $tel = trim(input('get.tel'));
+        if(empty($tel)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        return json(sendMsg($tel));
+
+    }
+
+    /**
+     *
+     * 重发手机验证码
+     * @param $signName string 签证名称
+     * @param $tempCode string 模板CODE
+     *
+     */
+    public function sendSmsMsg(){
+        $signName = input('post.signName');
+        $tempCode = input('post.tempCode');
+        $tel = session('tel');
+
+        $this->ajaxReturn(sendMsg($tel,$signName,$tempCode));
+
+    }
+
+    /**
+     *
+     * 修改密码/找回密码 POST
+     * @param $tel string 手机号
+     * @param $code string 验证码
+     * @param $old_pass string 旧密码
+     * @param $new_pass string 新密码
+     * @param $type int 类型 1修改密码 2找回密码
+     *
+     */
+    public function modifyPass(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $tel = htmlspecialchars_decode($param->tel);
+        $code = htmlspecialchars_decode($param->code);
+        $old_pass = htmlspecialchars_decode($param->old_pass);
+        $new_pass = htmlspecialchars_decode($param->new_pass);
+        $type = htmlspecialchars_decode($param->type);
+
+        if(empty($tel) || empty($code) || empty($new_pass)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        //若是修改密码 需要传入旧密码
+        if($type == 1 && empty($old_pass)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        //检测手机号是否存在
+        $userModel =  db('User');
+        $password = $userModel->where("tel = '$tel'")->column('password');
+        if(!$password){
+            return json(['code'=>0,'msg'=>'手机号输入有误','data'=>'']);
+            exit();
+        }
+
+        //检测验证码
+        if(time() - session('randStr')['time'] > 5*60){
+            return json(['code'=>0,'msg'=>'验证码过期,请重新获取','data'=>'']);
+            exit();
+        }
+
+        if(session('randStr')['randStr'] != $code){
+            return json(['code'=>0,'msg'=>'验证码错误','data'=>'']);
+            exit();
+        }
+
+        //若是修改密码 需要检测旧密码是否正确
+        if($type == 1 &&md5(md5($old_pass)) != $password ){
+            return json(['code'=>0,'msg'=>'旧密码不正确','data'=>'']);
+            exit();
+        }
+
+
+        //检测新密码位数
+        if(strlen($new_pass) < 6){
+            return json(['code'=>0,'msg'=>'新密码至少6位','data'=>'']);
+            exit();
+        }
+
+
+        $userModel->where("tel = '$tel'")->setField('password',md5(md5($new_pass)));
+
+        return json(['code'=>1,'msg'=>'密码修改成功,请使用新密码登录','data'=>'']);
+
+
+    }
+
+
+    /**
+     *
+     * 手机号登录 POST
+     * @param $tel string 手机号
+     * @param $password string 密码
+     *
+     */
+    public function login(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+
+        $tel = htmlspecialchars_decode($param->tel);
+
+        $password = htmlspecialchars_decode($param->password);
+
+        if(empty($tel) || empty($password)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+
+        //检测账号是否存在
+        $userModel =  db('User');
+        $res = $userModel->where("tel = '$tel'")->find();
+        if(!$res){
+            return json(['code'=>0,'msg'=>'该账号未注册，请先注册','data'=>'']);
+            exit();
+        }
+
+        //检测账号密码是否正确
+        $pass = md5(md5($password));
+        $data = $userModel->field('id,tel,status')->where("tel = '$tel' AND password= '$pass' ")->find();
+        if(!$data){
+            return json(['code'=>0,'msg'=>'账号或者密码错误','data'=>'']);
+            exit();
+        }
+
+        //检测账号状态 1正常2被禁用
+        if($data['status'] == 2){
+            return json(['code'=>0,'msg'=>'账号已被禁用,请联系管理员','data'=>'']);
+            exit();
+        }
+
+        //获取token
+        $check = new Check();
+        $token = $check->getToken($data['id']);
+
+        if($token){
+            $data['token'] = $token;
+            $userModel->where('id='.$data['id'])->setField('last_time',time());
+        }else{
+            return json(['code'=>0,'msg'=>'token请求失败','data'=>'']);
+            exit();
+        }
+
+
+        return json(['code'=>1,'msg'=>'登录成功','data'=>$data]);
+
+    }
+
+
+
+
+
+
+
+    /**
+     *
+     * 首页
+     * @param $tel string 手机号
+     *
+     */
+    /*public function index(){
+
+        if (Request::instance()->isGet()){
+
+            $this->display();
+        }
+        if (Request::instance()->isAjax()){
+            $tel = trim(input('post.tel'));
+            if(empty($tel)) $this->ajaxReturn(['code'=>0,'msg'=>'请输入手机号']);
+
+            //手机号存session
+            session('tel',$tel);
+
+            //检测用户是否存在
+            if(db('User')->where("tel = '$tel'")->find()){
+                $this->ajaxReturn(['code'=>2,'msg'=>'用户存在,请输入密码']);
+            }else{
+                //注册
+                $signName = '注册验证';
+                $tempCode = 'SMS_69885140';
+                $tel = session('tel');
+
+                //发送验证码
+                $this->ajaxReturn(sendMsg($tel,$signName,$tempCode));
+
+            }
+
+
+        }
+
+    }*/
+
+    /**
+     *
+     * 验证码页面
+     *
+     */
+   /* public function verify(){
+
+        $this->display();
+    }*/
+
+
+    /**
+     *
+     * 密码找回
+     *
+     *
+     */
+    /*public function forgetPass(){
+        $signName = '注册验证';
+        $tempCode = 'SMS_69885140';
+        $tel = session('tel');
+
+        $this->ajaxReturn(sendMsg($tel,$signName,$tempCode));
+
+    }*/
+
+
+
+
+    /**
+     *
+     * 设置密码
+     * @param $password string 密码
+     *
+     */
+   /* public function setPassword(){
+        $password = trim(input('post.password'));
+        if(empty($password)) $this->ajaxReturn(['code'=>0,'msg'=>'请填写密码']);
+
+        $tel = session('tel');
+
+        //账号存在,重置密码  不存在,添加账号
+        $userModel = db('User');
+        $id = $userModel->where("tel= '$tel'")->cloumn('id');
+        if($id){
+            $userModel->where("tel= '$tel'")->update(['password'=>md5(md5($password)),'last_time'=>time()]);
+            //保存用户登录信息
+            cookie('user',['id'=>$id,'tel'=>$tel]);
+            $this->ajaxReturn(['code'=>1,'msg'=>'密码修改成功']);
+
+        }else{
+
+            //默认用户名
+            $username = 'Cloud_'.rand(100000,999999);
+            //默认头像
+            $face = 'http://pc5hsiop1.bkt.clouddn.com/avaturl.png';
+
+            $add_id = $userModel->insert(['tel'=>$tel,'password'=>md5(md5($password)),'username'=>$username,'face'=>$face,'ctime'=>time()]);
+            if($add_id){
+                //保存用户登录信息
+                cookie('user',['id'=>$add_id,'tel'=>$tel]);
+                $this->ajaxReturn(['code'=>1,'msg'=>'注册成功']);
+            }else{
+                $this->ajaxReturn(['code'=>0,'msg'=>'注册失败']);
+            }
+
+        }
+
+
+    }*/
+
+    /**
+     *
+     * 密码验证
+     *
+     *
+     */
+    /*public function checkPass(){
+        $password = trim(input('post.password'));
+        if(empty($password)) $this->ajaxReturn(['code'=>0,'msg'=>'请填写密码']);
+
+        $tel = session('tel');
+        $pass = md5(md5($password));
+        $userModel = db('User');
+
+        $data = $userModel->field('id,status')->field('id,status')->where("tel = '$tel' AND password = '$pass'")->find();
+        if($data){
+            if($data['status'] == 2){
+                $this->ajaxReturn(['code'=>0,'msg'=>'账号已禁用，请联系管理员']);
+            }
+            //保存用户登录信息
+            cookie('user',['id'=>$data['id'],'tel'=>$tel],60*60*24);
+            //更新最后登录时间
+            $userModel->where('tel='.$tel)->setField('last_time',time());
+            $this->ajaxReturn(['code'=>1,'msg'=>'登录成功']);
+        }else{
+            $this->ajaxReturn(['code'=>0,'msg'=>'密码错误']);
+        }
+
+
+    }*/
+
+    /**
+     *
+     * 退出登录
+     *
+     */
+    /*public function logout(){
+        cookie('user',null);
+        $this->redirect('Index/index');
+    }*/
+
+
+
+
+
+
+
+}

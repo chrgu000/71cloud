@@ -1,0 +1,64 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/17
+ * Time: 14:17
+ *
+ * 党建相册
+ *
+ */
+
+namespace Home\Controller;
+
+class PhotoController extends BaseController{
+    /**
+     * 党建相册列表
+     *
+     *
+     */
+    public function index(){
+
+        $p = intval(I('get.p'));
+        $pageSize = 6;
+        $p = empty($p) ? 1 : $p;
+
+        $data = D('Photo')->getPhotoList($p,$pageSize);
+
+
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($data)){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+            $this->ajaxReturn(['code' => 1,'msg' => $data]);
+        }
+
+
+        $this->assign('data',$data);
+        $this->display();
+
+    }
+
+    /**
+     *
+     * 详情页
+     * @param       $id         int         相册id
+     *
+     */
+    public function detail(){
+        $id = intval(I('get.id'));
+        if($id <= 0) $this->error('参数错误！');
+
+        $data = D('Photo')->getPhotoDetail($id);
+
+        $this->assign('data',$data['data']);
+        $this->assign('count',$data['count']);
+        $this->display();
+
+
+    }
+
+
+
+}

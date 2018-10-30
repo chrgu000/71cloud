@@ -1,0 +1,148 @@
+body{
+
+    position: relative;
+}
+body,html{
+    max-width: 750px;
+    margin: 0 auto;
+}
+.newsCenter{
+    background: #f6f6f6;
+}
+.flexs{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+}
+.flex1{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.newsCenter .newsheader{
+    padding: 0 0.32rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    justify-content: space-around;
+    background: #e83329;
+}
+.newsCenter .newsheader .headerText{
+    font-size: 0.32rem;
+    color: white;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.newsCenter .newsheader .iconfont{
+    font-size :0.36rem;
+    color:white;
+    width: 0.8rem;
+    height: 100%;
+
+}
+.newsCenter .newsheader .ico1{
+    text-align: left;
+}
+.newsCenter .newsheader .ico2{
+    text-align: right;
+}
+.newsContent{
+    height: 5.9rem;
+    background-image: url(../images/newsCenter2_02.png);
+    background-position: 0 0 ;
+    background-repeat: no-repeat;
+    background-size: 7.5rem 2.9rem;
+    margin-top: -0.8rem;
+    overflow: hidden;
+    background-color: white;
+}
+.userInfo{
+    height: 4.37rem;
+    text-align: center;
+    margin-top: 1.56rem;
+}
+.userAvater{
+    height: 2.9rem;
+    text-align: center;
+}
+.userAvater img{
+    width: 1.74rem;
+    height: 1.74rem;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+.userAvater p{
+    text-align: center;
+    font-size: 0.3rem;
+    color: #000;
+    margin-top: 0.3rem;
+}
+.userDetail>div{
+    float: left;
+    display: inline-block;
+    width: 50%;
+    height: 1.3rem;
+    text-align: center;
+}
+.userDetail>div .p1{
+    font-size:0.3rem;
+    color:#e83329;
+    text-align: center;
+}
+.userDetail>div .p2{
+    font-size:0.26rem;
+    color:#888787;
+    text-align: center;
+    margin-top: 0.15rem;
+}
+.newsList{
+    margin-top: 0.26rem;
+}
+.newsListItem {
+    width: 100%;
+    height: 1rem;
+    border-bottom: 1px solid #e6e6e6;
+    background: white;
+    line-height: 1rem;
+    padding: 0 0.32rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.newsListItem .iconLeft{
+    color:#fe6e67 ;
+    display: inline-block;
+    width: 0.6rem;
+    font-size:0.36rem
+
+}
+.newsListItem p{
+   text-align: left ;
+    font-size: 0.28rem;
+}
+.iconRight{
+    width: 0.3rem;
+    text-align: right;
+    color:#9e9e9e ;
+    font-size:0.36rem
+}
+.loginOut{
+    position: fixed;
+    max-width: 750px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.8rem;
+    background: #e83329;
+    line-height: 0.8rem;
+    font-size: 0.32rem;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+}

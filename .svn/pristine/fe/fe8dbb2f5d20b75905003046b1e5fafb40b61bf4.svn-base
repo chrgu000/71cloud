@@ -1,0 +1,179 @@
+﻿<title>新闻列表</title>
+<link rel="stylesheet" href="/static/admin/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+<body class="pos-r">
+
+<div>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 新闻管理 <span class="c-gray en">&gt;</span> 新闻列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+
+		<div class="text-c">
+			<form action="{:Url('index')}" method="get">
+				日期范围：
+				<input type="text" onfocus="WdatePicker({ maxDate:'#F{.(\'endTime\') }' })" value="{$Think.get.logmin}" id="logmin" name="logmin" class="input-text Wdate" style="width:120px;">
+				-
+				<input type="text" onfocus="WdatePicker({ maxDate:'#F{.(\'datemin\')}' })" value="{$Think.get.logmax}" id="logmax" name="logmax" class="input-text Wdate" style="width:120px;">
+
+				<input type="text" name="title" id="" placeholder=" 新闻标题" style="width:250px" value="{$Think.get.title}" class="input-text">
+				<select name="cate" id="" class="input-text" style="width:300px;padding-top: 0px">
+					<option value="">请选择分类</option>
+					{volist name="cate" id="v"}
+						<option value="{$v.id}" {eq name="Think.get.cate" value="$v.id"}selected{/eq} >{$v.level|str_repeat = '----',###}{$v.name}</option>
+					{/volist}
+				</select>
+
+				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜新闻</button>
+			</form>
+		</div>
+		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
+			<a class="btn btn-primary radius"   href="{:Url('add')}"><i class="Hui-iconfont">&#xe600;</i> 添加新闻</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+		<div class="mt-20">
+			<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<thead>
+					<tr class="text-c">
+						<th width="40"><input name="" type="checkbox" value=""></th>
+						<th width="40">ID</th>
+						<th>标题</th>
+						<th width="150">缩略图</th>
+						<th width="150">分类</th>
+						<th width="150">推荐</th>
+						<th width="150">发布时间</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="data" id="vo"}
+						<tr class="text-c va-m">
+							<td><input name="" type="checkbox" value=""></td>
+							<td>{$vo.id}</td>
+							<td class="text-l">{$vo.title}</td>
+							<td><img width="100" height="60" class="product-thumb" src="{$vo.thumb}"></td>
+							<td>{$vo.cate_name}</td>
+							{eq name="vo.recommend" value="0"}
+								<td class="td-status"><span class="btn btn-success  radius size-MINI" onclick="recommend(this,'{$vo.id}')">推荐</span></td>
+								{else/}
+								<td class="td-status"><span class="btn  btn-danger radius size-MINI" onclick="cancel_recommend(this,'{$vo.id}')">取消推荐</span></td>
+							{/eq}
+							<td>{$vo.ctime|date = 'Y-m-d H:i:s',###}</td>
+							<td class="td-manage"><a style="text-decoration:none" class="ml-5"  href="{:Url('News/edit',array('id'=>$vo.id))}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="del(this,'{$vo.id}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						</tr>
+					{/volist}
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  {"orderable":false,"aTargets":[0,2,3,7]}// 制定列不参与排序
+	]
+});
+/*添加*/
+function add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+/*编辑*/
+function edit(title,url,id){
+    var index = layer.open({
+        type: 2,
+        title: title,
+        content: url+'?id='+id
+    });
+    layer.full(index);
+}
+
+
+/*推荐*/
+function recommend(obj,id){
+	layer.confirm('确认推荐吗？',function(){
+		$.ajax({
+			'url' 		: "{:Url('recommend')}",
+			'data' 		: {id:id},
+			'dataType'	: 'json',
+			'type' 		: 'post',
+			success		: function (msg) {
+			    if(msg.code == 1){
+                    $(obj).parent('td').html('<span class="btn  btn-danger radius size-MINI" onclick="cancel_recommend(this,{id})" >取消推荐</span>');
+                    layer.msg(msg.msg,{icon: 1,time:1000});
+				}else{
+                    layer.msg(msg.msg,{icon: 2,time:1000});
+				}
+            }
+
+		})
+
+	});
+}
+
+/*取消推荐*/
+function cancel_recommend(obj,id){
+	layer.confirm('确认取消推荐吗？',function(){
+		$.ajax({
+			'url' 		: "{:Url('cancel_recommend')}",
+		    'data'		: {id:id},
+			'dataType'  : 'json',
+			'type' 		: 'post',
+			success		: function (msg) {
+				if(msg.code == 1){
+					$(obj).parents("td").html('<span class="btn  btn-success radius size-MINI" onclick="recommend(this,{id})">推荐</span>');
+					layer.msg(msg.msg,{icon: 1,time:1000});
+				}else{
+                    layer.msg(msg.msg,{icon: 2,time:1000});
+				}
+			}
+
+		})
+
+	});
+}
+
+/*删除*/
+function del(obj,id){
+    layer.confirm('确认删除吗？',function(){
+        $.ajax({
+            'url' 		: "{:Url('del')}",
+            'data'		: {id:id},
+            'dataType'  : 'json',
+            'type' 		: 'post',
+            success		: function (msg) {
+                if(msg.code == 1){
+                    $(obj).parent().parent().remove();
+                    layer.msg(msg.msg,{icon: 1,time:1000});
+                }else{
+                    layer.msg(msg.msg,{icon: 2,time:1000});
+                }
+            }
+
+        })
+
+    });
+}
+
+
+
+
+</script>
+</body>
+</html>

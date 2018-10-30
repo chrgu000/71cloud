@@ -1,0 +1,77 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/17
+ * Time: 10:48
+ *
+ * 反腐倡廉
+ *
+ */
+namespace Home\Controller;
+
+class ClearController extends BaseController{
+
+    /**
+     * 反腐倡廉 列表
+     * @param       $cate_id        int         分类id
+     * @param       $pageSize       int         页长
+     *
+     */
+    public function index(){
+        //分类id
+        $cate_id = intval(I('get.cate_id'));
+        //页码
+        $p = intval(I('get.p'));
+        //页长
+        $pageSize = 6;
+
+        $p = empty($p) ? 1 : $p;
+
+        $clearModel = D('News');
+        //反腐倡廉分类
+        $cate = $clearModel->getNewsCate($type=2);
+        //反腐倡廉新闻
+        $news = $clearModel->getClearNewsList($cate_id,$p,$pageSize);
+
+        //数据不足 页长
+        if(count($news) < $pageSize){
+            $over = 1; //下一页无数据
+        }else{
+            $over = 0; //下一页有数据
+        }
+
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($news)){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+            $this->ajaxReturn(['code' => 1,'msg' => $news,'over'=>$over]);
+        }
+
+
+        $this->assign('cate',$cate);
+        $this->assign('data',$news);
+        $this->assign('over',$over);
+        $this->display();
+
+    }
+
+
+
+    /**
+     *
+     * 详情页
+     *
+     */
+    public function detail(){
+        $id = intval(I('get.id'));
+        if($id <= 0) $this->error('参数错误！');
+
+        $data = D('Home/News')->getDetail($id);
+
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+}

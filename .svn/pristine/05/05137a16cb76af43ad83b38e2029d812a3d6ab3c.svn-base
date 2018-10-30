@@ -1,0 +1,12 @@
+<?php
+
+namespace app\branchadmin\model;
+
+use think\Model;
+
+class Branchs extends Model
+{
+    public $table = 'c_branchs';
+
+    protected $resultSetType = 'collection';
+}

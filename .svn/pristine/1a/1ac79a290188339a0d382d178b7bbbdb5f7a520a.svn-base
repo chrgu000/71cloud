@@ -1,0 +1,239 @@
+/**
+ * Created by Administrator on 2018/7/30.
+ */
+body,html{
+    width: 100%;
+    height: 100%;
+}
+.loginWrap{
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/login.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.loginWrap .loginZoom,.loginWrap .fillPassword{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+}
+.loginTitle{
+    font-size: 0.38rem;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 2.9rem;
+}
+.loginArea{
+    margin: 0 0.76rem;
+}
+.loginInput{
+    position: relative;
+    height: 0.8rem;
+}
+#androidDialog1{
+    display: none;
+}
+.loginArea{
+    margin-top: 0.65rem;
+}
+.loginArea input{
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-left: 0.3rem;
+    height:0.8rem;
+    border-radius:0.1rem;
+    -webkit-border-radius: 0.1rem;
+    font-size: 0.34rem;
+    border: none;
+    outline: none;
+}
+.loginInput input{
+
+    background: rgba(255,255,255,0.9);
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+    font-size: 0.3rem;
+}
+.loginInput .errorTips{
+    position: absolute;
+    right: 0.6rem;
+    top:0;
+    height: 100%;
+    padding-right: 0.4rem;
+    background-image: url("../images/errorTips.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 0.3rem 0.3rem;
+    font-size:0.24rem;
+    color: #e83328;
+    line-height: 0.8rem;
+    display: none;
+}
+.loginInput .eyes{
+    position: absolute;
+    right: 0.3rem;
+    top:0;
+    height: 100%;
+    width: 0.68rem;
+    background-image: url("../images/eyes2.png");
+    background-size: 0.38rem 0.24rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inherit;
+}
+.loginBtn{
+    width: 100%;
+    height: 0.8rem;
+    margin-top: 0.3rem;
+}
+.loginBtn input{
+    text-align: center;
+    line-height: 0.8rem;
+    font-size:0.34rem;
+    color: #ffffff;
+    background: linear-gradient(to right, #ca2613 0%, #e59f33 100%);
+}
+.loginArea input{
+
+}
+.loginTips {
+    text-align: center;
+    font-size: 0.24rem;
+    color: white;
+    margin-top: 0.2rem;
+
+}
+
+@-webkit-keyframes shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@keyframes shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+.shake {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.code{
+    text-align: center;
+    font-size: 0.24rem;
+    color: white;
+    padding-top: 0.13rem;
+}
+.sendCode{
+    font-weight: normal;
+}
+.loginArea .codeArea{
+    text-align: center;
+}
+.loginArea .codeArea input{
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 0.13rem;
+    background-color: rgba(255,255,255,0.7);
+    margin: 0 0.1rem ;
+}
+.codeerrorTips{
+    text-align: center;
+    padding-top:0.2rem;
+    display: none;
+
+}
+.codeerrorTips span{
+    display: inline-block;
+    position: relative;
+    font-size: 0.24rem;
+    color: white;
+    padding-left: 0.5rem;
+
+
+}
+.codeerrorTips span:before{
+    position: absolute;
+    content: '';
+    left: 0;
+    top:50%;
+    margin-top: -0.15rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    background-image: url("../images/errorTips.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.3rem 0.3rem;
+}
+.codeerrorTips span.noTips:before{
+    width: 0;
+}
+.setPassword{
+    display: none;
+}
+.fillPassword{
+    display: none;
+}
+.forgetPassword{
+    font-size: 0.24rem;
+    color: white;
+    text-align: center;
+    padding-top: 0.2rem;
+}
+.forgetPassword a{
+    color: white;
+
+}

@@ -1,0 +1,617 @@
+//
+//  HomeViewController.m
+//  TheParty
+//
+//  Created by macmini on 2018/7/31.
+//  Copyright © 2018年 macmini. All rights reserved.
+//
+
+#import "HomeViewController.h"
+#import "NewViewController.h"
+#import "AntiCorruptionViewController.h"
+#import "PhotoViewController.h"
+#import "StoryViewController.h"
+#import "RedHeartViewController.h"
+#import "SupervisionViewController.h"
+#import "ExamineViewController.h"
+#import "ExhibitionViewController.h"
+#import "ActivityViewController.h"
+#import "LXMainTabBarController.h"
+#import "NotificationViewController.h"
+#import "NewsWebViewController.h"
+#import "LoginViewController.h"
+#import "MeViewController.h"
+#import "SDCycleScrollView.h"
+#import "NewsWebViewController.h"
+#import "RedHeartListViewController.h"
+#import "RankingViewController.h"
+
+@interface HomeViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate>
+{
+    UIScrollView *mainScroll;
+    NSArray *noticeArr;
+    NSArray *BannerArr;
+    NSArray *AdArr;
+    NSArray *newsArr;
+    NSArray *schoolArr;
+    NSArray *heartArr;
+    ThePartySingTon *inscance;
+    UIView *Backview;
+}
+@end
+
+@implementation HomeViewController
+
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.title = @"七一云党建";
+    inscance = [ThePartySingTon SharedInstance];
+    noticeArr = [[NSArray alloc] init];
+    BannerArr = [[NSArray alloc] init];
+    AdArr = [[NSArray alloc] init];
+    newsArr = [[NSArray alloc] init];
+    schoolArr = [[NSArray alloc] init];
+    heartArr = [[NSArray alloc] init];
+    [self creatRight];
+    [self createData];
+    
+}
+
+- (void)creatRight{
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"home_user"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(user_action)];
+}
+
+- (void)createData{
+    [self showHUD:nil];
+    WEAKSELF
+    [ConnectionRequestMgr GetSessionWithUrl:HomeIndex parameter:nil successBlock:^(NSDictionary *dict) {
+        
+        [weakSelf hideHUD];
+        if ([dict[@"code"] integerValue] == 1) {
+            noticeArr = dict[@"data"][@"notice"];
+            BannerArr = dict[@"data"][@"banner"];
+            AdArr = dict[@"data"][@"ad"];
+            newsArr = dict[@"data"][@"news"];
+            schoolArr = dict[@"data"][@"school"];
+            heartArr = dict[@"data"][@"heart"];
+            [self creatUI];
+        }else{
+            [weakSelf showError:dict[@"msg"]];
+            [self setEmptyPlaceholder];
+        }
+    } failBlock:^(NSString *errorStr) {
+        
+        [weakSelf hideHUD];
+        [self setEmptyPlaceholder];
+    }];
+}
+
+- (void)setEmptyPlaceholder{
+    Backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H - 64 - 44)];
+    Backview.userInteractionEnabled = YES;
+    UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 184, 137)];
+    imgV.center = Backview.center;
+    imgV.image = [UIImage imageNamed:@"NoInter"];
+    imgV.userInteractionEnabled = YES;
+    [Backview addSubview:imgV];
+    
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(imgV.frame)+ 12, SCREEN_W, 15)];
+    lab.font = Font(15);
+    lab.textColor = UIColorFromRGBA(0x000000, 1);
+    lab.text = @"点击屏幕，重新加载";
+    lab.textAlignment = 1;
+    [Backview addSubview:lab];
+    
+    UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refresh)];
+    [Backview addGestureRecognizer:click];
+    
+    [self.view addSubview:Backview];
+    
+}
+
+- (void)refresh{
+    [Backview removeFromSuperview];
+    Backview = nil;
+    [self createData];
+}
+
+- (void)creatUI{
+    mainScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
+    mainScroll.bounces = NO;
+    mainScroll.userInteractionEnabled =YES;
+    mainScroll.showsVerticalScrollIndicator = false;
+    mainScroll.showsHorizontalScrollIndicator = false;
+    [self.view addSubview:mainScroll];
+    
+    NSMutableArray *imageVArr = [[NSMutableArray alloc] init];
+    for (int i = 0; i<BannerArr.count; i++) {
+        [imageVArr addObject:BannerArr[i][@"thumb"]];
+    }
+    
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0,SCREEN_W, 201) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    cycleScrollView.imageURLStringsGroup = [imageVArr copy];
+    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+    cycleScrollView.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+    [mainScroll addSubview:cycleScrollView];
+    
+    NSArray *iamgeVArr = @[@"home_yaowen",@"home_shool",@"home_qizi",@"home_class",@"home_photo",@"home_juesai",@"home_bowuguan",@"home_huiyi",@"home_xing",@"home_huodong"];
+    NSArray *titleArr = @[@"党建要闻",@"微党校",@"反腐倡廉",@"积分考核",@"党建相册",@"在线考试",@"云展馆",@"群众监督",@"一颗红心",@"活动报名"];
+    for (int i = 0; i<2; i++) {
+        for (int j = 0; j<5; j++) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(0 +j*SCREEN_W/5, 210 +i*80, SCREEN_W/5, 75);
+            [button addTarget:self action:@selector(actionButton:) forControlEvents:UIControlEventTouchUpInside];
+            button.tag = i*5 + j;
+            [mainScroll addSubview:button];
+            
+            UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_W/5 -30)/2, 20, 35, 35)];
+            imageV.contentMode = UIViewContentModeScaleAspectFill;
+            imageV.image = [UIImage imageNamed:iamgeVArr[i*5 +j]];
+            [button addSubview:imageV];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageV.frame) + 15, SCREEN_W/5, 12)];
+            label.font = Font(12);
+            label.textAlignment = 1;
+            label.text= titleArr[i*5 + j];
+            label.textColor = UIColorFromRGBA(0x000000, 1);
+            [button addSubview:label];
+        }
+    }
+     // 通知公告
+    UIView *backBannerOne = [[UIView alloc] initWithFrame:CGRectMake(0, 390, SCREEN_W, 82)];
+    backBannerOne.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+    backBannerOne.userInteractionEnabled = YES;
+    [mainScroll addSubview: backBannerOne];
+    
+    UIImageView *banner1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_W , 62)];
+    banner1.image = [UIImage imageNamed:@"home_hui"];
+    banner1.userInteractionEnabled = YES;
+    [backBannerOne addSubview:banner1];
+    
+    UIView *backLabel = [[UIView alloc] initWithFrame:CGRectMake(16, 9, 44, 44)];
+    backLabel.backgroundColor = [UIColor redColor];
+    backLabel.layer.masksToBounds = YES;
+    backLabel.layer.cornerRadius = 5;
+    [banner1 addSubview:backLabel];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(NotificationAction)];
+    [backLabel addGestureRecognizer:tap];
+    
+    UILabel *Label= [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    Label.text = @"通知公告";
+    Label.numberOfLines = 2;
+    Label.textAlignment = 1;
+    Label.textColor = [UIColor whiteColor];
+    Label.font = FontBold(16);
+    [backLabel addSubview:Label];
+    
+    for (int i = 0; i <2; i++) {
+        UIButton *buttonTitle = [UIButton buttonWithType:UIButtonTypeCustom];
+        buttonTitle.frame = CGRectMake(CGRectGetMaxX(backLabel.frame) + 16, 13 +i*25, SCREEN_W -(CGRectGetMaxX(backLabel.frame) + 16)*2 , 14);
+        [buttonTitle setTitle:noticeArr[i][@"title"] forState:UIControlStateNormal];
+        [buttonTitle setTitleColor:UIColorFromRGBA(0x333333, 1) forState:UIControlStateNormal];
+        buttonTitle.tag = 100 + i;
+        buttonTitle.titleLabel.font = Font(13);
+        buttonTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [buttonTitle addTarget:self action:@selector(gonggaoAction:) forControlEvents:UIControlEventTouchUpInside];
+        [banner1 addSubview:buttonTitle];
+    }
+    // 党建要闻
+    UIImageView *imageVleft = [[UIImageView alloc] initWithFrame:CGRectMake(16,CGRectGetMaxY(backBannerOne.frame) +  20, 23, 21 )];
+    imageVleft.image = [UIImage imageNamed:@"home_xingxing"];
+    [mainScroll addSubview:imageVleft];
+    
+    UILabel *YaoWenL = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageVleft.frame) + 10,CGRectGetMaxY(backBannerOne.frame) + 22, 100, 17)];
+    YaoWenL.text = @"党建要闻";
+    YaoWenL.font = FontBold(17);
+    YaoWenL.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    [mainScroll addSubview:YaoWenL];
+    
+    UIButton *YaoWenB = [UIButton buttonWithType:UIButtonTypeCustom];
+    YaoWenB.frame = CGRectMake(SCREEN_W - 80,CGRectGetMaxY(backBannerOne.frame) + 22, 62, 17);
+    [YaoWenB setTitle:@"更多" forState:UIControlStateNormal];
+    [YaoWenB setTitleColor:UIColorFromRGBA(0xE32B2C, 1) forState:UIControlStateNormal];
+    YaoWenB.tag = 900;
+    YaoWenB.titleLabel.font = Font(13);
+    YaoWenB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [YaoWenB addTarget:self action:@selector(MoreAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mainScroll addSubview:YaoWenB];
+    for (int i = 0; i<3; i++) {
+        UIButton *YaoWenButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        YaoWenButton.frame = CGRectMake(0, CGRectGetMaxY(YaoWenL.frame) + 19 +i*74, SCREEN_W, 50);
+        YaoWenButton.tag = 200 + i;
+        [YaoWenButton addTarget:self action:@selector(YaoWenAction:) forControlEvents:UIControlEventTouchUpInside];
+        [mainScroll addSubview:YaoWenButton];
+        
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, SCREEN_W - 77-40, 16)];
+        title.text = newsArr[i][@"title"];
+        title.textColor = UIColorFromRGBA(0x333333, 1);
+        title.font = FontBold(16);
+        [YaoWenButton addSubview:title];
+        
+        UILabel *subjectL = [[UILabel alloc] initWithFrame:CGRectMake(17, 20, SCREEN_W - 77-40, 31)];
+        subjectL.numberOfLines = 2;
+        subjectL.text = newsArr[i][@"content"];
+        subjectL.textColor = UIColorFromRGBA(0x666666, 1);
+        subjectL.font = Font(12);
+        [YaoWenButton addSubview:subjectL];
+        
+        UIImageView *rightImageV = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_W - 17-77, 0, 77, 51)];
+        [rightImageV sd_setImageWithURL:[NSURL URLWithString:newsArr[i][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+        [YaoWenButton addSubview:rightImageV];
+    }
+
+    // 微党校
+    UIView *backBannerTwo = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(YaoWenL.frame) + 38 + 153 +46, SCREEN_W, 110)];
+    backBannerTwo.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+    backBannerTwo.userInteractionEnabled = YES;
+    [mainScroll addSubview: backBannerTwo];
+    
+    UIImageView *banner2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_W , 90)];
+    banner2.tag = 20;
+    banner2.userInteractionEnabled = YES;
+    [banner2 sd_setImageWithURL:[NSURL URLWithString:AdArr[0][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+    [backBannerTwo addSubview:banner2];
+
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionAD:)];
+    [banner2 addGestureRecognizer:tap2];
+    
+    UIImageView *imageVleft2 = [[UIImageView alloc] initWithFrame:CGRectMake(16,CGRectGetMaxY(backBannerTwo.frame) +  20, 23, 21 )];
+    imageVleft2.image = [UIImage imageNamed:@"home_xingxing"];
+    [mainScroll addSubview:imageVleft2];
+    
+    UILabel *WDXL = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageVleft2.frame) + 10,CGRectGetMaxY(backBannerTwo.frame) + 22, 100, 17)];
+    WDXL.text = @"微党校";
+    WDXL.font = FontBold(17);
+    WDXL.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    [mainScroll addSubview:WDXL];
+    
+    UIButton *WDXnB = [UIButton buttonWithType:UIButtonTypeCustom];
+    WDXnB.frame = CGRectMake(SCREEN_W - 80,CGRectGetMaxY(backBannerTwo.frame) + 22, 62, 17);
+    [WDXnB setTitle:@"更多" forState:UIControlStateNormal];
+    [WDXnB setTitleColor:UIColorFromRGBA(0xE32B2C, 1) forState:UIControlStateNormal];
+    WDXnB.tag = 901;
+    WDXnB.titleLabel.font = Font(13);
+    WDXnB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [WDXnB addTarget:self action:@selector(MoreAction:) forControlEvents:UIControlEventTouchUpInside];
+    [mainScroll addSubview:WDXnB];
+    
+    for (int i = 0; i<2; i++) {
+        for (int j = 0; j<2; j++) {
+            UIButton *WDXButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            WDXButton.frame = CGRectMake(16 +j*((SCREEN_W -48)/2 +16), CGRectGetMaxY(WDXL.frame) + 20 +i*188, (SCREEN_W -48)/2, 166) ;
+            WDXButton.tag = 300 + 2*i+j;
+            [WDXButton addTarget:self action:@selector(WDXAction:) forControlEvents:UIControlEventTouchUpInside];
+            [mainScroll addSubview:WDXButton];
+            
+            
+            UIImageView *rightImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, (SCREEN_W -48)/2, 100)];
+            [rightImageV sd_setImageWithURL:[NSURL URLWithString:schoolArr[2*i+j][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+            [WDXButton addSubview:rightImageV];
+            
+            UIImageView *ViedoImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 74, 26, 26)];
+            ViedoImageV.image = [UIImage imageNamed:@"home_bofang"];
+            [rightImageV addSubview:ViedoImageV];
+            
+            UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(rightImageV.frame) + 5, (SCREEN_W -48)/2, 40)];
+            title.numberOfLines = 2;
+            title.text = schoolArr[2*i+j][@"name"];
+            title.textColor = UIColorFromRGBA(0x333333, 1);
+            title.font = FontBold(16);
+            [WDXButton addSubview:title];
+            
+            UIImageView *eyeImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(title.frame) +8, 18, 14)];
+            eyeImageV.image = [UIImage imageNamed:@"home_look"];
+            [WDXButton addSubview:eyeImageV];
+        
+            UILabel *lookNum = [[UILabel alloc] initWithFrame:CGRectMake(25, CGRectGetMaxY(title.frame) +8, 150, 14)];
+            lookNum.text = [NSString stringWithFormat:@"%zd",(int)schoolArr[2*i+j][@"visit"]];
+            lookNum.textColor = UIColorFromRGBA(0x666666, 1);
+            lookNum.font = Font(13);
+            [WDXButton addSubview:lookNum];
+        }
+    }
+    // 在线考试
+    
+//    UIView *backBanner3 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(WDXL.frame) + 20 +188 +188, SCREEN_W, 110)];
+//    backBanner3.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+//    backBanner3.userInteractionEnabled = YES;
+//    [mainScroll addSubview: backBanner3];
+//
+//    UIImageView *banner3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_W , 90)];
+//    banner3.image = [UIImage imageNamed:@"home_gushi"];
+//    [backBanner3 addSubview:banner3];
+//
+//    UIImageView *imageVleft3 = [[UIImageView alloc] initWithFrame:CGRectMake(16,CGRectGetMaxY(backBanner3.frame) +  20, 23, 21 )];
+//    imageVleft3.image = [UIImage imageNamed:@"home_xingxing"];
+//    [mainScroll addSubview:imageVleft3];
+//
+//    UILabel *classL = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageVleft3.frame) + 10,CGRectGetMaxY(backBanner3.frame) + 22, 100, 17)];
+//    classL.text = @"在线考试";
+//    classL.font = FontBold(17);
+//    classL.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+//    [mainScroll addSubview:classL];
+//
+//    UIButton *classB = [UIButton buttonWithType:UIButtonTypeCustom];
+//    classB.frame = CGRectMake(SCREEN_W - 80,CGRectGetMaxY(backBanner3.frame) + 22, 62, 17);
+//    [classB setTitle:@"更多" forState:UIControlStateNormal];
+//    [classB setTitleColor:UIColorFromRGBA(0xE32B2C, 1) forState:UIControlStateNormal];
+//    classB.tag = 902;
+//    classB.titleLabel.font = Font(13);
+//    classB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//    [classB addTarget:self action:@selector(MoreAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [mainScroll addSubview:classB];
+//
+//    for (int i = 0; i<3; i++) {
+//        UIButton *ClassButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        ClassButton.frame = CGRectMake(0, CGRectGetMaxY(classL.frame) + 19 +i*70, SCREEN_W, 50) ;
+//        ClassButton.tag = 400 + i;
+//        [ClassButton addTarget:self action:@selector(ClassAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [mainScroll addSubview:ClassButton];
+//
+//        UILabel *RightTitle = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W - 86, 0, 70, 24)];
+//        RightTitle.backgroundColor = [UIColor redColor];
+//        RightTitle.layer.masksToBounds = YES;
+//        RightTitle.layer.cornerRadius = 5;
+//        RightTitle.text = @"进行中";
+//        RightTitle.textAlignment = 1;
+//        RightTitle.textColor = UIColorFromRGBA(0xffffff, 1);
+//        RightTitle.font = FontBold(13);
+//        [ClassButton addSubview:RightTitle];
+//
+//        UILabel *numL = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W - 86, CGRectGetMaxY(RightTitle .frame) + 5, 70, 12)];
+//        numL.text = @"2568人参加";
+//        numL.textColor = UIColorFromRGBA(0x999999, 1);
+//        numL.font = FontBold(10);
+//        numL.textAlignment = 1;
+//        [ClassButton addSubview:numL];
+//
+//        UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, SCREEN_W - 100, 16)];
+//        titleL.text = @"学习贯彻十九大精神知识自测";
+//        titleL.textColor = UIColorFromRGBA(0x333333, 1);
+//        titleL.font = FontBold(16);
+//        [ClassButton addSubview:titleL];
+//
+//        UILabel *subjectL = [[UILabel alloc] initWithFrame:CGRectMake(17, CGRectGetMaxY(titleL.frame) + 10, SCREEN_W - 100, 13)];
+//        subjectL.text = @"2018年7月3日 18:00截止";
+//        subjectL.textColor = UIColorFromRGBA(0x666666, 1);
+//        subjectL.font = Font(13);
+//        [ClassButton addSubview:subjectL];
+//
+//
+//    }
+    // 一颗红心
+    UIView *backBanner4 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(WDXL.frame) + 20 +188 +188, SCREEN_W, 110)];
+    backBanner4.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+    backBanner4.userInteractionEnabled = YES;
+    [mainScroll addSubview: backBanner4];
+    
+    UIImageView *banner4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_W , 90)];
+    banner4.tag = 21;
+    banner4.userInteractionEnabled = YES;
+    [banner4 sd_setImageWithURL:[NSURL URLWithString:AdArr[1][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+    [backBanner4 addSubview:banner4];
+    
+    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionAD:)];
+    [banner4 addGestureRecognizer:tap4];
+    
+    UIImageView *BackStar = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(backBanner4.frame), SCREEN_W , 210)];
+    BackStar.image = [UIImage imageNamed:@"home_hongxin"];
+    BackStar.userInteractionEnabled = YES;
+    [mainScroll addSubview:BackStar];
+    
+    UIImageView *imageVleft4 = [[UIImageView alloc] initWithFrame:CGRectMake(16, 20, 23, 21 )];
+    imageVleft4.image = [UIImage imageNamed:@"home_xingxing"];
+    [BackStar addSubview:imageVleft4];
+
+    UILabel *StarL = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageVleft4.frame) + 10, 22, 100, 17)];
+    StarL.text = @"一颗红心";
+    StarL.font = FontBold(17);
+    StarL.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    [BackStar addSubview:StarL];
+
+    UIButton *StarB = [UIButton buttonWithType:UIButtonTypeCustom];
+    StarB.frame = CGRectMake(SCREEN_W - 80,22, 62, 17);
+    [StarB setTitle:@"更多" forState:UIControlStateNormal];
+    [StarB setTitleColor:UIColorFromRGBA(0xE32B2C, 1) forState:UIControlStateNormal];
+    StarB.tag = 904;
+    StarB.titleLabel.font = Font(13);
+    StarB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [StarB addTarget:self action:@selector(MoreAction:) forControlEvents:UIControlEventTouchUpInside];
+    [BackStar addSubview:StarB];
+    for (int i = 0; i<4; i++) {
+        UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        starButton.frame = CGRectMake(17, CGRectGetMaxY(StarL.frame) + 19 +i*30, SCREEN_W -34, 18);
+        starButton.tag = 500 + i;
+        [starButton setTitle:heartArr[i][@"title"] forState:UIControlStateNormal];
+        [starButton setTitleColor:UIColorFromRGBA(0x333333, 1) forState:UIControlStateNormal];
+        starButton.titleLabel.font = FontBold(16);
+        [starButton addTarget:self action:@selector(heardAction:) forControlEvents:UIControlEventTouchUpInside];
+        starButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [BackStar addSubview:starButton];
+        
+    }
+//    UILabel *DownL = [[UILabel alloc] initWithFrame:CGRectMake( 0, 190, SCREEN_W, 10)];
+//    DownL.text = @"版权所有©中国机械工业集团有限公司 京ICP备05005561号";
+//    DownL.font = Font(9);
+//    DownL.textColor = UIColorFromRGBA(0x000000, 1);
+//    DownL.textAlignment = 1;
+//    [BackStar addSubview:DownL];
+    
+    mainScroll.contentSize = CGSizeMake(0, CGRectGetMaxY(BackStar.frame) +64);
+}
+
+// 个人用户
+- (void)user_action{
+    
+    if (inscance.isLogin) {
+      [[UIHelper sharedSingleton] pushVC:@"MeViewController" vc:self parames:nil];
+    }else{
+      [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+    }
+}
+
+// 分类
+- (void)actionButton:(UIButton *)sender{
+    NSLog(@"%ld",sender.tag);
+    switch (sender.tag) {
+        case 0:
+            [[UIHelper sharedSingleton] pushVC:@"NewViewController" vc:self parames:nil];
+            break;
+        case 1:
+            if (inscance.isLogin){
+            [self presentViewController:[[LXMainTabBarController alloc] init] animated:NO completion:^{
+                
+            }];
+            }else{
+                [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+            }
+//            [self.navigationController pushViewController:[[LXMainTabBarController alloc] init] animated:NO];
+            break;
+        case 2:
+             [[UIHelper sharedSingleton] pushVC:@"AntiCorruptionViewController" vc:self parames:nil];
+            break;
+        case 3:
+            if (inscance.isLogin){
+               [[UIHelper sharedSingleton] pushVC:@"RankingViewController" vc:self parames:nil];
+            }else{
+                [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+            }
+//            [[UIHelper sharedSingleton] pushVC:@"StoryViewController" vc:self parames:nil];
+            break;
+        case 4:
+             [[UIHelper sharedSingleton] pushVC:@"PhotoViewController" vc:self parames:nil];
+            break;
+        case 5:
+            [[UIHelper sharedSingleton] pushVC:@"ExamineViewController" vc:self parames:nil];
+            break;
+        case 6:
+            [[UIHelper sharedSingleton] pushVC:@"ExhibitionViewController" vc:self parames:nil];
+            break;
+        case 7:
+            [[UIHelper sharedSingleton] pushVC:@"SupervisionViewController" vc:self parames:nil];
+            break;
+        case 8:
+//            if (inscance.isLogin){
+                [[UIHelper sharedSingleton] pushVC:@"RedHeartViewController" vc:self parames:nil];
+//            }else{
+//                [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+//            }
+            break;
+        case 9:
+            if (inscance.isLogin){
+                [[UIHelper sharedSingleton] pushVC:@"ActivityViewController" vc:self parames:nil];
+            }else{
+                [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+                
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)NotificationAction{
+    
+    [[UIHelper sharedSingleton] pushVC:@"NotificationViewController" vc:self parames:nil];
+    
+}
+
+// 公告
+- (void)gonggaoAction:(UIButton *)sender{
+    
+    [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":noticeArr[sender.tag -100][@"url"],@"Titlestr":noticeArr[sender.tag -100][@"title"]}];
+}
+
+// 更多
+-(void)MoreAction:(UIButton *)sender{
+    switch (sender.tag) {
+        case 900:
+             [[UIHelper sharedSingleton] pushVC:@"NewViewController" vc:self parames:nil];
+            break;
+        case 901:
+            if (inscance.isLogin){
+                [self presentViewController:[[LXMainTabBarController alloc] init] animated:NO completion:^{
+                    
+                }];
+            }else{
+                 [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+            }
+            break;
+        case 902:
+            [[UIHelper sharedSingleton] pushVC:@"ExamineViewController" vc:self parames:nil];
+            break;
+        case 904:
+            [[UIHelper sharedSingleton] pushVC:@"RedHeartListViewController" vc:self parames:nil];
+            break;
+        default:
+            break;
+    }
+     NSLog(@"%ld",sender.tag);
+}
+
+// 要闻
+- (void)YaoWenAction:(UIButton *)sender{
+      [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":newsArr[sender.tag - 200][@"url"],@"Titlestr":newsArr[sender.tag -200][@"title"],@"ID":newsArr[sender.tag - 200][@"id"],@"Islike":newsArr[sender.tag - 200][@"is_praise"]}];
+    
+}
+
+// 微党校
+- (void)WDXAction:(UIButton *)sender{
+      NSLog(@"%ld",sender.tag);
+    if (inscance.isLogin){
+        [[UIHelper sharedSingleton] pushVC:@"XDX_DetailViewController" vc:self parames:@{@"istype":@(1),@"playerID":schoolArr[sender.tag - 300][@"id"],@"titleStr":schoolArr[sender.tag - 300][@"name"]}];
+    }else{
+        [[UIHelper sharedSingleton] pushVC:@"LoginViewController" vc:self parames:nil];
+    }
+}
+
+
+// 在线考试
+- (void)ClassAction:(UIButton *)sender{
+    NSLog(@"%ld",sender.tag);
+}
+
+- (void)heardAction:(UIButton *)sender{
+    [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":heartArr[sender.tag -500][@"url"],@"Titlestr":heartArr[sender.tag -500][@"title"]}];
+    
+}
+
+#pragma mark - SDCycleScrollViewDelegate
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSLog(@"---点击了第%ld张图片", (long)index);
+    NSString *url =BannerArr[index][@"path"];
+    if ( url.length >0) {
+        [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":BannerArr[index][@"path"],@"Titlestr":BannerArr[index][@"title"]}];
+    }
+
+}
+
+- (void)actionAD:(UITapGestureRecognizer *)sender{
+    NSString *url =AdArr[sender.view.tag -20][@"path"];
+    if ( url.length >0) {
+        [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":AdArr[sender.view.tag -20][@"path"],@"Titlestr":AdArr[sender.view.tag -20][@"title"]}];
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

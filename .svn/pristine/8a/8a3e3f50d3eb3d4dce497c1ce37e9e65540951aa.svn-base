@@ -1,0 +1,349 @@
+.newsCenter{
+    background: #fff;
+}
+
+.flexs{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.flex1{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.newsCenter .newsheader{
+    padding: 0 0.32rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    justify-content: space-around;
+    background: #e83329;
+}
+.newsheader span{
+    color: white;
+}
+
+.newsCenter .newsheader .headerText{
+    font-size: 0.32rem;
+    color: white;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.newsCenter .newsheader .iconfont{
+    font-size :0.36rem;
+    color:white;
+    width: 0.5rem;
+}
+.newsContent{
+    height: 3.52rem;
+    padding:  0 0.32rem;
+    overflow: hidden;
+    background-color: #e83329;
+    position: relative;
+}
+.newsheader .ico1{
+    width: 0.8rem;
+    height: 100%;
+    text-align: left;
+    position: relative;
+}
+.newsheader .ico2{
+    width: 0.8rem;
+    height: 100%;
+    text-align: right;
+    position: relative;
+}
+.newsheader  .checked{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100% !important;
+    height: 100%;
+    display: none;
+}
+.newsheader  .unchecked{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100% !important;
+    height: 100%;
+    display: block;
+}
+.rankTop{
+    font-size: 0;
+    height: 2.6rem;
+}
+.rankTop>div{
+    display: inline-block;
+    height:2.6rem;
+}
+.rankTop .rankLeft{
+    width: 1.8rem;
+    padding-top: 0.85rem;
+    vertical-align: top;
+
+}
+.rankTop .userAvater{
+    width: 3.22rem;
+    padding-top: 0.1rem;
+    text-align: center;
+}
+.rankTop .userAvater img{
+    display: inline-block;
+    width: 1.27rem;
+    height: 1.27rem;
+    border-radius: 50%;
+
+}
+.rankTop .rankRight{
+    width: 1.8rem;
+    vertical-align: top;
+    padding-top: 0.85rem;
+}
+.rankTop .p1{
+    font-size: 0.28rem;
+    color: #f6f3f3;
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+.rankTop .p2{
+    font-size: 0.24rem;
+    color: #f6f3f3;
+    text-align: center;
+}
+.userName{
+    font-size: 0.32rem;
+    color: white;
+    margin-top: 0.2rem;
+}
+.userTitle{
+    font-size: 0.24rem;
+    color: rgba(255,255,255,0.7);
+}
+.rankBottom{
+    position: absolute;
+    font-size: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.92rem;
+    background: rgba(0,0,0,0.3) url("../images/rankIng.png") no-repeat ;
+    background-size: 7.5rem 0.92rem;
+    background-position: center;
+}
+.rankBottom span{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    line-height: 0.92rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.3rem;
+    letter-spacing: 1px;
+}
+.rankBottom span.active{
+    color: white;
+    position: relative;
+}
+.rankBottom span.active::after{
+    position: absolute;
+    content: '';
+    left: 50%;
+    bottom: 0px;
+    height: 0px;
+    width: 0px;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #fff;
+    border-left:5px solid transparent ;
+}
+.rankDetail{
+    text-align: center;
+}
+.rankDetail .rankCategory{
+    display: inline-block;
+    width: 4.86rem;
+    height: 0.56rem;
+    font-size: 0;
+    line-height: 0.56rem;
+    border-radius: 0.27rem;
+    -webkit-border-radius: 0.27rem;
+    margin-top: 0.2rem;
+    overflow: hidden;
+
+}
+.rankCategory span{
+    font-size: 0.26rem;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    letter-spacing: 3px;
+
+}
+.rankCategory span{
+
+    background: #f6aba7;
+}
+.rankCategory span.active{
+
+    background: #ed5b53;
+}
+
+.rankAll{
+    position: relative;
+    padding: 0 0.32rem;
+
+}
+.rankAll .rankWeek,.rankAll .rankMonth{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+}
+.rankAll>div.active{
+    display: block;
+}
+.rankListItem{
+    height: 0.75rem;
+    padding: 0.25rem 0;
+    margin: 0 0.32rem;
+    border-bottom: 0.03rem solid #f6f5f5;
+}
+.rankListItem .rankHoner{
+    width: 0.75rem;
+    height: 0.65rem;
+
+}
+.rankListItem .rankHoner img{
+    vertical-align: middle;
+    width: 0.49rem;
+    height: 0.59rem;
+}
+.rankListItem .rankHoner {
+    font-size: 0.3rem;
+    color: #474646;
+    width: 0.9rem;
+    text-align: left;
+}
+.rankListItem .rankHoner cite{
+    margin-left: 8px;
+    font-style: normal;
+}
+.rankListItem  .rankDepartemnt{
+    text-align: left;
+    font-size: 0.3rem;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: justify;
+    line-height: 2.2;
+}
+.rankListItem  .totalScore{
+    width: 0.75rem;
+    text-align: right;
+    font-size: 0.28rem;
+    color: #ed5b53;
+}
+.delete{
+    position: fixed;
+    left: 0;
+    right: 0;
+    max-width: 750px;
+    bottom: 0;
+    width: 100%;
+    height: 0.8rem;
+    background: #e83329;
+    line-height: 0.8rem;
+    font-size: 0.32rem;
+    color: white;
+    text-align: center;
+    z-index: 999;
+    margin: 0 auto;
+}
+.newscenterWrap{
+    position: absolute;
+    top:0.8rem;
+    bottom: 0.8rem;
+    background: #f6f6f6;
+    overflow: scroll;
+    width: 100%;
+}
+.choiseItem{
+    background: white;
+}
+.weui-cell__bd .flexs{
+    height: 0.4rem;
+    line-height: 0.4rem;
+}
+.flexs .dots{
+    width: 0.24rem;
+    height: 0.24rem;
+    background: #fe6e67;
+    border-radius:50% ;
+    margin-right: 0.3rem;
+}
+.flexs .systemNews{
+    font-size: 0.3rem;
+    color: #4d4c4c;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1
+
+}
+.weui-cell{
+    padding: 10px 0.32rem;
+}
+.flexs .date{
+    font-size: 0.24rem;
+
+}
+.weui-cell__bd>p{
+    font-size:0.28rem ;
+    color: #b0afaf;
+    line-height: 1.3;
+    padding: 0.1rem 0;
+    text-align: justify;
+}
+.weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before{
+    color: #e83329;
+}
+.weui-cells{
+    margin-bottom: 0.15rem;
+    margin-top: 0;
+}
+.newscenterWrapItem{
+    margin-top: 0.36rem;
+}
+.newsheader .unchecked{
+
+}
+.weui-cells_checkbox .weui-cell__hd{
+    /*transform: translateX(-100px);*/
+    display: none;
+}
+.weui-cells_checkbox .weui-cell__bd{
+    width: 100%;
+}
+.ico1 .allSelect {
+    display: none;
+}
+
+.ico2 .cancel{
+    display: none;
+}

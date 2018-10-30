@@ -1,0 +1,208 @@
+.newsCenter{
+    background: #fff;
+    height: 100%;
+}
+.modifyConter{
+    margin-top: 0.36rem;
+}
+.flexs{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center
+}
+.flex1{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.newsCenter .newsheader{
+    padding: 0 0.32rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    justify-content: space-around;
+    background: #e83329;
+}
+.newsCenter .newsheader .headerText{
+    font-size: 0.32rem;
+    color: white;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.newsCenter .newsheader .iconfont{
+    font-size :0.36rem;
+    color:white;
+    width: 0.5rem;
+}
+
+
+.formContent{
+    margin:  0 0.32rem;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+    margin-top: 0.55rem;
+}
+#androidDialog1{
+    display: none;
+}
+.inputArea{
+    height: 1rem;
+    line-height: 1rem;
+    border-bottom: 1px solid #dedede;
+    background: #f8f8f8;
+    position: relative;
+}
+.inputArea .tips{
+    position: absolute;
+    right: 0.2rem;
+    top: 0;
+    height: 100%;
+    padding-right: 0.6rem;
+    background-image: url(../images/errorTips.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 0.3rem 0.3rem;
+    font-size: 0.24rem;
+    color: #e83328;
+    line-height: 1rem;
+    display: none;
+}
+.inputText{
+    height: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+
+}
+.inputText input{
+    height: 100%;
+    border: none;
+    outline: none;
+    background: #f8f8f8;
+    vertical-align: top;
+}
+.inputArea .label{
+    width: 1.2rem;
+    font-size: 0.28rem;
+    margin-left: 0.3rem;
+}
+.textarea{
+    background: #f8f8f8;
+}
+.textarea textarea{
+    width: 100%;
+    height: 150px;
+    background: #f8f8f8;
+}
+.submit{
+    position: fixed;
+    left: 0;
+    right: 0;
+    max-width:750px;
+    bottom: 0;
+    width: 100%;
+    height: 0.8rem;
+    background: #e83329;
+    line-height: 0.8rem;
+    font-size: 0.32rem;
+    color: white;
+    margin: 0 auto;
+    text-align: center}
+.submit input{
+    display: inline-block;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    height: 0.8rem;
+    background: #e83329;
+    line-height: 0.8rem;
+    border: none;
+    outline: none;
+    font-size: 0.32rem;
+    color: white;
+}
+.weui-cells{
+    background: #f8f8f8;
+    margin-top: 0;
+}
+.weui-cell{
+    padding-top: 2px;
+
+}
+.textarea  .label{
+    font-size: 0.28rem;
+    margin-left: 0.3rem;
+    line-height: 0.6rem;
+}
+.weui-cells:before{
+    border-top:0
+}
+@-webkit-keyframes shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@keyframes shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+.shake {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}

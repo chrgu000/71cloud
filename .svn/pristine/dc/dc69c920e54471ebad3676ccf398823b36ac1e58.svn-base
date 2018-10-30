@@ -1,0 +1,188 @@
+<?php
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+
+
+
+class Permission extends Controller{
+
+    //角色管理
+    public function index(){
+        //查询共有多少条数据
+        $num=db('role')->count();
+        $role=db('role')->select();
+        $this->assign('role',$role);
+        $this->assign('num',$num);
+        return $this->fetch('permission/admin-role');
+    }
+
+
+    //添加角色
+    public function addrole(){
+        if (Request::instance()->isPost()) {
+            $data = input('post.');
+            $data["menu_id"] =implode(",",$data["menu_id"]);
+
+            $data["ctime"] =time();
+            $res  = db('role')->insert($data);
+            if($res){
+                $this->redirect("index");
+            }else{
+                $this->error("新增失败");
+            }
+        }
+        //找顶级分类
+        $res = db('permissions')->where(array('pid' => 0))->field('id,per_name,pid')->select();
+
+        foreach ($res as $k => &$v) {
+            //找全部
+            $v['zi'] = db('permissions')->where(array('pid' => $v['id']))->select();
+
+            /*foreach ($erji as $k1=>$v1){
+                //找二级分类
+                $erji=db('permissions')->field('id,per_name,pid')->select();
+                $zi=db('permissions')->where(array('pid'=>$v['id']))->select();
+            }*/
+
+        }
+
+
+        $this->assign('res',$res);
+
+        return $this->fetch('permission/admin-role-add');
+    }
+
+    //修改角色
+    public function editrole(){
+        $id = input("id");
+        if (Request::instance()->isPost()) {
+            $data = input('post.');
+            $data["menu_id"] =implode(",",$data["menu_id"]);
+
+            $res  = db('role')->where(array("id"=>$id))->update($data);
+
+            $this->redirect("index");
+
+        }
+        $res = db('permissions')->where(array('pid' => 0))->field('id,per_name,pid')->select();
+
+        foreach ($res as $k => &$v) {
+            //找子类
+            $v['zi'] = db('permissions')->where(array('pid' => $v['id']))->select();
+
+        }
+
+
+        $data =  db('role')->where(array('id' => $id))->find();
+        $this->assign('res',$res);
+        $this->assign('data',$data);
+        return $this->fetch('permission/admin-role-edit');
+    }
+
+    //删除角色
+    public function delrole(){
+        $id=input('id');
+        //查找角色状态
+        $res=db('role')->where(array('id'=>$id))->field('status')->select();
+
+        foreach($res as $k=>$v){
+            if($v['status']==0){
+                $rows=db('role')->where(array('id'=>$id,'status'=>0))->delete();
+                $this->success('删除成功','index');
+            }else{
+                /*echo '<script>alert("该角色在使用不能删除!")</script>';*/
+                $this->error('该角色在使用不能删除!','index');
+            }
+        }
+
+    }
+
+    //权限管理
+    public function permission(){
+        //共有多少条数据
+        $num=db('permissions')->count();
+
+        $rol_list=$this->getCategory();
+        $this->assign("rol_list",$rol_list);
+        $this->assign('num',$num);
+        return $this->fetch('permission/admin-permission');
+    }
+
+    //无极分类
+    public function getCategory($category =array(),$pid =0,$k=0){
+        $dingji = db("permissions")->where(array("pid"=>$pid))->select();
+        foreach($dingji as  $v){
+            $str =  "<span style='color:red'>";
+            for($i=0;$i<$k;$i++){
+                $str.="|--";
+            }
+            $str.="</span>";
+            $str.=$v["per_name"];
+
+            $v["per_name"] = $str;
+            $category[] = $v;
+
+            $category = $this->getCategory($category,$v["id"],$k+1);
+        }
+        return $category;
+    }
+
+    //权限新增
+    public function peradd(){
+        if (Request::instance()->isPost()) {
+            $data = input('post.');
+            //获取当前时间戳
+            $data['ctime'] = time();
+            //将数据存入数据库
+            $rows = db('permissions')->insert($data);
+            if($rows){
+                $this->redirect('permission');
+            }else{
+                $this->error('添加失败');
+            }
+
+        }
+        $role = $this->getCategory();
+        $this->assign('role',$role);
+        return $this->fetch('permission/admin-permission-add');
+    }
+
+
+
+    //权限修改
+    public function peredit(){
+        $id = input('id');
+        if (Request::instance()->isPost()) {
+            $post=input('post.');
+            $rows=db('permissions')->where(array('id'=>$id))->update($post);
+
+            $this->redirect('permission');
+
+        }
+        //查找当前修改的数据
+        $res = db('permissions')->where(array('id' => $id))->find();
+
+        $role = $this->getCategory();
+        $this->assign('role', $role);
+        $this->assign('res', $res);
+        return $this->fetch('permission/admin-permission-edit');
+
+    }
+
+    //权限删除
+    public function perdel(){
+
+        $id = input('id');
+        //删除
+        $res = db('permissions')->where(array('id' => $id))->delete();
+        if($res){
+            $this->redirect('permission');
+        }else{
+            $this->error('删除失败');
+        }
+    }
+
+}

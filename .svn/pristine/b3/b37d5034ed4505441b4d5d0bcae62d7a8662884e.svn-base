@@ -1,0 +1,11 @@
+<?php
+
+namespace app\branchadmin\model;
+
+use think\Model;
+
+class Permissions extends Model
+{
+    //
+    protected $resultSetType = 'collection';
+}

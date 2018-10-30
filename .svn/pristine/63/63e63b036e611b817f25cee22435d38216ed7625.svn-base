@@ -1,0 +1,15 @@
+<?php
+
+namespace app\branchadmin\model;
+
+use think\Model;
+
+class Dangyuan extends Model
+{
+	protected $updateTime = false;
+    public function getMemberIsAttr($value)
+    {
+    	$data = ['否','是'];
+    	return $data[$value];
+    }
+}

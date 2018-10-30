@@ -1,0 +1,123 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/18
+ * Time: 9:01
+ *
+ * 一颗红心
+ *
+ */
+
+namespace Home\Controller;
+
+class HeartController extends BaseController{
+
+    /**
+     *
+     * 首页
+     *
+     */
+    public function index(){
+
+        $this->display();
+    }
+
+    public function index1(){
+        $this->display();
+    }
+
+    /**
+     *
+     * 投稿
+     *
+     */
+    public function contribute(){
+        //检测是否登录
+        if(!Cookie('user'))  $this->redirect('login/index');
+
+        if(IS_GET){
+
+            $cate = M('HeartCate') ->field('id,name')-> order('sort desc')->select();
+
+            $this->assign('cate',$cate);
+            $this->display();
+        }else{
+            $title = trim(I('post.title'));
+            $cate_id = intval(I('post.cate_id'));
+            $content = I('post.content');
+
+            if(empty($title) || empty($cate_id) || empty($content)){
+                $this->ajaxReturn(['code' => 0,'msg' => '请将信息填写完整！']);
+            }
+
+            //投稿人用户id
+            $uid = cookie('user')['id'];
+
+            $res =  D('Heart')->contribute($title,$uid,$cate_id,$content);
+            $this->ajaxReturn($res);
+
+
+        }
+
+
+    }
+
+    /**
+     *
+     * 稿件详情页
+     * @param       $id         int         稿件id
+     *
+     */
+    public function detail(){
+
+        $id = intval(I('get.id'));
+        if($id <= 0) $this->error('参数错误！');
+
+        $data = D('Heart')->getHeartDetail($id);
+        if($data['code'] == 0){
+            $this->error($data['msg']);
+        }
+
+        $this->assign('data',$data['data']);
+        $this->display();
+
+    }
+
+    /**
+     *
+     * 列表页
+     *
+     */
+    public function heartList(){
+
+        //分类id
+        $cate_id = intval(I('get.cate_id'));
+        //页码
+        $p = intval(I('get.p'));
+        //页长
+        $pageSize = 6;
+
+        $p = empty($p) ? 1 : $p;
+
+        $data = D('Heart')->getHeartList($cate_id,$p,$pageSize);
+
+        $cate = M('HeartCate') ->field('id,name')-> order('sort desc')->select();
+
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($data)){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+            $this->ajaxReturn(['code' => 1,'msg' => $data]);
+        }
+
+
+        $this->assign('data',$data);
+        $this->assign('cate',$cate);
+        $this->display();
+
+    }
+
+
+}

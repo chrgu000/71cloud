@@ -1,0 +1,202 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/23
+ * Time: 13:46
+ *
+ * 党校学习
+ *
+ */
+
+
+namespace Home\Controller;
+
+class SchoolController extends BaseController{
+
+    /**
+     * 登录检测
+     *
+     */
+    public function __construct(){
+        parent::__construct();
+        if(!Cookie('user'))  $this->redirect('Login/index');
+    }
+
+    /**
+     *
+     * 首页
+     *
+     */
+    public function index(){
+
+        //用户id
+        $uid = cookie('user')['id'];
+
+        $classModel = D('Class');
+        //获取最新课程
+        $new_class = $this->getNewClass();
+
+        //获取用户学习的所有课程
+        $user_class = $classModel->getUserClass($uid);
+
+        //选课 二级分类
+        $cate = M('ClassCate')->select();
+
+
+        $this->assign('study',$user_class['study']);
+        $this->assign('over',$user_class['over']);
+        $this->assign('cate',$cate);
+        $this->assign('count',count($user_class['study']));
+        $this->assign('new_class',$new_class);
+        $this->display();
+    }
+
+    /**
+     *
+     * 最新课程
+     *
+     */
+    public function getNewClass(){
+        $p = intval(I('get.p'));
+        $pageSize = 8;
+        $p = empty($p) ? 1 : $p;
+
+        $data = D('Class')->getClassList($p,$pageSize);
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($data)){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+            $this->ajaxReturn(['code' => 1,'msg' => $data]);
+        }
+
+        return $data;
+
+
+    }
+
+
+    /**
+     *
+     * 课程列表页
+     * @param   $cate_id        int     分类id
+     * @param   $p              int     页码
+     * @param   $pageSize       int     页长
+     *
+     */
+    public function classList(){
+        $cate_id = intval(I('get.cate_id'));
+        $p = intval(I('get.p'));
+        $pageSize = 8;
+        $p = empty($p) ? 1 : $p;
+
+        $data = D('Class')->getClassList($p,$pageSize,$cate_id);
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($data)){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+            $this->ajaxReturn(['code' => 1,'msg' => $data]);
+        }
+
+        $this->assign('data',$data);
+        $this->display();
+
+    }
+
+
+
+    /**
+     *
+     * 课程详情页
+     * @param $class_id int 课程id
+     * @param $chapter_id int 视频id  非必须
+     *
+     *
+     */
+    public function detail(){
+
+        //用户id
+        $uid = cookie('user')['id'];
+        //课程id
+        $class_id = intval(I('get.class_id'));
+        $chapter_id = intval(I('get.chapter_id'));
+
+        if($class_id<=0) $this->error('参数错误！');
+
+        $data = D('Class')->getClassDetail($uid,$class_id,$chapter_id);
+        if($data['code'] == 0){
+            $this->error($data['msg']);
+        }
+
+        $this->assign('video',$data['data']['video']);
+        $this->assign('introduce',$data['data']['introduce']);
+        $this->assign('data',$data['data']['data']);
+        $this->assign('is_study',$data['data']['is_study']);
+
+        $this->display();
+
+    }
+
+
+
+
+    /**
+     *
+     * 记录观看时间
+     * @param $currentTime int 当前观看时间节点
+     * @param $chapter_id int 视频id
+     * @param $class_id int 课程id
+     *
+     */
+    public function saveTime(){
+
+        $currentTime = intval(I('post.currentTime'));
+        $chapter_id = intval(I('post.chapter_id'));
+        $class_id = intval(I('post.class_id'));
+
+        //用户id
+        $uid = cookie('user')['id'];
+
+        if(empty($currentTime) || empty($chapter_id) || empty($class_id)){
+            $this->error('参数错误');
+        }
+
+        D('Class')->saveTime($uid,$chapter_id,$class_id,$currentTime);
+
+    }
+
+
+    /**
+     *
+     * 加入学习计划
+     * @param $class_id int 课程id
+     *
+     */
+    public function addStudy(){
+
+        $class_id = intval(I('post.class_id'));
+        if($class_id <=0) $this->error('参数错误！');
+
+        //用户id
+        $uid = cookie('user')['id'];
+        $res = D('Class')->addStudy($uid,$class_id);
+
+        $this->ajaxReturn($res);
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

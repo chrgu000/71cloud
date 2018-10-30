@@ -1,0 +1,254 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/3
+ * Time: 13:51
+ *
+ * 新闻
+ *
+ */
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+
+class News extends Base{
+
+    /**
+     * 新闻列表
+     *
+     */
+    public function index(){
+
+        $logmin = strtotime(trim(input('get.logmin')));
+        $logmax = strtotime(trim(input('get.logmax')));
+        $cate_id = intval(input('get.cate'));
+        $title = trim(input('get.title'));
+
+        //分类
+        $cate =getTree(db('NewCate')->select());
+
+        $map = [];
+        $map['is_del'] = 0;
+        //日期筛选
+        if($logmin && $logmax){
+            $map['ctime'] = ['between',"$logmin,$logmax"];
+        }
+
+        //分类筛选
+        if($cate_id){
+            $cate_ids = getSon($cate,$cate_id);
+            $cate_ids[] = $cate_id;
+            $map['cate_id'] = ['IN',$cate_ids];
+        }
+
+
+        //标题筛选
+        if($title){
+            $map['title'] = ['LIKE',"%$title%"];
+        }
+
+        //新闻
+        $data = db('News')->alias('a')
+            ->join('c_new_cate b','a.cate_id = b.id')
+            ->field('a.id,a.title,a.thumb,b.name as cate_name,a.ctime,a.recommend')
+            ->where($map)
+            ->select();
+
+        //数据总数量
+        $count = count($data);
+
+        $this->assign('cate',$cate);
+        $this->assign('count',$count);
+        $this->assign('data',$data);
+        return $this->fetch();
+
+    }
+
+    /**
+     * 添加新闻
+     *
+     */
+    public function add(){
+        if(Request::instance()->isGet()){
+            //分类
+            $cate =getTree(db('NewCate')->select());
+
+            $this->assign('cate',$cate);
+            return $this->fetch();
+        }else{
+            /*接收参数*/
+            $data=input('post.');
+
+            if(!$data['title'] || !$data['cate'] || !$data['content']){
+                return json (['code' => 0,'msg' => '请将信息填写完整！']);
+            }
+
+
+            //检测重名
+            $newModel = db('News');
+            if($newModel -> where(array('title'=>$data['title'])) -> find()){
+                return json(['code' => 0,'msg' => '标题重复！']);
+            }
+
+            // 调用upload_img进行图片上传
+            $file = request()->file('thumb');
+
+            //上传缩略图
+            if($file){
+                $data['thumb'] = $this->upload_img();
+            }
+
+            $data['cate_id']=$data['cate'];
+
+
+            unset($data['cate']);
+
+            $newModel -> insert($data);
+            return json(['code' => 1,'msg' => '添加成功！']);
+
+        }
+
+    }
+
+    // 定义图片上传方法,
+    private function upload_img()
+    {
+        $file = request()->file('thumb');
+        if (empty($file)) {
+            $this->error($file->getError());
+        }
+
+        $info = $file->validate(['size'=> 5*1024*1024,'ext'=>'jpg,png,gif,jpeg'])->move(ROOT_PATH.'public'.DS.'Uploads');
+        if ($info) {
+            // 上传图片成功，获取文件访问路径并返回
+            $img_logo = DS.'Uploads'.DS.$info->getSaveName();
+            // 使用open方法打开原始图片
+            $image = \think\Image::open('.'.$img_logo);
+            //调用thumb方法生成缩略图，调用save方法保存缩略图
+            $image->thumb(100,50)->save('.'.$img_logo);
+            return $img_logo;
+        }else{
+            // 上传出错
+            $error = $file->getError();
+            $this->error($error);
+        }
+    }
+
+
+    /**
+     * 编辑新闻
+     * @param       $id     int     新闻id
+     *
+     */
+    public function edit(){
+        $id = intval(input('request.id'));
+        if($id <= 0) $this->error('参数错误！');
+
+
+        if(IS_GET){
+            //分类
+            $cate =getTree(db('NewCate')->select());
+            $data =db('News')->field('id,title,content,thumb,cate_id,recommend') ->where('id = '.$id) ->find();
+            $data['content'] = htmlspecialchars_decode($data['content']);
+
+            $this->assign('cate',$cate);
+            $this->assign('data',$data);
+            return $this->fetch();
+        }else{
+
+            $title = trim(input('post.title'));
+            $cate = intval(input('post.cate'));
+            $content = input('post.editorValue');
+            $recommend = input('post.recommend');
+
+            if(!$title || !$cate || !$content){
+                return json (['code' => 0,'msg' => '请将信息填写完整！']);
+            }
+
+            //检测重名
+            $newModel = db('News');
+            if($newModel -> where("title  = '$title' AND id != $id") -> find()){
+                return json(['code' => 0,'msg' => '标题重复！']);
+            }
+
+            //上传缩略图
+            if($_FILES['thumb']){
+                $thumb = $this -> uploadOne('thumb');
+                $newModel -> where('id = '.$id) -> setField('thumb',$thumb);
+            }
+
+            $data = [
+                'title'      =>  $title,
+                'content'   =>  $content,
+                'cate_id'   =>  $cate,
+                'recommend' =>  $recommend,
+            ];
+
+            $newModel -> where('id = '.$id) -> update($data);
+            return json(['code' => 1,'msg' => '修改成功！']);
+
+
+        }
+
+
+    }
+
+
+    /**
+     * 新闻删除
+     * @param       $id     int     新闻id
+     *
+     *
+     */
+    public function del(){
+        $id = intval(I('post.id'));
+        if($id <= 0){
+            $this->ajaxReturn(['code' => 0,'msg' => '参数错误！']);
+        }
+
+        M('News') -> where('id = '.$id) -> setField(['dtime' => time(),'is_del' => 1]);
+        $this->ajaxReturn(['code' => 1,'msg' => '删除成功！']);
+
+
+    }
+
+
+    /**
+     * 推荐
+     * @param       $brand_id       int         品牌id
+     *
+     *
+     */
+    public function recommend(){
+        $id = intval(I('post.id'));
+        if($id <= 0){
+            $this->ajaxReturn(['code' => 0,'msg' => '参数错误!']);
+        }
+
+        M('News') -> where('id = '.$id) -> setField('recommend',1);
+        $this->ajaxReturn(['code' => 1,'id' => $id,'msg' => '推荐成功!']);
+    }
+
+
+    /**
+     *
+     * 取消推荐
+     * @param       $brand_id       int         品牌id
+     *
+     */
+    public function cancel_recommend(){
+        $id = intval(I('post.id'));
+        if($id <= 0){
+            $this->ajaxReturn(['code' => 0,'msg' => '参数错误!']);
+        }
+
+        M('News') -> where('id = '.$id) -> setField('recommend',0);
+        $this->ajaxReturn(['code' => 1,'id' => $id,'msg' => '取消成功!']);
+    }
+
+
+
+}

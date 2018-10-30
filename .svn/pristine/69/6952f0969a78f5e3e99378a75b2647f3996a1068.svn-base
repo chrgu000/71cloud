@@ -1,0 +1,22 @@
+/**
+ * Created by Administrator on 2018/7/12.
+ */
+//loadmore
+$('.loadMore').click(function () {
+    $(this).hide()
+    $('.weui-loadmoreIng').show()
+    setTimeout(function () {
+        $('.weui-loadmoreIng').hide()
+        $('.weui-loadmore_line').show()
+    },2000)
+});
+
+//显示加载中
+$(function () {
+    var $loadingToast = $('#loadingToast');
+    if ($loadingToast.css('display') != 'none') return;
+    $loadingToast.fadeIn(100);
+    setTimeout(function () {
+        $loadingToast.fadeOut(100);
+    }, 2000);
+})

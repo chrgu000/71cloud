@@ -1,0 +1,132 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/16
+ * Time: 9:19
+ *
+ * 党建要闻
+ *
+ */
+
+namespace Home\Controller;
+
+class PartyController extends BaseController{
+
+    /**
+     * 党建要闻 列表
+     * @param       $cate_id        int         分类id
+     * @param       $pageSize       int         页长
+     *
+     */
+    public function index(){
+        //分类id
+        $cate_id = intval(I('get.cate_id'));
+        //页码
+        $p = intval(I('get.p'));
+        //页长
+        $pageSize = 6;
+
+        $p = empty($p) ? 1 : $p;
+
+        $newsModel =  D('News');
+        //获取分类数据
+        $cate =  $newsModel->getNewsCate($type=1);
+        //获取新闻列表
+        $data = $newsModel->getPartyNewsList($cate_id,$p,$pageSize);
+
+        //数据不足 页长
+        if(count($data['news']) < $pageSize){
+            $over = 1; //下一页无数据
+        }else{
+            $over = 0; //下一页有数据
+        }
+
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($data['news'])){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+
+            $this->ajaxReturn(['code' => 1,'msg' => $data['news'],'over'=>$over]);
+        }
+
+
+        $this->assign('cate',$cate);
+        $this->assign('data',$data['news']);
+        $this->assign('recommend',$data['recommend']);
+        $this->assign('over',$over);
+        $this->display();
+    }
+
+
+    /**
+     *
+     * 详情页
+     *
+     */
+    public function detail(){
+        $id = intval(I('get.id'));
+        if($id <= 0) $this->error('参数错误！');
+
+        $data = D('News')->getDetail($id);
+
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+
+    /**
+     *
+     * 点赞与取消点赞
+     * @param $uid int 用户id
+     * @param $id int 新闻id
+     * @param $type int 类型 1点赞 2取消点赞
+     *
+     */
+    public function praise(){
+
+        $id = intval(I('post.id'));
+        $type = intval(I('post.type'));
+        $uid = cookie('user')['id'];
+
+        //点赞必须登录
+        if(empty($uid)) $this->redirect('login/index');
+
+        if(empty($id) || empty($type)){
+            $this->ajaxReturn(['code'=>0,'msg'=>'参数错误','data'=>'']);
+        }
+
+        $newModel = M('News');
+        if($type == 1){
+
+            $name = $newModel->where('id='.$id)->getField('title');
+            if(M('UserScore')->where("name = '$name' AND uid = $uid")->find()){
+                $this->ajaxReturn(['code'=>0,'msg'=>'该新闻已点赞','data'=>'']);
+            }
+            //看新闻点赞 积分+1
+            D('Home/UserScore')->addScore($uid,$name,$type = 1);
+            //点赞量+1
+            $newModel->where('id='.$id)->setInc('praise');
+
+            $this->ajaxReturn(['code'=>1,'msg'=>'点赞成功','data'=>'']);
+        }else{
+
+            //点赞量-1
+            $newModel->where('id='.$id)->setDec('praise');
+
+            //删除之前的积分
+            $name = $newModel->where('id='.$id)->getField('title');
+            M('UserScore')->where("uid = $uid AND name = '$name' AND type = 1 ")->delete();
+
+            $this->ajaxReturn(['code'=>1,'msg'=>'取消点赞成功','data'=>'']);
+        }
+
+
+    }
+
+
+
+
+
+}

@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/8/6
+ * Time: 11:44
+ *
+ * 在线考试
+ *
+ */
+namespace Home\Controller;
+
+class ExamController extends BaseController{
+
+    public function index(){
+        $this->display();
+    }
+}

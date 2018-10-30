@@ -1,0 +1,219 @@
+<?php
+
+namespace app\branchadmin\controller;
+
+use think\Controller;
+use think\Request;
+
+class BranchMessage extends Base
+{
+    /**
+     * 显示资源列表
+     *
+     * @return \think\Response
+     */
+    public function index()
+    {
+        // 关闭模板引擎布局
+        $this->view->engine->layout(false);
+        $send_id = session('branchadmin_info.id');
+        $sendInfo = model('BranchMessage')->where(['send_id'=>$send_id,'is_admin'=>0])->paginate(5);
+        // 接收方信息
+        foreach ($sendInfo as $key => &$value) {
+            $receive_id = $value->receive_id;
+            // 通过接收方用户id获取对应的党支部id
+            $branchs_admin = model('BranchAdmin')->find($receive_id);
+            if (empty($branchs_admin)) {
+                unset($sendInfo[$key]);
+                continue;
+            }
+            $value['branchs_name'] = model('Branchs')->field('branchs_name')->find($branchs_id)->branchs_name;
+            $value['receive_name'] = model('BranchAdmin')->find($receive_id)->bradmin_username;
+        }
+        return view('index',['sendInfo'=>$sendInfo]);
+    }
+
+
+
+    /**
+     * [managelist 当前登录用户下级用户列表]
+     * @return [type] [description]
+     */
+    public function adminlist()
+    {
+        $branchs_id = session('branchadmin_info.branchs_id');
+        // 通过c_branchs表获取当前组织下的所有下级的党支部信息
+        $children_branchs_info = model('Branchs')->where('pid',$branchs_id)->select();
+        // 通过foreach循环遍历所所有下级的管理员的账号信息
+        foreach ($children_branchs_info as $k => &$v) {
+            $v['admin_info'] = model('BranchAdmin')->field('id,bradmin_username,ctime')->where(['admin_id'=>1,'branchs_id'=>$v->id])->select();
+        }
+        // dump($children_branchs_info);die;
+        return view('adminlist',['children_branchs_info'=>$children_branchs_info]);
+    }
+
+
+    /**
+     * 显示创建消息表单页.
+     *
+     * @return \think\Response
+     */
+    public function create()
+    {
+        // 从session中获取当前登录用户的组织id
+        $branchs_id = session('branchadmin_info.branchs_id');
+        // 通过c_branchs表获取当前组织下的所有下级的党支部信息
+        $children_branchs_info = model('Branchs')->where('pid',$branchs_id)->select();
+        // 通过foreach循环遍历所所有当前组织的下级组织的账号信息
+        foreach ($children_branchs_info as $k => &$v) {
+            $v['admin_info'] = model('BranchAdmin')->field('id,bradmin_username,ctime')->where(['branchs_id'=>$v->id])->select();
+        }
+
+        return view('create',['children_branchs_info'=>$children_branchs_info]);
+    }
+
+    /**
+     * 保存新建的资源
+     *
+     * @param  \think\Request  $request
+     * @return \think\Response
+     */
+    public function save(Request $request)
+    {
+        $data = $request->param();
+         //定义验证规则
+        $rule = [
+            'receive_id' => 'require',
+            'title' => 'require',
+            'content' => 'require',
+        ];
+        //定义提示信息
+        $msg = [
+            'receive_id.require' => '收件人信息不能为空',
+            'title.require' => '主题不能为空',
+            'content.require' => '正文内容不能为空',
+        ];
+        //实例化验证类
+        $validate = new \think\Validate($rule, $msg);
+        //执行验证
+        if( !$validate->check($data) ){
+            //验证失败，报错
+            $error = $validate->getError();
+            $this->error($error);
+        }
+        $arr_receiveid = $request->param()['receive_id'];
+        $content = $request->param()['content'];
+        $title = $request->param()['title'];
+        $temp = array();
+        foreach ($arr_receiveid as $key => $value) {
+            $temp[$key]['receive_id'] = $value;
+            $temp[$key]['title'] = $title;
+            $temp[$key]['content'] = $content;
+            $temp[$key]['status'] = 0;
+            $temp[$key]['send_id'] = session('branchadmin_info')['id'];
+        }
+        $info = model('BranchMessage')->data($temp)->saveAll($temp);
+        if ($info) {
+            $this->success('发布信息成功','index');
+        }else{
+            $this->error('发布信息失败');
+        }
+    }
+
+    /**
+     * 显示指定的资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function read($id)
+    {
+        // 关闭模板引擎布局
+        $this->view->engine->layout(false);
+        //查看已发送信息详情页
+        // dump(basename($_SERVER['HTTP_REFERER']));die;
+        if (basename($_SERVER['HTTP_REFERER']) == 'receiveindex.html') {
+            // echo "从接受出获取";die;
+            // 更新消息状态为已读状态
+            // 更新查阅时间为查看的当前时间
+            model('BranchMessage')->get($id)->save(array('status' =>'1','read_time'=>time()),['id'=>$id]);
+        }
+        $message = model('BranchMessage')->get($id);
+        $receive_id = $message->receive_id;
+        $message['receive_name'] = model('BranchAdmin')->get($receive_id)->bradmin_username;
+        return view('read',['message'=>$message]);
+    }
+
+    /**
+     * 显示编辑资源表单页.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit($id)
+    {
+        // 关闭模板引擎布局
+        $this->view->engine->layout(false);
+        $data = model('BranchMessage')->get($id);
+        $data['receive_name'] = model('BranchAdmin')->get($data->receive_id)->bradmin_username;
+        return view('edit',['data'=>$data]);
+    }
+
+    /**
+     * 保存更新的资源
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function update(Request $request)
+    {
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+
+    // 收信息列表展示功能模块
+    public function receiveIndex()
+    {
+        $receive_id = session('branchadmin_info.id');
+        $receiveInfo = model('BranchMessage')->where('receive_id',$receive_id)->select();
+        foreach ($receiveInfo as $k => &$v) {
+            $v['send_name'] = model('BranchAdmin')->find($v->send_id)->bradmin_username;
+        }
+        return view('receiveIndex',['receiveInfo'=>$receiveInfo]);
+    }
+
+
+
+
+// 已废弃2018-10-17
+//      public function adminmessage()
+//     {
+//         // $str = '{"name":"jack","age":20}';
+//         // $temp = json_decode($str,false);
+//         // dump($temp);
+//         // dump(json_encode($temp));
+//         $id = session('branchadmin_info.id');
+// //        $data = \think\Db::query("select * from `c_message` where  find_in_set($id,recipient_id)");
+//          // 使用原生语句采用闭包的形式输出分页。
+//          $data = \think\Db::name('message')->where('FIND_IN_SET(:id,recipient_id)',['id'=>$id])->paginate(1)->each(function($v,$k){
+//              $v['send_name'] = model('Admin')->find($v['admin_addresser_id'])->admin_username;
+//             $temp = model('MessageStatus')->where(['message_id'=>$v['id'],'receive_id'=>session('branchadmin_info.id')])->find();
+//             if (empty($temp)) {
+//                 $v['status'] = '未读';
+//                 return $v;
+//             }else{
+//                 $v['status'] = '已读';
+//                 return $v;
+//             }
+//          });
+//         return view('adminmessage',['data'=>$data,'receive_id'=>$id]);
+//     }
+
+
+}

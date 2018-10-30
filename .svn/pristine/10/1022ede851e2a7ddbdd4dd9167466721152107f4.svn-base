@@ -1,0 +1,84 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/18
+ * Time: 11:13
+ *
+ * 活动
+ *
+ */
+namespace Home\Controller;
+
+class ActivityController extends BaseController{
+    /**
+     * 登录检测
+     *
+     */
+    public function __construct(){
+        parent::__construct();
+        if(!Cookie('user'))  $this->redirect('Login/index');
+    }
+
+
+    /**
+     *
+     * 活动列表
+     *
+     */
+    public function index(){
+        //用户id
+        $uid = cookie('user')['id'];
+
+        $data = D('Activity')->getActList($uid);
+
+        $this->assign('data',$data);
+        $this->display();
+
+    }
+
+
+    /**
+     *
+     * 活动详情页
+     *
+     *
+     */
+    public function detail(){
+        $id = intval(I('get.id'));
+        if($id <= 0){
+            $this->error('参数错误！');
+        }
+
+        //用户id
+        $uid = cookie('user')['id'];
+
+        $data = D('Activity')->getActDetail($uid,$id);
+
+        $this->assign('data',$data);
+        $this->display();
+
+
+    }
+
+    /**
+     *
+     * 报名
+     * @param       $act_id         int         活动id
+     *
+     */
+    public function apply(){
+        $act_id = intval(I('post.act_id'));
+        if($act_id <= 0)  $this->ajaxReturn(['code'=>0,'msg' => '参数错误！']);
+
+        //用户id
+        $uid = cookie('user')['id'];
+
+        $res = D('Activity')->apply($uid,$act_id);
+
+        $this->ajaxReturn($res);
+
+
+    }
+
+}

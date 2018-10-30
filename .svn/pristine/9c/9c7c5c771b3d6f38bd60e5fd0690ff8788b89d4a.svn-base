@@ -1,0 +1,65 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/23
+ * Time: 8:54
+ *
+ *
+ */
+
+namespace Home\Controller;
+
+class HistoryController extends BaseController{
+
+    /**
+     *
+     * 视频分类列表
+     * @param  $cate_id  int  分类id
+     *
+     */
+     public function index(){
+         $cate_id = intval(I('get.cate_id'));
+         //分类
+         $historyModel = D('History');
+         $cate = $historyModel->getCate();
+
+
+         //首页默认第一条分类
+         $cate_id = empty($cate_id) ? $cate[0]['id'] : $cate_id;
+
+         $data = $historyModel->getHistoryList($cate_id);
+
+         $this->assign('cate',$cate);
+         $this->assign('data',$data);
+         $this->display();
+
+
+     }
+
+     /**
+      *
+      * 视频详情页
+      * @param      $id          int     视频id
+      *
+      */
+     public function detail(){
+         $id = intval(I('get.id'));
+         if($id<=0) $this->error('参数错误！');
+
+         $data = D('History')->getHistoryDetail($id);
+
+
+         $this->assign('video',$data['video']);
+         $this->assign('introduce',$data['introduce']);
+         $this->assign('data',$data['data']);
+
+
+         $this->display();
+
+
+     }
+
+
+
+}

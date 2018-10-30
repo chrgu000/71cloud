@@ -1,0 +1,114 @@
+<?php
+
+namespace app\branchadmin\controller;
+
+use app\branchadmin\model\Permissions;
+use think\Controller;
+use think\Request;
+use think\Cache;
+use think\Db;
+
+class Wechat extends Controller
+{
+
+//    private  $appid = 'wx049426c4ca27a58a';
+//
+//    private $appsecret = '5c4600a6b42a1b5f66a1a78f173fde8e';
+    /**
+     * 获取app token
+     *
+     * @return \think\Response
+     */
+    public function token($id)
+    {
+        //根据$id从weixin表获取一条数据
+        $data=\app\branchadmin\model\Weixin::find($id);
+        $appid=$data['appid'];
+        $appsecret=$data['appsecret'];
+        if(Cache::get($appid) === false){
+            //定义请求的url地址
+            $url ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}";
+            //使用http_request函数发送请求
+            $str = http_request($url);
+            //使用json_decode对$str进行转移
+            $json = json_decode($str,true);
+            //缓存token 7200秒 因为微信的APPID是唯一的,所以把APPID当做键,获取到的token当做值存储到缓存即可
+            Cache::set($appid,$json['access_token'],7200);
+            return $json['access_token'];
+        }else{
+            return Cache::get($appid);
+        }
+
+    }
+
+//    public function token()
+//    {
+//        if(Cache::get('access_token') === false){
+//            //定义请求的url地址
+//            $url ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$this->appid}&secret={$this->appsecret}";
+//            //使用http_request函数发送请求
+//            $str = http_request($url);
+//            //使用json_decode对$str进行转移
+//            $json = json_decode($str,true);
+//            //缓存token 7200秒
+//            Cache::set('access_token',$json['access_token'],7200);
+//            return $json['access_token'];
+//        }else{
+//            return Cache::get('access_token');
+//        }
+//
+//    }
+
+    public function menu($id)
+    {
+        //调用token(),获取access_token
+        $token=$this->token($id);
+        //根据$id获取查询角色id
+        $role_id=\app\branchadmin\model\Weixin::where('id',$id)->value('role_id');
+        //根据$role_id查询角色表的权限菜单menu_id
+        $menu_id=\app\branchadmin\model\Role::where('id',$role_id)->value('menu_id');
+        $menu_id=explode(',',"$menu_id");
+        //$menu_id = str_split($menu_id);
+        // print_r($menu_id);die;
+        //根据$menu_id查询权限表对应的id，然后获取权限的url
+        $menu_url=\app\branchadmin\model\Permissions::where('id','in',$menu_id)->select();
+        $menu_url = $menu_url->toArray();
+
+            $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token={$token}";
+        $data = ' {
+         "button":[
+        foreach($menu as $key=>$v)
+          {
+               "name":{$v.per_name},
+               "sub_button":[
+               {
+                   "type":"view",
+                   "name":"搜一搜",
+                   "url":"http://www.soso.com/"
+                },
+                {
+                   "type":"view",
+                   "name":"看一看",
+                   "url":"http://v.qq.com/"
+                },
+                {
+                   "type":"click",
+                   "name":"good",
+                   "key":"V1001_GOOD"
+                }]
+           },
+           foreach
+           ]
+     }';
+        //5、发送http请求
+        $str = http_request($url, $data);
+        //6、使用json_decode函数进行转义
+        $json = json_decode($str);
+
+        //7、判断是否创建成功
+        if($json->errmsg == 'ok') {
+            echo '自定义菜单创建成功！';
+        }
+    }
+
+}

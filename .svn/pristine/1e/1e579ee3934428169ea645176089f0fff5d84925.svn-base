@@ -1,0 +1,132 @@
+//
+//  ConnectionRequestMgr.h
+//  TTMN
+//
+//  Created by macmini on 2018/4/21.
+//  Copyright © 2018年 lixin. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+// 本地地址/
+//#define HTTPURL @"http://192.168.2.101/Api/"
+
+// 服务器地址
+#define HTTPURL @"https://api.cloudcpc.com/"
+
+
+typedef void(^SuccessBlock)(NSDictionary *dict);
+typedef void(^FailBlock)(NSString *errorStr);
+
+@interface ConnectionRequestMgr : NSObject
+
+// 注册验证码                     (GET)
+#define sendSMS                 @"home/Login/sendMsg"
+// 注册账号第一步                  (POST)
+#define Loginregister           @"home/login/register"
+// 注册账号第二步                  (POST)
+#define Nextregister            @"home/login/register"
+// 登录账号                      (POST)
+#define login                   @"User/login"
+// 忘记密码                      (POST)
+#define ForgetPass              @"User/modifyPass"
+// 组织                         (GET)
+#define Organization             @"home/Login/tissue"
+
+
+
+
+
+// 首页                         (GET)
+#define HomeIndex               @"home/index/getIndex"
+// 党建要闻列表页                 (GET)
+#define PartyNewList            @"home/Party/getPartyNews"
+// 党建要闻分类                   (GET)
+#define PartyClass              @"home/Party/getPartyCate"
+// 反腐列表页                     (GET)
+#define ClearNewList            @"home/Clear/getClearNews"
+// 反腐分类                       (GET)
+#define ClearClass              @"home/Clear/getClearCate"
+// 相册列表                       (GET)
+#define PhotoList               @"home/Photo/getPhotoList"
+// 相册详情                       (GET)
+#define PhotoDetail             @"home/Photo/getPhotoDetail"
+// 党史故事列表页                   (GET)
+#define HistoryList             @"History/getHistory"
+// 党史故事分类                     (GET)
+#define HistoryClass            @"History/getHistoryCate"
+// 党史故事详情                     (GET)
+#define HistoryDetail           @"History/getHistoryDetail"
+// 活动列表                         (GET)
+#define ActivityList            @"Activity/getAct"
+// 活动报名                         (POST)
+#define ActivityBM              @"Activity/apply"
+// 稿件分类                         (GET)
+#define ContributeList          @"home/Heart/getCate"
+// 红心列表                         (GET)
+#define HeartList               @"home/Heart/getHeartList"
+// 投稿                            (POST)
+#define Contribute              @"Heart/contribute"
+// 云展管                         (GET)
+#define Cloud                   @"home/Cloud/getCloud"
+// 通知分类                       (GET)
+#define NoticeClass              @"home/Notice/getCate"
+// 通知列表页                     (GET)
+#define NoticeList               @"home/Notice/getNotice"
+// 微党校分类                     (GET)
+#define SchoolClass              @"School/getCate"
+// 课程表页                       (GET)
+#define SchoolList               @"School/getClassList"
+// 课程详情页                      (GET)
+#define SchoolDetail             @"School/getDetail"
+// 我的课程                        (GET)
+#define SchoolUser                @"School/getUserClass"
+// 加入学习计划                     (POST)
+#define SchoolStudy               @"School/addStudy"
+// 上传观看时间                     (POST)
+#define SchoolSaveTime            @"School/saveTime"
+// 意见反馈                         (POST)
+#define Advice                    @"User/advice"
+// 举报                            (POST)
+#define Report                    @"home/Report/report"
+// 新闻详情页点赞                    (POST)
+#define Praise                    @"Praise/index"
+// 个人中心                         (GET)
+#define USER                      @"User/getUserIndex"
+// 消息中心                         (GET)
+#define UserMsg                   @"User/getUserMsg"
+// 删除消息                         (POST)
+#define DelMsg                    @"User/delMsg"
+// 个人信息                         (POST)
+#define UserEdit                  @"User/editUserInfo"
+// 个人排行                         (GET)
+#define PersonRank                @"User/getPersonRank"
+// 消息中心                         (GET)
+#define CompanyRank               @"User/getCompanyRank"
+// 个人积分                         (GET)
+#define ScoreDetail               @"User/getMyScoreDetail"
+
+
+
+/*
+ * 网络请求(NSURLSession)
+ * 参数：
+ *     url:请求URL
+ *     parameter:请求参数，无参数传nil
+ *     success:请求成功
+ *     failure:请求失败
+ */
++ (void)PostSessionWithUrl:(NSString *)url parameter:(NSString *)parameter  successBlock:(SuccessBlock)success failBlock:(FailBlock)failure;
+
+
+
++ (void)GetSessionWithUrl:(NSString *)url parameter:(NSString *)parameter  successBlock:(SuccessBlock)success failBlock:(FailBlock)failure;
+
+
++ (void)POSTSessionWithUrl:(NSString *)url parameter:(id )parameter successBlock:(SuccessBlock)success failBlock:(FailBlock)failure;
+
++ (void)cancelAllRequest;
+
+
+
+@end
