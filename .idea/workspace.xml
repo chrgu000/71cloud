@@ -357,7 +357,7 @@
       <path value="$PROJECT_DIR$/PHP/vendor/Qiniu/docs" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="264" />
     <option name="y" value="516" />
     <option name="width" value="1452" />
@@ -615,12 +615,12 @@
       <workItem from="1540858960163" duration="26432000" />
       <workItem from="1540946456063" duration="33314000" />
       <workItem from="1541032481524" duration="29253000" />
-      <workItem from="1541064827360" duration="359000" />
+      <workItem from="1541064827360" duration="778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1002221000" />
+    <option name="totallyTimeSpent" value="1002640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,7 +632,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1641791" />
