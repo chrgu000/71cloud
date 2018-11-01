@@ -77,6 +77,7 @@ class Permission extends Base{
 
 
         $data =  db('role')->where(array('id' => $id))->find();
+
         $this->assign('res',$res);
         $this->assign('data',$data);
         return $this->fetch('permission/admin-role-edit');
@@ -166,7 +167,7 @@ class Permission extends Base{
         //查找当前修改的数据
         $res = db('permissions')->where(array('id' => $id))->find();
 
-        $role = $this->getCategory();
+        $role = db('permissions')->where(array('pid'=>0))->select();
         $this->assign('role', $role);
         $this->assign('res', $res);
         return $this->fetch('permission/admin-permission-edit');

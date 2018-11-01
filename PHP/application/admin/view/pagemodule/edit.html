@@ -1,0 +1,132 @@
+﻿<body>
+<article class="page-container">
+	 <form action=""  class="form form-horizontal" id="form-admin-add" method="post" enctype="multipart/form-data">
+
+		<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>模块名称：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="{$res.module_name}" placeholder="" id="module_name" name="module_name">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>控制器：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="{$res.auth_c}" placeholder="" id="auth_c" name="auth_c">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>操作方法：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="{$res.auth_a}" placeholder="" id="auth_a" name="auth_a">
+		</div>
+	</div>
+	 <div class="row cl">
+		 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>缩略图上传：</label>
+		 <div class="formControls col-xs-8 col-sm-9">
+
+			 <!--<input type="file" class="input-text" placeholder="" name="thumb" id="thumb">-->
+
+			 <div style="border: 1px solid #ddd;width: 200px;height: 150px;margin: 10px 0px;">
+				 <div  style="width: 190px;height: 140px;margin:5px 0 0 5px;background:url('/static/admin/static/h-ui.admin/images/noimage.jpg') no-repeat ;background-size:190px 140px;">
+					 <img src="{$res.thumb}" id="imgId"  video-time="" style="width: 190px;height: 140px;" alt="" />
+				 </div>
+
+			 </div>
+			 <div class="uploader-thum-container">
+				 <div class="fileList" class="uploader-list"></div>
+				 <span class="btn-upload form-group">
+				<a href="javascript:;" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+
+				<input type="file"  name="thumb" id="img" class="input-file" >
+			</span>
+			 </div>
+
+		 </div>
+	 </div>
+
+	 <div class="row cl">
+		 <label class="form-label col-xs-4 col-sm-2">上传说明：</label>
+		 <div class="formControls col-xs-8 col-sm-9" style="margin-top: 3px;color: red">缩略图大小限制100K，超过该尺寸可能导致上传失败！</div>
+
+	 </div>
+
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+			 <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+
+
+	//预览缩略图
+	var imgFilesId = document.getElementById('img');//获取缩略图id
+	var imgId = document.getElementById('imgId');//获取缩略图id
+
+	var selectImgFile = function () {
+		imgId.src = getFileURL(this.files[0]);//把当前的 files[0] 传进去
+
+	}
+
+	imgFilesId.addEventListener('change', selectImgFile);
+
+	function getFileURL(file) {
+		var getUrl = null;
+		if(!file){
+			return '';
+		}
+
+		if (window.createObjectURL != undefined) { // basic
+			getUrl = window.createObjectURL(file);
+		} else if (window.URL != undefined) { // mozilla(firefox)
+			getUrl = window.URL.createObjectURL(file);
+		} else if (window.webkitURL != undefined) { // webkit or chrome
+			getUrl = window.webkitURL.createObjectURL(file);
+		}
+		return getUrl;
+	}
+
+
+	/*有图片文件的ajax提交*/
+	$("#form-admin-add").submit(function(){
+		//表单序列化
+		//var data = $("form").serialize();
+		//aja提交图片文件
+		var formData = new FormData($('#form-admin-add')[0]);
+		$.ajax({
+			type:"post",
+			url: "{:Url('Pagemodule/edit',array('id'=>input('id')))}",
+			data:formData,
+			dataType:'json',
+			processData:false,
+			contentType:false,
+			cache: false,
+			async:true,
+			success:function(data){
+
+				if(data.code==0){
+					layer.msg(data.msg, {icon: 6,time:1000});
+				}
+				if(data.code == 1){
+					layer.msg(data.msg,{icon:1,time:1000});
+					setTimeout(function () {
+						window.location.href=('{:Url("Pagemodule/index")}');
+					} ,1000);
+				}
+			}
+
+		})
+		return false;
+	});
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

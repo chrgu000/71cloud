@@ -1,6 +1,6 @@
 /*
  
- Highcharts funnel module, Beta
+ Highcharts funnel pagemodule, Beta
 
  (c) 2010-2012 Torstein Hønsi
 

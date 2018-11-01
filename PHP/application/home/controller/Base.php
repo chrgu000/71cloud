@@ -82,7 +82,7 @@ class Base extends Controller
         $action = $request->action();
 
         $menu_url = $controller . "/" . $action;
-        $permission_id = db('permissions')->where(array("module" => $module, "menu_url" => $menu_url))->value("id");
+        $permission_id = db('permissions')->where(array("pagemodule" => $module, "menu_url" => $menu_url))->value("id");
         if (in_array($permission_id, $role_id)) {
 
             echo '您有访问该页面的权限';

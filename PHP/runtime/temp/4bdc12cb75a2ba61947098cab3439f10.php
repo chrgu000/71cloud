@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-admin-list.html";i:1540619110;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-admin-list.html";i:1541036094;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -60,10 +60,11 @@
 				<th width="40">ID</th>
 				<th width="150">登录名</th>
 				<th width="90">手机</th>
-				<th width="200">公司名称</th>
+				<th width="180">公司名称</th>
 				<th width="90">角色</th>
+				<th width="90">用户功能</th>
 				<th width="130">创建时间</th>
-				<th width="100">是否已启用</th>
+				<th width="70">是否已启用</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
@@ -76,6 +77,7 @@
 					<td><?php echo $v['company_name']['phone']; ?></td>
 					<td><?php echo $v['company_name']['company_name']; ?></td>
 					<td><?php echo $v['rolename']['name']; ?></td>
+					<td><a href="<?php echo Url('Company/cedit',array('id'=>$v['company_id']['id'])); ?>">点击查看或修改</a></td>
 					<td><?php echo date("Y-m-d,H:i:s",$v['ctime']); ?></td>
 					<?php if(($v['status'] == 1)): ?>
 						<td class="td-status"><span class="label label-success radius">已启用</span></td>

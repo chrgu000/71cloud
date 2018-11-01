@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\auth\create.html";i:1540794967;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\auth\create.html";i:1536659052;}*/ ?>
 ﻿<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
@@ -34,8 +34,8 @@
 	 <form action="<?php echo url('save'); ?>"  class="form form-horizontal" id="form-admin-add" method="post">
 	<div class="row cl">
                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上级权限：</label>
-                <select name="pid" class="input-xlarge" id="input-select">
-                    <option value="0" selected="selected">作为顶级权限</option>
+                <select name="pid" class="input-xlarge">
+                    <option value="0">作为顶级权限</option>
                     <?php foreach($auth as $v): ?>
                     <option value="<?php echo $v['id']; ?>"><?php echo $v['auth_name']; ?></option>
                     <?php endforeach; ?>
@@ -67,32 +67,6 @@
                     <option value="0">否</option>
                 </select>
 	</div>
-	 <div class="row cl" id="company">
-		 <label class="form-label col-xs-4 col-sm-3">公司：</label>
-		 <div class="formControls col-xs-8 col-sm-9">
-			 <dl class="permission-list">
-				 <dd>
-					 <dl class="cl permission-list2">
-						 <input type="checkbox" class="input_all" /><b>全选</b><br/>
-						 <p>
-							 <dd>
-								 <?php foreach($company as $v): ?>
-						 <p>
-							 <label class="">
-								 <input type="checkbox" class="action" value="<?php echo $v['id']; ?>" name="company_id[]" id="user-Character-1-0-0">
-								 <?php echo $v['company_name']; ?>
-							 </label>
-						 </p>
-						 <?php endforeach; ?>
-						 </dd>
-						 </p>
-					 </dl>
-
-				 </dd>
-			 </dl>
-
-		 </div>
-	 </div>
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			 <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;提&nbsp;&nbsp;&nbsp;&nbsp;交&nbsp;">
@@ -149,82 +123,6 @@ $(function(){
 		}
 	});
 });
-
-
-	//点击全选事件
-	$(".input_all").click(function(){
-
-		//第一步 获取当前选择的状态 （勾选/不勾选）
-		//is() 遍历方法 匹配所有元素 返回值 true false
-		var status = $(this).is(":checked");
-		if(status){
-			$(".module,.action").prop("checked","checked");
-			//$(".action").attr("checked","checked");
-		}else{
-			$(".module,.action").prop("checked","");
-			//$(".action").attr("checked","");
-		}
-	})
-
-
-	/*//点击模块事件
-	$(".module").click(function(){
-
-
-		var status = $(this).is(":checked");
-		if(status){
-			$(this).siblings(".action").prop("checked",true);
-		}else{
-			$(this).siblings(".action").prop("checked",false);
-		}
-		changeAll();
-	})*/
-
-	//全选状态随之改变
-	function changeAll(){
-		var length = $(".module,.action").length;//获取所有的模块和操作的总个数
-		var change_lenth = $(".module:checked,.action:checked").length; //模块和操作被勾选的总数
-		if(length == change_lenth){
-			$(".input_all").prop("checked",true);
-		}else{
-			$(".input_all").prop("checked",false);
-		}
-	}
-
-	//点击操作事件
-	$(".action").click(function() {
-		var status = $(this).is(":checked");
-		if (status) {
-			$(this).siblings(".module").prop("checked", true);
-		} else {
-			var length = $(this).siblings(".action:checked").length;//获取当前操作（区域）中所有被勾选操作的总数
-			if (length == 0) {
-				$(this).siblings(".module").prop("checked", "");
-			}
-
-		}
-		changeAll();
-
-	})
-
-
-
-
-	//select下拉框点击事件
-		$("#input-select").click(function () {
-            var test = $("#input-select").val();
-
-            if(test==0){
-                document.getElementById("company").style.display="";//显示
-            }else{
-                document.getElementById("company").style.display="none";//隐藏
-            }
-	})
-
-
-
-
-
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

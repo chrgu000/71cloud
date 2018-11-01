@@ -30,6 +30,7 @@ class Company extends Base{
         //把公司名称放到$res中
         foreach ($res as $k=>&$v){
             $v['company_name']=db('company')->where(array('id'=>$v['company_id']))->field('company_name,phone')->find();
+            $v['company_id']=db('company')->where(array('id'=>$v['company_id']))->field('id')->find();
         }
 
         //查询角色名称
@@ -55,6 +56,7 @@ class Company extends Base{
 
         //查找已经绑定的公司id
         $cid=db('branch_admin')->distinct("company_id")->column('company_id');
+
         $cid = implode(",",$cid);
         $name=db('company')->where(array('id'=>array('not in',$cid)))->field('id,company_name')->select();
 
@@ -329,6 +331,56 @@ class Company extends Base{
         }
 
     }
+
+
+    /**
+     * 公司列表页里用户功能 点击查看修改功能
+     *
+     * 显示编辑页面资源
+     */
+    public function cedit(Request $request){
+
+        if(Request::instance()->isGet()) {
+            //获取公司id
+            $cid = input('id');
+
+            $com_id=db('auth_company')->where(array('company_id'=>$cid))->field('company_id')->find();
+            if(empty($com_id)){
+                $this->error('该公司尚未绑定权限，请先绑定权限!');
+            }
+            /*if(){
+                return json(['code'=>0,'msg'=>'该公司尚未绑定权限，请先绑定权限!']);
+            }*/
+
+
+            //根据id查公司
+            $company_id = db('company')->where(array('id' => $cid))->field('company_name,id')->find();
+
+            //根据公司id查对应权限id
+            $auth_id = db('auth_company')->where(array('company_id' => $cid))->field('auth_id')->find();
+
+            //查找所有权限
+            $dingji = db('auth')->where('pid=0')->field('id,auth_name')->select();
+            $this->assign('company_id', $company_id);
+            $this->assign('auth_id', $auth_id);
+            $this->assign('dingji', $dingji);
+        }else{
+            $data=input('post.');
+
+            //转换成字符串
+            $data['auth_id']=implode(',',$data['auth_id']);
+            $result=db('auth_company')->where(array('company_id'=>$data['id']))->update(['auth_id'=>$data['auth_id'],'utime'=>time()]);
+            if($result){
+                return json(['code'=>1,'msg'=>'修改成功']);
+            }else{
+                return json(['code'=>0,'msg'=>'修改失败']);
+            }
+
+        }
+        return $this->fetch('company/update');
+    }
+
+
 
     //随机生成随机数
     public function getnonce($length = 8){

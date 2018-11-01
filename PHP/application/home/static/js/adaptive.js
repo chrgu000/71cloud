@@ -139,8 +139,8 @@
 //         return remValue * newBase;
 //     };
 // })(window, adaptive);
-// if (typeof module != 'undefined' && module.exports) {
-//     module.exports = adaptive;
+// if (typeof pagemodule != 'undefined' && pagemodule.exports) {
+//     pagemodule.exports = adaptive;
 // } else if (typeof define == 'function' && define.amd) {
 //     define(function() {
 //         return adaptive;

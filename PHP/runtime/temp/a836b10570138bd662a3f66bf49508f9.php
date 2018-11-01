@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:79:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\auth\index.html";i:1540871702;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:79:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\auth\index.html";i:1541052739;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -25,11 +25,18 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 权限管理 <span class="c-gray en">&gt;</span> 权限列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="<?php echo url('create'); ?>" ><i class="Hui-iconfont">&#xe600;</i> 添加权限</a> </span> <span class="r">共有数据：<strong><?php echo $num; ?></strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray">
+		<span class="l">
+
+			<a class="btn btn-primary radius" href="<?php echo Url('create'); ?>">
+				<i class="Hui-iconfont">&#xe600;</i> 添加权限
+			</a>
+		</span>
+		<span class="r">共有数据：<strong><?php echo $num; ?></strong> 条</span> </div>
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="6">权限管理</th>
+				<th scope="col" colspan="9">权限管理</th>
 			</tr>
 			<tr class="text-c">
 				<th width="5%"><input type="checkbox" value="" name=""></th>

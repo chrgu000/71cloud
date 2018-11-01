@@ -1,5 +1,4 @@
 <?php
-
 namespace app\admin\controller;
 
 use think\Controller;
@@ -60,9 +59,9 @@ class Auth extends Base
         $this->view->engine->layout(false);
         //查询所有一级权限，用于下拉列表展示
         $auth = \app\branchadmin\model\Auth::where('pid', 0)->select();
-        $company=db('company')->field('id,company_name')->select();
 
-        return view('create', ['auth' => $auth,'company' =>$company]);
+
+        return view('auth/create', ['auth' => $auth]);
     }
 
     /**
@@ -103,8 +102,6 @@ class Auth extends Base
         $data['auth_c'] = strtolower($data['auth_c']);
         $data['auth_a'] = strtolower($data['auth_a']);
 
-        $data['company_id']=implode(',',$data['company_id']);
-
         //添加数据到权限表
         \app\branchadmin\model\Auth::create($data, true);
         //页面跳转
@@ -137,8 +134,6 @@ class Auth extends Base
         //查询所有一级权限，用于下拉列表展示
         $auth = \app\branchadmin\model\Auth::where('pid', 0)->select();
 
-        //查询所有公司
-        $company=db('company')->field('id,company_name')->select();
 
         //查询当前修改的数据
         $res=db('auth')->where(array('id'=>$id))->field('company_id,is_nav,id,auth_name')->find();
@@ -152,7 +147,7 @@ class Auth extends Base
             $rows=db("auth")->where(array('id'=>$id))->field('id,auth_name')->find();
         }
 
-        return view('edit',['list'=>$list,'auth'=>$auth,'company'=>$company,'res'=>$res,'rows'=>$rows]);
+        return view('edit',['list'=>$list,'auth'=>$auth,'res'=>$res,'rows'=>$rows]);
     }
 
     /**
@@ -165,15 +160,17 @@ class Auth extends Base
     public function update()
     {
         $id=input('id');
+
         $data=input('post.');
 
+        if($id==$data['pid']){
+            $data['pid']=0;
+        }
 
-        //使用update函数更新数据
-        $data['company_id']=implode(',',$data['company_id']);
 
         db('auth')->where(array('id'=>$id))->update($data);
         //页面跳转
-        $this->success('更新成功', 'index');
+        $this->success('更新成功', 'index','','1');
     }
 
     /**
@@ -186,6 +183,39 @@ class Auth extends Base
     {
         //删除权限
         \app\branchadmin\model\Auth::destroy($id);
-        $this->success('删除成功','index');
+        $this->success('删除成功','index','','1');
     }
+
+    /**
+     * 权限与公司的绑定
+     */
+    public function binding(){
+        if(Request::instance()->isGet()){
+        //查所有公司
+        $company=db('company')->field('id,company_name')->select();
+
+        //查找已经绑定的公司id
+        $cid=db('auth_company')->distinct("company_id")->column('company_id');
+        $cid = implode(",",$cid);
+        $name=db('company')->where(array('id'=>array('not in',$cid)))->field('id,company_name')->select();
+
+        //查所有顶级权限
+        $auth=db('auth')->where('pid=0')->field('id,auth_name')->select();
+
+        $this->assign('name',$name);
+        $this->assign('auth',$auth);
+        }else{
+            $data=input('post.');
+            $data['auth_id']=implode(',',$data['auth_id']);
+            $result=db('auth_company')->insert(['company_id'=>$data['pid'],'auth_id'=>$data['auth_id'],'ctime'=>time()]);
+            if($result){
+                return json(['code'=>1,'msg'=>'绑定成功']);
+            }else{
+                return json(['code'=>1,'msg'=>'绑定失败']);
+            }
+        }
+        return $this->fetch('auth/update');
+    }
+
+
 }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1540777995;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1541055257;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -166,6 +166,16 @@
 			<dd>
 				<ul>
 					<li><a data-href="<?php echo Url('Auth/index'); ?>" data-title="用户后台权限管理" href="javascript:void(0)">用户后台权限管理</a></li>
+					<li><a data-href="<?php echo Url('Auth/binding'); ?>" data-title="用户后台权限绑定" href="javascript:void(0)">用户后台权限绑定</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-admin">
+			<dt><i class="Hui-iconfont">&#xe63b;</i> 页面模块管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="<?php echo Url('Pagemodule/index'); ?>" data-title="页面模块管理" href="javascript:void(0)">页面模块管理</a></li>
+					<!--<li><a data-href="<?php echo Url('Permission/permission'); ?>" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>-->
 				</ul>
 			</dd>
 		</dl>
