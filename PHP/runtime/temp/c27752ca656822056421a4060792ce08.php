@@ -1,3 +1,36 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\message\add.html";i:1541143806;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>71云党建</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="Bookmark" href="/favicon.ico" >
+    <link rel="Shortcut Icon" href="/favicon.ico" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/admin/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="/static/admin/lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/lib/valid/css/style.css"/>
+    <script  src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="/static/admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script type="text/javascript" src="/static/admin/lib/jquery-1.11.3.min.js" ></script>
+    <script type="text/javascript" src="/static/admin/lib/ueditor/1.4.3/ueditor.config.js" ></script>
+    <script type="text/javascript" src="/static/admin/lib/ueditor/1.4.3/ueditor.all.js" ></script>
+    <script type="text/javascript" src="/static/admin/lib/valid/js/Validform_v5.3.2_min.js"></script>
+
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+</head>
 <title>添加管理员 - 管理员管理 - H-ui.admin v3.1</title>
 <script type="text/javascript" src="/static/admin/lib/ueditor/1.4.3/ueditor.config.js" ></script>
 <script type="text/javascript" src="/static/admin/lib/ueditor/1.4.3/ueditor.all.js" ></script>
@@ -13,9 +46,9 @@
 		<label class="form-label col-xs-4 col-sm-3">收件人：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="recipient_id" size="1">
-				{foreach name="data" item="v"}
-					<option value="{$v.id}">{$v.bradmin_username}</option>
-				{/foreach}
+				<?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): if( count($data)==0 ) : echo "" ;else: foreach($data as $key=>$v): ?>
+					<option value="<?php echo $v['id']; ?>"><?php echo $v['bradmin_username']; ?></option>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 			</select>
 			</span> </div>
 	</div>-->
@@ -29,12 +62,12 @@
                         <p>
                             <dd>
                                 <p>
-                                    {foreach name="data" item="v"}
+                                    <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): if( count($data)==0 ) : echo "" ;else: foreach($data as $key=>$v): ?>
                                         <label class="per">
-                                            <input type="checkbox" class="module" value="{$v.id}" name="receive_id[]" id="user-Character-0-0-0">
-                                            {$v.company_name}</br>
+                                            <input type="checkbox" class="module" value="<?php echo $v['id']; ?>" name="receive_id[]" id="user-Character-0-0-0">
+                                            <?php echo $v['company_name']; ?></br>
                                         </label>
-                                    {/foreach}
+                                    <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </p>
                             </dd>
                         </p>
@@ -59,7 +92,7 @@
 
 	</div>
 	<div class="row cl">
-		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;发送&nbsp;&nbsp;">
 		</div>
 	</div>
@@ -136,7 +169,7 @@ $("#form-admin-add").submit(function(){
     var data = $("form").serialize();
     $.ajax({
         type:"post",
-        url: "{:Url('Message/add')}",
+        url: "<?php echo Url('Message/add'); ?>",
         data:data,
         dataType:'json',
         success:function(data){
@@ -146,7 +179,7 @@ $("#form-admin-add").submit(function(){
             if(data.code == 1){
                 layer.msg(data.msg,{icon:1,time:1000});
                 setTimeout(function () {
-                    window.location.href=('{:Url("Message/index")}');
+                    window.location.href=('<?php echo Url("Message/index"); ?>');
                 } ,1000);
             }
         }
@@ -218,3 +251,9 @@ var ue = UE.getEditor('container');
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<!--_footer 作为公共模版分离出去-->
+<!--<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/admin/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->

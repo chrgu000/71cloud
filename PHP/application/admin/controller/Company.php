@@ -20,24 +20,20 @@ class Company extends Base{
 
     //公司管理员列表
     public function adminlist(){
-
+        $company_name = trim(input('get.company_name'));
+        //公司名称筛选
+        $map=[];
+        if($company_name){
+            $map['company_name'] = ['LIKE',"%$company_name%"];
+        }
         //查询共有多少条数据
         $num=db('branch_admin')->count();
-
-        //查询branch_admin表
-        $res=db('branch_admin')->select();
-
-        //把公司名称放到$res中
-        foreach ($res as $k=>&$v){
-            $v['company_name']=db('company')->where(array('id'=>$v['company_id']))->field('company_name,phone')->find();
-            $v['company_id']=db('company')->where(array('id'=>$v['company_id']))->field('id')->find();
-        }
-
-        //查询角色名称
-        foreach ($res as $k=>&$v){
-            $v['rolename']=db('role')->where(array('id'=>$v['role_id']))->field('name')->find();
-        }
-
+        $res=db('branch_admin')->alias('a')
+            ->join('c_role b','a.role_id= b.id')
+            ->join('c_company c','a.company_id = c.id')
+            ->field('a.id,a.bradmin_username,a.status,a.ctime,b.name,c.phone,c.company_name,c.id as company_id')
+            ->where($map)
+            ->select();
 
 
         $this->assign('res',$res);
@@ -180,6 +176,10 @@ class Company extends Base{
 
             //判断输入的原密码是否和数据库密码一致
             if ($admin_password == $pass['bradmin_password']) {
+                //判断修改的密码是否大于6位数
+                if(strlen($row['bradmin_password1'])<6){
+                    return json(['code'=>0,'msg'=>'请输入6位数以上密码']);
+                }
                 if($row['bradmin_password1'] != $row['bradmin_password2']){
                    return json(['code'=>0,'msg'=>'确认密码和新密码不一致']);
                 }
@@ -210,10 +210,18 @@ class Company extends Base{
 
     //公司列表
     public function companylist(){
+
+        $company_name = trim(input('get.company_name'));
+        //公司名称筛选
+        $map=[];
+        if($company_name){
+            $map['company_name'] = ['LIKE',"%$company_name%"];
+        }
+
         //查询总记录条数
         $num=db('company')->count();
         //查找公司
-        $rows=db('company')->select();
+        $rows=db('company')->where($map)->select();
 
         $this->assign('rows',$rows);
         $this->assign('num',$num);
@@ -347,6 +355,7 @@ class Company extends Base{
             $com_id=db('auth_company')->where(array('company_id'=>$cid))->field('company_id')->find();
             if(empty($com_id)){
                 $this->error('该公司尚未绑定权限，请先绑定权限!');
+                //return json(['code'=>0,'msg'=>'该公司尚未绑定权限，请先绑定权限!']);
             }
             /*if(){
                 return json(['code'=>0,'msg'=>'该公司尚未绑定权限，请先绑定权限!']);

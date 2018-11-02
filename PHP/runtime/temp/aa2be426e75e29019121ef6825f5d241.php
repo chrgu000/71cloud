@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1541055257;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1541119413;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -162,7 +162,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe630;</i> 用户后台权限管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe705;</i> 用户后台权限管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="<?php echo Url('Auth/index'); ?>" data-title="用户后台权限管理" href="javascript:void(0)">用户后台权限管理</a></li>
@@ -171,7 +171,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe63b;</i> 页面模块管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe626;</i> 页面模块管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="<?php echo Url('Pagemodule/index'); ?>" data-title="页面模块管理" href="javascript:void(0)">页面模块管理</a></li>

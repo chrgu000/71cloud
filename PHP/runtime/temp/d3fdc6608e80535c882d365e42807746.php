@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-list.html";i:1540623541;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-list.html";i:1541137148;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -36,14 +36,16 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
-		<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		<form action="<?php echo Url('companylist'); ?>" method="get">
+			<input type="text" class="input-text" value="<?php echo \think\Request::instance()->get('company_name'); ?>" style="width:250px" placeholder="输入管理员名称" id="" name="company_name">
+			<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<a href="javascript:;" class="btn btn-danger radius">
-				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
-			</a>
+			<!--<a href="javascript:;" class="btn btn-danger radius">-->
+				<!--<i class="Hui-iconfont">&#xe6e2;</i> 批量删除-->
+			<!--</a>-->
 			<a href="<?php echo Url('Company/companyadd'); ?>"  class="btn btn-primary radius">
 				<i class="Hui-iconfont">&#xe600;</i> 添加公司
 			</a>
