@@ -18,8 +18,11 @@ class Pagemodule extends Base{
      */
     //列表页
     public function index(){
+        //总数
+        $num=db('pagemodule')->count();
         $data=db('pagemodule')->select();
         $this->assign('data',$data);
+        $this->assign('num',$num);
         return $this->fetch();
     }
 

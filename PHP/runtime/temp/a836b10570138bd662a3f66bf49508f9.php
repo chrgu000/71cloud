@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:79:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\auth\index.html";i:1541122698;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:79:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\auth\index.html";i:1541378093;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -81,14 +81,14 @@
 <script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-
-$('.table-sort').dataTable({
+//分页及搜索
+/*$('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 	"bStateSave": true,//状态保存
 	"aoColumnDefs": [
 		{"orderable":false,"aTargets":[0,2,3,4,5,6,8]}// 指定列不参与排序
 	]
-});
+});*/
 
 /*管理员-角色-添加*/
 function admin_role_add(title,url,w,h){

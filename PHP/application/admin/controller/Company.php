@@ -143,19 +143,9 @@ class Company extends Base{
     public function admindel(){
         $id=input('id');
         $res=db('branch_admin')->where(array('id'=>$id))->delete();
-        /*if($res){
-            $message=array(
-                "error"=>0,
-                "message"=>"删除成功"
-            );
-        }else{
-            $message=array(
-                "error"=>1,
-                "message"=>"删除失败"
-            );
-        }*/
+        return json(['code'=>1,'msg'=>'删除成功']);
 
-        $this->redirect('adminlist');
+
     }
 
 

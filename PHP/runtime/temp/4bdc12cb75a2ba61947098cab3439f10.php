@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-admin-list.html";i:1541131328;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-admin-list.html";i:1541145744;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -102,7 +102,7 @@
 						<a title="编辑" href="<?php echo Url('Company/adminedit',array('id'=>$v['id'])); ?>" class="ml-5" style="text-decoration:none">
 							<i class="Hui-iconfont">&#xe6df;</i>
 						</a>
-						<a title="删除" href="<?php echo Url('Company/admindel',array('id'=>$v['id'])); ?>" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none">
+						<a title="删除"  onclick="del(this,'<?php echo $v['id']; ?>')" class="ml-5" style="text-decoration:none">
 							<i class="Hui-iconfont">&#xe6e2;</i>
 						</a>
 					</td>
@@ -141,24 +141,27 @@
 function admin_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*/!*管理员-删除*!/
-function admin_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
+/*删除*/
+function del(obj,id){
+    layer.confirm('确认删除吗？',function(){
+        $.ajax({
+            'url' 		: "<?php echo Url('admindel'); ?>",
+            'data'		: {id:id},
+            'dataType'  : 'json',
+            'type' 		: 'post',
+            success		: function (msg) {
+                if(msg.code == 1){
+                    $(obj).parent().parent().remove();
+                    layer.msg(msg.msg,{icon: 1,time:1000});
+                }else{
+                    layer.msg(msg.msg,{icon: 2,time:1000});
+                }
+            }
 
-		$.ajax({
-			type: 'POST',
-			url: "<?php echo Url('admin/admindel'); ?>",
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
-}*/
+        })
+
+    });
+}
 
 /*管理员-编辑*/
 function admin_edit(title,url,id,w,h){

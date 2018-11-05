@@ -93,7 +93,7 @@ class Ad extends Base{
             $file = request()->file('thumb');
 
             // 移动到框架应用根目录/public/uploads/ 目录下
-            $info = $file->move(ROOT_PATH . 'public' . '/' . 'uploads');
+            $info = $file->move(ROOT_PATH . 'public' . '/' . 'Uploads');
 
             if($info){
                 //获取图片路径并把路径从'\'转换成'/'
@@ -180,7 +180,7 @@ class Ad extends Base{
             $file = request()->file('thumb');
             if($file){
                 // 移动到框架应用根目录/public/uploads/ 目录下
-                $info = $file->move(ROOT_PATH . 'public' . '/' . 'uploads');
+                $info = $file->move(ROOT_PATH . 'public' . '/' . 'Uploads');
                 if($info){
                     //获取图片路径并把路径从'\'转换成'/'
                     $getSaveName=str_replace("\\","/",$info->getSaveName());
