@@ -3,7 +3,7 @@
 
 <body>
 <article class="page-container">
-	<form class="form form-horizontal demoform" id="form-admin-add" method="post" action="" enctype="multipart/form-data">
+	<form class="demoform form form-horizontal " id="form-admin-add" method="post" action="" enctype="multipart/form-data">
 
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司名称：</label>
@@ -161,42 +161,40 @@
 	}
 
 
-	/*有图片文件的ajax提交*/
-	$("#form-admin-add").submit(function(){
-		//表单序列化
-		//var data = $("form").serialize();
-		//aja提交图片文件
-		var formData = new FormData($('#form-admin-add')[0]);
-		$.ajax({
-			type:"post",
-			url: "{:Url('Company/companyadd')}",
-			data:formData,
-			dataType:'json',
-			processData:false,
-			contentType:false,
-			cache: false,
-			async:true,
-			success:function(data){
 
-				if(data.code==0){
-					layer.msg(data.msg, {icon: 6,time:1000});
-				}
-				if(data.code == 1){
-					layer.msg(data.msg,{icon:1,time:1000});
-					setTimeout(function () {
-						window.location.href=("{:Url('Company/companylist')}");
-					} ,1000);
-				}
-			}
-
-		})
-		return false;
-	});
 
 	//Validform表单验证
 	$(".demoform").Validform({
 		tiptype:3,
-		showAllError:true
+		showAllError:false,
+		callback:function(form){  //callback验证成功之后，并且点击submit按钮之后的效果
+
+            var formData = new FormData($('#form-admin-add')[0]);
+            $.ajax({
+                type:"post",
+                url: "{:Url('Company/companyadd')}",
+                data:formData,
+                dataType:'json',
+                processData:false,
+                contentType:false,
+                cache: false,
+                async:true,
+                success:function(data){
+
+                    if(data.code==0){
+                        layer.msg(data.msg, {icon: 6,time:1000});
+                    }
+                    if(data.code == 1){
+                        layer.msg(data.msg,{icon:1,time:1000});
+                        setTimeout(function () {
+                            window.location.href=("{:Url('Company/companylist')}");
+                        } ,1000);
+                    }
+                }
+
+            })
+            return false;
+		}
 	});
 
 </script>

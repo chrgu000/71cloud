@@ -51,8 +51,7 @@ class ClassCourse extends Base{
 
         $data = db('Class')->alias('a')
             ->join('c_class_cate b','a.cate_id = b.id')
-            ->join('c_user_class c','a.id = c.class_id')
-            ->field('a.id,a.name,a.thumb,a.period,a.ctime,a.visit,a.status,b.name as cate_name,GROUP_CONCAT(c.uid) uid')
+            ->field('a.id,a.name,a.thumb,a.period,a.ctime,a.visit,a.status,b.name as cate_name')
             ->group('a.id')
             ->where($map)
             ->select();

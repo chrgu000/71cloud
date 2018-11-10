@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1541380205;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1541580143;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>71云党建</title>
+    <title>七一云党建</title>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -144,11 +144,11 @@
 			</dd>
 		</dl>
 		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 权限管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe62d;</i>公众号菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="<?php echo Url('Permission/index'); ?>" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="<?php echo Url('Permission/permission'); ?>" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
+					<li><a data-href="<?php echo Url('Permission/permission'); ?>" data-title="权限管理" href="javascript:void(0)">公众号菜单管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -277,7 +277,7 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src="<?php echo Url('Company/adminlist'); ?>"></iframe>
+			<iframe scrolling="yes" frameborder="0" src="<?php echo Url('index/welcome'); ?>"></iframe>
 	</div>
 </div>
 </section>
@@ -361,8 +361,7 @@ function member_add(title,url,w,h){
 </body>
 </html>
 <!--_footer 作为公共模版分离出去-->
-<!--<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="/static/admin/static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.js"></script>
-<!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.js"></script><!--/_footer 作为公共模版分离出去-->

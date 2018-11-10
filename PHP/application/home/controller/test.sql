@@ -1,0 +1,1 @@
+insert into c_user_score (uid,name,type,score,ctime) values (9,'test1',3,2,1540605882);

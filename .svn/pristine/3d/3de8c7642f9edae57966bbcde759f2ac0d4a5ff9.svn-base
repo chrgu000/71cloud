@@ -1,0 +1,107 @@
+<title>编辑分类 - 分类管理 -</title>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-brand-edit">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.name}" placeholder="请输入分类名称" id="name" name="name">
+			</div>
+		</div>
+		{neq name="data.pid" value="0"}
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>父分类：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+			<span class="select-box">
+			<select name="pid" id="pid" class="select">
+				<option value="">请选择分类</option>
+				{volist name="cate" id="v"}
+					<option value="{$v.id}" {eq name="data.pid" value="$v.id"}selected{/eq}   >{$v.name}</option>
+				{/volist}
+			</select>
+			</span>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>排序：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" value="{$data.sort}" placeholder="请输入分类名称" id="sort" name="sort">
+				</div>
+			</div>
+
+		{/neq}
+
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+		<input type="hidden" name="id" value="{$data.id}" />
+	</form>
+</article>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib//jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/admin/lib//jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/admin/lib//jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+                increaseArea: '20%'
+            });
+
+    $("#form-brand-edit").validate({
+        rules:{
+            name:{
+                required:true,
+            },
+            pid:{
+                required:true,
+            },
+            sort:{
+                required:true,
+            }
+
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+
+			var index = parent.layer.getFrameIndex(window.name);
+
+			$(form).ajaxSubmit({
+				type: 'post',
+				url: "{:Url('edit')}" ,
+				success: function(data){
+					if(data.code == 0){
+						layer.msg(data.msg,{icon:2,time:1000});
+						console.log(0);
+					}
+					if(data.code == 1){
+                        window.location.href=("{:Url('index')}");
+                        // layer.msg(data.msg,{icon:1,time:1000});
+                        // setTimeout(function () {
+                        //     window.parent.location.reload();
+                        //     parent.layer.close(index);
+                        // } ,2000);
+					}
+					
+				},
+                error: function(XmlHttpRequest, textStatus, errorThrown){
+					layer.msg('error!',{icon:2,time:1000});
+				}
+			});
+			
+			
+		}
+	});
+});
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

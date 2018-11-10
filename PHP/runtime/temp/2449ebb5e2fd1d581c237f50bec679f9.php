@@ -1,8 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:88:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-add.html";i:1540774485;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1540622524;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1540368457;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:88:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-add.html";i:1541830831;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>71云党建</title>
+    <title>七一云党建</title>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -36,7 +36,7 @@
 
 <body>
 <article class="page-container">
-	<form class="form form-horizontal demoform" id="form-admin-add" method="post" action="" enctype="multipart/form-data">
+	<form class="demoform form form-horizontal " id="form-admin-add" method="post" action="" enctype="multipart/form-data">
 
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司名称：</label>
@@ -195,7 +195,7 @@
 
 
 	/*有图片文件的ajax提交*/
-	$("#form-admin-add").submit(function(){
+	/*$("#form-admin-add").submit(function(){
 		//表单序列化
 		//var data = $("form").serialize();
 		//aja提交图片文件
@@ -224,12 +224,39 @@
 
 		})
 		return false;
-	});
+	});*/
 
 	//Validform表单验证
 	$(".demoform").Validform({
 		tiptype:3,
-		showAllError:true
+		showAllError:false,
+		callback:function(form){
+            var formData = new FormData($('#form-admin-add')[0]);
+            $.ajax({
+                type:"post",
+                url: "<?php echo Url('Company/companyadd'); ?>",
+                data:formData,
+                dataType:'json',
+                processData:false,
+                contentType:false,
+                cache: false,
+                async:true,
+                success:function(data){
+
+                    if(data.code==0){
+                        layer.msg(data.msg, {icon: 6,time:1000});
+                    }
+                    if(data.code == 1){
+                        layer.msg(data.msg,{icon:1,time:1000});
+                        setTimeout(function () {
+                            window.location.href=("<?php echo Url('Company/companylist'); ?>");
+                        } ,1000);
+                    }
+                }
+
+            })
+            return false;
+		}
 	});
 
 </script>
@@ -237,8 +264,7 @@
 </body>
 </html>
 <!--_footer 作为公共模版分离出去-->
-<!--<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="/static/admin/static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.js"></script>
-<!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.js"></script><!--/_footer 作为公共模版分离出去-->

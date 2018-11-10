@@ -69,9 +69,9 @@ return [
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
-    'default_controller'     => 'Index',
+    'default_controller'     => 'Show',
     // 默认操作名
-    'default_action'         => 'Index',
+    'default_action'         => 'show',
     // 默认验证器
     'default_validate'       => '',
     // 默认的空控制器名
@@ -254,7 +254,7 @@ return [
         'driverConfig'      => array (
             'secretKey'         => '7BT5cPy9SyX23yClaCgURvqlYdmp5eT_9d6fhPuL',
             'accessKey'         => 'p53TdxExussF8VFd2b1cL7JXZz4tVd5sVmuR8xyF',
-            'domain'            => 'pc5hsiop1.bkt.clouddn.com',
+            'domain'            => 'oss.co-links.com',
             'bucket'            => '71cloud',
         )
     ),

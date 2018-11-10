@@ -170,49 +170,41 @@
  **/
 
 
-/**
- *有图片文件的ajax提交开始
- *
- */
-	$("#form-admin-add").submit(function(){
-		//表单序列化
-		//var data = $("form").serialize();
-		//aja提交图片文件
-		var formData = new FormData($('#form-admin-add')[0]);
-
-		$.ajax({
-			type:"post",
-			url: "{:Url('Company/companyedit',array('id'=>input('id')))}",
-			data:formData,
-			dataType:'json',
-			processData:false,
-			contentType:false,
-			cache: false,
-			async:true,
-			success:function(data){
-
-				if(data.code==0){
-					layer.msg(data.msg, {icon: 6,time:1000});
-				}
-				if(data.code == 1){
-					layer.msg(data.msg,{icon:1,time:1000});
-					setTimeout(function () {
-						window.location.href=("{:Url('Company/companylist')}");
-					} ,1000);
-				}
-			}
-
-		})
-		return false;
-	});
-/**
- * 有图片文件的ajax提交结束
- */
-
 	//Validform表单验证
 	$(".demoform").Validform({
 		tiptype:3,
-		showAllError:true
+        showAllError:false,
+        callback:function(form) {  //callback验证成功之后，并且点击submit按钮之后的效果
+            //表单序列化
+            //var data = $("form").serialize();
+            //aja提交图片文件
+            var formData = new FormData($('#form-admin-add')[0]);
+
+            $.ajax({
+                type:"post",
+                url: "{:Url('Company/companyedit',array('id'=>input('id')))}",
+                data:formData,
+                dataType:'json',
+                processData:false,
+                contentType:false,
+                cache: false,
+                async:true,
+                success:function(data){
+
+                    if(data.code==0){
+                        layer.msg(data.msg, {icon: 6,time:1000});
+                    }
+                    if(data.code == 1){
+                        layer.msg(data.msg,{icon:1,time:1000});
+                        setTimeout(function () {
+                            window.location.href=("{:Url('Company/companylist')}");
+                        } ,1000);
+                    }
+                }
+
+            })
+            return false;
+		}
 	});
 
 </script> 
