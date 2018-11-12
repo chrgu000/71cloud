@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/PHP/application/home/controller/Examapi.php" line="65" mnemonic="4" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="16bd94bc-ef6a-4c61-bfe3-9415a71f174d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,7 +75,7 @@
     <session id="-275949426">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="42" />
+          <entry key="project.closed" value="43" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="8" />
           <entry key="project.open.time.11" value="1" />
@@ -98,10 +101,11 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.71" value="1" />
           <entry key="project.open.time.73" value="1" />
+          <entry key="project.open.time.76" value="1" />
           <entry key="project.open.time.85" value="2" />
           <entry key="project.open.time.88" value="1" />
           <entry key="project.open.time.93" value="1" />
-          <entry key="project.opened" value="50" />
+          <entry key="project.opened" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -135,7 +139,7 @@
           <entry key="html" value="7777" />
           <entry key="js" value="30" />
           <entry key="json" value="81" />
-          <entry key="php" value="40581" />
+          <entry key="php" value="42515" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -144,7 +148,7 @@
           <entry key="HTML" value="7777" />
           <entry key="JSON" value="81" />
           <entry key="JavaScript" value="30" />
-          <entry key="PHP" value="40580" />
+          <entry key="PHP" value="42514" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="SQL" value="1" />
         </counts>
@@ -187,33 +191,10 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PHP/application/home/controller/Examapi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="127" column="18" lean-forward="true" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
-              <folding>
-                <element signature="e#39#60#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PHP/application/home/model/Exampaper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>errDealMode</find>
       <find>opposite</find>
       <find>U</find>
       <find>解析URL后缀</find>
@@ -243,6 +224,7 @@
       <find>transcript</find>
       <find>score</find>
       <find>next_id</find>
+      <find>exampaper_name</find>
     </findStrings>
     <replaceStrings>
       <replace>return json</replace>
@@ -300,8 +282,8 @@
         <option value="$PROJECT_DIR$/PHP/application/admin/view/company/company-add.html" />
         <option value="$PROJECT_DIR$/PHP/application/admin/view/company/company-edit.html" />
         <option value="$PROJECT_DIR$/PHP/application/admin/view/index/welcome.html" />
-        <option value="$PROJECT_DIR$/PHP/application/home/controller/Examapi.php" />
         <option value="$PROJECT_DIR$/PHP/application/admin/controller/ClassCourse.php" />
+        <option value="$PROJECT_DIR$/PHP/application/home/controller/Examapi.php" />
       </list>
     </option>
   </component>
@@ -333,7 +315,7 @@
       <path value="$PROJECT_DIR$/PHP/vendor/Qiniu/docs" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="185" />
     <option name="y" value="205" />
     <option name="width" value="1452" />
@@ -412,40 +394,6 @@
               <item name="PHP" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="71cloud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="71cloud" type="462c0819:PsiDirectoryNode" />
-              <item name="PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="71cloud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="71cloud" type="462c0819:PsiDirectoryNode" />
-              <item name="PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="71cloud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="71cloud" type="462c0819:PsiDirectoryNode" />
-              <item name="PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="71cloud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="71cloud" type="462c0819:PsiDirectoryNode" />
-              <item name="PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -559,12 +507,13 @@
       <workItem from="1541550166756" duration="26948000" />
       <workItem from="1541636660394" duration="21881000" />
       <workItem from="1541723626069" duration="30155000" />
-      <workItem from="1541809687635" duration="27698000" />
+      <workItem from="1541809687635" duration="27935000" />
+      <workItem from="1541982615724" duration="22978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1183177000" />
+    <option name="totallyTimeSpent" value="1206392000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -576,10 +525,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1369936" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13859275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="找到" order="0" weight="0.32936078" />
@@ -856,13 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PHP/application/home/model/Exampaper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PHP/application/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -919,10 +860,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PHP/application/home/model/Exampaper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PHP/application/home/controller/Examapi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="127" column="18" lean-forward="true" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
+        <state relative-caret-position="720">
+          <caret line="405" column="27" lean-forward="true" selection-start-line="405" selection-start-column="27" selection-end-line="405" selection-end-column="27" />
           <folding>
             <element signature="e#39#60#0#PHP" expanded="true" />
           </folding>

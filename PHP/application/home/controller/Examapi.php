@@ -3,6 +3,7 @@
 namespace app\home\controller;
 
 use think\Controller;
+use think\process\pipes\Unix;
 use think\Request;
 
 class Examapi extends Controller
@@ -61,12 +62,15 @@ class Examapi extends Controller
         $user_id = $data['uid'];
         $paper_id= $data['paper_id'];
         $activity_id=$data['activity_id'];
+        //查找当前用户对应的公司
+        $company_id=db('user')->where(['id'=>$user_id])->field('company_id')->value('company_id');
+
         if (empty($user_id) || empty($paper_id)) {
             return json(['code' => 0, 'msg' => '参数错误', 'data' => '']);
         }
         // 通过用户id，关卡id,获取考试成绩分数,及活动id
         $result = db('exam_info')
-            ->where(['user_id'=>$user_id,'exampaper_id'=>$paper_id])
+            ->where(['user_id'=>$user_id,'company_id'=>$company_id,'exampaper_id'=>$paper_id,'exam_activity_id'=>$activity_id])
             ->field('result_score,use_time,right_num,is_pass,exam_activity_id')
             ->find();
         //查找对应题目的总数和满分以及通过分数
@@ -81,6 +85,8 @@ class Examapi extends Controller
             ->limit('1')
             ->field('id')
             ->value('id');
+        //查找下一关名称
+        $exampaper_name=db('exampaper')->where(['id'=>$next_id])->field('exampaper_name')->value('exampaper_name');
 
         //查找判断是否是最后一关
         $max_id=db('exampaper')
@@ -95,79 +101,15 @@ class Examapi extends Controller
             $ranking_type=0; //0代表下一关
         }
 
-
-        //判断上一关是否通过
-        //查找上一关id
-        $i=db('exampaper')
-            ->where(['exam_activity_id'=>$result['exam_activity_id'],'id'=>array('lt',$paper_id)])
-            ->limit('1')
+        //查找当前活动下当前关卡的第一关
+        $first=db('exampaper')
+            ->where(['exam_activity_id'=>$activity_id,'company_id'=>$company_id])
             ->field('id')
-            ->find();
-        //查找上一关is_pass值
-        $row=db('exam_info')->where(['exampaper_id'=>$i['id']])->field('is_pass')->find();
-
-        //查找当前活动下的试卷第一个关卡id
-        $exampaper_id=db('exampaper')
-            ->where(['exam_activity_id'=>$result['exam_activity_id']])
-            ->field('id')
-            ->order('id asc')
             ->min('id');
-        //如果是第一关就直接进入答题
-        if($paper_id==$exampaper_id){
-            if($result['is_pass'] ==0){
-                $res = [
-                    'code'=>'1',
-                    'msg'=>'',
-                    'data'=>[
-                        'is_pass'=>0,  //是否通过，0代表没通过，1通过 ,2代表上一关未通过
-                        'ranking_type'=>$ranking_type,  //0代表下一关，1代表最后一关,
-                        'exam_questions_num'=>$pass_score['exam_questions_num'],//题目总数
-                        'exam_score'=>$pass_score['score'],//满分
-                        'pass_score'=>$pass_score['pass_score'],//通过分数（及格分数）
-                    ]
-                ];
-                return json($res);
-            }else{
-                $res = [
-                    'code'=>'1',
-                    'msg'=>'',
-                    'data'=>[
-                        'is_pass'=>1,  //是否通过，0代表没通过，1通过 ,2代表上一关未通过
-                        'ranking_type'=>$ranking_type,  //0代表下一关，1代表最后一关,
-                        'next_id'=>$next_id,//下一关id
-                        'exam_score'=>$pass_score['score'],    //满分
-                        'pass_score'=>$pass_score['pass_score'],  //通过分数（及格分数）
-                        'use_time'=>$result['use_time'],   //答题用时
-                        'exam_questions_num'=>$pass_score['exam_questions_num'],   //题目总数
-                        'right_num'=>$result['right_num'],   //答对题数
-                        'result_score'=>$result['result_score'],   //答题得分
-                    ]
-                ];
 
-                return json($res);
-            }
-
-        }
-        //判断是否有答题分数
-        if(empty($result['result_score']))
-        {
-            $res = [
-                'code'=>'1',
-                'msg'=>'无此关卡考试成绩记录',
-                'data'=>[
-                    'exam_questions_num'=>$pass_score['exam_questions_num'],//题目总数
-                    'exam_score'=>$pass_score['score'],//满分
-                    'pass_score'=>$pass_score['pass_score'],//通过分数（及格分数）
-                    'is_pass'=>0   //是否通过，0代表没通过，1通过 ,2代表上一关未通过
-                ]
-
-            ];
-
-            return json($res);
-        }
-
-        if ($result['is_pass'] ==1)
-        {
+        //判断当前关是否通过
+        if ($result['is_pass'] ==1){
+            //通过返回成绩单
             $res = [
                 'code'=>'1',
                 'msg'=>'考试成绩获取成功！，继续下一关考试',
@@ -178,44 +120,71 @@ class Examapi extends Controller
                     'exam_questions_num'=>$pass_score['exam_questions_num'],   //题目总数
                     'right_num'=>$result['right_num'],   //答对题数
                     'result_score'=>$result['result_score'],   //答题得分
-                    'is_pass'=>1,  //是否通过，0代表没通过，1通过 ,2代表上一关未通过
+                    'is_pass'=>1,  //是否通过，0代表没通过,1通过 ,2代表上一关未通过
                     'next_id'=>$next_id,  //下一关id
+                    'exampaper_name'=>$exampaper_name,  //下一关名称
                     'ranking_type'=>$ranking_type //0代表下一关，1代表最后一关,
                 ]
             ];
             return json($res);
-        }
-
-        if ($result['is_pass'] ==0){
-            //判断上一关是否通过
-            if($row['is_pass']==0)
-            {
+        }else{
+            //判断当前是否是第一关
+            if($paper_id==$first){
+                //是第一关直接进入答题引导
                 $res = [
                     'code'=>'1',
-                    'msg'=>'上一关还没通过，请先通过上一关',
+                    'msg'=>'',
                     'data'=>[
+                        'is_pass'=>0,  //是否通过，0代表没通过，1通过 ,2代表上一关未通过
                         'exam_questions_num'=>$pass_score['exam_questions_num'],//题目总数
                         'exam_score'=>$pass_score['score'],//满分
                         'pass_score'=>$pass_score['pass_score'],//通过分数（及格分数）
-                        'is_pass'=>2   //是否通过，0代表没通过，1通过 ,2代表上一关未通过
                     ]
-
                 ];
                 return json($res);
             }else{
-                $res = [
-                    'code'=>'1',
-                    'msg'=>'该关卡考试成绩不及格，请重新考试！',
-                    'data'=>[
-                        'exam_questions_num'=>$pass_score['exam_questions_num'],//题目总数
-                        'exam_score'=>$pass_score['score'], //满分
-                        'pass_score'=>$pass_score['pass_score'],//通过分数（及格分数）
-                        'is_pass'=>0   //是否通过，0代表没通过，1通过
-                    ]
-                ];
-                return json($res);
+                //不是第一关就判断上一关是否通过
+                //找上一关id
+                $prev=db('exampaper')
+                    ->where(['exam_activity_id'=>$activity_id,'company_id'=>$company_id,'id'=>$paper_id])
+                    ->field('id')
+                    ->value('id');
+                $prev=$prev-1;
+                //查找上一关的is_pass值
+                $row=db('exam_info')->where(['exampaper_id'=>$prev])->field('is_pass')->value('is_pass');
+                //判断上一关是否通过
+                    if($row==0){
+                        //上一关没通过就提示
+                        $res = [
+                            'code'=>'1',
+                            'msg'=>'上一关还没通过，请先通过上一关',
+                            'data'=>[
+                                'exam_questions_num'=>$pass_score['exam_questions_num'],//题目总数
+                                'exam_score'=>$pass_score['score'],//满分
+                                'pass_score'=>$pass_score['pass_score'],//通过分数（及格分数）
+                                'is_pass'=>2   //是否通过，0代表没通过，1通过 ,2代表上一关未通过
+                            ]
+
+                        ];
+                        return json($res);
+                    }else{
+                        //通过就答当前关
+                        $res = [
+                            'code'=>'1',
+                            'msg'=>'',
+                            'data'=>[
+                                'is_pass'=>0,  //是否通过，0代表没通过，1通过 ,2代表上一关未通过
+                                'ranking_type'=>$ranking_type,  //0代表下一关，1代表最后一关,
+                                'exam_questions_num'=>$pass_score['exam_questions_num'],//题目总数
+                                'exam_score'=>$pass_score['score'],//满分
+                                'pass_score'=>$pass_score['pass_score'],//通过分数（及格分数）
+                            ]
+                        ];
+                        return json($res);
+                    }
             }
         }
+
     }
 
 
@@ -290,8 +259,16 @@ class Examapi extends Controller
                     'str'=>$v['opt4'],
                 ],
             ];
+            //如果有选项不存在就删掉
+            foreach ($v['opt'] as $k1=>$v1){
+                if(empty($v1['str'])){
+                    unset($v['opt'][$k1]);
+                }
+            }
+
             unset($v['opt1'],$v['opt2'],$v['opt3'],$v['opt4']);
         }
+
         $rows['text'] = $data;
         return json(['code'=>1,'data'=>$rows]);
     }
@@ -386,33 +363,67 @@ class Examapi extends Controller
             }
         //计算考试分数
         $result_score=$rows['score']/$rows['exam_questions_num']*$num;
-
+        $is_pass='';
         //判断考试成绩是否通过 0未通过,1通过
-        if($result_score>$rows['pass_score']){
+        if($result_score>=$rows['pass_score']){
             $is_pass=1;
         }else{
             $is_pass=0;
         }
-
         //答题记录
         $record =json_encode($arr);
-        //答题结果插入数据库
-        db('exam_info')->insert(
-            [
-                'exam_activity_id'=>$rows['activity_id'],  //活动id
-                'exampaper_id'=>$paper_id,  //关卡id
-                'user_id'=>$uid,  //用户id
-                'result_score'=>$result_score,  //考试得分
-                'exam_score'=>$rows['score'], //试卷满分
-                'right_num'=>$num,  //答对题数
-                'exam_questions_num'=>$rows['exam_questions_num'], //总题目数量
-                'create_time'=>time(),  //创建时间
-                'use_time'=>$use_time,  //答题花费时间
-                'company_id'=>$company_id,  //公司id
-                'exam_record'=>$record,  //答题记录
-                'is_pass'=>$is_pass  //是否通过
 
-            ]);
+        //查找当前is_pass为0未通过的数据
+        $ispass_type=db('exam_info')
+            ->where(['company_id'=>$company_id,'exam_activity_id'=>$activity_id,'exampaper_id'=>$paper_id,'user_id'=>$uid])
+            ->find();
+
+        //如果当前考试记录为空就插入数据库
+        if(empty($ispass_type)){
+            //答题结果插入数据库
+            db('exam_info')->insert(
+                [
+                    'exam_activity_id'=>$rows['activity_id'],  //活动id
+                    'exampaper_id'=>$paper_id,  //关卡id
+                    'user_id'=>$uid,  //用户id
+                    'result_score'=>$result_score,  //考试得分
+                    'exam_score'=>$rows['score'], //试卷满分
+                    'right_num'=>$num,  //答对题数
+                    'exam_questions_num'=>$rows['exam_questions_num'], //总题目数量
+                    'create_time'=>time(),  //创建时间
+                    'use_time'=>$use_time,  //答题花费时间
+                    'company_id'=>$company_id,  //公司id
+                    'exam_record'=>$record,  //答题记录
+                    'is_pass'=>$is_pass  //是否通过
+
+                ]);
+        }
+
+
+        //判断如果之前未通过现在就是修改答题记录
+        if($ispass_type['is_pass']==0){
+            //更新数据库
+            db('exam_info')
+                ->where(['company_id'=>$company_id,'exam_activity_id'=>$activity_id,'exampaper_id'=>$paper_id,'user_id'=>$uid])
+                ->update(
+                [
+                    'exam_activity_id'=>$rows['activity_id'],  //活动id
+                    'exampaper_id'=>$paper_id,  //关卡id
+                    'user_id'=>$uid,  //用户id
+                    'result_score'=>$result_score,  //考试得分
+                    'exam_score'=>$rows['score'], //试卷满分
+                    'right_num'=>$num,  //答对题数
+                    'exam_questions_num'=>$rows['exam_questions_num'], //总题目数量
+                    'create_time'=>time(),  //创建时间
+                    'use_time'=>$use_time,  //答题花费时间
+                    'company_id'=>$company_id,  //公司id
+                    'exam_record'=>$record,  //答题记录
+                    'is_pass'=>$is_pass  //是否通过
+                ]);
+        }
+
+
+
 
         //查找当前活动下的试卷第一个关卡最大的id
         $exampaper_id=db('exampaper')
@@ -420,12 +431,15 @@ class Examapi extends Controller
             ->field('id')
             ->order('id asc')
             ->max('id');
-
-        //找下一关关卡名称
-        $exampaper_name=db('exampaper')
-            ->where(['id'=>$exampaper_id])
-            ->field('exampaper_name')
-            ->value('exampaper_name');
+        
+        //查找下一关id
+        $next_id=db('exampaper')
+            ->where(['exam_activity_id'=>$activity_id,'id'=>array('gt',$paper_id)])
+            ->limit('1')
+            ->field('id')
+            ->value('id');
+        //查找下一关名称
+        $exampaper_name=db('exampaper')->where(['id'=>$next_id])->field('exampaper_name')->value('exampaper_name');
 
         //如果是最后一关就进入排行榜
         if($paper_id==$exampaper_id){
@@ -440,6 +454,7 @@ class Examapi extends Controller
                     'right_num'=>$num,  //答对题数
                     'result_score'=>$result_score,  //考试得分
                     'ranking_type'=>1,  //0代表下一关，1代表最后一关,
+                    'is_pass'=>$is_pass  //判断是否通过
                 ]
             ];
 
@@ -463,7 +478,8 @@ class Examapi extends Controller
                     'result_score'=>$result_score,  //考试得分
                     'next_id'=>$next_id['id'], //下一关id
                     'ranking_type'=>0,  //0代表下一关，1代表最后一关,
-                    'exampaper_name'=>$exampaper_name //下一关名称
+                    'exampaper_name'=>$exampaper_name, //下一关名称
+                    'is_pass'=>$is_pass  //判断是否通过
                 ]
             ];
             return json($res);
