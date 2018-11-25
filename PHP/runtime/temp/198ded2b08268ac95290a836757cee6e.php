@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\examrecord\create.html";i:1540439357;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\exampaper\create.html";i:1540439357;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>

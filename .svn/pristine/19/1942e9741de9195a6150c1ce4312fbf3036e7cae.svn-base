@@ -1,0 +1,53 @@
+<?php
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+class Message extends Base{
+
+    //消息列表
+    public function index(){
+        //联表查询
+        $data =Db::table('c_message')->alias('a')
+            ->join('c_branch_admin b','a.recipient_id=b.id')
+            ->where('a.recipient_id=b.id')
+            ->field('b.bradmin_username,a.content,a.admin_addresser_id,a.recipient_id,a.ctime,a.id')
+            ->select();
+
+        //$data = db('message')->select();
+        $this->assign('data',$data);
+        return $this->fetch('message/index');
+    }
+
+    //发送消息
+    public function add(){
+        //查找管理员收件人
+        $data=db('branch_admin')->alias('a')
+            ->join('c_company b','a.company_id=b.id')
+            ->where('a.company_id=b.id')
+            ->field('a.id,a.bradmin_username,b.company_name')
+            ->select();
+        if (Request::instance()->isPost()) {
+            $res=input('post.');
+            //当前时间存入数组
+            $res['ctime']=time();
+            //用逗号分隔收件人id
+            $res['recipient_id']=implode(',',$res['recipient_id']);
+            //获取当前管理员id
+            $admin_id = input('session.admin.id');
+            $res['admin_addresser_id']=$admin_id;
+
+            $results=db('message')->insert($res);
+
+            if($results){
+                $this->redirect('index');
+            }else{
+                $this->error('发送失败');
+            }
+        }
+        $this->assign('data',$data);
+        return $this->fetch('message/add');
+    }
+
+}

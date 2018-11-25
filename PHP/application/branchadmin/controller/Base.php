@@ -31,7 +31,11 @@ class Base extends Controller
             $res                   = model('company')->where('id', $company_id)->field('phone,company_name')->find();
             $company_name          = $res['company_name'];
             $branchs               = model('branchs');
+<<<<<<< HEAD
             $branchs->branchs_name = $company_name;
+=======
+            $branchs->branchs_name = $company_name . "党支部";
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             $branchs->phone        = $res['phone'];
             $branchs->company_id   = $company_id;
             $branchs->pid          = 0;
@@ -88,7 +92,11 @@ class Base extends Controller
                 'id'     => ['in', $roles_auth_ids],
             ])->select();
         }
+<<<<<<< HEAD
 //            dump($second_nav);
+=======
+//            dump()
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         //变量赋值
         $this->assign('top_nav', $top_nav);
         $this->assign('second_nav', $second_nav);

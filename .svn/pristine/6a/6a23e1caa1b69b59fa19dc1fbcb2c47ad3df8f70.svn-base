@@ -1,0 +1,185 @@
+//
+//  Me_SettingViewController.m
+//  TheParty
+//
+//  Created by macmini on 2018/8/17.
+//  Copyright © 2018年 macmini. All rights reserved.
+//
+
+#import "Me_SettingViewController.h"
+#import "SDImageCache.h"
+#import "ChangePassWordViewController.h"
+@interface Me_SettingViewController ()<UIActionSheetDelegate>
+{
+    UILabel *sizeLab;
+    UILabel *clarLab;
+    UISwitch *_switchBtn;
+    BOOL _btnSelect;
+}
+
+@end
+
+@implementation Me_SettingViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"系统设置";
+    
+    [self createUI];
+}
+
+- (void)createUI{
+   
+    
+    float tmpSize = [[SDImageCache sharedImageCache] getSize] + [self getOtherCache];
+    
+    NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize/1024/1024] : [NSString stringWithFormat:@"%.1fK",tmpSize/1024];
+    
+    NSArray *arrTitles = @[@"修改密码",@"消息推送",@"清除缓存"];
+    
+    for (int i=0; i<arrTitles.count; i++) {
+        UIButton *view = [UIButton buttonWithType:UIButtonTypeCustom];
+        [view setFrame:CGRectMake(0,10+ 50*i, CGRectGetWidth(H_ScreenFrame), 50)];
+        [view setBackgroundColor:[UIColor whiteColor]];
+        [view addTarget:self action:@selector(btn_action:) forControlEvents:UIControlEventTouchUpInside];
+        [view setTag:i];
+        [self.view addSubview:view];
+        
+        UILabel *lbl=[[UILabel alloc] initWithFrame:CGRectMake(16, 0, 200, CGRectGetHeight(view.frame))];
+        [lbl setText:arrTitles[i]];
+        lbl.textColor = UIColorFromRGBA(0x4D4C4C, 1);
+        [lbl setFont:[UIFont systemFontOfSize:15]];
+        [view addSubview:lbl];
+        
+        UILabel *line=[[UILabel alloc] initWithFrame:CGRectMake(0, 49, SCREEN_W, 1)];
+        line.backgroundColor = UIColorFromRGBA(0xE6E6E6, 1);
+        [view addSubview:line];
+        if (i == 0) {
+
+        }else if ( i ==1 ){
+            _switchBtn = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_W - 30 - 40, 10, 40, 20)];
+            [_switchBtn addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+            [_switchBtn setOnTintColor:UIColorFromRGBA(0xFE6E67, 1)];
+            [_switchBtn setOn:_btnSelect];
+            [view addSubview:_switchBtn];
+        }else{
+            sizeLab = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W - 90, 0, 65, CGRectGetHeight(view.frame))];
+            sizeLab.text = clearCacheName;
+            sizeLab.textAlignment = 2;
+            sizeLab.textColor = UIColorFromRGBA(0xcbcbcb, 1);
+            [sizeLab setFont:[UIFont systemFontOfSize:13]];
+            [view addSubview:sizeLab];
+            
+        }
+    }
+   
+    UIButton *btnNext=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btnNext setTitle:@"退出登录" forState:UIControlStateNormal];
+    [btnNext setBackgroundColor:UIColorFromRGBA(0xE83329, 1)];
+    [btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnNext setFrame:CGRectMake(16, 200, CGRectGetWidth(H_ScreenFrame)-32, 36)];
+    [btnNext.layer setCornerRadius:6];
+    [btnNext.layer setMasksToBounds:YES];
+    [btnNext addTarget:self action:@selector(exitAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnNext];
+    
+}
+
+- (void)switchAction:(UISwitch *)switchBtn {
+    if (switchBtn.isOn) {
+        NSLog(@"打开开关");
+    }else{
+        NSLog(@"关闭开光");
+    }
+    //    [X_DataStorage saveObject:[switchBtn isOn] ? [NSNumber numberWithBool:1] :[NSNumber numberWithBool:0] key:allow4GDownload];
+    
+}
+
+- (long long)getOtherCache
+{
+    NSString *rootPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"videos"];
+    // 如果存在路劲
+    long long totaleSize = 0;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:rootPath]) {
+        NSArray *temp = [[NSFileManager defaultManager] subpathsAtPath:rootPath];
+        for (NSString *fileName in temp) {
+            NSString *delePath = [rootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",fileName]];
+            long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:delePath error:nil] fileSize];
+            totaleSize += fileSize;
+            
+        }
+    }
+    return totaleSize;
+}
+
+-(void)btn_action:(UIButton *)btn{
+    if (btn.tag == 0) {
+        [[UIHelper sharedSingleton] pushVC:@"ChangePassWordViewController" vc:self parames:nil];
+    }
+    else if (btn.tag == 2) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"是否清理缓存文件"
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"取消"
+                                              otherButtonTitles:@"清除", nil];
+        [alert showAlertViewWithCompleteBlock:^(NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                [self showHUD:@"清除中"];
+                // 清除内存缓存
+                WEAKSELF
+                [[SDWebImageManager sharedManager].imageCache clearMemory];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    float tmpSize = [[SDImageCache sharedImageCache] getSize] + [self getOtherCache];
+                    NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize/1024/1024] : [NSString stringWithFormat:@"%.1fK",tmpSize/1024];
+                    [weakSelf clearVideoFile];
+                    [[SDImageCache sharedImageCache] clearMemory];
+                    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
+                    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+                    
+                    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            sizeLab.text = @"0.0K";
+                            [weakSelf showSuccess:[NSString stringWithFormat:@"清除了%@",clearCacheName]];
+                        });
+                    }];
+                });
+            }
+        }];
+    }
+}
+
+
+- (void)clearVideoFile
+{
+    NSString *rootPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"videos"];
+    
+    // 如果存在路径
+    if ([[NSFileManager defaultManager] fileExistsAtPath:rootPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:rootPath error:nil];
+    }
+}
+
+- (void)exitAction{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app loginOut];
+    [app createRootViewController];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

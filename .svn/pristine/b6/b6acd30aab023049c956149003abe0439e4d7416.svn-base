@@ -1,0 +1,206 @@
+<?php
+
+namespace app\branchadmin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+use think\Validate;
+class Dangyuan extends Base
+{
+    /**
+     * 显示资源列表
+     *
+     * @return \think\Response
+     */
+
+    public function permission()
+    {
+        //关闭临时模板
+        $this->view->engine->layout(false);
+        // 原生SQL语句为：select d.*,j.job_name,b.branchs_name from c_dangyuan d left join c_dangyuan_jobname j on d.job_id = j.id left join c_branchs b on d.pid = b.id 
+        $data = model('Dangyuan')->alias('d')
+                ->field('d.*,b.branchs_name,j.job_name')
+                ->join('c_branchs b','d.pid = b.id','left')
+                ->join('c_dangyuan_jobname j','d.job_id = j.id','left')
+                ->select();
+        return view('permission',['data'=>$data]);
+    }
+
+
+
+    public function memberadd()
+    {
+         //临时关闭模板布局
+        $this->view->engine->layout(false);
+        $branchsinfo = model('Branchs')->select();
+        return view('memberadd',['branchsinfo'=>$branchsinfo]);
+    }
+
+    public function membersave(Request $request)
+    {
+        // dump($request->param());die;
+        // 接收当前的请求参数
+        $data = $request->param();
+        //定义验证规则
+         $rules = [
+        'pid' => 'require|number',
+        'member_name' => 'require|min:2|max:45',
+         ];
+
+         //定义错误提示信息
+         $msg = [
+         'pid' => '党组织id不正确',
+         'member_name' => '党员名称不正确',
+         ];
+
+         //实例化验证器类
+         $validate = new Validate($rules,$msg);
+
+         //执行验证 调用check方法
+         if (!$validate->check($data)) {
+            # 验证失败  调用getError方法获取具体的错误提示
+            $error = $validate->getError();
+            $this->error($error);
+         }
+         // 调用upload_img进行图片上传
+          $file = request()->file('member_img');
+
+           if ($file) {
+                $data['member_img'] =  $this->upload_img();
+            }
+            $data['member_is'] = 1;  //通过后台管理员直接添加的党员默认就为党员了
+
+            $info = \app\branchadmin\model\Dangyuan::create($data,true);
+            if ($info) {
+                $this->success('添加党员成功');
+            }
+    }
+
+    // 定义图片上传方法,实现党员头像上传
+    private function upload_img()
+    {
+        $file = request()->file('member_img');
+        if (empty($file)) {
+            $this->error($file->getError());
+        }
+
+        $info = $file->validate(['size'=> 5*1024*1024,'ext'=>'jpg,png,gif,jpeg'])->move(ROOT_PATH.'public'.DS.'Uploads');
+        if ($info) {
+            // 上传图片成功，获取文件访问路径并返回
+            $img_logo = DS.'Uploads'.DS.$info->getSaveName();
+             // 使用open方法打开原始图片
+             $image = \think\Image::open('.'.$img_logo);
+             //调用thumb方法生成缩略图，调用save方法保存缩略图
+            $image->thumb(200,120)->save('.'.$img_logo);
+             return $img_logo;
+        }else{
+            // 上传出错
+            $error = $file->getError();
+            $this->error($error);
+        }
+    }
+
+    /**
+     * [dangyuanindex 党员信息列表]
+     * @return [type] [description]
+     */
+
+    // 审核党员信息
+    public function status(Request $request)
+    {
+        $data = $request->param();
+        // 判断前台传入的参数是否为1，为1就执行相关操作。
+        if ($data['member_is'] == 1) {
+            $id = $data['id'];
+            $member = model('Dangyuan')->get($id);
+            $member->allowField(true)->save($data);
+            $res = [
+                'code'=>1
+            ];
+            return $res;
+        }
+    }
+
+
+    public function getjobinfo($id)
+    {
+        $branchs_id = $id;
+        //先通过branchs_id党支部id获取对应的行政职称ids
+        $job_ids = model('DangyuanJobidBranchsid')
+                ->field('job_ids')
+                ->where('branchs_id',$branchs_id)
+                ->find();
+        if ($job_ids) {
+            $job_ids = $job_ids->job_ids;
+            $data = model('DangyuanJobname')
+                    ->where('id','in',$job_ids)
+                    ->select();
+            $res = [
+                'msg'=>'success',
+                'data'=>$data
+            ];
+            return $res;
+        }
+        return ['msg'=>'error'];
+    }
+
+
+
+
+    /**
+     * 显示编辑资源表单页.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit($id)
+    {
+        // dump($id);die;
+        //关闭临时布局模板
+        $this->view->engine->layout(false);
+        $data = model('Dangyuan')->get($id);
+        $branchs_id = $data->pid;
+        $branchsinfo = model('Branchs')->select();
+        $jobsname = \app\branchadmin\model\DangyuanJobidBranchsid::branchsIdJobnames($branchs_id);
+        return view('edit',['data'=>$data,'branchs_id'=>$branchs_id,'branchsinfo'=>$branchsinfo,'jobsname'=>$jobsname,'id'=>$id]);
+
+    }
+
+    /**
+     * 保存更新的资源
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function memberupdate(Request $request)
+    {
+        $data = $request->param();
+        // dump($data);die;
+        // 调用upload_img进行图片上传
+        $file = request()->file('member_img');
+        // 如果图片存在就进行图片上传，以及更新表记录
+        if ($file){
+                $data['member_img'] =  $this->upload_img();
+        }
+        $res = model('Dangyuan')->allowField(true)->save($data,['id'=>$data['id']]);
+        if ($res) {
+            $this->success('修改党员信息成功！');
+        }else{
+            $this->error("修改党员信息失败，请重试！");
+        }
+
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function delete($id)
+    {
+        //
+    }
+}

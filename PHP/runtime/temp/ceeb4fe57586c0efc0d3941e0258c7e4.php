@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:85:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\pagemodule\index.html";i:1542790084;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:85:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\pagemodule\index.html";i:1541378355;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -45,7 +49,11 @@
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
 			<tr>
+<<<<<<< HEAD
 				<th scope="col" colspan="9">页面模块管理</th>
+=======
+				<th scope="col" colspan="9">权限管理</th>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 			</tr>
 			<tr class="text-c">
 				<th width="5%"><input type="checkbox" value="" name=""></th>

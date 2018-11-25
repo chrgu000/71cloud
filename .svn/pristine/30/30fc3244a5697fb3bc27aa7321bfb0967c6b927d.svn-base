@@ -1,0 +1,13 @@
+import adaptive from "adaptive.js";
+import "../css/reset.css" ;
+import "../css/index.css";
+import  $ from "jquery";
+import 'weui'
+import '../css/form.css'
+
+adaptive.desinWidth = 750;
+adaptive.baseFont = 28;
+adaptive.maxWidth = 750;
+adaptive.scaleType = 1;
+adaptive.init();
+console.log($)

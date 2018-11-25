@@ -1,0 +1,135 @@
+.swiper-container{
+    width: 100%;
+    height: 3.79rem;
+    background: #f9f5f5;
+}
+.swiper-container .swiper-slide img{
+    width: 100%;
+    height: 3.59rem;
+}
+.cloudTitle{
+    height: 0.72rem;
+    line-height: 0.72rem;
+    background: linear-gradient(to bottom,white,#fef5f4);
+
+}
+.cloudTitle span{
+    padding-left: 1rem;
+    height: 100%;
+    position: relative;
+    font-size: 0.3rem;
+    color: #333333;
+    font-weight: bold;
+}
+.cloudTitle span:before{
+    position: absolute;
+    content: "";
+    left: 0.32rem;
+    top:0;
+    width: 0.45rem;
+    height: 100%;
+    background-image: url("../images/star.png");
+    background-size: 0.45rem 0.45rem;
+    background-position: center;
+
+}
+.cloudItem .Clist{
+    /*box-sizing: border-box;*/
+    /*-webkit-box-sizing: border-box;*/
+    /*border-width: 0 0.32rem 0rem 0.32rem;*/
+    /*height: 4.73rem;*/
+    /*border-style: solid;*/
+    /*border-image: -webkit-linear-gradient(#fff,#fdf1f0) 30 30;*/
+    /*border-image: -moz-linear-gradient(#fff,#fdf1f0) 30 30;*/
+    /*border-image: linear-gradient(#fff,#fdf1f0) 30 30;*/
+    /*border-radius: 0.9rem;*/
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 5.5rem;
+
+}
+.cloudItem .Clist .list1{
+    width: 0.32rem;
+    height: 100%;
+    background: linear-gradient(to right ,#fff ,#fdf1f1);
+    overflow: hidden;
+}
+.cloudItem .Clist .list2{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+
+    background: white;
+}
+.cloudItem .Clist .list3{
+    width: 0.32rem;
+    height: 100%;
+    background: linear-gradient(to right ,#fdf1f1 ,#fff);
+    
+}
+.blank{
+    height: 0.3rem;
+    width: 100%;
+    background: linear-gradient(#fdefee 0%  ,#fffafa 50%  ,#fef5f4 100% );
+}
+.listInner{
+    padding: 0.2rem 0.2rem 0 0.2rem;
+    background: white;
+    border-radius: 0.08rem;
+    -webkit-border-radius: 0.08rem;
+    background: white;
+}
+.images-left{
+    height: 2.43rem;
+    position: relative;
+}
+.images-left a{
+    position: absolute;
+    left: 0.1rem;
+    bottom: 0.2rem;
+    color: #000;
+    font-size: 0.26rem;
+}
+.title-right h1{
+    font-size: 0.32rem;
+    font-weight: bold;
+    padding: 0.1rem 0;
+    color: #333;
+}
+.title-right p{
+    font-size: 0.26rem;
+    color: #333;
+    text-align: justify;
+    line-height: 0.34rem;
+    text-indent: 2em;
+}
+.title-right p.heat{
+    text-align: right;
+    font-size: 0.24rem;
+    color: #333333;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.2rem;
+}
+.heat span{
+    padding-left: 0.35rem;
+    position: relative;
+
+}
+.heat span:after{
+    position: absolute;
+    content: '';
+    left: 0;
+    top:50%;
+    margin-top: -0.1rem;
+    width: 0.34rem;
+    height: 100%;
+    background-image: url("../images/heat.png");
+    background-size:0.22rem 0.23rem ;
+    background-repeat: no-repeat;
+
+    }

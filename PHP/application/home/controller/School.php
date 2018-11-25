@@ -162,7 +162,11 @@ class School extends Base
         $uid      = $data['uid'];
 
         if ($class_id <= 0) {
+<<<<<<< HEAD
             return json(['code' => 4,'status'=>4, 'msg' => '参数错误', 'data' => '']);
+=======
+            return json(['code' => 4, 'msg' => '参数错误', 'data' => '']);
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         }
 
         $res = model('home/Clas')->addStudy($uid, $class_id);

@@ -1,0 +1,11 @@
+<?php
+namespace app\branchadmin\controller;
+
+class Index
+{
+    public function index()
+    {
+        echo encrypt_password('123456');die;
+        return view();
+    }
+}

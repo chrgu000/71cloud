@@ -1,0 +1,64 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/17
+ * Time: 16:30
+ *
+ * 通知
+ */
+
+
+namespace Home\Controller;
+
+class NoticeController extends BaseController{
+
+    /**
+     * 通知 列表
+     * @param       $cate_id        int         分类id
+     * @param       $pageSize       int         页长
+     *
+     */
+    public function index(){
+        //分类id
+        $cate_id = intval(I('get.cate_id'));
+        //页码
+        $p = intval(I('get.p'));
+        $p = empty($p) ? 1 : $p;
+        //页长
+        $pageSize = 6;
+
+        $cate =  M('NoticeCate')->field('id,name')->select();
+
+        $data = D('Notice')->getNoticeList($cate_id,$p,$pageSize);
+
+        //点击更多 ajax请求数据异步加载
+        if(IS_AJAX){
+            if(empty($data)){
+                $this->ajaxReturn(['code' => 0,'msg' => '没有更多数据！']);
+            }
+            $this->ajaxReturn(['code' => 1,'msg' => $data]);
+        }
+
+
+        $this->assign('cate',$cate);
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+
+    /**
+     *
+     * 详情页
+     *
+     */
+    public function detail($id){
+        $id = intval(I('get.id'));
+        if($id <= 0) $this->error('参数错误！');
+
+        $data = D('Home/Notice')->getDetail($id);
+
+        $this->assign('data',$data);
+        $this->display();
+    }
+}

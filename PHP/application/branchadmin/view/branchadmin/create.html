@@ -26,6 +26,7 @@
      	<div class="row cl">
                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上级管理员：</label>
                 <select name="pid" class="input-xlarge" onchange="getbBranchs($(this).val())">
+<<<<<<< HEAD
                     <option value=''>请选择上级管理员</option>
                     {foreach $list as $v}
                         {if condition="($v['level'] > 0)"}
@@ -33,6 +34,15 @@
                             {else /}
                                 <option value="{$v.id}">{$v.bradmin_username}</option>
                         {/if}
+=======
+                    <option>请选择上级管理员</option>
+                    {foreach $list as $v}
+                    {if condition="($v['level'] > 0)"}
+                            <option value="{$v.id}"><?php echo str_repeat('&nbsp;',$v['level']).$v['bradmin_username']?></option>
+                        {else /}
+                            <option value="{$v.id}">{$v.bradmin_username}</option>
+                    {/if}
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                     {/foreach}
                 </select>
 	</div>
@@ -68,10 +78,17 @@
 		</div>
 	</div>
 	<div class="row cl">
+<<<<<<< HEAD
 		<label class="form-label col-xs-4 col-sm-3">所属党组织名称：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="branchs_id" size="1">
 				<option value="">所属党组织</option>
+=======
+		<label class="form-label col-xs-4 col-sm-3">所属支部名称：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="branchs_id" size="1">
+				<option value="0">所属支部</option>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                     {foreach $data as $l}
                         <option value="{$l.id}">{$l.branchs_name}</option>
                     {/foreach}

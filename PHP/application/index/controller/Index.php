@@ -5,7 +5,10 @@ namespace app\index\controller;
 use think\cache\driver\Redis;
 use think\Config;
 use think\Db;
+<<<<<<< HEAD
 use think\Log;
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 include EXTEND_PATH . '/WeChatDeveloper/include.php';
 
@@ -23,6 +26,7 @@ class Index
      *
      * @return bool
      */
+<<<<<<< HEAD
     public function link()
     {
         header("Content-type: text/html; charset=utf-8");
@@ -36,11 +40,22 @@ class Index
 //
 //            Log::record('none');
 //        }
+=======
+    public function index()
+    {
+        header("Content-type: text/html; charset=utf-8");
+        $data      = $_GET; #接入验证
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         $signature = $data['signature'];
         $timestamp = $data['timestamp'];
         $nonce     = $data['nonce'];
         $echostr   = $data['echostr'];
 
+<<<<<<< HEAD
+=======
+        //计算微信签名
+        $token = 'smile_pengchang';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         //将参数组成一维数组
         $signeSeed = [$token, $timestamp, $nonce];
         //对参数字典序排序

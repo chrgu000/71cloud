@@ -1,0 +1,75 @@
+.detailBanner{
+    margin-top: 0.8rem;
+    height: 3.6rem;
+    position: relative;
+}
+.detailBanner img{
+    width: 100%;
+    height: 3.6rem;
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+.detailBanner div{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+}
+.detailBanner div .p1{
+    padding: 0 0.32rem;
+    font-size: 0.32rem;
+    color: white;
+    font-weight: bold;
+    padding-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.detailBanner div .p2{
+    padding: 0 0.32rem;
+    font-size: 0.24rem;
+    color: white;
+    padding-top: 0.2rem;
+    text-indent: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+.detailBanner div .p3{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0.26rem;
+    color: white;
+    font-size: 0.24rem;
+    text-align: center;
+}
+.albumDetailContent{
+    padding: 0 0.32rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.albumDetailContent div {
+    width: 3.22rem;
+    height: 2.06rem;
+    margin-top: 0.3rem;
+}
+.albumDetailContent div img{
+    display: inline-block;
+    width: 3.22rem;
+    height: 2.06rem;
+    border-radius: 0.06rem;
+    -webkit-border-radius: 0.06rem;
+}

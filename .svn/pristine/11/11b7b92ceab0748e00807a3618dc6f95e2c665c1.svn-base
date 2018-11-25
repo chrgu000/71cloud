@@ -1,0 +1,72 @@
+.albumContent{
+    padding:  0 0.32rem;
+    margin-top: 0.8rem;
+}
+.albumList{
+    padding-top: 0.3rem;
+    padding-bottom: 0.26rem;
+}
+.albumTitle{
+    padding-bottom: 0.1rem;
+}
+.albumTitle a{
+    font-size: 0.32rem;
+    color: #333333;
+    font-weight: bold;
+}
+.albumTime {
+    font-size: 0.26rem;
+    color: #999999;
+}
+.albumTime  span{
+    margin-right: 0.3rem;
+}
+.albumImg{
+    height:2.7rem ;
+    margin-top: 0.2rem;
+}
+.albumImg .left{
+    width: 4.25rem;
+    height: 2.67rem;
+}
+.albumImg .right{
+    width: 2.5rem;
+    height: 100%;
+}
+.albumImg .right img{
+    width: 2.5rem;
+}
+.albumImg .right p:nth-child(1) img{
+    display: inline-block;
+    max-width:100% ;
+    vertical-align: top;
+    height: 1.3rem;
+    margin-bottom: 0.1rem;
+}
+.albumImg .right p:nth-child(2) img{
+    max-width:100% ;
+    vertical-align: bottom;
+    height: 1.3rem;
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+.albumImg .right p{
+    position: relative;
+}
+.albumImg .right p span{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    /*background: rgba(255,255,255,0.8);*/
+    font-size: 0.32rem;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.3rem;
+
+}

@@ -24,7 +24,11 @@
 <article class="page-container">
      <form action="{:url('save')}"  class="form form-horizontal" id="form-admin-add" method="post">
 	<div class="row cl">
+<<<<<<< HEAD
                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上级党组织：</label>
+=======
+               <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上级支部：</label>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                 <select name="pid" class="input-xlarge" onchange="getbBranchs($(this).val())">
                     {foreach $list as $v}
                     {if condition="($v['level'] > 0)"}
@@ -36,11 +40,16 @@
                 </select>
 	</div>
 		<div class="row cl">
+<<<<<<< HEAD
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>党组织名称：</label>
+=======
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>党支部名称：</label>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="text" class="input-text" value="" placeholder="" id="branchs_name" name="branchs_name">
 		</div>
 	</div>
+<<<<<<< HEAD
 	<!--<div class="row cl">-->
 		<!--<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话号码：</label>-->
 		<!--<div class="formControls col-xs-8 col-sm-9">-->
@@ -48,11 +57,24 @@
 		<!--</div>-->
 	<!--</div>-->
  
+=======
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话号码：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
+		</div>
+	</div>
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">权限功能角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
             <select class="select" name="roles_id" size="1">
+<<<<<<< HEAD
                 <option value="">权限功能角色</option>
+=======
+                <option value="0">权限功能角色</option>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                     {foreach $data as $l}
                     <option value="{$l.id}">{$l.roles_name}</option>
                     {/foreach}

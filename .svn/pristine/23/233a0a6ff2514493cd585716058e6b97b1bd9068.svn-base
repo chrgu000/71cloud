@@ -1,0 +1,144 @@
+﻿<title>分类列表</title>
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
+<head></head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 分类管理 <span class="c-gray en">&gt;</span> 分类列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
+		<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  -->
+		<a href="{:Url('add')}" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加分类</a></span> </div>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th scope="col" colspan="10">分类列表</th>
+			</tr>
+			<tr class="text-c">
+				<th width="100"><input type="checkbox" name="" value="">&nbsp; 展示</th>
+				<th>分类名称</th>
+				<th width="200">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+            {volist name="CompanyNewCate" id="vo1"}
+				<tr class="text-c">
+                    {if in_array($vo1.id,$company)}
+					    <td><input type="checkbox" class="company" value="{$vo1.id}" checked="checked" name=""></td>
+                    {else /}
+					    <td><input type="checkbox" class="company" value="{$vo1.id}"  name=""></td>
+                    {/if}
+					<td style="text-align: left;">{$vo1.level|str_repeat = '----',###}{$vo1.name}</td>
+					<td class="td-manage">
+                        <a title="编辑" href="{:Url('NewCate/edit',array('id'=>$vo1.id))}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="删除" href="javascript:;" onclick="cate_del(this,'{$vo1.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+			{/volist}
+        
+            {volist name="NewCate" id="vo"}
+				<tr class="text-c">
+					{if in_array($vo.id,$admin)}
+					    <td><input type="checkbox" class="admin" value="{$vo.id}" checked="checked" name=""></td>
+                    {else /}
+					    <td><input type="checkbox" class="admin" value="{$vo.id}" name=""></td>
+                    {/if}
+					<td style="text-align: left;">{$vo.level|str_repeat = '----',###}{$vo.name}</td>
+					<td class="td-manage">
+					</td>
+				</tr>
+			{/volist}
+   
+		</tbody>
+	</table>
+ 
+    <input class="btn radius btn-warning sub_btn" type="button"  value="确认修改所选">
+</div>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<!--<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>-->
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+
+<script type="text/javascript">
+
+
+
+/*
+	参数解释：
+	title	标题
+	url		请求的url
+	id		需要操作的数据id
+	w		弹出层宽度（缺省调默认值）
+	h		弹出层高度（缺省调默认值）
+*/
+
+/*分类-增加*/
+function cate_add(title, url, w, h) {
+    layer_show(title, url, w, h);
+}
+
+/*分类-编辑*/
+function cate_edit(title, url, id, w, h) {
+    layer_show(title, url + '?id=' + id, w, h);
+}
+
+
+/*删除*/
+function cate_del(obj, id) {
+    layer.confirm('确认删除吗？', function () {
+        $.ajax({
+            'url': "{:Url('del')}",
+            'data': {id: id},
+            'dataType': 'json',
+            'type': 'post',
+            success: function (msg) {
+                if (msg.code == 1) {
+                    $(obj).parent().parent().remove();
+                    layer.msg(msg.msg, {icon: 1, time: 1000});
+                } else {
+                    layer.msg(msg.msg, {icon: 2, time: 1000});
+                }
+            }
+
+        })
+
+    });
+}
+
+/**
+ * 企业选择自己公众号对应的资源
+ */
+
+$(".sub_btn").click(function () {
+    var company_arr=[]
+    var admin_arr =[]
+    for(var i=0;i<$('.company').length;i++){
+        if($('.company').eq(i).is(':checked')){
+            company_arr.push($('.company').eq(i).val())
+        }
+    }
+    for(var i=0;i<$('.admin').length;i++){
+        if($('.admin').eq(i).is(':checked')){
+            admin_arr.push($('.admin').eq(i).val())
+        }
+    }
+    $.ajax({
+        'url':"{:Url('wechatcontent/resources')}",
+        'data':{admin:admin_arr,company:company_arr,type:"newcate"},//newcate 新闻分类字段
+        'type':"post",
+        success:function (msg) {
+            if (msg.code == 1){
+                layer.msg(msg.msg, {icon: 1, time: 1000});
+            } else {
+                layer.msg(msg.msg, {icon: 2, time: 1000});
+            }
+        }
+    })
+    
+})
+
+
+</script>
+</body>
+</html>

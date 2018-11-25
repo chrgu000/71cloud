@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/css/reset.css">
+    <link rel="stylesheet" href="/static/home/css/common.css">
+    <link rel="stylesheet" href="/static/home/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/css/heart.css">
+    <script type="text/javascript" src='/static/home/js/adaptive.js'></script>
+    <script src="/static/home/js/swiper.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.8.0/jquery-1.8.0.js"></script>
+</head>
+<body>
+
+<div class="heart" style="margin-top: 0rem">
+    <div class="heartBanner" style="margin-top: 0rem;">
+        <img src="__PUBLIC_HOME__/images/heart.jpg" alt="">
+    </div>
+    <div class="haertContent">
+        <div class="heartItem">
+            <div class="heartInner">
+                <div class="heartList">
+                    <img src="__PUBLIC_HOME__/images/heartList1.jpg" alt="">
+                    <div class="heartRight">
+                        <p class="name">程立波</p>
+                        <p class="joinTime">2011年12月入党</p>
+                        <p class="position">中建三局集团有限公司基础设施事业部</p>
+                        <p class="motto">
+                            "一颗红心向着党"
+                        </p>
+                    </div>
+                </div>
+                <div class="heartList">
+                    <div class="heartRight">
+                        <p class="name">吴文根</p>
+                        <p class="joinTime">2011年12月入党</p>
+                        <p class="position">中建三局集团有限公司基础设施事业部</p>
+                        <p class="motto">
+                            “做合格党员，当时
+                            代先锋”
+                        </p>
+                    </div>
+                    <img src="__PUBLIC_HOME__/images/heartList2.jpg" alt="">
+                </div>
+                <div class="heartList">
+                    <img src="__PUBLIC_HOME__/images/heartList3.jpg" alt="">
+                    <div class="heartRight">
+                        <p class="name">吕长军</p>
+                        <p class="joinTime">2011年12月入党</p>
+                        <p class="position">中建三局集团有限公司基础设施事业部</p>
+                        <p class="motto">
+                            “听党话，感党恩，跟
+                            党走”
+                        </p>
+                    </div>
+                </div>
+                <div class="heartList">
+                    <div class="heartRight">
+                        <p class="name">谭可可</p>
+                        <p class="joinTime">2011年12月入党</p>
+                        <p class="position">中建三局集团有限公司基础设施事业部</p>
+                        <p class="motto">
+                            “跟着党，心向阳
+                            不忘初心，砥砺前行”
+                        </p>
+                    </div>
+                    <img src="__PUBLIC_HOME__/images/heartList4.jpg" alt="">
+                </div>
+                <div class="heartList">
+                    <img src="__PUBLIC_HOME__/images/heartList5.jpg" alt="">
+                    <div class="heartRight">
+                        <p class="name">刘文晓</p>
+                        <p class="joinTime">2011年12月入党</p>
+                        <p class="position">中建三局集团有限公司基础设施事业部</p>
+                        <p class="motto">
+                            “心向群众，砥砺前行”
+                        </p>
+                    </div>
+                </div>
+                <div class="heartList">
+                    <div class="heartRight">
+                        <p class="name">王林林</p>
+                        <p class="joinTime">2011年12月入党</p>
+                        <p class="position">中建三局集团有限公司基础设施事业部</p>
+                        <p class="motto">
+                            “一颗红心向着党”
+                        </p>
+                    </div>
+                    <img src="__PUBLIC_HOME__/images/heartList6.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="heartBtn" style="padding-bottom: 1.6rem"></div>
+    </div>
+
+</div>
+
+<script>
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+//
+//  XDX_DetailViewController.m
+//  TheParty
+//
+//  Created by macmini on 2018/8/2.
+//  Copyright © 2018年 macmini. All rights reserved.
+//
+
+#import "XDX_DetailViewController.h"
+#import "ZFPlayer.h"
+#import "ZFAVPlayerManager.h"
+#import "ZFIJKPlayerManager.h"
+#import "KSMediaPlayerManager.h"
+#import "ZFPlayerControlView.h"
+#import "XDX_DetailTableViewCell.h"
+#import "StoryDetailTableViewCell.h"
+#import "XDX_DetailModel.h"
+@interface XDX_DetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+{
+    UIButton *buttonLeft;
+    UIButton *buttonRight;
+    UILabel *lineLeft;
+    UILabel *lineright;
+    NSInteger isNum;
+    UILabel *StarL;
+    UIButton *tableB;
+    UIButton *scrollB;
+    NSString *isStany;
+    
+}
+@property (nonatomic, strong) ZFPlayerController *player;
+@property (nonatomic, strong) UIImageView *containerView;
+@property (nonatomic, strong) ZFPlayerControlView *controlView;
+@property (nonatomic, strong) UIButton *playBtn;
+@property (nonatomic, strong) NSMutableArray <NSURL *>*assetURLs;
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSMutableArray *DataArr;
+
+@property (nonatomic, strong) NSDictionary *dic;
+
+@property (nonatomic, strong) UIScrollView *mainScroll;
+
+
+@end
+
+@implementation XDX_DetailViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.player.viewControllerDisappear = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.istype == 1) {
+         [self creatDataTime];
+    }
+    self.player.viewControllerDisappear = YES;
+}
+
+- (void)creatDataTime{
+    if (self.player.currentTime != 0) {
+        WEAKSELF
+        XDX_DetailModel *model = self.DataArr[isNum];
+        NSInteger num = isNum;
+        NSDictionary *biz = @{@"class_id":self.playerID,@"currentTime":[NSString stringWithFormat:@"%zd",(int)self.player.currentTime],@"chapter_id":model.moveID};
+        NSLog(@"%@",biz);
+        [ConnectionRequestMgr POSTSessionWithUrl:SchoolSaveTime parameter:biz successBlock:^(NSDictionary *dict) {
+            if ([dict[@"code"] integerValue] == 1) {
+                if ([dict[@"data"] count] >0) {
+                    XDX_DetailModel *model = [XDX_DetailModel mj_objectWithKeyValues:dict[@"data"][0]];
+                    [self.DataArr replaceObjectAtIndex:num withObject:model];
+                    [self.tableView reloadData];
+                    
+                }
+            }else{
+                
+            }
+        } failBlock:^(NSString *errorStr) {
+//            [weakSelf showError:errorStr];
+        }];
+    }
+ 
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    isNum = self.PlayerNum;
+    self.dic = [[NSDictionary alloc] init];
+    self.DataArr = [[NSMutableArray alloc] init];
+    self.assetURLs = [[NSMutableArray alloc] init];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = self.titleStr;
+    [self.view addSubview:self.containerView];
+    [self.containerView addSubview:self.playBtn];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back_action)];
+    
+    ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
+    /// 播放器相关
+    self.player = [ZFPlayerController playerWithPlayerManager:playerManager containerView:self.containerView];
+    self.player.controlView = self.controlView;
+    
+    @weakify(self)
+    self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
+        @strongify(self)
+        [self setNeedsStatusBarAppearanceUpdate];
+    };
+    
+    /// 播放完自动播放下一个
+    self.player.playerDidToEnd = ^(id  _Nonnull asset) {
+        @strongify(self)
+        if (self.istype ==1) {
+            [self creatDataTime];
+            [self.player playTheNextTotime:0];
+        }else{
+
+            if (!self.player.isLastAssetURL) {
+                isNum ++;
+                if (isNum <self.DataArr.count) {
+                    [self.controlView showTitle:nil coverImage:nil fullScreenMode:ZFFullScreenModeLandscape];
+                    [self.player playTheNext];
+                    [self.tableView reloadData];
+                }
+            } else {
+                [self.player stop];
+            }
+        }
+    };
+    self.player.assetURLs = self.assetURLs;
+    [self CreateList];
+    [self creatData];
+}
+
+- (void)back_action{
+    if (self.backType) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MeStudyData" object:nil userInfo:@{@"backType":self.backType}];
+        NSLog(@"3333");
+    }
+    [self.navigationController popViewControllerAnimated:NO];
+    
+}
+
+- (void)creatData{
+    [self showHUD:nil];
+    WEAKSELF
+    NSString *url;
+    NSString *biz;
+    if (self.istype == 1) {
+        url = SchoolDetail;
+        biz = [NSString stringWithFormat:@"&class_id=%@",self.playerID];
+    }else{
+        url = HistoryDetail;
+        biz =[NSString stringWithFormat:@"&id=%@",self.playerID];
+    }
+    [ConnectionRequestMgr GetSessionWithUrl:url parameter:biz successBlock:^(NSDictionary *dict) {
+        [weakSelf hideHUD];
+        if ([dict[@"code"] integerValue] == 1) {
+            self.dic = dict[@"data"];
+            for (int i = 0; i<[dict[@"data"][@"data"] count]; i++) {
+                XDX_DetailModel *model = [XDX_DetailModel mj_objectWithKeyValues:dict[@"data"][@"data"][i]];
+                [self.DataArr addObject:model];
+            }
+            for (int i = 0; i< [dict[@"data"][@"data"] count]; i++) {
+                [self.assetURLs addObject:[NSURL URLWithString:dict[@"data"][@"data"][i][@"path"]]];
+            }
+            isStany = self.dic[@"is_study"];
+            StarL.text = dict[@"data"][@"introduce"][@"name"];
+            self.player.assetURLs = [self.assetURLs copy];
+            [self.containerView sd_setImageWithURL:[NSURL URLWithString:dict[@"data"][@"video"][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+            [self creatRightTitile];
+            [self.tableView reloadData];
+        }else{
+            [weakSelf showError:dict[@"msg"]];
+        }
+    } failBlock:^(NSString *errorStr) {
+        [weakSelf hideHUD];
+        [weakSelf showError:errorStr];
+    }];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    CGFloat x = 0;
+    CGFloat y = 0;
+    CGFloat w = CGRectGetWidth(self.view.frame);
+    CGFloat h = w*9/16;
+    self.containerView.frame = CGRectMake(x, y, w, h);
+    
+    w = 44;
+    h = w;
+    x = (CGRectGetWidth(self.containerView.frame)-w)/2;
+    y = (CGRectGetHeight(self.containerView.frame)-h)/2;
+    self.playBtn.frame = CGRectMake(x, y, w, h);
+}
+
+- (void)playClick:(UIButton *)sender {
+    if (self.istype ==1) {
+         [self.player playTheIndex:isNum andtoTime:[self.dic[@"video"][@"see_time"] integerValue]];
+    }else{
+         [self.player playTheIndex:isNum];
+    }
+   
+    
+    [self.controlView showTitle:nil coverImage:nil fullScreenMode:ZFFullScreenModeLandscape];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    if (self.player.isFullScreen) {
+        return UIStatusBarStyleLightContent;
+    }
+    return UIStatusBarStyleDefault;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return self.player.isStatusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationSlide;
+}
+
+- (BOOL)shouldAutorotate {
+    return self.player.shouldAutorotate;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    if (self.player.isFullScreen) {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    self.player.currentPlayerManager.muted = !self.player.currentPlayerManager.muted;
+}
+
+- (ZFPlayerControlView *)controlView {
+    if (!_controlView) {
+        _controlView = [ZFPlayerControlView new];
+        _controlView.fastViewAnimated = YES;
+    }
+    return _controlView;
+}
+
+- (UIImageView *)containerView {
+    if (!_containerView) {
+        _containerView = [UIImageView new];
+        
+    }
+    return _containerView;
+}
+
+- (UIButton *)playBtn {
+    if (!_playBtn) {
+        _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_playBtn setImage:[UIImage imageNamed:@"wdx_player"] forState:UIControlStateNormal];
+        [_playBtn addTarget:self action:@selector(playClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _playBtn;
+}
+
+
+#pragma List
+- (void)CreateList{
+
+    buttonLeft = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonLeft.frame = CGRectMake(0, CGRectGetWidth(self.view.frame)*9/16, SCREEN_W/2, 40);
+    [buttonLeft setTitle:@"目录" forState:UIControlStateNormal];
+    [buttonLeft setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    buttonLeft.titleLabel.font = Font(16);
+    buttonLeft.tag = 200;
+    [buttonLeft addTarget:self action:@selector(changeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonLeft];
+    
+    buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonRight.frame = CGRectMake(SCREEN_W/2, CGRectGetWidth(self.view.frame)*9/16, SCREEN_W/2, 40);
+    [buttonRight setTitle:@"课程详情" forState:UIControlStateNormal];
+    [buttonRight setTitleColor:UIColorFromRGBA(0x999999, 1) forState:UIControlStateNormal];
+    buttonRight.titleLabel.font = Font(16);
+    buttonRight.tag = 201;
+    [buttonRight addTarget:self action:@selector(changeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonRight];
+    
+    UILabel *linetop = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetWidth(self.view.frame)*9/16 +40, SCREEN_W, 1)];
+    linetop.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+    [self.view addSubview:linetop];
+    
+    lineLeft =  [[UILabel alloc] initWithFrame:CGRectMake(50, CGRectGetWidth(self.view.frame)*9/16+39, SCREEN_W/2 -100, 1)];
+    lineLeft.backgroundColor = [UIColor redColor];
+    [self.view addSubview:lineLeft];
+    
+    lineright =  [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W/2 +50, CGRectGetWidth(self.view.frame)*9/16 +39, SCREEN_W/2 -100, 1)];
+    lineright.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineright];
+    
+    UIImageView *imageVleft = [[UIImageView alloc] initWithFrame:CGRectMake(16,CGRectGetMaxY(linetop.frame) + 16, 23, 21 )];
+    imageVleft.image = [UIImage imageNamed:@"home_xingxing"];
+    [self.view addSubview:imageVleft];
+    
+    StarL = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageVleft.frame) + 10, CGRectGetMaxY(linetop.frame) +18, SCREEN_W -(CGRectGetMaxX(imageVleft.frame) + 30) , 17)];
+    StarL.font = FontBold(17);
+    StarL.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    [self.view addSubview:StarL];
+    
+    UILabel *lineDown = [[UILabel alloc] initWithFrame:CGRectMake(16, CGRectGetMaxY(StarL.frame) + 18, SCREEN_W - 32, 1)];
+    lineDown.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+    [self.view addSubview:lineDown];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lineDown.frame), SCREEN_W, SCREEN_H -CGRectGetMaxY(lineDown.frame)-64) style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = COLOR(249, 245, 245);
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = NO;
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    [self.view addSubview:self.tableView];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"XDX_DetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"XDX_DetailTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"StoryDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"StoryDetailTableViewCell"];
+    
+    self.mainScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(lineDown.frame), SCREEN_W, SCREEN_H -CGRectGetMaxY(lineDown.frame)-64)];
+    self.mainScroll.backgroundColor = COLOR(249, 245, 245);
+    self.mainScroll.showsVerticalScrollIndicator = false;
+    self.mainScroll.showsHorizontalScrollIndicator = false;
+    [self.view addSubview:self.mainScroll];
+    self.mainScroll.hidden = YES;
+//    if (self.istype ==1) {
+//
+//    }else{
+//        self.mainScroll.frame =CGRectMake(0,CGRectGetMaxY(lineDown.frame), SCREEN_W, SCREEN_H -CGRectGetMaxY(lineDown.frame) -64);
+//        self.tableView.frame = CGRectMake(0, CGRectGetMaxY(lineDown.frame), SCREEN_W, SCREEN_H -CGRectGetMaxY(lineDown.frame) -64);
+//    }
+//    self.mainScroll.contentSize = CGSizeMake(0, CGRectGetMaxY(BackStar.frame) +64);
+}
+
+- (void)creatRightTitile{
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 20)];
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.mainScroll addSubview:backView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(17, 15, SCREEN_W-34, 20)];
+    label.textColor = UIColorFromRGBA(0x333333, 1);
+    label.font = Font(14);
+    label.numberOfLines = 0;
+    NSMutableAttributedString *str=  [[NSMutableAttributedString alloc] initWithData:[self.dic[@"introduce"][@"introduce"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+    
+    CGRect labelRect = [str boundingRectWithSize:CGSizeMake(SCREEN_W -34, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    NSLog(@"size:%@", NSStringFromCGSize(labelRect.size));
+    label.attributedText = str;
+    label.frame = CGRectMake(17,15,SCREEN_W - 34, labelRect.size.height +5);
+    backView.frame = CGRectMake(0,0,SCREEN_W, CGRectGetMaxY(label.frame));
+    [backView addSubview:label];
+    
+    scrollB = [UIButton buttonWithType:UIButtonTypeCustom];
+    scrollB.frame = CGRectMake(60, CGRectGetMaxY(backView.frame) + 50, SCREEN_W -120, 36);
+    scrollB.layer.masksToBounds = YES;
+    scrollB.layer.cornerRadius = 18;
+  
+    if ([isStany integerValue]== 1) {
+        scrollB.backgroundColor = UIColorFromRGBA(0x999999, 1);
+        [scrollB setTitle:@"已加入学习计划" forState:UIControlStateNormal];
+        scrollB.userInteractionEnabled = NO;
+    }else{
+        scrollB.backgroundColor = [UIColor redColor];
+        [scrollB setTitle:@"加入学习计划" forState:UIControlStateNormal];
+    }
+        [scrollB setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    scrollB.titleLabel.font = Font(16);
+    [scrollB addTarget:self action:@selector(studyAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.DataArr.count>0) {
+       [self.mainScroll addSubview:scrollB];
+    }
+    self.mainScroll.contentSize = CGSizeMake(0, CGRectGetMaxY(scrollB.frame));
+
+}
+
+
+- (void)studyAction:(UIButton *)sender{
+    [self showHUD:nil];
+    WEAKSELF
+    NSDictionary *biz = @{@"class_id":self.playerID};
+    [ConnectionRequestMgr POSTSessionWithUrl:SchoolStudy parameter:biz successBlock:^(NSDictionary *dict) {
+        [weakSelf hideHUD];
+        if ([dict[@"code"] integerValue] == 1) {
+            isStany = @"1";
+            [weakSelf showSuccess:@"加入成功！"];
+            tableB.backgroundColor = UIColorFromRGBA(0x999999, 1);
+            [tableB setTitle:@"已加入学习计划" forState:UIControlStateNormal];
+            tableB.userInteractionEnabled = NO;
+            scrollB.backgroundColor = UIColorFromRGBA(0x999999, 1);
+            [scrollB setTitle:@"已加入学习计划" forState:UIControlStateNormal];
+            scrollB.userInteractionEnabled = NO;
+        }else{
+            [weakSelf showError:dict[@"msg"]];
+        }
+    } failBlock:^(NSString *errorStr) {
+        [weakSelf hideHUD];
+        [weakSelf showError:errorStr];
+    }];
+}
+
+- (void)changeAction:(UIButton *)sender{
+
+    if (sender.tag == 200) {
+        [buttonLeft setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        
+        [buttonRight setTitleColor:UIColorFromRGBA(0x999999, 1) forState:UIControlStateNormal];
+        lineLeft.backgroundColor = [UIColor redColor];
+        lineright.backgroundColor = [UIColor whiteColor];
+        self.tableView.hidden = NO;
+        self.mainScroll.hidden = YES;
+    }else{
+        
+        [buttonLeft setTitleColor:UIColorFromRGBA(0x999999, 1) forState:UIControlStateNormal];
+        [buttonRight setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        lineLeft.backgroundColor = [UIColor whiteColor];
+        lineright.backgroundColor = [UIColor redColor];
+        self.tableView.hidden = YES;
+        self.mainScroll.hidden = NO;
+    }
+    
+}
+
+
+#pragma mark UItableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.DataArr.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.istype == 1) {
+        XDX_DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XDX_DetailTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        XDX_DetailModel *model = self.DataArr[indexPath.row];
+        if ((NSInteger)model.is_over == 1) {
+            cell.isSure.text = @"已完成";
+        }else{
+            cell.isSure.text = @"未完成";
+        }
+        cell.deline.text = [NSString stringWithFormat:@"%@/%@",[self getMMSSFromSS:model.see_time],[self getMMSSFromSS:model.vtime]];
+        if (indexPath.row ==isNum ) {
+          cell.titleL.textColor = [UIColor redColor];
+        }else{
+          cell.titleL.textColor = UIColorFromRGBA(0x333333, 1);
+        }
+        cell.titleL.text = [NSString stringWithFormat:@"%@ %@",model.episode,model.name];
+        return cell;
+    }else{
+        StoryDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StoryDetailTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+         cell.titleL.text = [NSString stringWithFormat:@"%@  %@",self.DataArr[indexPath.row][@"episode"],self.DataArr[indexPath.row][@"name"]];
+        if (indexPath.row ==isNum ) {
+            cell.titleL.textColor = [UIColor redColor];
+        }else{
+            cell.titleL.textColor = UIColorFromRGBA(0x333333, 1);
+        }
+        return cell;
+    }
+
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.istype == 1) {
+        return 45;
+    }else{
+        return 35;
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 80;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 0.1)];
+    return view;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 80)];
+    view.backgroundColor =COLOR(249, 245, 245);
+    if (self.DataArr.count >0) {
+        tableB = [UIButton buttonWithType:UIButtonTypeCustom];
+        tableB.frame = CGRectMake(60, 30, SCREEN_W-120, 36);
+        tableB.layer.masksToBounds = YES;
+        tableB.layer.cornerRadius = 18;
+        if ([isStany integerValue]== 1) {
+            tableB.backgroundColor = UIColorFromRGBA(0x999999, 1);
+            [tableB setTitle:@"已加入学习计划" forState:UIControlStateNormal];
+            tableB.userInteractionEnabled = NO;
+        }else{
+            tableB.backgroundColor = [UIColor redColor];
+            [tableB setTitle:@"加入学习计划" forState:UIControlStateNormal];
+        }
+        [tableB setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        tableB.titleLabel.font = Font(16);
+        [tableB addTarget:self action:@selector(studyAction:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:tableB];
+    }
+  
+    
+    
+    return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.istype ==1) {
+        [self creatDataTime];
+        XDX_DetailModel *model = self.DataArr[indexPath.row];
+        [self.player playTheIndex:indexPath.row andtoTime:[model.see_time integerValue]];
+    }else
+    {   [self.player playTheIndex:indexPath.row];
+        
+    }
+    isNum = indexPath.row;
+    [self.tableView reloadData];
+}
+
+
+-(NSString *)getMMSSFromSS:(NSString *)totalTime{
+    
+    NSInteger seconds = [totalTime integerValue];
+    
+    //format of minute
+    NSString *str_minute = [NSString stringWithFormat:@"%ld",seconds/60];
+    //format of second
+    NSString *str_second = [NSString stringWithFormat:@"%ld",seconds%60];
+    //format of time
+    NSString *format_time = [NSString stringWithFormat:@"%@分%@秒",str_minute,str_second];
+    
+    NSLog(@"format_time : %@",format_time);
+    
+    return format_time;
+}
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

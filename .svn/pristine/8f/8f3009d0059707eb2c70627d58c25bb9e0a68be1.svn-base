@@ -1,0 +1,77 @@
+<?php
+
+namespace app\branchadmin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Cache;
+
+class Wechat extends Controller
+{
+
+    private  $appid = 'wxa1ff354056167ff6';
+
+    private $appsecret = '121e82f1a7e4aa20b4dc931ba7df1d8d';
+    /**
+     * 获取app token
+     *
+     * @return \think\Response
+     */
+    public function token()
+    {
+        if(Cache::get('access_token') === false){
+            //定义请求的url地址
+            $url ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$this->appid}&secret={$this->appsecret}";
+            //使用http_request函数发送请求
+            $str = http_request($url);
+            //使用json_decode对$str进行转移
+            $$json = json_decode($str,true);
+            //缓存token 7200秒
+            Cache::set('access_token',$json['access_token'],7200);
+            return $json['access_token'];
+        }else{
+            return Cache::get('access_token');
+        }
+
+    }
+
+    public function caidan(){
+        //4、定义要携带的数据
+        $data = ' {
+         "button":[
+         {	
+              "type":"click",
+              "name":"今日歌曲",
+              "key":"V1001_TODAY_MUSIC"
+          },
+          {
+               "name":"菜单",
+               "sub_button":[
+               {	
+                   "type":"view",
+                   "name":"搜索",
+                   "url":"http://www.soso.com/"
+                },
+                {
+                   "type":"view",
+                   "name":"视频",
+                   "url":"http://v.qq.com/"
+                },
+                {
+                   "type":"click",
+                   "name":"赞一下我们",
+                   "key":"V1001_GOOD"
+                }]
+           }]
+     }';
+        //5、发送http请求
+        $str = http_request($url, $data);
+        //6、使用json_decode函数进行转义
+        $json = json_decode($str);
+        //7、判断是否创建成功
+        if($json->errmsg == 'ok') {
+            echo '自定义菜单创建成功！';
+        }
+    }
+
+}

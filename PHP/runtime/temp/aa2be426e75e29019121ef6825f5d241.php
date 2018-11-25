@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1542856851;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\index\index.html";i:1541580143;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -134,6 +138,7 @@
 			<dt><i class="Hui-iconfont">&#xe643;</i> 公司管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+<<<<<<< HEAD
 					<li><a data-href="<?php echo Url('Company/adminlist'); ?>" data-title="公司管理员" href="javascript:void(0)">公司列表</a></li>
 					<!--<li><a data-href="<?php echo Url('admin/Weixin'); ?>" data-title="账号绑定" href="javascript:void(0)">账号绑定</a></li>-->
 				</ul>
@@ -141,6 +146,15 @@
 					<li><a data-href="<?php echo Url('Company/companylist'); ?>" data-title="公司列表" href="javascript:void(0)">公司列表</a></li>
 					&lt;!&ndash;<li><a data-href="<?php echo Url('admin/Weixin'); ?>" data-title="账号绑定" href="javascript:void(0)">账号绑定</a></li>&ndash;&gt;
 				</ul>-->
+=======
+					<li><a data-href="<?php echo Url('Company/adminlist'); ?>" data-title="公司管理员" href="javascript:void(0)">公司管理员列表</a></li>
+					<!--<li><a data-href="<?php echo Url('admin/Weixin'); ?>" data-title="账号绑定" href="javascript:void(0)">账号绑定</a></li>-->
+				</ul>
+				<ul>
+					<li><a data-href="<?php echo Url('Company/companylist'); ?>" data-title="公司列表" href="javascript:void(0)">公司列表</a></li>
+					<!--<li><a data-href="<?php echo Url('admin/Weixin'); ?>" data-title="账号绑定" href="javascript:void(0)">账号绑定</a></li>-->
+				</ul>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 			</dd>
 		</dl>
 		<dl id="menu-admin">
@@ -157,7 +171,11 @@
 			<dd>
 				<ul>
 					<li><a data-href="<?php echo Url('Auth/index'); ?>" data-title="用户后台权限管理" href="javascript:void(0)">用户后台权限管理</a></li>
+<<<<<<< HEAD
 					<!--<li><a data-href="<?php echo Url('Auth/binding'); ?>" data-title="用户后台权限绑定" href="javascript:void(0)">用户后台权限绑定</a></li>-->
+=======
+					<li><a data-href="<?php echo Url('Auth/binding'); ?>" data-title="用户后台权限绑定" href="javascript:void(0)">用户后台权限绑定</a></li>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 				</ul>
 			</dd>
 		</dl>
@@ -219,6 +237,7 @@
 			<dt><i class="Hui-iconfont">&#xe630;</i> 党校管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+<<<<<<< HEAD
 					<li><a data-href="<?php echo Url('ClassCate/index'); ?>" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
 					<li><a data-href="<?php echo Url('ClassCourse/index'); ?>" data-title="课程管理" href="javascript:void(0)">课程管理</a></li>
 					<li><a data-href="<?php echo Url('ClassChapter/index'); ?>" data-title="视频管理" href="javascript:void(0)">视频管理</a></li>
@@ -243,6 +262,11 @@
 					<li><a data-href="<?php echo Url('Applets/classification'); ?>" data-title="小程序列表" href="javascript:void(0)">小程序分类</a></li>
 					<li><a data-href="<?php echo Url('Applets/banner'); ?>" data-title="小程序列表" href="javascript:void(0)">轮播banner</a></li>
 					<li><a data-href="<?php echo Url('Applets/banner_create'); ?>" data-title="小程序列表" href="javascript:void(0)">添加banner</a></li>
+=======
+					<li><a data-href="<?php echo Url('classCate/index'); ?>" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
+					<li><a data-href="<?php echo Url('classCourse/index'); ?>" data-title="课程管理" href="javascript:void(0)">课程管理</a></li>
+					<li><a data-href="<?php echo Url('classChapter/index'); ?>" data-title="视频管理" href="javascript:void(0)">视频管理</a></li>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 				</ul>
 			</dd>
 		</dl>

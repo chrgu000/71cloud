@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:88:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-add.html";i:1542170136;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:88:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-add.html";i:1541830831;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -71,7 +75,11 @@
 
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-2">上传说明：</label>
+<<<<<<< HEAD
 		<div class="formControls col-xs-8 col-sm-9" style="margin-top: 3px;color: red">logo大小限制200K,超过该尺寸可能导致上传失败！</div>
+=======
+		<div class="formControls col-xs-8 col-sm-9" style="margin-top: 3px;color: red">logo大小限制200K，超过该尺寸可能导致上传失败！</div>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 	</div>
 	<div class="row cl">
@@ -109,7 +117,66 @@
 <script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
+<<<<<<< HEAD
 
+=======
+/*$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		rules:{
+			adminName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			password:{
+				required:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			phone:{
+				required:true,
+				isPhone:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			adminRole:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit({
+				type: 'post',
+				url: "<?php echo Url('Company/add'); ?>" ,
+				success: function(data){
+					layer.msg('添加成功!',{icon:1,time:1000});
+				},
+                error: function(XmlHttpRequest, textStatus, errorThrown){
+					layer.msg('添加失败!',{icon:1,time:1000});
+				}
+			});
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});*/
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 	//预览缩略图
 	var imgFilesId = document.getElementById('img');//获取缩略图id
@@ -139,14 +206,52 @@
 	}
 
 
+<<<<<<< HEAD
 
+=======
+	/*有图片文件的ajax提交*/
+	/*$("#form-admin-add").submit(function(){
+		//表单序列化
+		//var data = $("form").serialize();
+		//aja提交图片文件
+		var formData = new FormData($('#form-admin-add')[0]);
+		$.ajax({
+			type:"post",
+			url: "<?php echo Url('Company/companyadd'); ?>",
+			data:formData,
+			dataType:'json',
+			processData:false,
+			contentType:false,
+			cache: false,
+			async:true,
+			success:function(data){
+
+				if(data.code==0){
+					layer.msg(data.msg, {icon: 6,time:1000});
+				}
+				if(data.code == 1){
+					layer.msg(data.msg,{icon:1,time:1000});
+					setTimeout(function () {
+						window.location.href=("<?php echo Url('Company/companylist'); ?>");
+					} ,1000);
+				}
+			}
+
+		})
+		return false;
+	});*/
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 	//Validform表单验证
 	$(".demoform").Validform({
 		tiptype:3,
 		showAllError:false,
+<<<<<<< HEAD
 		callback:function(form){  //callback验证成功之后，并且点击submit按钮之后的效果
 
+=======
+		callback:function(form){
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             var formData = new FormData($('#form-admin-add')[0]);
             $.ajax({
                 type:"post",

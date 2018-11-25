@@ -34,10 +34,17 @@ class Login extends Controller
         if (Request::instance()->isPost()) {
 
             //检测验证码
+<<<<<<< HEAD
             if(!captcha_check($data['code'])){
                 //验证码错误
                 $this->error('验证码错误','login/index','','1');
             }
+=======
+           /* if(!captcha_check($data['code'])){
+                //验证码错误
+                $this->error('验证码错误','login/index','','1');
+            }*/
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
             //获取输入的用户名和密码
             $username = input('post.username');

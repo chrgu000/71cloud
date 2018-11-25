@@ -1,0 +1,680 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/8/9
+ * Time: 9:05
+ *
+ * 用户接口
+ *
+ */
+namespace app\home\Controller;
+use think\Controller;
+use think\Request;
+class User extends Base{
+    public $appid = 'wxc099a4fa30a8c507';                   //微信APPID，公众平台获取
+    public $appsecret = '223da31030d2b72b1c86579c37a2bf48'; //微信APPSECREC，公众平台获取
+    public $index_url = "http://bd945e0f.ngrok.io/weiweb/index.php/home/news/news";  //微信回调地址，要跟公众平台的配置域名相同
+    public $code;
+    public $openid;
+   /* public function _initialize()
+    {*/
+       /* $weixin_id = input("id");
+        $res =db()->find();
+        $this->appid ="";
+        $this->appsecret="";*/
+
+
+       /* if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') == false) {
+            die("该网页只能用微信才能访问");
+        }*/
+        /*$openid = "";
+        if (!$_SESSION['openid']) {
+            //如果$_SESSION中没有openid，说明用户刚刚登陆，就执行getCode、getOpenId、getUserInfo获取他的信息
+            $this->code = $this->getCode();
+            $this->access_token = $this->getAccesstoken();
+            $userInfo = $this->getUserInfo();
+            if ($userInfo) {
+                $user = db('user');  //其他框架请自行调整方法。
+
+                $result = $user->where(array("openid"=>$userInfo['openid']))->find();            //根据OPENID查找数据库中是否有这个用户，如果没有就写数据库。继承该类的其他类，用户都写入了数据库中。
+                if (!$result) {
+                    $user->add($userInfo);
+                }*/
+//                $ins = M('Wechat_user_info');  //其他框架请自行调整方法。
+//                $map['openid'] = $userInfo['openid'];
+//                    $result = $ins->where($map)->find();            //根据OPENID查找数据库中是否有这个用户，如果没有就写数据库。继承该类的其他类，用户都写入了数据库中。
+//                    if (!$result) {
+//                        $ins->add($userInfo);
+//                    }
+               /* session('openid', $userInfo['openid']);         //写到$_SESSION中。微信缓存很坑爹，调试时请及时清除缓存再试。
+            }
+            $openid =  $userInfo['openid'];
+        }else{
+            $openid =  session('openid');
+
+        }
+        file_put_contents("b.txt",session('openid'));
+
+    }*/
+
+    /**
+     * @explain
+     * 获取code,用于获取openid和access_token
+     * @remark
+     * code只能使用一次，当获取到之后code失效,再次获取需要重新进入
+     * 不会弹出授权页面，适用于关注公众号后自定义菜单跳转等，如果不关注，那么只能获取openid
+     **/
+    public function getCode()
+    {
+        if (isset($_GET["code"])) {
+            return $_GET["code"];
+        } else {
+            $str = "location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=" . $this->appid . "&redirect_uri=" . urlencode($this->index_url) . "&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+            header($str);
+            exit;
+        }
+    }
+
+    /**
+     * @explain
+     * 用于获取用户openid
+     **/
+    public function getAccesstoken()
+    {
+        $access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . $this->appid . "&secret=" . $this->appsecret . "&code=" . $this->code . "&grant_type=authorization_code";
+        $access_token_json = $this->https_request($access_token_url);
+        $access_token_array = json_decode($access_token_json, TRUE);
+        return $access_token_array;
+    }
+
+    /**
+     * @explain
+     * 通过code获取用户openid以及用户的微信号信息
+     * @return
+     * @remark
+     * 获取到用户的openid之后可以判断用户是否有数据，可以直接跳过获取access_token,也可以继续获取access_token
+     * access_token每日获取次数是有限制的，access_token有时间限制，可以存储到数据库7200s. 7200s后access_token失效
+     **/
+    public function getUserInfo()
+    {
+
+        $userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token=".$this->access_token['access_token'] ."&openid=" . $this->access_token['openid']."&lang=zh_CN";
+        $userinfo_json = $this->https_request($userinfo_url);
+        file_put_contents("a.txt",$userinfo_json);
+        $userinfo_array = json_decode($userinfo_json, TRUE);
+        return $userinfo_array;
+    }
+
+
+    /**
+     * @explain
+     * 发送http请求，并返回数据
+     **/
+    public function https_request($url, $data = null)
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        if (!empty($data)) {
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        }
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
+    }
+
+    //get测试
+    public function set(){
+        /*json_decode(trim(file_get_contents('php://input')))*/
+        $param =input('get.id');
+
+
+
+        $res=db('user')->where(array('id'=>$param))->find();
+        if($res){
+            return json(['code'=>'1','msg'=>'成功','data'=>$res]);
+        }else{
+            return json(['code'=>'0','msg'=>'错误','data'=>'']);
+        }
+    }
+
+    //post测试
+    public function spost($username){
+        $row=db('user')->where(array('username'=>$username))->find();
+
+        if($row){
+            return json(['code'=>'1','msg'=>'成功','data'=>$row]);
+        }else{
+            return json(['code'=>'0','msg'=>'参数错误','data'=>'']);
+        }
+    }
+
+    /**
+     *
+     * 微信登录 POST
+     * @param $openid  微信openid
+     * @param $unionid 用户unionid
+     * $param $nickname 普通用户昵称
+     */
+    public function wxlogin(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $openid= $param->openid;
+        $unionid= $param->unionid;
+
+        $results=db('user')->where(array('openid'=>$openid))->find();
+
+
+
+        if (!$results) {
+            $user->add($userInfo);
+        }
+        session('openid', $userInfo['openid']);
+
+
+        return json(['code'=>'0','msg'=>'成功',]);
+
+    }
+
+
+
+
+    /**
+     *
+     * 手机号登录 POST
+     * @param $tel string 手机号
+     * @param $password string 密码
+     *
+     */
+    public function login(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+
+        $tel = htmlspecialchars_decode($param->tel);
+
+        $password = htmlspecialchars_decode($param->password);
+
+        if(empty($tel) || empty($password)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+
+        //检测账号是否存在
+        $userModel =  db('User');
+        $res = $userModel->where("tel = '$tel'")->find();
+        if(!$res){
+            return json(['code'=>0,'msg'=>'该账号未注册，请先注册','data'=>'']);
+            exit();
+        }
+
+        //检测账号密码是否正确
+        $pass = md5(md5($password));
+        $data = $userModel->field('id,tel,status')->where("tel = '$tel' AND password= '$pass' ")->find();
+        if(!$data){
+            return json(['code'=>0,'msg'=>'账号或者密码错误','data'=>'']);
+            exit();
+        }
+
+        //检测账号状态 1正常2被禁用
+        if($data['status'] == 2){
+            return json(['code'=>0,'msg'=>'账号已被禁用,请联系管理员','data'=>'']);
+            exit();
+        }
+
+        //获取token
+        $check = new Check();
+        $token = $check->getToken($data['id']);
+
+        if($token){
+            $data['token'] = $token;
+            $userModel->where('id='.$data['id'])->setField('last_time',time());
+        }else{
+            return json(['code'=>0,'msg'=>'token请求失败','data'=>'']);
+            exit();
+        }
+
+
+        return json(['code'=>1,'msg'=>'登录成功','data'=>$data]);
+
+    }
+
+    /**
+     *
+     * 注册 POST
+     * @param $tel string 手机号
+     * @param $code string 验证码
+     * @param $password string 密码
+     * @param $party_status 党员状态
+     * $param $branchs_id 支部id
+     *
+     */
+    public function register(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $tel = htmlspecialchars_decode($param->tel);
+        $code = htmlspecialchars_decode($param->code);
+        $password = htmlspecialchars_decode($param->password);
+        $party_status=htmlspecialchars_decode($param->party_status);
+        $branchs_id=htmlspecialchars_decode($param->branchs_id);
+
+        if(empty($tel) || empty($code) || empty($password)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        //检测验证码
+        if(time() - session('randStr')['time'] > 5*60){
+            return json(['code'=>0,'msg'=>'验证码过期,请重新获取','data'=>'']);
+            exit();
+        }
+
+        if(session('randStr')['randStr'] != $code){
+            return json(['code'=>0,'msg'=>'验证码错误','data'=>'']);
+            exit();
+        }
+
+
+        //检测密码位数
+        if(strlen($password) < 6){
+            return json(['code'=>0,'msg'=>'密码至少6位','data'=>'']);
+            exit();
+        }
+
+        //手机号是否注册
+        $userModel = db('User');
+        if($userModel->where("tel = '$tel'")->find()){
+            return json(['code'=>0,'msg'=>'手机号已注册,请直接登录','data'=>'']);
+            exit();
+        }
+        //默认用户名
+        $username = 'guoji_'.rand(100000,999999);
+        //默认头像
+        $face = 'http://pc5hsiop1.bkt.clouddn.com/avaturl.png';
+
+        $id = $userModel->insert(['tel'=>$tel,'password'=>md5(md5($password)),'username'=>$username,'face'=>$face,'party_status'=>$party_status,'branchs_id'=>$branchs_id,'ctime'=>time()]);
+
+        if($id){
+            return json(['code'=>1,'msg'=>'注册成功','data'=>['uid'=>$id,'tel'=>$tel]]);
+        }else{
+            return json(['code'=>0,'msg'=>'注册失败,请稍后再试','data'=>'']);
+        }
+
+
+    }
+
+    /**
+     *
+     * 验证码 GET
+     * @param $tel string 手机号
+     *
+     */
+    public function sendMsg(){
+        $tel = trim(input('get.tel'));
+        if(empty($tel)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        return json(sendMsg($tel));
+
+    }
+
+    /**
+     *
+     * 修改密码/找回密码 POST
+     * @param $tel string 手机号
+     * @param $code string 验证码
+     * @param $old_pass string 旧密码
+     * @param $new_pass string 新密码
+     * @param $type int 类型 1修改密码 2找回密码
+     *
+     */
+    public function modifyPass(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $tel = htmlspecialchars_decode($param->tel);
+        $code = htmlspecialchars_decode($param->code);
+        $old_pass = htmlspecialchars_decode($param->old_pass);
+        $new_pass = htmlspecialchars_decode($param->new_pass);
+        $type = htmlspecialchars_decode($param->type);
+
+        if(empty($tel) || empty($code) || empty($new_pass)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        //若是修改密码 需要传入旧密码
+        if($type == 1 && empty($old_pass)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        //检测手机号是否存在
+        $userModel =  db('User');
+        $password = $userModel->where("tel = '$tel'")->column('password');
+        if(!$password){
+            return json(['code'=>0,'msg'=>'手机号输入有误','data'=>'']);
+            exit();
+        }
+
+        //检测验证码
+        if(time() - session('randStr')['time'] > 5*60){
+            return json(['code'=>0,'msg'=>'验证码过期,请重新获取','data'=>'']);
+            exit();
+        }
+
+        if(session('randStr')['randStr'] != $code){
+            return json(['code'=>0,'msg'=>'验证码错误','data'=>'']);
+            exit();
+        }
+
+        //若是修改密码 需要检测旧密码是否正确
+        if($type == 1 &&md5(md5($old_pass)) != $password ){
+            return json(['code'=>0,'msg'=>'旧密码不正确','data'=>'']);
+            exit();
+        }
+
+
+        //检测新密码位数
+        if(strlen($new_pass) < 6){
+            return json(['code'=>0,'msg'=>'新密码至少6位','data'=>'']);
+            exit();
+        }
+
+
+        $userModel->where("tel = '$tel'")->setField('password',md5(md5($new_pass)));
+
+        return json(['code'=>1,'msg'=>'密码修改成功,请使用新密码登录','data'=>'']);
+
+
+    }
+
+    /**
+     *
+     * 意见反馈 POST
+     * @param $uid int 用户id
+     * @param $link string 联系方式 手机或邮箱
+     * @param $content string 反馈内容
+     *
+     *
+     */
+    public function advice(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $uid = htmlspecialchars_decode($param->uid);
+        $content = htmlspecialchars_decode($param->content);
+
+        if(empty($uid) || empty($content)){
+            return json(['code'=>0,'msg'=>'请将信息填写完整','data'=>'']);
+            exit();
+        }
+
+        db('Advice')->insert(['uid'=>$uid,'content'=>$content,'ctime'=>time()]);
+
+        return json(['code'=>1,'msg'=>'反馈成功','data'=>'']);
+
+    }
+
+
+    /**
+     *
+     * 个人中心-首页
+     * @param $uid int 用户id
+     *
+     *
+     */
+    public function getUserIndex(){
+        $uid = intval(input('get.uid'));
+        if(empty($uid)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $data = D('Home/User')->getUserRank($time = null,$type = 1,$uid);
+
+        //未读消息数量
+        $msg_num = count(db('UserMsg')->field('id')->where('uid='.$uid.' AND is_see = 0')->select());
+
+        return json(['code'=>1,'msg'=>'','data'=>['user'=>$data['user'],'msg_num'=>$msg_num]]);
+
+    }
+
+    /**
+     *
+     * 个人中心-个人排行榜
+     * @param $uid int 用户id
+     * @param $time string 筛选时间 如:2017-8 非必须
+     * @param $type int 类型 1月度排名  2年度排名 非必须 默认为按本月排名
+     *
+     *
+     */
+    public function getPersonRank(){
+        $uid = intval(input('get.uid'));
+        $time = trim(input('get.time'));
+        $type = intval(input('get.type'));
+        if(empty($uid)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $type = !empty($type) ? $type : 1;
+
+        $data = D('Home/User')->getUserRank($time,$type,$uid);
+
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+
+    }
+
+    /**
+     *
+     * 个人中心-公司排行榜
+     * @param $uid int 用户id
+     * @param $time string 筛选时间 如:2017-8 非必须
+     * @param $type int 类型 1月度排名  2年度排名 非必须 默认为按本月排名
+     *
+     */
+    public function getCompanyRank(){
+        $uid = intval(input('get.uid'));
+        $time = trim(input('get.time'));
+        $type = intval(input('get.type'));
+        if(empty($uid)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $type = !empty($type) ? $type : 1;
+
+        $data = D('Home/User')->getCompanyRank($time,$type,$uid);
+
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+
+    }
+
+    /**
+     *
+     * 积分明细
+     * @param $uid int 用户id 必须
+     * @param $time string 筛选时间 如2018-7
+     * @param $p int 页码
+     * @param $pageSize int 页长
+     *
+     */
+    public function getMyScoreDetail(){
+
+        $uid = intval(input('uid'));
+        $p = intval(input('p'));
+        $pageSize = intval(input('pageSize'));
+        $time = trim(input('time'));
+
+        $p = !empty($p) ? $p : 1;
+        $pageSize = !empty($pageSize) ? $pageSize : 6;
+
+        if(empty($uid)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $data = D('Home/UserScore')->getScoreDetail($uid,$p,$pageSize,$time);
+
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+
+    }
+
+
+    /**
+     *
+     * 个人中心-修改个人信息 POST
+     * @param $uid int 用户id 必须
+     * @param $username string 用户名 非必须
+     * @param $company string 公司名 非必须
+     * @param $face string 头像 七牛地址 非必须
+     * @param $type int 类型 1修改用户名 2修改公司名 3修改头像
+     *
+     */
+    public function editUserInfo(){
+
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $uid = intval($param->uid);
+        $username = htmlspecialchars_decode($param->username);
+        $company = htmlspecialchars_decode($param->company);
+        $face = trim($param->face);
+        $type = intval($param->type);
+
+        if(empty($type)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        if($type == 1 && !empty($username)){
+            db('User')->where('id='.$uid)->setField('username',$username);
+        }elseif ($type == 2 && !empty($company)){
+            db('User')->where('id='.$uid)->setField('company',$company);
+        }elseif($type == 3 && !empty($face)){
+            db('User')->where('id='.$uid)->setField('face',$face);
+        }else{
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        return json(['code'=>1,'msg'=>'修改成功','data'=>'']);
+
+    }
+
+    /**
+     *
+     * 个人中心-消息中心 GET
+     * @param $uid int 用户id 必须
+     *
+     */
+    public function getUserMsg(){
+        $uid = intval(input('get.uid'));
+        if(empty($uid)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $data = D('Home/UserMsg')->getUserMsg($uid);
+
+        return json(['code'=>1,'msg'=>'','data'=>$data]);
+
+
+    }
+
+    /**
+     *
+     * 个人中心-删除消息
+     * @param
+     *
+     */
+    public function delMsg(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $ids = trim($param->ids);
+        $uid = trim($param->uid);
+        if(empty($ids)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $ids = explode('#',$ids);
+
+        $map['id'] = ['IN',$ids];
+        $map['uid'] = $uid;
+        $res = db('UserMsg')->where($map)->delete();
+        if($res){
+            return json(['code'=>1,'msg'=>'删除成功','data'=>'']);
+        }else{
+            return json(['code'=>0,'msg'=>'删除失败','data'=>'']);
+        }
+
+
+    }
+
+
+
+
+    /**
+     *
+     * 个人中心-关于我们
+     *
+     */
+    public function getAboutUs(){
+
+
+    }
+
+    public function info(){
+
+    //1.获取到code
+
+    $appid = "***************";
+
+    $redirect_uri = urlencode("http://**********.com/weixin_wap_shouquan/getWxCode.php");
+
+    $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_userinfo&state=0#wechat_redirect";
+
+    header("Location:".$url);
+
+
+    }
+
+
+    /*protected function http_curl($url,$fields=array()){
+        //1先初始化curl会话
+        $ch = curl_init(); //返回一个连接符
+
+        //2设置相关参数
+        curl_setopt($ch,CURLOPT_URL,$url); //设置接口请求地址
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1); //设置接口返回的数据不立即显示 0代表立即显示 不为0的数字都不会将结果立即显示
+
+        //禁止校验ssl证书
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+
+        //设置传输编码
+        curl_setopt($ch,CURLOPT_ENCODING,"utf8");
+
+        if(!empty($fields)){ //代表发送的是post请求
+            curl_setopt($ch,CURLOPT_POST,1); //只要不为0代表就是post
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$fields); //设置post请求传递的参数
+
+        }
+
+        //3：执行会话获取接口地址
+        $res = json_decode(curl_exec($ch),true); //true代表将数据强制转化成数组
+
+
+        //4:关闭curl会话
+        curl_close($ch);
+        return $res;
+
+    }*/
+
+
+
+
+
+
+}

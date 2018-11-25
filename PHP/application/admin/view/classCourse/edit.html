@@ -27,7 +27,34 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 
+=======
+		<!--<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>缩略图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+			<div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+				<div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+					{empty name="data.thumb"}
+						<img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="/static/admin/static/h-ui.admin/images/noimage.png" alt="" />
+						{else/}
+						<img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="/{$data.thumb}" alt="" />
+					{/empty}
+
+
+				</div>
+				<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+				<div>
+					<span class="btn btn-primary btn-file radius">
+						<span class="fileinput-new ">选择文件</span>
+						<span class="fileinput-exists">换一张</span>
+						<input type="file" name="thumb" id="picID" accept="image/gif,image/jpeg,image/x-png">
+					</span>
+					<a href="javascript:;" class="btn btn-warning fileinput-exists radius" data-dismiss="fileinput">移除</a>
+				</div>
+			</div></div>
+		</div>-->
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>缩略图上传：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -85,7 +112,70 @@
 <script type="text/javascript" src="/static/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 
+<<<<<<< HEAD
 
+=======
+/*$(function () {
+
+
+
+    $('.skin-minimal input').iCheck({
+        checkboxClass: 'icheckbox-blue',
+        radioClass: 'iradio-blue',
+        increaseArea: '20%'
+    });
+
+	//表单提交
+    $("#form-article-add").validate({
+        rules:{
+            name:{
+                required:true,
+            },
+            cate:{
+                required:true,
+            }
+
+        },
+        onkeyup:false,
+        focusCleanup:true,
+        success:"valid",
+        submitHandler:function(form){
+
+            var index = parent.layer.getFrameIndex(window.name);
+            $(form).ajaxSubmit({
+                type: 'post',
+                url: "{:Url('edit')}" ,
+                success: function(data){
+                    if(data.code == 0){
+                        layer.msg(data.msg,{icon:2,time:1000});
+                    }
+                    if(data.code == 1){
+                        layer.msg(data.msg,{icon:1,time:1000});
+                        setTimeout(function () {
+                            window.parent.location.reload();
+                            parent.layer.close(index);
+                        } ,2000);
+
+
+                    }
+
+                },
+                error: function(XmlHttpRequest, textStatus, errorThrown){
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    layer.msg('error!',{icon:1,time:1000});
+                }
+            });
+
+            //parent.$('.btn-refresh').click();
+
+        }
+    });
+
+
+
+})*/
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 /**
  *预览缩略图开始

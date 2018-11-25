@@ -1,0 +1,11 @@
+import adaptive from "adaptive.js";
+import "../css/reset.css" ;
+import "../css/index.css";
+import 'weui'
+import '../css/report.css'
+
+adaptive.desinWidth = 750;
+adaptive.baseFont = 28;
+adaptive.maxWidth = 750;
+adaptive.scaleType = 1;
+adaptive.init();

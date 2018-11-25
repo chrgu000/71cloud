@@ -1,0 +1,56 @@
+<?php
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+
+
+
+class Admin extends Controller{
+
+    //角色管理
+    public function index(){
+
+        return $this->fetch('Admin/admin-role');
+    }
+
+    //添加角色
+    public function addrole(){
+
+        return $this->fetch('Admin/admin-role-add');
+    }
+
+    //修改角色
+    public function editrole(){
+        return $this->fetch('admin/admin-edit');
+    }
+
+
+    //权限管理
+    public function permission(){
+        return $this->fetch('Admin/admin-permission');
+    }
+
+    //权限修改
+    public function peredit(){
+        return $this->fetch('Admin/admin-permission-edit');
+    }
+
+    //管理员列表
+    public function adminlist(){
+        return $this->fetch('Admin/admin-list');
+    }
+
+    //添加管理员
+    public function adminadd(){
+        return $this->fetch('Admin/admin-add');
+    }
+
+    //管理员删除
+    public function admindel(){
+
+    }
+
+
+}

@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/8/6
+ * Time: 11:43
+ *
+ * 云展馆
+ *
+ */
+
+namespace Home\Controller;
+
+class CloudController extends BaseController{
+    public function index(){
+        $this->display();
+    }
+}

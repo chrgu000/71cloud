@@ -1,0 +1,152 @@
+.activity{
+    margin-top: 0.8rem;
+    background: #f9f5f5;
+}
+.activityDetail{
+    margin-top: 0.8rem;
+}
+.activity .activityTab{
+    height: 0.88rem;
+    background: white;
+    font-size:0;
+}
+.activity .activityTab span{
+    display: inline-block;
+    width: 33.3%;
+    text-align: center;
+    line-height: 0.88rem;
+    color: #999;
+    font-size: 0.32rem;
+}
+.activity .activityTab span.active{
+    color: #e32b2c;
+    border-bottom: 0.02rem solid #e32b2c;
+}
+.activityContent{
+    margin-top: 0.1rem;
+    background: #ffffff;
+}
+
+.onlineItem{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 0.25rem 0.32rem 0.3rem 0.32rem;
+    border-bottom: 1px solid #f9f5f5;
+}
+.onlineItem .onlineExamLeft{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.onlineItem .onlineExamLeft .onlineTitle{
+    font-size: 0.32rem;
+    color: #333333;
+    font-weight: bold;
+    padding-bottom: 0.15rem;
+    margin-right: 0.15rem;
+}
+.onlineItem .onlineExamLeft .onlineDate{
+    color: #666666;
+    font-size: 0.26rem;
+}
+
+.onlineItem .onlineExamRight{
+    width: 1.4rem;
+}
+.onlineItem .onlineExamRight  .onlineBtn{
+    width: 100%;
+    text-align: center;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    font-size: 0.26rem;
+    color: #ffffff;
+    border-radius: 0.07rem;
+    -webkit-border-radius: 0.07rem;
+    background: #e32b2c;
+    margin-bottom: 0.1rem;
+}
+
+.onlineItem .onlineExamRight .onlineJoin{
+    color: #999999;
+    font-size: 0.2rem;
+    text-align: center;
+}
+.onlineItem .onlineExamRight .hasBeenSend{
+    background: #facc2b;
+}
+.onlineItem .onlineExamRight .hasOver{
+    background: #999;
+}
+.activityItem{
+    display: none;
+}
+.activityItem.active{
+    display: block;
+}
+
+.activityDetail{
+    padding: 0 0.32rem;
+}
+.detailTitle{
+    font-size: 0.32rem;
+    color: #333333;
+    text-align: center;
+    padding-top: 0.4rem;
+    padding-bottom: 0.1rem;
+}
+.detailDate{
+    text-align: center;
+    font-size: 0.26rem;
+    color: #999999;
+
+}
+.detailContent p{
+    text-indent: 2em;
+    color: #333;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: justify;
+    margin-top: 12px;
+}
+
+.detailContent .img{
+    text-align: center;
+    max-width: 100%;
+    text-indent: 0;
+
+}
+.activityZone{
+    margin: 0.34rem;
+    border: 1px solid #e83329;
+    border-radius: 0.15rem;
+    padding: 0.3rem 0 0.3rem 0.4rem;
+}
+.activityZone p{
+    font-size: 0.26rem;
+    color: #333;
+    line-height: 1.8;
+}
+.sendBtn{
+    text-align: center;
+    margin-top: 0.5rem;
+
+    margin-bottom: 0.9rem;
+}
+.sendBtn span {
+    display: inline-block;
+    font-size: 0.32rem;
+    color: white;
+    width: 4.5rem;
+    height: 0.7rem;
+    text-align: center;
+    line-height: 0.7rem;
+    background: #999999;
+    border-radius: 0.32rem;
+    -webkit-border-radius: 0.32rem;
+    margin-top: 0.7rem;
+}

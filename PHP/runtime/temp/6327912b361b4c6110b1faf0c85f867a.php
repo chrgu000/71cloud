@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:86:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\login\login.html";i:1542865682;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:86:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\login\login.html";i:1541574067;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -30,17 +34,26 @@
   <div id="loginform" class="loginBox">
     <form action="<?php echo \think\Request::instance()->url(); ?>" class="form" method="post">
       <div class="row cl">
+<<<<<<< HEAD
         <label class="form-label col-xs-3"><i class="Hui-iconfont"></i></label>
+=======
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         <div class="formControls col-xs-8">
           <input id="bradmin_username" name="bradmin_username" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
+<<<<<<< HEAD
         <label class="form-label col-xs-3"><i class="Hui-iconfont"></i></label>
+=======
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         <div class="formControls col-xs-8">
           <input id="bradmin_password" name="bradmin_password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
+<<<<<<< HEAD
       <div class="row cl" style="margin-left:-2px">
             <div class="formControls col-xs-8 col-xs-offset-3">
          <input type="text" id='verify' class="input-text size-L" name="code" placeholder="这里输入验证码" style="width:150px;">
@@ -48,6 +61,16 @@
         </div>
       </div>
       <div class="row cl" style="margin-left:-2px">
+=======
+      <div class="row cl">
+      <div class="formControls col-xs-8 col-xs-offset-3">
+         <input type="text" id='verify' class="input-text size-L" name="code" placeholder="这里输入验证码" style="width:150px;">
+             <img class="pull-right" src="<?php echo captcha_src(); ?>" width="50%" onclick="this.src='<?php echo captcha_src(); ?>' + '?' + Math.random()">
+      </div>
+      <div class="row cl">
+      </div>
+      <div class="row cl">
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         <div class="formControls col-xs-8 col-xs-offset-3">
           <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
           <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
@@ -56,7 +79,11 @@
     </form>
   </div>
 </div>
+<<<<<<< HEAD
 <div class="footer">Copyright 武汉纺友技术有限公司</div>
+=======
+<div class="footer">Copyright 你的公司名称 by H-ui.admin v3.1</div>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/static/admin/static/h-ui/js/H-ui.min.js"></script>
 </body>

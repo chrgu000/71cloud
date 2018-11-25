@@ -102,8 +102,11 @@ class Branchadmin extends Base
         //定义验证规则
         $rule = [
             'bradmin_username' => 'require',
+<<<<<<< HEAD
             'pid' => 'require',
             'branchs_id' => 'require',
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             'phone' => 'require|max:11|number',
             'email' => 'require|email',
             'bradmin_password'=>'require|confirm:password2',
@@ -118,8 +121,11 @@ class Branchadmin extends Base
             'phone.max' => '电话号码最多不能超过11个字符',
             'phone.number' => '电话号码只能是数字',
             'email.require' => '邮箱不能为空',
+<<<<<<< HEAD
             'pid.require' => '上级管理员不能为空',
             'branchs_id.require' => '所属支部不能为空',
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             'email.email' => '邮箱格式错误',
 
         ];

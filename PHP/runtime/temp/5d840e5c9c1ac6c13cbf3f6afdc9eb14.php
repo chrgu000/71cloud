@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:85:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\admin\admin-list.html";i:1542789850;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:85:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\admin\admin-list.html";i:1541387770;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -59,7 +63,11 @@
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
+<<<<<<< HEAD
 				<th scope="col" colspan="9">系统后台管理员列表</th>
+=======
+				<th scope="col" colspan="9">员工列表</th>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>

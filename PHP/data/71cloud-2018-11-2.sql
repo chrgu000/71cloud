@@ -271,10 +271,17 @@ INSERT INTO `c_auth` VALUES ('42', '存储新消息', '31', 'branchmessage', 'sa
 INSERT INTO `c_auth` VALUES ('44', '消息查看权限', '31', 'branchmessage', 'read', '0', null, null, null, '');
 INSERT INTO `c_auth` VALUES ('46', 'test', '45', 'test', 'test', '1', null, null, null, '');
 INSERT INTO `c_auth` VALUES ('50', '考试管理', '0', '', '', '1', null, null, null, '');
+<<<<<<< HEAD
 INSERT INTO `c_auth` VALUES ('51', '考卷列表', '50', 'examrecord', 'index', '1', null, null, null, '');
 INSERT INTO `c_auth` VALUES ('52', '新增题目', '50', 'examquestions', 'create', '1', null, null, null, '');
 INSERT INTO `c_auth` VALUES ('53', '测试', '50', 'examquestions', 'test', '1', null, null, null, '');
 INSERT INTO `c_auth` VALUES ('54', '创建考卷', '50', 'examrecord', 'create', '0', null, null, null, '');
+=======
+INSERT INTO `c_auth` VALUES ('51', '考卷列表', '50', 'exampaper', 'index', '1', null, null, null, '');
+INSERT INTO `c_auth` VALUES ('52', '新增题目', '50', 'examquestions', 'create', '1', null, null, null, '');
+INSERT INTO `c_auth` VALUES ('53', '测试', '50', 'examquestions', 'test', '1', null, null, null, '');
+INSERT INTO `c_auth` VALUES ('54', '创建考卷', '50', 'exampaper', 'create', '0', null, null, null, '');
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 INSERT INTO `c_auth` VALUES ('55', '活动列表', '50', 'examactivity', 'index', '1', null, null, null, '');
 INSERT INTO `c_auth` VALUES ('56', '公众号内容管理', '0', '', '', '1', null, null, null, '32');
 INSERT INTO `c_auth` VALUES ('57', '新闻分类管理', '56', 'content_new_class', 'news', '1', null, null, null, null);

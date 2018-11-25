@@ -22,7 +22,11 @@ class Company extends Base{
     public function adminlist(){
         $company_name = trim(input('get.company_name'));
         //公司名称筛选
+<<<<<<< HEAD
 
+=======
+//        print_r($company_name);die;
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         $map=[];
         if($company_name){
             $map['company_name'] = ['LIKE',"%$company_name%"];
@@ -30,8 +34,14 @@ class Company extends Base{
         //查询共有多少条数据
         $num=db('branch_admin')->count();
         $res=db('branch_admin')->alias('a')
+<<<<<<< HEAD
             ->join('c_company c','a.company_id = c.id')
             ->field('c.id,a.bradmin_username,a.status,a.ctime,c.phone,c.company_name,c.address,c.logo,c.company_email,c.id as company_id')
+=======
+            ->join('c_role b','a.role_id= b.id')
+            ->join('c_company c','a.company_id = c.id')
+            ->field('a.id,a.bradmin_username,a.status,a.ctime,b.name,c.phone,c.company_name,c.id as company_id')
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             ->where($map)
             ->select();
 
@@ -42,13 +52,31 @@ class Company extends Base{
     }
 
 
+<<<<<<< HEAD
     //添加公司及管理员
     public function adminadd(){
 
+=======
+    //添加公司管理员
+    public function adminadd(){
+
+        //查找角色
+        $role = db('role')->field("id,name")->select();
+        //查找公司
+        $company=db('company')->field('id,company_name')->select();
+
+        //查找已经绑定的公司id
+        $cid=db('branch_admin')->distinct("company_id")->column('company_id');
+
+        $cid = implode(",",$cid);
+        $name=db('company')->where(array('id'=>array('not in',$cid)))->field('id,company_name')->select();
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         if (Request::instance()->isPost()){
             //获取post数据
             $res = input('post.');
 
+<<<<<<< HEAD
             if(!$res['company_name'] || !$res['company_email'] || !$res['address'] || !$res['phone'] || !$res['bradmin_username'] || !$res['bradmin_password']){
                 return json (['code' => 0,'msg' => '请将信息填写完整！']);
             }
@@ -58,11 +86,14 @@ class Company extends Base{
             if(db('branch_admin')->where(['bradmin_username'=>$res['bradmin_username']])->find()){
                 return json(['code'=>0,'msg'=>'该账户已存在!']);
             }
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             //把当前时间戳存到$res里
             $res['ctime'] = time();
 
             //获取后台管理员登录的id
             $admin_id = input('session.admin.id');
+<<<<<<< HEAD
             $res['pid']=0;
             //把管理员id存入$res里
             $res['admin_id'] = $admin_id;
@@ -92,6 +123,15 @@ class Company extends Base{
                 // 上传失败获取错误信息
                 //echo $file->getError();
             }
+=======
+
+            //把pid=0存到$res里
+            $res['pid']=0;
+
+            //把管理员id存入$res里
+            $res['admin_id'] = $admin_id;
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
             if($res['bradmin_password'] != $res['bradmin_password2']){
                 return json(['code'=>0,'msg'=>'两次输入密码不一致，请重新输入']);
@@ -108,6 +148,7 @@ class Company extends Base{
                     //去掉$res中bradmin_password2字段
                     unset($res['bradmin_password2']);
 
+<<<<<<< HEAD
                     Db::startTrans();
                     try{
                         Db::name('company')->insert(
@@ -155,6 +196,18 @@ class Company extends Base{
 
         }
 
+=======
+                    //将post里的数据插入到数据库
+                    db('branch_admin')->insert($res);
+                    return json(['code'=>1,'msg'=>'添加成功']);
+                }
+            }
+            /*$this->assign('rows', $rows);*/
+        }
+        $this->assign('role',$role);
+        $this->assign('company',$company);
+        $this->assign('name',$name);
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         return $this->fetch('company/company-admin-add');
     }
 
@@ -162,6 +215,7 @@ class Company extends Base{
 
     //公司管理员修改
     public function adminedit(){
+<<<<<<< HEAD
 
         //获取公司id
         $id=input('id');
@@ -202,13 +256,54 @@ class Company extends Base{
     }
 
     /*//公司管理员删除
+=======
+        $id = input('id');
+        //查找公司
+        $company=db('company')->field('id,company_name')->select();
+
+        //查找角色
+        $role = db('role')->field("id,name")->select();
+        //查找当前修改的角色id
+        $crole=db('branch_admin')->where(array('id'=>$id))->field('role_id,company_id')->find();
+        //查找修改的数据
+        $res=db('branch_admin')->where(array('id'=>$id))->find();
+
+        $companyname=db('company')->where(array('id'=>$res['company_id']))->field('id,company_name,company_email')->find();
+
+        //查找已经绑定的公司id
+        $cid=db('branch_admin')->distinct("company_id")->where(array("id"=>array("neq",$id)))->column('company_id');
+
+        $cid = implode(",",$cid);
+        $name=db('company')->where(array('id'=>array('not in',$cid)))->field('id,company_name')->select();
+         if(Request::instance()->isPost()) {
+            $post=input('post.');
+            $post['utime']=time();
+            $rows=db('branch_admin')->where(array('id'=>$id))->update($post);
+            $this->redirect('adminlist');
+        }
+        $this->assign('res',$res);
+        $this->assign('role',$role);
+        $this->assign('crole',$crole);
+        $this->assign('company',$company);
+        $this->assign('companyname',$companyname);
+        $this->assign('name',$name);
+
+        return $this->fetch('company/company-admin-edit');
+    }
+
+    //公司管理员删除
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     public function admindel(){
         $id=input('id');
         $res=db('branch_admin')->where(array('id'=>$id))->delete();
         return json(['code'=>1,'msg'=>'删除成功']);
 
 
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 
     //公司管理员密码修改
@@ -332,6 +427,7 @@ class Company extends Base{
         if ($info) {
             //获取图片路径并把路径从'\'转换成'/'
             $getSaveName=str_replace("\\","/",$info->getSaveName());
+<<<<<<< HEAD
 
             // 上传图片成功，获取文件访问路径并返回
             $img_logo = '/' . 'Uploads' . '/' . $getSaveName;
@@ -340,6 +436,11 @@ class Company extends Base{
             if($type == 'gif'){
                 return $img_logo;
             }
+=======
+            // 上传图片成功，获取文件访问路径并返回
+            $img_logo = '/' . 'Uploads' . '/' . $getSaveName;
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             // 使用open方法打开原始图片
             $image = \think\Image::open('.' . $img_logo);
 
@@ -384,6 +485,7 @@ class Company extends Base{
         }
     }
 
+<<<<<<< HEAD
     /*//公司删除
     public function companydel(){
         //获取当前修改的id
@@ -396,6 +498,20 @@ class Company extends Base{
         return json(['code'=>1,'msg'=>'删除成功']);
 
     }*/
+=======
+    //公司删除
+    public function companydel(){
+        //获取当前修改的id
+        $id=input('id');
+        $res=db('company')->where(array('id'=>$id))->delete();
+        if($res){
+            return json(['code'=>1,'msg'=>'删除成功']);
+        }else{
+            return json(['code'=>1,'msg'=>'删除失败']);
+        }
+
+    }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 
     /**
@@ -447,6 +563,7 @@ class Company extends Base{
     }
 
 
+<<<<<<< HEAD
     //启用账号状态
     public function status(){
         $id=input('id');
@@ -473,6 +590,8 @@ class Company extends Base{
 
     }
 
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
     //随机生成随机数
     public function getnonce($length = 8){

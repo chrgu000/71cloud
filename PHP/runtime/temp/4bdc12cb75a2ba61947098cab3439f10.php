@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-admin-list.html";i:1542855767;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-admin-list.html";i:1541387769;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,11 +59,16 @@
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
+<<<<<<< HEAD
 				<th scope="col" colspan="12">公司列表</th>
+=======
+				<th scope="col" colspan="9">员工列表</th>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="40">ID</th>
+<<<<<<< HEAD
 				<th width="70">用户名</th>
 				<th width="90">手机</th>
 				<th width="150">公司名称</th>
@@ -69,6 +78,15 @@
 				<th width="90">用户功能</th>
 				<th width="130">创建时间</th>
 				<th width="50">是否已启用</th>
+=======
+				<th width="150">登录名</th>
+				<th width="90">手机</th>
+				<th width="180">公司名称</th>
+				<th width="90">角色</th>
+				<th width="90">用户功能</th>
+				<th width="130">创建时间</th>
+				<th width="70">是否已启用</th>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 				<th width="100">操作</th>
 			</tr>
 		</thead>
@@ -80,9 +98,13 @@
 					<td><?php echo $v['bradmin_username']; ?></td>
 					<td><?php echo $v['phone']; ?></td>
 					<td><?php echo $v['company_name']; ?></td>
+<<<<<<< HEAD
 					<td><?php echo $v['address']; ?></td>
 					<td><?php echo $v['company_email']; ?></td>
 					<td><img style="width: 100px;height: 50px;" src="<?php echo $v['logo']; ?>"></td>
+=======
+					<td><?php echo $v['name']; ?></td>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 					<td><a id="update" href="<?php echo Url('Company/cedit',array('id'=>$v['company_id'])); ?>">点击查看或修改</a></td>
 					<td><?php echo date("Y-m-d,H:i:s",$v['ctime']); ?></td>
 					<?php if(($v['status'] == 1)): ?>
@@ -106,9 +128,15 @@
 						<a title="编辑" href="<?php echo Url('Company/adminedit',array('id'=>$v['id'])); ?>" class="ml-5" style="text-decoration:none">
 							<i class="Hui-iconfont">&#xe6df;</i>
 						</a>
+<<<<<<< HEAD
 						<!--<a title="删除"  onclick="del(this,'<?php echo $v['id']; ?>')" class="ml-5" style="text-decoration:none">-->
 							<!--<i class="Hui-iconfont">&#xe6e2;</i>-->
 						<!--</a>-->
+=======
+						<a title="删除"  onclick="del(this,'<?php echo $v['id']; ?>')" class="ml-5" style="text-decoration:none">
+							<i class="Hui-iconfont">&#xe6e2;</i>
+						</a>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 					</td>
 				</tr>
 			<?php endforeach; endif; else: echo "" ;endif; ?>
@@ -176,6 +204,7 @@ function admin_stop(obj,id){
 	layer.confirm('确认要停用吗？',function(index){
 		//此处请求后台程序，下方是成功后的前台处理……
 		$.ajax({
+<<<<<<< HEAD
 			type:"post",
 			url:"<?php echo Url('Company/statu'); ?>",
 			data:{id:id,status:0,},
@@ -191,6 +220,23 @@ function admin_stop(obj,id){
 				}
 			}
 		})
+=======
+					type:"post",
+					url:"<?php echo Url('admin/statu'); ?>",
+					data:{id:id,status:0,},
+					dataType:'json',
+					success:function(msg){
+						if(msg.error==1){
+							alert("停用失败")
+						}else{
+								$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,'+id+')" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
+								$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
+								$(obj).remove();
+								layer.msg('已停用!',{icon: 5,time:1000});
+						}
+					}
+				})
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 	});
 }
@@ -203,11 +249,19 @@ function admin_start(obj,id){
 
 		$.ajax({
             type:"post",
+<<<<<<< HEAD
             url:"<?php echo Url('Company/status'); ?>",
             data:{id:id,status:1,},
             dataType:'json',
             success:function(data){
                 if(data.code==1){
+=======
+            url:"<?php echo Url('admin/status'); ?>",
+            data:{id:id,status:1,},
+            dataType:'json',
+            success:function(msg){
+                if(msg.error==1){
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                     alert("启用失败")
                 }else{
                     $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,'+id+')" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');

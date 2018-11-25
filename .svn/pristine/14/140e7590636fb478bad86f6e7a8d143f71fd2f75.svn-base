@@ -1,0 +1,240 @@
+<?php
+
+namespace app\index\controller;
+
+use think\Config;
+
+include EXTEND_PATH . '/WeChatDeveloper/include.php';
+//$config = Config::get('config');
+class Index
+{
+
+
+    /**
+     * 微信配置验证url
+     *
+     * @return bool
+     */
+    public function index()
+    {
+        header("Content-type: text/html; charset=utf-8");
+//        $data      = Request::instance()->get();
+        $data = $_GET; #接入验证
+//        dump($data);
+//        die();
+        $signature = $data['signature'];
+        $timestamp = $data['timestamp'];
+        $nonce     = $data['nonce'];
+        $echostr   = $data['echostr'];
+
+        //计算微信签名
+        $token = 'smile_pengchang';
+        //将参数组成一维数组
+        $signeSeed = [$token, $timestamp, $nonce];
+        //对参数字典序排序
+        sort($signeSeed, SORT_STRING);
+        //拼接成字符串
+        $signeStr = implode($signeSeed);
+        //加密字符串成签名
+        $signeHash = sha1($signeStr);
+
+        if ($signeHash == $signature) {
+            echo $echostr;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @menu   微信菜单创建
+     * @author : Mr_peng
+     * @return
+     */
+    public function meau()
+    {
+        $config = \config('config');
+        try {
+
+            // 实例对应的接口对象
+            $meau = new \WeChat\Menu($config);
+
+//            $arr = [
+//                'type' => 'view',
+//                'name' => '纺友测试',
+//                'url'  => 'www.baidu.com',
+//            ];
+
+
+            //d定义菜单的格式
+            $jsonmenu = '{
+      "button":[
+      {
+            "name":"纺友网",
+           "sub_button":[
+            {
+               "type":"view",
+                "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            },
+            {
+               "type":"view",
+                "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            },
+            {
+               "type":"view",
+                "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            }]
+       },
+       {
+           "name":"问医生",
+           "sub_button":[
+            {
+               "type":"view",
+                "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            }
+            ]
+       
+ 
+       },
+       {
+           "name":"找服务",
+           "sub_button":[
+            {
+               "type":"view",
+                "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            },
+            {
+               "type":"view",
+               "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            },
+            {
+                "type":"view",
+               "name":"纺友网",
+                "url":"http://www.fuz.com.cn/"
+            }]
+       
+ 
+       }
+       ]
+ }';
+
+            $arr = json_decode($jsonmenu,true);
+//            echo '<pre>';
+//            dump($arr);
+//            die();
+
+            // 调用接口对象方法
+            $res = $meau->create($arr);
+
+            // 处理返回的结果
+            echo '<pre>';
+            var_export($res);
+        } catch (Exception $e) {
+
+            // 出错啦，处理下吧
+            echo $e->getMessage() . PHP_EOL;
+        }
+    }
+
+    /**
+     * @get_meau  获取菜单信息
+     * @author : Mr_peng
+     * @return
+     */
+    public function get_meau()
+    {
+        $config = \config('config');
+        try {
+
+            // 实例接口
+            $menu = new \WeChat\Menu($config);
+
+            // 执行获取菜单
+            $data = $menu->get();
+
+            // 处理返回的结果
+            echo '<pre>';
+            var_export($data);
+
+        } catch (Exception $e){
+            // 异常处理
+            echo  $e->getMessage();
+        }
+    }
+
+    public function del_meau()
+    {
+        $config = \config('config');
+        try {
+
+            // 实例接口
+            $menu = new \WeChat\Menu($config);
+
+            // 执行删除菜单
+            $data = $menu->delete();
+
+        } catch (Exception $e){
+            // 异常处理
+            echo  $e->getMessage();
+        }
+    }
+
+    /**
+     * @userlist  批量获取用户openid
+     * @author : Mr_peng
+     * @return
+     */
+    public function userlist()
+    {
+        $config = \config('config');
+        try {
+
+            // 实例对应的接口对象
+            $user = \We::WeChatUser($config);
+
+            // 调用接口对象方法
+            $list = $user->getUserList();
+
+            // 处理返回的结果
+            $openid = $list['data']['openid'];
+//            dump($openid);
+            return json_encode($openid);
+        } catch (Exception $e) {
+
+            // 出错啦，处理下吧
+            echo $e->getMessage() . PHP_EOL;
+        }
+    }
+
+    /**
+     * @get_userinfo  获取用户基本信息 头像,昵称等
+     * @author : Mr_peng
+     * @return
+     */
+    public function get_userinfo()
+    {
+        //获取openid;
+        $openid= json_decode($this->userlist(),true);
+//        dump($openid);
+        $config = \config('config');
+        try {
+            // 实例接口
+            $wechat = new \WeChat\User($config);
+
+            // 执行操作
+            $result = $wechat->getBatchUserInfo($openid);
+
+            dump($result);
+
+        } catch (Exception $e){
+            // 异常处理
+            echo  $e->getMessage();
+        }
+
+    }
+}

@@ -1,0 +1,158 @@
+---------------------------------------------------------------
+[ 2018-09-06T17:56:28+08:00 ] 127.0.0.1 GET /branchadmin/index/index.html
+[ info ] www.fyxm.com/branchadmin/index/index.html [运行时间：0.059003s][吞吐率：16.95req/s] [内存消耗：1,453.96kb] [文件加载：50]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=u8k4kab2mbhhfbh64f3gank9l5; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536115921,1536133285,1536135707,1536194298; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536227723',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/index/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\branchadmin\controller\Index->index[ D:\phpstudy\WWW\71cloud\PHP\application\branchadmin\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy\WWW\71cloud\PHP\public/../application/branchadmin\view\index\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-06T17:56:28+08:00 ] 127.0.0.1 GET /branchadmin/index/welcome.html
+[ info ] www.fyxm.com/branchadmin/index/welcome.html [运行时间：0.052003s][吞吐率：19.23req/s] [内存消耗：1,398.09kb] [文件加载：49]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'index',
+    2 => 'welcome',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=u8k4kab2mbhhfbh64f3gank9l5; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536115921,1536133285,1536135707,1536194298; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536227723',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/index/welcome_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\branchadmin\controller\Index->welcome[ D:\phpstudy\WWW\71cloud\PHP\application\branchadmin\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy\WWW\71cloud\PHP\public/../application/branchadmin\view\index\welcome.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-06T17:56:29+08:00 ] 127.0.0.1 GET /branchadmin/branchadmin/index.html
+[ info ] www.fyxm.com/branchadmin/branchadmin/index.html [运行时间：0.092005s][吞吐率：10.87req/s] [内存消耗：2,336.91kb] [文件加载：59]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'branchadmin',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=u8k4kab2mbhhfbh64f3gank9l5; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536115921,1536133285,1536135707,1536194298; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536227788',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/branchadmin/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\branchadmin\controller\Branchadmin->index[ D:\phpstudy\WWW\71cloud\PHP\application\branchadmin\controller\Branchadmin.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy\WWW\71cloud\PHP\public/../application/branchadmin\view\branchadmin\index.html [ array (
+  0 => 'list',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=71cloud;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `c_branch_admin` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `c_branch_admin` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-09-06T17:56:30+08:00 ] 127.0.0.1 GET /branchadmin/branchadmin/create.html
+[ info ] www.fyxm.com/branchadmin/branchadmin/create.html [运行时间：0.041002s][吞吐率：24.39req/s] [内存消耗：1,453.96kb] [文件加载：50]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'branchadmin',
+    2 => 'create',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=u8k4kab2mbhhfbh64f3gank9l5; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536115921,1536133285,1536135707,1536194298; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536227788',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/branchadmin/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/branchadmin/create_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\branchadmin\controller\Branchadmin->create[ D:\phpstudy\WWW\71cloud\PHP\application\branchadmin\controller\Branchadmin.php ]
+[ info ] [ VIEW ] D:\phpstudy\WWW\71cloud\PHP\public/../application/branchadmin\view\branchadmin\create.html [ array (
+) ]
+[ info ] [ LOG ] INIT File

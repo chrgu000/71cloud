@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\branchadmin\create.html";i:1541982889;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\branchadmin\create.html";i:1541387767;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -67,12 +71,21 @@
 		</div>
 	</div>
 	<div class="row cl">
+<<<<<<< HEAD
 		<label class="form-label col-xs-4 col-sm-3">所属支部名称：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="branchs_id" size="1">
 				<option value="0">所属支部</option>
                     <?php foreach($data as $l): ?>
                         <option value="<?php echo $l['id']; ?>"><?php echo $l['branchs_name']; ?></option>
+=======
+		<label class="form-label col-xs-4 col-sm-3">支部名称：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="branchs_id" size="1">
+				<option value="0">支部角色</option>
+                    <?php foreach($data as $l): ?>
+                    <option value="<?php echo $l['id']; ?>"><?php echo $l['branchs_name']; ?></option>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                     <?php endforeach; ?>
 			</select>
 			</span>

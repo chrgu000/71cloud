@@ -271,13 +271,21 @@ return [
         // 验证码字符集合
         'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY',
         // 验证码字体大小(px)
+<<<<<<< HEAD
         'fontSize' => 45,
+=======
+        'fontSize' => 39,
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         // 是否画混淆曲线
         'useCurve' => false,
         // 验证码图片高度
         'imageH'   => 110,
         // 验证码图片宽度
+<<<<<<< HEAD
         'imageW'   => 330,
+=======
+        'imageW'   => 350,
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         // 验证码位数
         'length'   => 4,
         // 验证成功后是否重置

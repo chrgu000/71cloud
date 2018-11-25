@@ -1,0 +1,140 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/20
+ * Time: 8:58
+ *
+ * 群众监督
+ *
+ */
+
+namespace Home\Controller;
+
+class ReportController extends BaseController{
+    /**
+     *
+     * 首页
+     *
+     */
+    public function index(){
+        $this->display();
+    }
+
+    /**
+     *
+     * 举报入口
+     *
+     */
+    public function reportEntry(){
+        $this->display();
+    }
+
+    /**
+     *
+     * 举报分类页
+     *
+     */
+    public function reportItem(){
+
+        $this->display();
+
+
+    }
+
+    /**
+     *
+     * 举报详情页
+     *
+     */
+    public function form(){
+        if(IS_GET){
+
+            $this->display();
+        }else{
+
+            $question_type = I('post.question_type');
+            $title = trim(I('post.title'));
+            $content = trim(I('post.content'));
+            $belong_company = trim(I('post.belong_company'));
+            $belong_dept = trim(I('post.belong_dept'));
+            $rank = trim(I('post.rank'));
+
+            if(!$question_type || !$title || !$content || !$belong_company || !$belong_dept || !$rank ){
+                $this->ajaxReturn(['code' => 0,'msg' => '请将信息填写完整！']);
+
+            }
+
+            //开启事务
+            M()->startTrans();
+
+            $id = M('Report')->add([
+                'title'             =>  $title,
+                'content'           =>  $content,
+                'belong_company'    =>  $belong_company,
+                'belong_dept'       =>  $belong_dept,
+                'rank'              =>  $rank,
+                'question_type'     =>  $question_type,
+                'ctime'             =>  time()
+            ]);
+
+
+            //附件上传
+            if($id){
+                $setting = C('UPLOAD_FILE_QINIU');
+                $Upload = new \Think\Upload($setting);
+                $info = $Upload->upload($_FILES);
+
+
+                foreach ($info as $k => $v){
+//                    $path = str_replace('/','_',$v['file']['savepath']);
+//                    $filename = $path.$info['file']['savename'];//七牛云保存的文件名称
+
+                    //文件类型 1图片 2视频
+                    $v['key'] == 'path' ? $type=1 : $type = 2;
+                    $list[] = [
+                        'report_id'   => $id,
+                        'path'        => $v['url'],
+                        'type'        => $type
+                    ];
+
+                }
+                $res = M('ReportAttach')->addAll($list);
+
+            }
+
+
+            if($id && $res){
+                M()->commit();
+                $this->ajaxReturn(['code' => 1,'msg' => '举报成功！']);
+            }else{
+                M()->rollback();
+                $this->ajaxReturn(['code' => 0,'msg' => '举报失败！']);
+            }
+
+
+
+
+
+        }
+
+
+    }
+
+
+    /**
+     *
+     * 举报成功
+     *
+     */
+    public function result(){
+
+        $this->display();
+    }
+
+
+
+
+
+
+}

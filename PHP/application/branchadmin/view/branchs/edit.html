@@ -38,6 +38,7 @@
 	</div>
 
 	<div class="row cl">
+<<<<<<< HEAD
 		<label class="form-label col-xs-4 col-sm-3">权限功能角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="roles_id" size="1">
@@ -46,6 +47,15 @@
 				 {foreach $data as $l}
                     <option value="{$l.id}">{$l.roles_name}</option>
                 {/foreach}
+=======
+		<label class="form-label col-xs-4 col-sm-3">角色id：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="roles_id" size="1">
+				<option value="0">{$info.roles_id}</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 			</select>
 			</span> </div>
 	</div>

@@ -1,0 +1,108 @@
+body,html{
+    height: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    overflow: scroll;
+    position: relative;
+ /*    background-image: url(../images/banner1.jpg);
+    background-position: center;
+    background-size: 7.5rem 100%;
+    background-repeat: no-repeat;*/
+}
+.logo{
+    position: absolute;
+    top: 1.8rem;
+    right: 0;
+    width: 5.75rem;
+    height: 2.84rem;
+
+}
+.container{
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/banner1.jpg);
+    background-position: center;
+    background-size: 7.5rem 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    padding-bottom: 0.52rem
+}
+.itemList{
+    width: 6.88rem;
+    margin-left: 0.32rem;
+    margin-top:4.17rem ;
+    background: white;
+    border-radius: 0.16rem
+}
+.itemList p{
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    height: 0.84rem;
+    line-height: 0.84rem;
+    box-sizing: border-box;
+}
+.itemList p:last-child a{
+    border-bottom: none;
+}
+.itemList p a{
+   position: relative;
+    display: inline-block;
+    width: 100%;
+   
+    font-size: 0.28rem;
+    color: #333333;
+    border-bottom: 1px solid #d9d9d9;
+}
+.itemList p a::after{
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 2px;
+ }
+ .formBtn{
+    width: 5.42rem;
+    height: 0.9rem;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem
+}
+.formBtn input{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: #dc291b;
+    text-align: center;
+    font-size: 0.36rem;
+    color: white;
+    border: none;
+    border-radius: 0.16rem;
+    -webkit-border-radius:0.16rem
+
+}
+::-webkit-scrollbar {display:none}
+#androidDialog1{
+    display: none
+}
+.weui-agree{
+    margin-left: 1.02rem
+}
+.weui-agree__checkbox:checked:before{
+    color: #e33123 !important
+}
+
+.weui-agree__checkbox{
+    border: 1px solid #f2a096 !important
+}
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; }

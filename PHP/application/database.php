@@ -15,15 +15,25 @@ return [
     'type'            => 'mysql',
     // 服务器地址
     //    'hostname'        => '47.94.128.12',
+<<<<<<< HEAD
     //'hostname'        => '192.168.2.56',
     'hostname'        => '127.0.0.1',
+=======
+    'hostname'        => '192.168.2.56',
+    //'hostname'        => '127.0.0.1',
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     // 数据库名
     'database'        => '71cloud',
     // 用户名
     'username'        => 'root',
     // 密码
+<<<<<<< HEAD
     'password'        => 'root',
     //'password'        => '123456',
+=======
+    //     'password'        => 'root',
+    'password'        => '123456',
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     // 端口
     'hostport'        => '3306',
     // 连接dsn

@@ -1,0 +1,87 @@
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" action="" id="form-admin-add" method="post">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>后台管理员账号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input style="width: 200px; margin-bottom: 20px;" type="text" class="input-text" value="{$res.admin_username}" placeholder="" id="adminName" name="admin_username">
+			</div>
+
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>输入原密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input style="width: 200px; margin-bottom: 20px; float: left;" type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="admin_password">
+				<span style="float: left;" class="user_err"></span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>输入新密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input style="width: 200px; margin-bottom: 20px;" type="password" class="input-text" autocomplete="off"  placeholder="输入新密码" id="password1" name="admin_password1">
+			</div>
+
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认新密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input style="width: 200px; margin-bottom: 20px;" type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password2" name="admin_password2">
+			</div>
+			<span class="pass_err"></span>
+		</div>
+
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery-1.11.3.min.js" ></script>
+<script type="text/javascript">
+    /*ajax提交*/
+    $("#form-admin-add").submit(function(){
+
+        /**
+         *ajax开始
+         */
+            //表单序列化，
+        var data = $("form").serialize();
+        $.ajax({
+            type:"post",
+            url: "{:Url('Admin/update',array('id'=>input('id')))}",
+            data:data,
+            dataType:'json',
+            success:function(data){
+                if(data.code==0){
+                    layer.msg(data.msg, {icon: 6,time:1000});// layer弹窗插件
+                }
+                if(data.code == 1){
+                    layer.msg(data.msg,{icon:1,time:1000});
+                    setTimeout(function () {
+                        window.location.href=('{:Url("Admin/adminindex")}');
+                    } ,1000);
+                }
+            }
+
+        })
+        return false;
+    });
+    /**
+     * ajax结束
+     *
+     * */
+
+
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

@@ -31,7 +31,11 @@ class Base extends Controller
         if (time() - $time > 300) {
             return json(['code' => 0, 'msg' => '时间已过期', 'data' => '']);
         }
+<<<<<<< HEAD
         if ($uid == 0) {
+=======
+        if ($uid = 0) {
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             if ($secret = $str) {
                 return json(['code' => 1, 'msg' => '', 'data' => '']);
             } else {
@@ -97,7 +101,11 @@ class Base extends Controller
         // header();
         header('Content-Type:application/json;charset=utf-8');
         return json($result);
+<<<<<<< HEAD
 //        exit;
+=======
+        exit;
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     }
 
 

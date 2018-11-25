@@ -1,0 +1,66 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/8/14
+ * Time: 9:01
+ *
+ * 点赞接口
+ *
+ */
+namespace app\home\controller;
+
+class Praise extends Base {
+    /**
+     *
+     * 点赞
+     * @param $id int 新闻id
+     * @param $uid int 用户id
+     * @param $type int 类型 1点赞 2取消点赞
+     *
+     *
+     */
+    public function index(){
+        $param = json_decode(trim(file_get_contents('php://input')));
+        $id = $param->id;
+        $uid = $param->uid;
+        $type = $param->type;
+
+        if(empty($id) || empty($uid) || empty($type)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+        }
+
+
+        $newModel = db('News');
+        if($type == 1){
+
+            $name = $newModel->where('id='.$id)->getField('title');
+            if(db('UserScore')->where("name = '$name' AND uid = $uid")->find()){
+                return json(['code'=>0,'msg'=>'该新闻已点赞','data'=>'']);
+                exit();
+            }
+            //看新闻点赞 积分+1
+            model('home/UserScore')->addScore($uid,$name,$type = 1);
+            //点赞量+1
+            $newModel->where('id='.$id)->setInc('praise');
+
+            return json(['code'=>1,'msg'=>'点赞成功','data'=>'']);
+        }else{
+
+            //点赞量-1
+            $newModel->where('id='.$id)->setDec('praise');
+
+            //删除之前的积分
+            $name = $newModel->where('id='.$id)->getField('title');
+            db('UserScore')->where("uid = $uid AND name = '$name' AND type = 1 ")->delete();
+
+            return json(['code'=>1,'msg'=>'取消点赞成功','data'=>'']);
+        }
+
+
+    }
+
+
+
+
+}

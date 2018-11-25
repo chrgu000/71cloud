@@ -1,0 +1,31 @@
+//
+//  UserLogin.h
+//  NewChain
+//
+//  Created by macmini on 17/9/21.
+//  Copyright © 2017年 lixin. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface UserLogin : NSObject
+
+@property(nonatomic,strong)NSString *Userid;
+
+@property(nonatomic,strong)NSString *UserToken;
+
+@property(nonatomic,strong)NSString *phone;
+
+@property(nonatomic,strong)NSString *UserName;
+
+@property(nonatomic,strong)NSString *introduce;
+
+@property(nonatomic,strong)NSString *isSex;
+
+@property(nonatomic,strong)NSString *avator;
+
+@property(nonatomic,strong)NSString *token;
+
+
+
+@end

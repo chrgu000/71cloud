@@ -1,0 +1,599 @@
+---------------------------------------------------------------
+[ 2018-09-05T10:44:59+08:00 ] 127.0.0.1 POST /branchadmin/login/index.html
+[ info ] www.fyxm.com/branchadmin/login/index.html [运行时间：0.040002s][吞吐率：25.00req/s] [内存消耗：1,288.89kb] [文件加载：47]
+[ info ] [ LANG ] D:\phpstudy\WWW\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115475; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115482',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://www.fyxm.com',
+  'cache-control' => 'max-age=0',
+  'content-length' => '42',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/login/index_html' => '',
+  'bradmin_username' => '111',
+  'bradmin_password' => '1111',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:49:33+08:00 ] 127.0.0.1 GET /branchadmin/Login/login
+[ info ] www.fyxm.com/branchadmin/Login/login [运行时间：0.038002s][吞吐率：26.31req/s] [内存消耗：1,442.27kb] [文件加载：49]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'Login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115475; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115505',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/Login/login' => '',
+)
+[ info ] [ RUN ] app\branchadmin\controller\Login->login[ D:\phpstudy\WWW\71cloud\PHP\fyxm\application\branchadmin\controller\Login.php ]
+[ info ] [ VIEW ] D:\phpstudy\WWW\71cloud\PHP\fyxm\public/../application/branchadmin\view\login\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:49:33+08:00 ] 127.0.0.1 GET /captcha.html
+[ info ] www.fyxm.com/captcha.html [运行时间：0.040002s][吞吐率：25.00req/s] [内存消耗：1,086.05kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115475; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115505',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:49:39+08:00 ] 127.0.0.1 GET /captcha.html?0.32494568179605765
+[ info ] www.fyxm.com/captcha.html?0.32494568179605765 [运行时间：0.024002s][吞吐率：41.66req/s] [内存消耗：1,086.27kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115505; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115776',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_32494568179605765' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:49:40+08:00 ] 127.0.0.1 GET /captcha.html?0.7381677260126283
+[ info ] www.fyxm.com/captcha.html?0.7381677260126283 [运行时间：0.026001s][吞吐率：38.46req/s] [内存消耗：1,086.27kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115505; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115776',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_7381677260126283' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:49:40+08:00 ] 127.0.0.1 GET /captcha.html?0.3729134745717906
+[ info ] www.fyxm.com/captcha.html?0.3729134745717906 [运行时间：0.024002s][吞吐率：41.66req/s] [内存消耗：1,086.27kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115505; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115776',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_3729134745717906' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:49:40+08:00 ] 127.0.0.1 GET /captcha.html?0.10713938182887328
+[ info ] www.fyxm.com/captcha.html?0.10713938182887328 [运行时间：0.026002s][吞吐率：38.46req/s] [内存消耗：1,086.28kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=057bipv8l1l004rqsskhcin017; Hm_lpvt_668f5751b331d2a1eec31f2dc0253443=1536115505; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115776',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_10713938182887328' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:51:58+08:00 ] 127.0.0.1 GET /branchadmin/Login/login
+[ info ] www.fyxm.com/branchadmin/Login/login [运行时间：0.081004s][吞吐率：12.35req/s] [内存消耗：1,321.91kb] [文件加载：47]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'branchadmin',
+    1 => 'Login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/branchadmin/Login/login' => '',
+)
+[ info ] [ RUN ] app\branchadmin\controller\Login->login[ D:\phpstudy\WWW\71cloud\PHP\fyxm\application\branchadmin\controller\Login.php ]
+[ info ] [ VIEW ] D:\phpstudy\WWW\71cloud\PHP\fyxm\public/../application/branchadmin\view\login\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:51:58+08:00 ] 127.0.0.1 GET /captcha.html
+[ info ] www.fyxm.com/captcha.html [运行时间：0.081005s][吞吐率：12.34req/s] [内存消耗：1,085.66kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:05+08:00 ] 127.0.0.1 GET /captcha.html?0.9026615588917861
+[ info ] www.fyxm.com/captcha.html?0.9026615588917861 [运行时间：0.029601s][吞吐率：33.78req/s] [内存消耗：1,086.09kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_9026615588917861' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:06+08:00 ] 127.0.0.1 GET /captcha.html?0.8889235827621964
+[ info ] www.fyxm.com/captcha.html?0.8889235827621964 [运行时间：0.031001s][吞吐率：32.26req/s] [内存消耗：1,086.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_8889235827621964' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:06+08:00 ] 127.0.0.1 GET /captcha.html?0.5600213578181883
+[ info ] www.fyxm.com/captcha.html?0.5600213578181883 [运行时间：0.039601s][吞吐率：25.25req/s] [内存消耗：1,086.12kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_5600213578181883' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:06+08:00 ] 127.0.0.1 GET /captcha.html?0.24526063370949824
+[ info ] www.fyxm.com/captcha.html?0.24526063370949824 [运行时间：0.028600s][吞吐率：34.97req/s] [内存消耗：1,086.09kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_24526063370949824' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:13+08:00 ] 127.0.0.1 GET /captcha.html?0.9512651267843015
+[ info ] www.fyxm.com/captcha.html?0.9512651267843015 [运行时间：0.040602s][吞吐率：24.63req/s] [内存消耗：1,086.12kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_9512651267843015' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:14+08:00 ] 127.0.0.1 GET /captcha.html?0.4022065712397491
+[ info ] www.fyxm.com/captcha.html?0.4022065712397491 [运行时间：0.029601s][吞吐率：33.78req/s] [内存消耗：1,086.09kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_4022065712397491' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-09-05T10:52:14+08:00 ] 127.0.0.1 GET /captcha.html?0.39376472588691036
+[ info ] www.fyxm.com/captcha.html?0.39376472588691036 [运行时间：0.039601s][吞吐率：25.25req/s] [内存消耗：1,086.09kb] [文件加载：37]
+[ info ] [ LANG ] D:\phpstudy\WWW\71cloud\PHP\fyxm\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'pgv_pvi=6918694912; Hm_lvt_668f5751b331d2a1eec31f2dc0253443=1536051631,1536108587; PHPSESSID=41h58f559eoc7p27rqe9badb43; Hm_lvt_080836300300be57b7f34f4b3e97d911=1536052725,1536108582,1536115921; Hm_lpvt_080836300300be57b7f34f4b3e97d911=1536115921',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.fyxm.com/branchadmin/Login/login',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.fyxm.com',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  '0_39376472588691036' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy\WWW\71cloud\PHP\fyxm\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\branchs\create.html";i:1541982889;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\branchs\create.html";i:1541574067;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -48,10 +52,17 @@
 	</div>
 
 	<div class="row cl">
+<<<<<<< HEAD
 		<label class="form-label col-xs-4 col-sm-3">权限功能角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
             <select class="select" name="roles_id" size="1">
                 <option value="0">权限功能角色</option>
+=======
+		<label class="form-label col-xs-4 col-sm-3">角色id：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+            <select class="select" name="roles_id" size="1">
+                <option value="0">支部角色</option>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                     <?php foreach($data as $l): ?>
                     <option value="<?php echo $l['id']; ?>"><?php echo $l['roles_name']; ?></option>
                     <?php endforeach; ?>

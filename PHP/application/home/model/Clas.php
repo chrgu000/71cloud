@@ -177,14 +177,24 @@ class Clas extends Model
         $db = Db::name('UserClass');
 //        if(db('UserClass')->where(['uid'=>$uid,'class_id'=>$class_id])->find()){
         if ($db->where(['uid' => $uid, 'class_id' => $class_id])->find()) {
+<<<<<<< HEAD
             return ['code' => 1,'status'=>2, 'msg' => '当前课程已在学习计划中！'];
+=======
+            return ['code' => 1, 'msg' => '当前课程已在学习计划中！'];
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         }
 
         $id = $db->data(['uid' => $uid, 'class_id' => $class_id, 'last_time' => time(), 'ctime' => time()])->insert();
         if ($id) {
+<<<<<<< HEAD
             return ['code' => 1,'status'=>1, 'msg' => '恭喜您，加入成功！'];
         } else {
             return ['code' => 0,'status'=>3, 'msg' => '很抱歉，加入失败，请稍后再试！'];
+=======
+            return ['code' => 1, 'msg' => '恭喜您，加入成功！'];
+        } else {
+            return ['code' => 0, 'msg' => '很抱歉，加入失败，请稍后再试！'];
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         }
     }
 

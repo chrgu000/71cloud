@@ -50,6 +50,7 @@ class Login extends Base
         }
 
         //检测验证码
+<<<<<<< HEAD
         if (time() - session('randStr')['time'] > 5 * 60) {
             return json(['code' => 3, 'msg' => '手机验证码过期,请重新获取', 'data' => '']);
         }
@@ -60,6 +61,18 @@ class Login extends Base
         if (!captcha_check($captcha, $id, $config)) {
             return json(['code' => 4, 'msg' => '图形验证码错误', "data" => ""]);
         }
+=======
+//        if (time() - session('randStr')['time'] > 5 * 60) {
+//            return json(['code' => 3, 'msg' => '手机验证码过期,请重新获取', 'data' => '']);
+//        }
+
+//        图形验证码验证
+//        $config = Config::get('captcha');
+//
+//        if (!captcha_check($captcha, $id, $config)) {
+//            return json(['code' => 4, 'msg' => '图形验证码错误', "data" => ""]);
+//        }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         //手机号是否注册
         $userModel = db('User');
@@ -83,9 +96,15 @@ class Login extends Base
             return json(['code' => 6, 'msg' => '手机号已注册,请直接登录', 'data' => '']);
         }
 
+<<<<<<< HEAD
         if (session('randStr')['randStr'] != $code) {
             return json(['code' => 0, 'msg' => '手机验证码错误', 'data' => '']);
         }
+=======
+//        if (session('randStr')['randStr'] != $code) {
+//            return json(['code' => 0, 'msg' => '手机验证码错误', 'data' => '']);
+//        }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         return json(['code' => 1, 'msg' => '手机验证通过', 'data' => '']);
     }
@@ -289,10 +308,17 @@ class Login extends Base
         }
 
         //图形验证码验证
+<<<<<<< HEAD
         $config = Config::get('captcha');
         if (!captcha_check($captcha, $id, $config)) {
             return json(['code' => 3, 'msg' => '图形验证码错误', "data" => ""]);
         }
+=======
+//        $config = Config::get('captcha');
+//        if (!captcha_check($captcha, $id, $config)) {
+//            return json(['code' => 3, 'msg' => '图形验证码错误', "data" => ""]);
+//        }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         //检测账号是否存在
         $userModel = db('user');
@@ -377,10 +403,17 @@ class Login extends Base
 
         //检测手机号是否存在
         $userModel = db('User');
+<<<<<<< HEAD
         $password  = $userModel->where("tel = '$tel'")->find();
         if (!$password) {
             return json(['code' => 0, 'msg' => '手机号不存在,请注册后登陆', 'data' => '']);
         }
+=======
+//        $password  = $userModel->where("tel = '$tel'")->find();
+//        if (!$password) {
+//            return json(['code' => 0, 'msg' => '手机号不存在,请注册后登陆', 'data' => '']);
+//        }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         $userModel->where("tel = '$tel'")->setField('password', md5(md5($pass)));
 
@@ -406,13 +439,17 @@ class Login extends Base
             }
         }
 //        dump($data);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         $usermoder  = Db::name('user');
         $uid        = $data['uid'];
         $unionId    = $data['unionId']; #微信公众平台主体唯一标识
         $openid     = $data['openid']; #微信openid
         $nickname   = $data['nickname'];#微信昵称
         $headimgurl = $data['headimgurl']; #微信头像地址
+<<<<<<< HEAD
 
         /*--------档案管理小程序信息是否录入查询判断开始----------*/
         $status=db('party_information')->where(['uid'=>$uid])->field('status')->value('status');
@@ -424,6 +461,8 @@ class Login extends Base
         }
         /*--------档案管理小程序信息是否录入查询判断结束----------*/
 
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         if ($uid == 'none') {
             $tel = $usermoder->where(['unionid' => $unionId])->value('tel');
             if (empty($tel)) {
@@ -437,7 +476,10 @@ class Login extends Base
                 $res['company_name'] = Db::name('company')->where(["id" => $company_id])->value('company_name');
                 $res['branchs_name'] = Db::name('branchs')->where(["id" => $branchs_id])->value('branchs_name');
                 $res['uid']          = $res['id'];
+<<<<<<< HEAD
                 $res['entry_status'] =$entry_status;
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                 unset($res['id']);
 
                 return $this->json(['code' => 1, 'type' => 2, 'msg' => '登陆成功(已注册账号)', 'data' => $res]);
@@ -451,7 +493,11 @@ class Login extends Base
                 ];
                 $uid    = $usermoder->insertGetId($insert);
 
+<<<<<<< HEAD
                 return $this->json(['code' => 1, 'type' => 3, 'msg' => '登陆成功(新用户需注册)', 'data' => ['uid' => $uid,'entry_status'=>$entry_status]]);
+=======
+                return $this->json(['code' => 1, 'type' => 3, 'msg' => '登陆成功(新用户需注册)', 'data' => ['uid' => $uid]]);
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             }
         } else {
             #手机号登陆 绑定微信 或换绑
@@ -488,11 +534,18 @@ class Login extends Base
                 $res_info['company_name'] = Db::name('company')->where(["id" => $company_id])->value('company_name');
                 $res_info['branchs_name'] = Db::name('branchs')->where(["id" => $branchs_id])->value('branchs_name');
                 $res_info['uid']          = $res_info['id'];
+<<<<<<< HEAD
                 $res['entry_status']      = $entry_status;
                 unset($res_info['id']);
 
 //                $res_info['']
                 return json(['code' => 1, 'type' => 1, 'msg' => '微信绑定成功', 'data' => $res_info,'entry_status'=>$entry_status]);
+=======
+                unset($res_info['id']);
+
+//                $res_info['']
+                return json(['code' => 1, 'type' => 1, 'msg' => '微信绑定成功', 'data' => $res_info]);
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             }
         }
     }

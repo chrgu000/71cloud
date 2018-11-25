@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-list.html";i:1542350431;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:89:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\company\company-list.html";i:1541387769;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -85,6 +89,7 @@
 						<a title="编辑" href="<?php echo Url('Company/companyedit',array('id'=>$v['id'])); ?>" class="ml-5" style="text-decoration:none">
 							<i class="Hui-iconfont">&#xe6df;</i>
 						</a>
+<<<<<<< HEAD
 						<!--<a title="删除" onclick="del(this,'<?php echo $v['id']; ?>')" class="ml-5" style="text-decoration:none">
 							<i class="Hui-iconfont">&#xe6e2;</i>
 						</a>-->
@@ -92,6 +97,25 @@
 				</tr>
 			<?php endforeach; endif; else: echo "" ;endif; ?>
 
+=======
+						<a title="删除" onclick="del(this,'<?php echo $v['id']; ?>')" class="ml-5" style="text-decoration:none">
+							<i class="Hui-iconfont">&#xe6e2;</i>
+						</a>
+					</td>
+				</tr>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
+			<!--<tr class="text-c">
+				<td><input type="checkbox" value="2" name=""></td>
+				<td>2</td>
+				<td>zhangsan</td>
+				<td>13000000000</td>
+				&lt;!&ndash;<td>admin@mail.com</td>&ndash;&gt;
+				<td>栏目编辑</td>
+				<td>2014-6-11 11:11:42</td>
+				<td class="td-status"><span class="label radius">已停用</span></td>
+				<td class="td-manage"><a style="text-decoration:none" onClick="admin_start(this,'10001')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','company-add.html','2','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			</tr>-->
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 		</tbody>
 	</table>
 </div>

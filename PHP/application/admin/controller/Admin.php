@@ -12,6 +12,49 @@ use think\Db;
 
 class Admin extends Base{
 
+<<<<<<< HEAD
+=======
+    //启用账号状态
+    public function status(){
+       $id=input('id');
+
+        $res=db('branch_admin')->where(array('id'=>$id))->update(array('status'=>1));
+        if($res){
+            $message=array(
+                "error"=>0,
+                "message"=>"修改成功"
+            );
+        }else{
+            $message=array(
+                "error"=>1,
+                "message"=>"修改失败"
+            );
+        }
+        return json($message);
+    }
+
+    //停用账号状态
+    public function statu(){
+        $id=input('id');
+
+        $res=db('branch_admin')->where(array('id'=>$id))->update(array('status'=>0));
+        if($res){
+            $message=array(
+                "error"=>0,
+                "message"=>"修改成功"
+            );
+        }else{
+            $message=array(
+                "error"=>1,
+                "message"=>"修改失败"
+            );
+        }
+        return json($message);
+    }
+
+
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     //管理员列表
     public function adminindex(){
 

@@ -1,6 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
+<<<<<<< HEAD
 Source Server         : localhost_3306
 Source Server Version : 50553
 Source Host           : localhost:3306
@@ -11,12 +12,28 @@ Target Server Version : 50553
 File Encoding         : 65001
 
 Date: 2018-11-22 17:46:29
+=======
+Source Server         : 虚拟机_桥接
+Source Server Version : 50640
+Source Host           : 192.168.2.159:3306
+Source Database       : 71cloud
+
+Target Server Type    : MYSQL
+Target Server Version : 50640
+File Encoding         : 65001
+
+Date: 2018-10-25 09:36:29
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_activity
+=======
+-- Table structure for `c_activity`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_activity`;
 CREATE TABLE `c_activity` (
@@ -31,8 +48,13 @@ CREATE TABLE `c_activity` (
   `address` varchar(32) NOT NULL DEFAULT '' COMMENT '活动地点',
   `dtime` int(10) unsigned DEFAULT '0' COMMENT '删除时间',
   `is_del` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除(0未删除1已删除)',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='活动';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='活动';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_activity
@@ -52,7 +74,11 @@ INSERT INTO `c_activity` VALUES ('12', '召开“追问初心”读书分享会'
 INSERT INTO `c_activity` VALUES ('13', '双11', '<p>递四方速递萨达</p>', '1540187617', '12', '0', '1540266969', '1540353362', '武汉', '1540187626', '1');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_ad
+=======
+-- Table structure for `c_ad`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_ad`;
 CREATE TABLE `c_ad` (
@@ -61,12 +87,18 @@ CREATE TABLE `c_ad` (
   `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '图片',
   `path` varchar(255) DEFAULT '' COMMENT '外链',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '类型 1表示广告 2表示banner',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='广告位';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='广告位';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_ad
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_ad` VALUES ('1', '1号位', '/Uploads/20181105/bfbabed3055ea12f7a40544c4121df5d.png', '', '1');
 INSERT INTO `c_ad` VALUES ('2', '2号位', '/Uploads/20181105/3748a76c619bd74ff5857361c0d8043a.png', '', '1');
 INSERT INTO `c_ad` VALUES ('3', 'banner1', '/Uploads/20181026/e625bf3969f083f8b70aea1803bca8bf.jpg', '', '2');
@@ -75,6 +107,17 @@ INSERT INTO `c_ad` VALUES ('11', 'banner3', '/Uploads/20181026/9355fc93984fe3bf1
 
 -- ----------------------------
 -- Table structure for c_admin
+=======
+INSERT INTO `c_ad` VALUES ('1', '1号位', '/Static/Home/images/slider2.jpg', 'http://dangjian.co-links.com/Cloud/index.html', '1');
+INSERT INTO `c_ad` VALUES ('2', '2号位', '/Uploads/2018-08-09/5b6c06ff10b6b.jpg', 'http://dangjian.co-links.com/Heart/index.html', '1');
+INSERT INTO `c_ad` VALUES ('3', 'banner1', '\\Uploads\\20181024\\deb1c45788fa01e1489cf5e22477c455.jpg', 'www.baidu.com', '2');
+INSERT INTO `c_ad` VALUES ('4', 'banner2', '\\Uploads\\20181024\\4b6ec6ab533b980da67f6d7a60b03466.jpg', 'www.71cloud.com', '2');
+INSERT INTO `c_ad` VALUES ('11', 'banner6', '\\Uploads\\20181024\\8b010b8dde45b6d396329a1cebfc9333.jpg', 'www.baidu.com', '2');
+INSERT INTO `c_ad` VALUES ('12', '3号位', '\\Uploads\\20181024\\3bc7f7eabc7117a5fbd82fcae0fdad07.jpg', 'www.baidu.com', '1');
+
+-- ----------------------------
+-- Table structure for `c_admin`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_admin`;
 CREATE TABLE `c_admin` (
@@ -84,17 +127,30 @@ CREATE TABLE `c_admin` (
   `ctime` int(11) DEFAULT NULL COMMENT '创建时间',
   `branch_admin_id` int(10) DEFAULT NULL COMMENT '支部管理员id',
   `utime` int(11) DEFAULT NULL COMMENT '修改时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统管理员表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统管理员表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_admin
 -- ----------------------------
 INSERT INTO `c_admin` VALUES ('1', 'admin', '594a554f2023ee1899f439eeba721955', '0', '0', '1537516436');
+<<<<<<< HEAD
 INSERT INTO `c_admin` VALUES ('6', 'xinbingliang', '50215ea8287d6f24ed10a1c6c0128c6b', '1540541536', null, null);
 
 -- ----------------------------
 -- Table structure for c_administrative
+=======
+INSERT INTO `c_admin` VALUES ('3', 'aaa', '383eafdd5d7d6221612fe7e10cf703f0', '1536800775', '0', '1536805931');
+INSERT INTO `c_admin` VALUES ('4', 'xin', '383eafdd5d7d6221612fe7e10cf703f0', '1540197171', null, null);
+
+-- ----------------------------
+-- Table structure for `c_administrative`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_administrative`;
 CREATE TABLE `c_administrative` (
@@ -103,15 +159,24 @@ CREATE TABLE `c_administrative` (
   `pid` int(10) NOT NULL COMMENT '父级id',
   `branch_id` int(10) NOT NULL COMMENT 'branch(支部)表id',
   `ctime` int(30) NOT NULL COMMENT '创建时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='行政机构表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='行政机构表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_administrative
 -- ----------------------------
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_administrative_s
+=======
+-- Table structure for `c_administrative_s`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_administrative_s`;
 CREATE TABLE `c_administrative_s` (
@@ -119,8 +184,13 @@ CREATE TABLE `c_administrative_s` (
   `xz_name` varchar(50) NOT NULL COMMENT '子行政机构名称',
   `phone` int(11) NOT NULL,
   `users_id` int(11) NOT NULL COMMENT '子级用户id',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='子行政机构表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='子行政机构表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_administrative_s
@@ -128,6 +198,7 @@ CREATE TABLE `c_administrative_s` (
 INSERT INTO `c_administrative_s` VALUES ('0', '', '0', '0');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_admin_resources
 -- ----------------------------
 DROP TABLE IF EXISTS `c_admin_resources`;
@@ -153,6 +224,9 @@ INSERT INTO `c_admin_resources` VALUES ('2', '37', '', '', '', '', '', '', '81,8
 
 -- ----------------------------
 -- Table structure for c_advice
+=======
+-- Table structure for `c_advice`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_advice`;
 CREATE TABLE `c_advice` (
@@ -161,8 +235,13 @@ CREATE TABLE `c_advice` (
   `link` varchar(32) NOT NULL DEFAULT '' COMMENT '联系方式 手机或邮箱',
   `content` text NOT NULL COMMENT '反馈内容',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '反馈时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='意见反馈';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='意见反馈';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_advice
@@ -173,7 +252,11 @@ INSERT INTO `c_advice` VALUES ('3', '24', '', '测试', '1535621614');
 INSERT INTO `c_advice` VALUES ('4', '24', '', '测试', '1535621623');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_allocate
+=======
+-- Table structure for `c_allocate`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_allocate`;
 CREATE TABLE `c_allocate` (
@@ -181,14 +264,20 @@ CREATE TABLE `c_allocate` (
   `branch_id` int(10) DEFAULT NULL COMMENT '支部id',
   `Permissions_id` int(10) DEFAULT NULL COMMENT '权限列表id',
   `ctime` int(30) DEFAULT NULL COMMENT '创建时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='权限分配表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限分配表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_allocate
 -- ----------------------------
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_applets
 -- ----------------------------
 DROP TABLE IF EXISTS `c_applets`;
@@ -211,6 +300,9 @@ INSERT INTO `c_applets` VALUES ('1', '党建商店', '123F1324165476SF1', 'http:
 
 -- ----------------------------
 -- Table structure for c_apply
+=======
+-- Table structure for `c_apply`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_apply`;
 CREATE TABLE `c_apply` (
@@ -218,9 +310,15 @@ CREATE TABLE `c_apply` (
   `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   `act_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '活动id',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '报名时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `uid` (`uid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='活动报名';
+=======
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='活动报名';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_apply
@@ -242,6 +340,7 @@ INSERT INTO `c_apply` VALUES ('34', '24', '10', '1535621828');
 INSERT INTO `c_apply` VALUES ('35', '24', '12', '1535621841');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_app_banner
 -- ----------------------------
 DROP TABLE IF EXISTS `c_app_banner`;
@@ -294,6 +393,9 @@ CREATE TABLE `c_app_recommend` (
 
 -- ----------------------------
 -- Table structure for c_auth
+=======
+-- Table structure for `c_auth`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_auth`;
 CREATE TABLE `c_auth` (
@@ -306,13 +408,19 @@ CREATE TABLE `c_auth` (
   `ctime` int(11) unsigned DEFAULT NULL COMMENT '创建时间',
   `utime` int(11) unsigned DEFAULT NULL COMMENT '修改时间',
   `dtime` int(11) unsigned DEFAULT NULL COMMENT '删除时间',
+<<<<<<< HEAD
   `company_id` varchar(255) DEFAULT NULL COMMENT '公司id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='子级权限表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='子级权限表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_auth
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_auth` VALUES ('1', '权限管理', '0', '', '', '1', '1520408547', null, null, '32,15');
 INSERT INTO `c_auth` VALUES ('2', '组织管理', '0', '', '', '1', '1520408547', null, null, '32');
 INSERT INTO `c_auth` VALUES ('4', '管理员列表', '2', 'Branchadmin', 'index', '1', '1520408547', null, null, null);
@@ -380,6 +488,48 @@ INSERT INTO `c_auth_company` VALUES ('10', '1,2,22,27,31,50,56,65', '7', '154278
 
 -- ----------------------------
 -- Table structure for c_branch
+=======
+INSERT INTO `c_auth` VALUES ('1', '权限管理', '0', '', '', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('2', '管理员管理', '0', '', '', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('3', '党支部管理', '0', '', '', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('4', '管理员列表', '2', 'Branchadmin', 'index', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('5', '管理员新增', '2', 'Branchadmin', 'create', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('6', '角色列表', '1', 'Roles', 'index', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('7', '权限列表', '1', 'Auth', 'index', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('8', '管理员删除', '2', 'Branchadmin', 'delete', '0', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('9', '党支部列表', '3', 'Branchs', 'index', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('10', '党支部新增', '3', 'Branchs', 'create', '1', '1520408547', null, null);
+INSERT INTO `c_auth` VALUES ('11', '角色新增', '1', 'Roles', 'create', '1', '1521272189', '1521272189', null);
+INSERT INTO `c_auth` VALUES ('22', '公众号管理', '0', 'weixin', 'index', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('24', '公众号新增', '22', 'weixin', 'create', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('26', '党员职称新增', '25', 'dangyuan', 'jobadd', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('27', '党员管理', '0', '', '', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('28', '党员审批', '27', 'dangyuan', 'permission', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('29', '新增党员', '27', 'dangyuan', 'memberadd', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('30', '新增行政职称', '27', 'DangyuanJobname', 'create', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('31', '党建消息管理', '0', '', '', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('32', '发件箱', '31', 'BranchMessage', 'index', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('34', '公众号菜单栏新增', '22', 'weixin', 'menu', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('35', '菜单栏列表', '22', 'weixin', 'menuindex', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('36', '党支部下级系统账号查看', '31', 'BranchMessage', 'adminlist', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('37', '收件箱', '31', 'BranchMessage', 'receiveIndex', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('38', '所属支部行政职称列表', '27', 'dangyuanJobname', 'lst', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('39', '删除党员', '27', 'dangyuan', 'delete', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('40', '党员信息修改', '27', 'dangyuan', 'edit', '2', null, null, null);
+INSERT INTO `c_auth` VALUES ('41', '发送消息', '31', 'branchmessage', 'create', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('42', '存储新消息', '31', 'branchmessage', 'save', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('44', '消息查看权限', '31', 'branchmessage', 'read', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('46', 'test', '45', 'test', 'test', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('50', '考试管理', '0', '', '', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('51', '考卷列表', '50', 'exampaper', 'index', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('52', '新增题目', '50', 'examquestions', 'create', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('53', '测试', '50', 'examquestions', 'test', '1', null, null, null);
+INSERT INTO `c_auth` VALUES ('54', '创建考卷', '50', 'exampaper', 'create', '0', null, null, null);
+INSERT INTO `c_auth` VALUES ('55', '活动列表', '50', 'examactivity', 'index', '1', null, null, null);
+
+-- ----------------------------
+-- Table structure for `c_branch`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_branch`;
 CREATE TABLE `c_branch` (
@@ -392,14 +542,20 @@ CREATE TABLE `c_branch` (
   `public_id` int(10) DEFAULT NULL COMMENT '公众号id',
   `Administrative_id` int(10) DEFAULT NULL COMMENT 'Administrative（行政机构）表id',
   `ctime` int(30) DEFAULT NULL COMMENT '创建时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='支部表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支部表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_branch
 -- ----------------------------
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_branchs
 -- ----------------------------
 DROP TABLE IF EXISTS `c_branchs`;
@@ -428,6 +584,9 @@ INSERT INTO `c_branchs` VALUES ('43', '武汉纺友技术有限公司党支部',
 
 -- ----------------------------
 -- Table structure for c_branch_admin
+=======
+-- Table structure for `c_branch_admin`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_branch_admin`;
 CREATE TABLE `c_branch_admin` (
@@ -446,17 +605,34 @@ CREATE TABLE `c_branch_admin` (
   `appid` varchar(30) DEFAULT NULL COMMENT '公众号appid',
   `appsecret` varchar(255) DEFAULT NULL COMMENT '公众号appsecret',
   `token` varchar(255) DEFAULT NULL COMMENT '第一认证时候的token 应该是我们系统内置固定一个',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='支部管理员表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='支部管理员表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_branch_admin
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_branch_admin` VALUES ('1', 'fangyou', '383eafdd5d7d6221612fe7e10cf703f0', '43', '1', '1', '1542178852', null, '0', null, '9', '1', null, null, null);
 INSERT INTO `c_branch_admin` VALUES ('7', 'admin', '383eafdd5d7d6221612fe7e10cf703f0', null, '1', '1', '1542788218', null, null, null, null, '7', null, null, null);
 
 -- ----------------------------
 -- Table structure for c_branch_message
+=======
+INSERT INTO `c_branch_admin` VALUES ('1', 'admin', '594a554f2023ee1899f439eeba721955', '1', '1', '1', '1536300390', '', null, '1536824927', '8', '5', 'wxdb8a9536d8f3728b', '791d8692600cc2b1b6145098e8082304', 'smile_pengchang');
+INSERT INTO `c_branch_admin` VALUES ('7', 'sss', '383eafdd5d7d6221612fe7e10cf703f0', '6', '1', '1', '1536918418', '', '0', null, '8', '9', null, null, null);
+INSERT INTO `c_branch_admin` VALUES ('20', 'text6', '383eafdd5d7d6221612fe7e10cf703f0', '1', '1', '1', '1539834983', null, '0', null, '9', '18', null, null, null);
+INSERT INTO `c_branch_admin` VALUES ('24', 'adminx', '383eafdd5d7d6221612fe7e10cf703f0', '1', '1', '1', '1539841125', null, '0', null, '8', '8', null, null, null);
+INSERT INTO `c_branch_admin` VALUES ('25', 'test', '594a554f2023ee1899f439eeba721955', '7', '1', '1', '1540202191', '', '1', null, null, null, null, null, null);
+INSERT INTO `c_branch_admin` VALUES ('26', 'xin', '50215ea8287d6f24ed10a1c6c0128c6b', '29', '1', '1', '1540283301', null, '0', null, '7', '19', null, null, null);
+
+-- ----------------------------
+-- Table structure for `c_branch_message`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_branch_message`;
 CREATE TABLE `c_branch_message` (
@@ -471,19 +647,78 @@ CREATE TABLE `c_branch_message` (
   `update_time` int(11) unsigned DEFAULT NULL COMMENT '修改时间',
   `delete_time` int(11) unsigned DEFAULT NULL COMMENT '删除时间',
   `is_admin` enum('0','1') COLLATE utf8_bin DEFAULT '0' COMMENT '''0''为党建后台之间的消息通信，1为公司后台发送给党建后台账号的消息',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='党建后台系统站消息表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='党建后台系统站消息表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_branch_message
 -- ----------------------------
 INSERT INTO `c_branch_message` VALUES ('5', '1', '27', '中秋节放假通知', 0x3C68313EE4BDA0E5A5BD3C2F68313E3C68343EE5A4A7E5AEB6E5A5BD3C62722F3E3C2F68343E, '0', null, '1539856583', null, null, '0');
+<<<<<<< HEAD
 INSERT INTO `c_branch_message` VALUES ('6', '1', '34', '测试消息', 0x3C703E3636363C62722F3E3C2F703E, '1', '1541144141', '1541143630', null, null, '1');
 INSERT INTO `c_branch_message` VALUES ('7', '1', '34', '测试消息', 0x3C703EE6B58BE8AF953C6120687265663D22687474703A2F2F7777772E62616964752E636F6D22207461726765743D225F73656C6622207469746C653D22E6A087E9A298223EE6B58BE8AF95E6B688E681AF3C2F613E3C2F703E, '1', '1541150519', '1541150144', null, null, '1');
 INSERT INTO `c_branch_message` VALUES ('8', '1', '35', '测试消息', 0x3C703EE6B58BE8AF953C6120687265663D22687474703A2F2F7777772E62616964752E636F6D22207461726765743D225F73656C6622207469746C653D22E6A087E9A298223EE6B58BE8AF95E6B688E681AF3C2F613E3C2F703E, '0', null, '1541150144', null, null, '1');
 
 -- ----------------------------
 -- Table structure for c_class
+=======
+INSERT INTO `c_branch_message` VALUES ('6', '1', '1', '辛丙亮测试', 0x3C703EE8BE9BE4B899E4BAAEE6B58BE8AF95EFBC8C3C6120687265663D22687474703A2F2F7777772E62616964752E636F6D22207461726765743D225F626C616E6B22207469746C653D22E6B58BE8AF95E794A8E79A84E993BEE68EA5223EE6B58BE8AF95E794A8E79A84E993BEE68EA53C2F613E3C2F703E, '1', '1540343133', '1540281937', null, null, '1');
+INSERT INTO `c_branch_message` VALUES ('7', '1', '7', '辛丙亮测试', 0x3C703EE8BE9BE4B899E4BAAEE6B58BE8AF95EFBC8C3C6120687265663D22687474703A2F2F7777772E62616964752E636F6D22207461726765743D225F626C616E6B22207469746C653D22E6B58BE8AF95E794A8E79A84E993BEE68EA5223EE6B58BE8AF95E794A8E79A84E993BEE68EA53C2F613E3C2F703E, '0', null, '1540281937', null, null, '1');
+INSERT INTO `c_branch_message` VALUES ('8', '1', '20', '辛丙亮测试', 0x3C703EE8BE9BE4B899E4BAAEE6B58BE8AF95EFBC8C3C6120687265663D22687474703A2F2F7777772E62616964752E636F6D22207461726765743D225F626C616E6B22207469746C653D22E6B58BE8AF95E794A8E79A84E993BEE68EA5223EE6B58BE8AF95E794A8E79A84E993BEE68EA53C2F613E3C2F703E, '0', null, '1540281937', null, null, '1');
+INSERT INTO `c_branch_message` VALUES ('9', '1', '24', '辛丙亮测试', 0x3C703EE8BE9BE4B899E4BAAEE6B58BE8AF95EFBC8C3C6120687265663D22687474703A2F2F7777772E62616964752E636F6D22207461726765743D225F626C616E6B22207469746C653D22E6B58BE8AF95E794A8E79A84E993BEE68EA5223EE6B58BE8AF95E794A8E79A84E993BEE68EA53C2F613E3C2F703E, '0', null, '1540281937', null, null, '1');
+
+-- ----------------------------
+-- Table structure for `c_branchs`
+-- ----------------------------
+DROP TABLE IF EXISTS `c_branchs`;
+CREATE TABLE `c_branchs` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `branchs_name` varchar(50) NOT NULL COMMENT '子党支部名称',
+  `phone` int(11) NOT NULL COMMENT '党支部电话',
+  `pid` int(11) NOT NULL COMMENT '父id',
+  `roles_id` int(10) NOT NULL,
+  `ctime` int(20) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='子党支部表';
+
+-- ----------------------------
+-- Records of c_branchs
+-- ----------------------------
+INSERT INTO `c_branchs` VALUES ('1', '大冶市党支部', '130200111', '0', '1', '00000000001536305313');
+INSERT INTO `c_branchs` VALUES ('5', '刘仁八党支部', '13134443', '0', '2', '00000000001536314040');
+INSERT INTO `c_branchs` VALUES ('6', '东山村党支部', '120111', '5', '2', '00000000001536314101');
+INSERT INTO `c_branchs` VALUES ('7', '陈贵镇党支部', '121315', '1', '3', null);
+INSERT INTO `c_branchs` VALUES ('9', '秦脑村党子部', '2147483647', '6', '2', '00000000001536548248');
+INSERT INTO `c_branchs` VALUES ('10', '张石村党支部', '2814521', '1', '2', '00000000001536549019');
+INSERT INTO `c_branchs` VALUES ('11', '阳新党支部', '2147483647', '0', '2', '00000000001536549126');
+INSERT INTO `c_branchs` VALUES ('12', '留人吧', '2147483647', '2', '3', '00000000001536562974');
+INSERT INTO `c_branchs` VALUES ('13', '灵乡党支部', '2147483647', '0', '2', '00000000001536569971');
+INSERT INTO `c_branchs` VALUES ('14', '武汉市第一支部', '888888', '0', '2', '00000000001539411867');
+INSERT INTO `c_branchs` VALUES ('15', '武汉市第2支部', '11111111', '14', '2', '00000000001539411894');
+INSERT INTO `c_branchs` VALUES ('16', '测试党支部1017', '222221017', '1', '1', '00000000001539755441');
+INSERT INTO `c_branchs` VALUES ('17', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286413');
+INSERT INTO `c_branchs` VALUES ('18', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286421');
+INSERT INTO `c_branchs` VALUES ('19', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286572');
+INSERT INTO `c_branchs` VALUES ('20', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286594');
+INSERT INTO `c_branchs` VALUES ('21', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286655');
+INSERT INTO `c_branchs` VALUES ('22', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286695');
+INSERT INTO `c_branchs` VALUES ('23', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286704');
+INSERT INTO `c_branchs` VALUES ('24', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286755');
+INSERT INTO `c_branchs` VALUES ('25', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286756');
+INSERT INTO `c_branchs` VALUES ('26', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286756');
+INSERT INTO `c_branchs` VALUES ('27', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286758');
+INSERT INTO `c_branchs` VALUES ('28', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286792');
+INSERT INTO `c_branchs` VALUES ('29', '新增的顶级党支部', '111111111', '0', '1', '00000000001540286834');
+INSERT INTO `c_branchs` VALUES ('30', '新增的顶级党支部', '111111111', '0', '1', '00000000001540288164');
+
+-- ----------------------------
+-- Table structure for `c_class`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_class`;
 CREATE TABLE `c_class` (
@@ -496,25 +731,41 @@ CREATE TABLE `c_class` (
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `visit` int(10) unsigned DEFAULT '0' COMMENT '观看次数',
   `status` tinyint(2) unsigned DEFAULT '1' COMMENT '状态 1正常2下架',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `cate_id` (`cate_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='课程表';
+=======
+  PRIMARY KEY (`id`),
+  KEY `cate_id` (`cate_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='课程表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_class
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_class` VALUES ('12', '党员应知应会党章知识', '<p>在中办发出通知要求各地的党员“两学一做”，学党章党规，学系列讲话，做合格党员的大背景下，本次课程主要讲两个方面的大问题：第一个大问题是“两学一做”学习教育的重大意义；第二个大问题是开展“两学一做”学习教育的总体要求。</p><p><br/></p><p>来源：全国党员干部现代远程教育</p><p><br/></p>', '12', '\\Uploads\\20181025\\19f2b5b95b4d045a8310329ce25e28cf.jpg', '10', '1540431256', '45', '1');
 INSERT INTO `c_class` VALUES ('13', '与时俱进话党章', '&lt;p&gt;中国共产党在90多年波澜壮阔的奋斗历程中，先后对党章进行了16次修改，透过党章建设的红色脚印，我们可以清晰地触摸到党的理论创新、实践创新和制度创新的光辉轨迹。党章就像公开树立起来的旗帜和标杆，为党的发展指引方向，为党的建设提供标准。&lt;/p&gt;', '12', 'Uploads/2018-08-18/5b77809c44d0d.jpg', '0', '1534558364', '7', '1');
 INSERT INTO `c_class` VALUES ('14', '《中国共产党党内监督条例》解读', '&lt;p&gt;党的十八届六中全会，通过了《中国共产党党内监督条例》这项重要的党内法规，这个法规的内容是什么？它的通过、生效、实施有什么意义？中共中央党校研究生院教授、博士生导师刘春将从贯彻执行《中国共产党党内监督条例》的重大意义、《中国共产党党内监督条例》结构和内容两个方面给我们做详细解读。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;来源：全国党员干部现代远程教育&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '13', 'Uploads/2018-08-18/5b77829e27558.jpg', '1', '1534558878', '2', '1');
 INSERT INTO `c_class` VALUES ('15', '《中国共产党党组工作条例》解读', '&lt;p&gt;《中国共产党党组工作条例》的公布，对于规范党组的运作，提高党组工作的效率，理顺各个方面的关系发挥了重要的作用。中共中央党校政法教研部教授王立峰就此条例发布的背景、意义以及主要内容进行解读。&lt;/p&gt;', '13', 'Uploads/2018-08-18/5b778395051c6.jpg', '4', '1534559125', '7', '1');
 INSERT INTO `c_class` VALUES ('16', '《榜样》专题节目', '&lt;p&gt;伟大时代呼唤伟大精神，崇高事业需要榜样引领。两优一先、两学一做特别节目《榜样》，由中共中央组织部、中央电视台真诚奉献。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '14', 'Uploads/2018-08-18/5b778459f2908.JPG', '1', '1534559384', '1', '1');
 INSERT INTO `c_class` VALUES ('17', '不忘初心、做合格党员', '<p>江西赣州市南康区龙回镇坪沙村支部书记黎明福，与全村党员零距离互动交流了入党的“初心”，并通过讲述革命故事，结合工作实际的方式，分享了自己入党“初心”从清晰到模糊再到清晰和坚定的心路历程，重温了“不忘初心、勇挑重担、做合格党员”的铿锵誓言。</p><p><br/></p>', '14', '/Uploads/20181026/ff110c8feadd003f499d8c0e528e7c9d.jpg', '1', '1540804418', '4', '1');
+=======
+INSERT INTO `c_class` VALUES ('12', '党员应知应会党章知识', '<p>在中办发出通知要求各地的党员“两学一做”，学党章党规，学系列讲话，做合格党员的大背景下，本次课程主要讲两个方面的大问题：第一个大问题是“两学一做”学习教育的重大意义；第二个大问题是开展“两学一做”学习教育的总体要求。</p><p><br/></p><p>来源：全国党员干部现代远程教育</p><p><br/></p>', '12', '\\Uploads\\20181025\\19f2b5b95b4d045a8310329ce25e28cf.jpg', '9', '1540431256', '45', '1');
+INSERT INTO `c_class` VALUES ('13', '与时俱进话党章', '&lt;p&gt;中国共产党在90多年波澜壮阔的奋斗历程中，先后对党章进行了16次修改，透过党章建设的红色脚印，我们可以清晰地触摸到党的理论创新、实践创新和制度创新的光辉轨迹。党章就像公开树立起来的旗帜和标杆，为党的发展指引方向，为党的建设提供标准。&lt;/p&gt;', '12', 'Uploads/2018-08-18/5b77809c44d0d.jpg', '1', '1534558364', '7', '1');
+INSERT INTO `c_class` VALUES ('14', '《中国共产党党内监督条例》解读', '&lt;p&gt;党的十八届六中全会，通过了《中国共产党党内监督条例》这项重要的党内法规，这个法规的内容是什么？它的通过、生效、实施有什么意义？中共中央党校研究生院教授、博士生导师刘春将从贯彻执行《中国共产党党内监督条例》的重大意义、《中国共产党党内监督条例》结构和内容两个方面给我们做详细解读。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;来源：全国党员干部现代远程教育&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '13', 'Uploads/2018-08-18/5b77829e27558.jpg', '1', '1534558878', '2', '1');
+INSERT INTO `c_class` VALUES ('15', '《中国共产党党组工作条例》解读', '&lt;p&gt;《中国共产党党组工作条例》的公布，对于规范党组的运作，提高党组工作的效率，理顺各个方面的关系发挥了重要的作用。中共中央党校政法教研部教授王立峰就此条例发布的背景、意义以及主要内容进行解读。&lt;/p&gt;', '13', 'Uploads/2018-08-18/5b778395051c6.jpg', '4', '1534559125', '7', '1');
+INSERT INTO `c_class` VALUES ('16', '《榜样》专题节目', '&lt;p&gt;伟大时代呼唤伟大精神，崇高事业需要榜样引领。两优一先、两学一做特别节目《榜样》，由中共中央组织部、中央电视台真诚奉献。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '14', 'Uploads/2018-08-18/5b778459f2908.JPG', '1', '1534559384', '1', '1');
+INSERT INTO `c_class` VALUES ('17', '不忘初心、做合格党员', '&lt;p&gt;江西赣州市南康区龙回镇坪沙村支部书记黎明福，与全村党员零距离互动交流了入党的“初心”，并通过讲述革命故事，结合工作实际的方式，分享了自己入党“初心”从清晰到模糊再到清晰和坚定的心路历程，重温了“不忘初心、勇挑重担、做合格党员”的铿锵誓言。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '14', 'Uploads/2018-08-18/5b778490332e2.jpg', '1', '1534559376', '4', '1');
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 INSERT INTO `c_class` VALUES ('18', '知行止、守纪律，做合格党员', '&lt;p&gt;本片以动漫故事的形式，通过三个身边小故事，生动、形象、直观地阐述了党的纪律和规矩，告诫广大党员在日常工作和学习生活中知行止、守纪律，做合格党员，是面向广大党员干部群众宣传“两学一做”学习教育的微公益片。&lt;/p&gt;', '14', 'Uploads/2018-08-18/5b7784c1048d6.jpg', '1', '1534559425', '3', '1');
 INSERT INTO `c_class` VALUES ('19', '二十一世纪中国梦的战略宏图和阶段目标', '&lt;p&gt;中共中央党校教授辛守良通过本讲座，为大家介绍了研究当代中国发展进程不同时段的战略目标，特别是准确把握二十一世纪中国梦的战略构想和几个阶段的目标，对统一全党和全国人民的思想行动，实现中国梦，有着十分重要的意义。&lt;/p&gt;', '16', 'Uploads/2018-08-18/5b778514e9f5e.jpg', '2', '1534559508', '1', '1');
 INSERT INTO `c_class` VALUES ('20', '中国梦与社会建设', '&lt;p&gt;中国梦是中华民族近代以来最美好的夙愿，全面建成小康社会实现小康社会的关键一步。今后五年是全面建成小康社会的关键时期，面临一系列矛盾和挑战，必须贯彻四个全面，着力做好社会建设。我们要认真总结社会建设的经验，解决好社会建设两大根本任务。&lt;/p&gt;', '16', 'Uploads/2018-08-18/5b7785c77a200.jpg', '3', '1534559687', '3', '1');
 INSERT INTO `c_class` VALUES ('21', '提高驾驭科学发展的能力', '&lt;p&gt;中共中央党校研究生院院长、教授韩庆祥讲授如何提高驾驭科学发展的能力。&lt;/p&gt;', '19', 'Uploads/2018-08-18/5b7786d1e9c1f.jpg', '1', '1534559953', '2', '1');
 INSERT INTO `c_class` VALUES ('22', '党性修养和四个全面', '&lt;p&gt;本讲座主要讲了三大问题：1.谈一谈党性修养是中国共产党人的创造；2.党性修养的内容；3.我们按照四个全面的要求来要求自己，来提高自己。&lt;/p&gt;', '17', 'Uploads/2018-08-18/5b7794c8b1dcf.jpg', '1', '1534563528', '0', '1');
 INSERT INTO `c_class` VALUES ('23', '生态文明建设与中国发展新战略', '&lt;p&gt;生态文明是十八大提出的重要战略。本课程从时代高度讲授十八大提出生态文明战略的时代必然性；从生态文明与中国古代文明的契合性，阐述生态文明是基于东方智慧的文明之道；从世界新经济革命，探索中国绿色化发展之路；从制度与文化建设，研究五位一体生态文明建设落实问题。&lt;/p&gt;', '18', 'Uploads/2018-08-18/5b7795c886259.jpg', '2', '1534563784', '1', '1');
+<<<<<<< HEAD
 INSERT INTO `c_class` VALUES ('24', '大型电视专题片《永远在路上》', '<p>专题片反映了党的十八大以来，以习近平同志为总书记的党中央把全面从严治党提升到“四个全面”战略布局高度，正风肃纪，锲而不舍纠“四风”，赢得党心民心；反腐惩恶，整治群众身边的腐败问题，厚植党执政的政治基础，着力构建不敢腐、不能腐、不想腐的体制机制，使不敢腐的震慑作用得到发挥，不能腐、不想腐的效应初步显现，反腐败斗争压倒性态势正在形成。</p>', '21', '/Uploads/20181026/d5b8eef17c0f4c04b6e375f0617c5571.jpg', '1', '1540547467', '3', '1');
 INSERT INTO `c_class` VALUES ('25', '预防职务犯罪微电影：到底怨谁', '&lt;p&gt;本片以微电影的形式讲述了一名叫陈步元的年轻机关干部成长、犯错的人生经历：入仕之初，他兢兢业业，作出了突出贡献，得到了群众认可和领导赏识，但随着职位不断升高，他的私欲不断膨胀，从“小错”到“大错”，最终锒铛入狱。故事有一定代表性和典型性，对当下机关干部特别是年轻干部有很好的警示作用。&lt;/p&gt;', '21', 'Uploads/2018-08-18/5b77b7db45704.jpg', '0', '1534572507', '6', '2');
 INSERT INTO `c_class` VALUES ('26', '专题片《打铁还需自身硬》', '<p>反腐败斗争依然严峻复杂的形势下，纪检监察系统也非净土，少数纪检监察干部由执纪监督者蜕变为腐败分子，教训深刻。监督者自身，绝不能成为监督的盲点。党的十八大以来，纪检监察机关严肃查处一批违纪违法的纪检干部，采取一系列措施加强自我监督。</p>', '21', '/Uploads/20181026/1d258612cbb92a98afbfa2bf8e331f36.jpg', '3', '1540547456', '11', '1');
@@ -527,6 +778,21 @@ INSERT INTO `c_class` VALUES ('32', '职务犯罪问题研究', '<p>本课程主
 
 -- ----------------------------
 -- Table structure for c_class_cate
+=======
+INSERT INTO `c_class` VALUES ('24', '大型电视专题片《永远在路上》', '&lt;p&gt;专题片反映了党的十八大以来，以习近平同志为总书记的党中央把全面从严治党提升到“四个全面”战略布局高度，正风肃纪，锲而不舍纠“四风”，赢得党心民心；反腐惩恶，整治群众身边的腐败问题，厚植党执政的政治基础，着力构建不敢腐、不能腐、不想腐的体制机制，使不敢腐的震慑作用得到发挥，不能腐、不想腐的效应初步显现，反腐败斗争压倒性态势正在形成。&lt;/p&gt;', '21', 'Uploads/2018-08-18/5b77b67b11ea0.jpg', '1', '1534572155', '3', '1');
+INSERT INTO `c_class` VALUES ('25', '预防职务犯罪微电影：到底怨谁', '&lt;p&gt;本片以微电影的形式讲述了一名叫陈步元的年轻机关干部成长、犯错的人生经历：入仕之初，他兢兢业业，作出了突出贡献，得到了群众认可和领导赏识，但随着职位不断升高，他的私欲不断膨胀，从“小错”到“大错”，最终锒铛入狱。故事有一定代表性和典型性，对当下机关干部特别是年轻干部有很好的警示作用。&lt;/p&gt;', '21', 'Uploads/2018-08-18/5b77b7db45704.jpg', '0', '1534572507', '6', '2');
+INSERT INTO `c_class` VALUES ('26', '专题片《打铁还需自身硬》', '&lt;p&gt;反腐败斗争依然严峻复杂的形势下，纪检监察系统也非净土，少数纪检监察干部由执纪监督者蜕变为腐败分子，教训深刻。监督者自身，绝不能成为监督的盲点。党的十八大以来，纪检监察机关严肃查处一批违纪违法的纪检干部，采取一系列措施加强自我监督。&lt;/p&gt;', '21', 'Uploads/2018-08-18/5b77b8079d127.jpg', '3', '1534572551', '11', '1');
+INSERT INTO `c_class` VALUES ('27', '十年内战', '&lt;p&gt;《党史故事100讲》以党的90多年发展历程为顺序，以党的重大事件为线索，以不同时期的典型事例、历史人物、精彩故事为主干，全景式回顾党的伟大历程和辉煌成就。《党史故事100讲▪十年内战》，为您讲述中国共产党从南昌起义到长征胜利会师期间艰苦奋斗的历程。&lt;/p&gt;', '23', 'Uploads/2018-08-18/5b77b8ce6fce6.jpg', '10', '1534572750', '28', '1');
+INSERT INTO `c_class` VALUES ('28', '践行“三严三实” 当好“四有”公仆', '&lt;p&gt;主讲：唐立浩&lt;/p&gt;&lt;p&gt;中共山西省长治潞城市委书记唐立浩以“践行‘三严三实’ 当好‘四有’公仆”为主题，讲“三严三实”专题党课。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '24', 'Uploads/2018-08-18/5b77b9240ed36.jpg', '1', '1534572836', '8', '1');
+INSERT INTO `c_class` VALUES ('29', '“十三五”期间民生热点问题分析', '&lt;p&gt;2016年全国两会召开后，《“十三五”规划纲要》正式通过并公布，其中最重要的内容就是民生改善。本讲座主要展望分析了国家通过哪些制度安排来改善民生问题，以及在实施过程中会遇到哪些挑战并如何应对。&lt;/p&gt;', '26', 'Uploads/2018-08-18/5b77b9f69a093.jpg', '3', '1534573046', '16', '1');
+INSERT INTO `c_class` VALUES ('30', '当前宏观经济形势分析', '&lt;p&gt;本讲座主要讲述了两大问题：一全球经济情况分析；二我国目前的宏观经济情况分析。具体包括整个的中国的国际收支情况；对外经贸的发展情况和问题分析；中国经济的发展战略以及前景展望。&lt;/p&gt;', '27', 'Uploads/2018-08-18/5b77bac8e0b51.jpg', '3', '1534573256', '78', '1');
+INSERT INTO `c_class` VALUES ('31', '农村土地经营权流转有关政策', '&lt;p&gt;本课主要介绍农村土地经营权流转的涵义、前提、主体、遵循的原则、方式等内容，同时针对农村土地经营权流转中常见问题进行解答。&lt;/p&gt;', '29', 'Uploads/2018-08-18/5b77bce7cc025.jpg', '1', '1534573799', '24', '2');
+INSERT INTO `c_class` VALUES ('32', '职务犯罪问题研究', '&lt;p&gt;本课程主要讲述四大问题：第一，现今我国职务犯罪的概况；第二，当前预防和惩治职务犯罪存在的主要问题；第三，职务犯罪存在问题的原因；第四，预防和惩治职务犯罪应注意的几对关系。&lt;/p&gt;', '30', 'Uploads/2018-08-18/5b77bec00a54c.jpg', '4', '1534574272', '39', '1');
+INSERT INTO `c_class` VALUES ('33', '测试课程', '<p>测试课程</p>', '12', '\\Uploads\\20181025\\b8ec7d83966c935595cbbb7d74b48490.jpg', '0', '1540430362', '0', '2');
+
+-- ----------------------------
+-- Table structure for `c_class_cate`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_class_cate`;
 CREATE TABLE `c_class_cate` (
@@ -534,8 +800,13 @@ CREATE TABLE `c_class_cate` (
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '课程名称',
   `pid` int(10) unsigned DEFAULT '0' COMMENT '父id',
   `sort` tinyint(2) unsigned DEFAULT '0' COMMENT '排序',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='课程分类';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='课程分类';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_class_cate
@@ -559,10 +830,16 @@ INSERT INTO `c_class_cate` VALUES ('27', '经济形势', '25', '0');
 INSERT INTO `c_class_cate` VALUES ('28', '政策法规', '0', '0');
 INSERT INTO `c_class_cate` VALUES ('29', '政策解读', '28', '0');
 INSERT INTO `c_class_cate` VALUES ('30', '法律法规', '28', '0');
+<<<<<<< HEAD
 INSERT INTO `c_class_cate` VALUES ('31', '测试分类', '10', '0');
 
 -- ----------------------------
 -- Table structure for c_class_chapter
+=======
+
+-- ----------------------------
+-- Table structure for `c_class_chapter`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_class_chapter`;
 CREATE TABLE `c_class_chapter` (
@@ -576,9 +853,15 @@ CREATE TABLE `c_class_chapter` (
   `ctime` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `is_del` tinyint(2) unsigned DEFAULT '0' COMMENT '是否删除 0未删除 1已删除',
   `dtime` int(10) unsigned DEFAULT '0' COMMENT '删除时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `class_id` (`class_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='章节表';
+=======
+  PRIMARY KEY (`id`),
+  KEY `class_id` (`class_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COMMENT='章节表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_class_chapter
@@ -626,6 +909,7 @@ INSERT INTO `c_class_chapter` VALUES ('67', '27', '第五集 中共六大 低潮
 INSERT INTO `c_class_chapter` VALUES ('68', '27', '第八集 以弱抗强 打破“围剿”', 'Uploads/2018-08-20/5b7a573351cd6.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B640x360%5D%20%E7%AC%AC%E5%85%AB%E9%9B%86%20%E4%BB%A5%E5%BC%B1%E6%8A%97%E5%BC%BA%20%E6%89%93%E7%A0%B4%E2%80%9C%E5%9B%B4%E5%89%BF%E2%80%9D_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '2271', '8', '1534744371', '0', '0');
 INSERT INTO `c_class_chapter` VALUES ('69', '27', '第六集 古田丰碑 奠定军魂', 'Uploads/2018-08-20/5b7a579098def.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B640x360%5D%20%E7%AC%AC%E5%85%AD%E9%9B%86%20%E5%8F%A4%E7%94%B0%E4%B8%B0%E7%A2%91.Ogg', '2440', '6', '1534744464', '0', '0');
 INSERT INTO `c_class_chapter` VALUES ('70', '27', '第十集 雄关漫道 三军会师', 'Uploads/2018-08-20/5b7a57ccb268c.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B640x360%5D%20%E7%AC%AC%E5%8D%81%E9%9B%86%20%E9%9B%84%E5%85%B3%E6%BC%AB%E9%81%93%20%E4%B8%89%E5%86%9B%E4%BC%9A%E5%B8%88_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '2409', '10', '1534744524', '0', '0');
+<<<<<<< HEAD
 INSERT INTO `c_class_chapter` VALUES ('71', '27', '第四集 朱毛会师 组建劲旅', '/Uploads/20181027/1f548ea23a6d8822cebe34423cd8ee72.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B640x360%5D%20%E7%AC%AC%E5%9B%9B%E9%9B%86%20%E6%9C%B1%E6%AF%9B%E4%BC%9A%E5%B8%88%20%E7%BB%84%E5%BB%BA%E5%8A%B2%E6%97%85_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '2373', '4', '1534744587', '0', '0');
 INSERT INTO `c_class_chapter` VALUES ('72', '29', '民生改善进入新的历史阶段和改善民生的指导思想', '/Uploads/20181027/2345d1a23698469f90af38284e747058.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E2%80%9C%E5%8D%81%E4%B8%89%E4%BA%94%E2%80%9D%E6%9C%9F%E9%97%B4%E6%B0%91%E7%94%9F%E7%83%AD%E7%82%B9%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8A%EF%BC%89%E6%B0%91%E7%94%9F%E6%94%B9%E5%96%84%E8%BF%9B%E5%85%A5%E6%96%B0%E7%9A%84%E5%8E%86%E5%8F%B2%E9%98%B6%E6%AE%B5%E5%92%8C%E6%94%B9%E5%96%84%E6%B0%91%E7%94%9F%E7%9A%84%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1872', '1', '1534744734', '0', '0');
 INSERT INTO `c_class_chapter` VALUES ('73', '29', '基本举措和形成改善民生共享发展的社会合力', '/Uploads/20181027/c34d3f3a3d0b21f6724f59a3c6bc4fc0.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E2%80%9C%E5%8D%81%E4%B8%89%E4%BA%94%E2%80%9D%E6%9C%9F%E9%97%B4%E6%B0%91%E7%94%9F%E7%83%AD%E7%82%B9%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8B%EF%BC%89%E5%9F%BA%E6%9C%AC%E4%B8%BE%E6%8E%AA%E5%92%8C%E5%BD%A2%E6%88%90%E6%94%B9%E5%96%84%E6%B0%91%E7%94%9F%E5%85%B1%E4%BA%AB%E5%8F%91%E5%B1%95%E7%9A%84%E7%A4%BE%E4%BC%9A%E5%90%88%E5%8A%9B_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1927', '3', '1534744825', '0', '0');
@@ -642,6 +926,22 @@ INSERT INTO `c_class_chapter` VALUES ('83', '13', '测试', '/Uploads/20181026/d
 
 -- ----------------------------
 -- Table structure for c_cloud
+=======
+INSERT INTO `c_class_chapter` VALUES ('71', '27', '第四集 朱毛会师 组建劲旅', 'Uploads/2018-08-20/5b7a580bb681c.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B640x360%5D%20%E7%AC%AC%E5%9B%9B%E9%9B%86%20%E6%9C%B1%E6%AF%9B%E4%BC%9A%E5%B8%88%20%E7%BB%84%E5%BB%BA%E5%8A%B2%E6%97%85_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '2373', '4', '1534744587', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('72', '29', '民生改善进入新的历史阶段和改善民生的指导思想', 'Uploads/2018-08-20/5b7a589e58069.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E2%80%9C%E5%8D%81%E4%B8%89%E4%BA%94%E2%80%9D%E6%9C%9F%E9%97%B4%E6%B0%91%E7%94%9F%E7%83%AD%E7%82%B9%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8A%EF%BC%89%E6%B0%91%E7%94%9F%E6%94%B9%E5%96%84%E8%BF%9B%E5%85%A5%E6%96%B0%E7%9A%84%E5%8E%86%E5%8F%B2%E9%98%B6%E6%AE%B5%E5%92%8C%E6%94%B9%E5%96%84%E6%B0%91%E7%94%9F%E7%9A%84%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1872', '1', '1534744734', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('73', '29', '基本举措和形成改善民生共享发展的社会合力', 'Uploads/2018-08-20/5b7a58f9ed5c6.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E2%80%9C%E5%8D%81%E4%B8%89%E4%BA%94%E2%80%9D%E6%9C%9F%E9%97%B4%E6%B0%91%E7%94%9F%E7%83%AD%E7%82%B9%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8B%EF%BC%89%E5%9F%BA%E6%9C%AC%E4%B8%BE%E6%8E%AA%E5%92%8C%E5%BD%A2%E6%88%90%E6%94%B9%E5%96%84%E6%B0%91%E7%94%9F%E5%85%B1%E4%BA%AB%E5%8F%91%E5%B1%95%E7%9A%84%E7%A4%BE%E4%BC%9A%E5%90%88%E5%8A%9B_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1927', '3', '1534744825', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('74', '29', '改善民生的基本举措', 'Uploads/2018-08-20/5b7a595eb833f.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E2%80%9C%E5%8D%81%E4%B8%89%E4%BA%94%E2%80%9D%E6%9C%9F%E9%97%B4%E6%B0%91%E7%94%9F%E7%83%AD%E7%82%B9%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%AD%EF%BC%89%E6%94%B9%E5%96%84%E6%B0%91%E7%94%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%BE%E6%8E%AA_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1849', '2', '1534744926', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('75', '14', '《中国共产党党内监督条例》解读', 'Uploads/2018-08-20/5b7a5e8040f0e.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%85%B1%E4%BA%A7%E5%85%9A%E5%85%9A%E5%86%85%E7%9B%91%E7%9D%A3%E6%9D%A1%E4%BE%8B%E3%80%8B%E8%A7%A3%E8%AF%BB_%E8%BF%9C%E7%A8%8B%E6%95%99%E8%82%B2_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1770', '1', '1534746240', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('76', '13', '与时俱进话党章', 'Uploads/2018-08-20/5b7a5ee9c9258.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E4%B8%8E%E6%97%B6%E4%BF%B1%E8%BF%9B%E8%AF%9D%E5%85%9A%E7%AB%A0_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1875', '1', '1534746345', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('77', '31', '农村土地经营权流转有关政策', 'Uploads/2018-08-20/5b7a6112e6293.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E5%86%9C%E6%9D%91%E5%9C%9F%E5%9C%B0%E7%BB%8F%E8%90%A5%E6%9D%83%E6%B5%81%E8%BD%AC%E6%9C%89%E5%85%B3%E6%94%BF%E7%AD%96_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1681', '1', '1534746898', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('78', '32', '职务犯罪问题研究（一）现今我国职务犯罪的概况', 'Uploads/2018-08-20/5b7a62115d6bb.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E9%97%AE%E9%A2%98%E7%A0%94%E7%A9%B6%EF%BC%88%E4%B8%80%EF%BC%89%E7%8E%B0%E4%BB%8A%E6%88%91%E5%9B%BD%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E7%9A%84%E6%A6%82%E5%86%B5_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1664', '1', '1534747153', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('79', '32', '职务犯罪问题研究（三）职务犯罪存在问题的原因', 'Uploads/2018-08-20/5b7a62a89e2e2.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E9%97%AE%E9%A2%98%E7%A0%94%E7%A9%B6%EF%BC%88%E4%B8%89%EF%BC%89%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98%E7%9A%84%E5%8E%9F%E5%9B%A0_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1768', '3', '1534747304', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('80', '32', '职务犯罪问题研究（二）当前预防和惩治职务犯罪存在的主要问题', 'Uploads/2018-08-20/5b7a631402aa5.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E9%97%AE%E9%A2%98%E7%A0%94%E7%A9%B6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%BD%93%E5%89%8D%E9%A2%84%E9%98%B2%E5%92%8C%E6%83%A9%E6%B2%BB%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E5%AD%98%E5%9C%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E9%97%AE%E9%A2%98_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '1813', '2', '1534747412', '0', '0');
+INSERT INTO `c_class_chapter` VALUES ('81', '32', '职务犯罪问题研究（四）预防和惩治职务犯罪应注意的几对关系', 'Uploads/2018-08-20/5b7a6371012ee.jpg', 'http://pdqmxr3kz.bkt.clouddn.com/job_%5B720x576%5D%20%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E9%97%AE%E9%A2%98%E7%A0%94%E7%A9%B6%EF%BC%88%E5%9B%9B%EF%BC%89%E9%A2%84%E9%98%B2%E5%92%8C%E6%83%A9%E6%B2%BB%E8%81%8C%E5%8A%A1%E7%8A%AF%E7%BD%AA%E5%BA%94%E6%B3%A8%E6%84%8F%E7%9A%84%E5%87%A0%E5%AF%B9%E5%85%B3%E7%B3%BB_%E5%AD%A6%E4%B9%A0_%E5%85%B1%E4%BA%A7%E5%85%9A%E5%91%98%E7%BD%91.Ogg', '664', '4', '1534747505', '0', '0');
+
+-- ----------------------------
+-- Table structure for `c_cloud`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_cloud`;
 CREATE TABLE `c_cloud` (
@@ -652,8 +952,13 @@ CREATE TABLE `c_cloud` (
   `visit` int(10) unsigned DEFAULT '0' COMMENT '访问量',
   `ctime` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '缩略图',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='云展馆';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='云展馆';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_cloud
@@ -664,7 +969,11 @@ INSERT INTO `c_cloud` VALUES ('3', '党史馆', '党史馆通过图文、视频�
 INSERT INTO `c_cloud` VALUES ('4', '网上展馆 砥砺奋进的五年', '“砥砺奋进的五年”大型成就展是2017年9月25日在北京展览馆举办的我国十八大以来，以习近平同志为核心的党中央团结带领全党全国各族人民取得辉煌成就的大型成就展。', 'http://dlfj5.cctv.com/tour.html', '1342', '0', 'Static/Home/images/cloudList4.jpg');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_company
+=======
+-- Table structure for `c_company`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_company`;
 CREATE TABLE `c_company` (
@@ -677,12 +986,18 @@ CREATE TABLE `c_company` (
   `ctime` int(25) DEFAULT NULL COMMENT '创建时间',
   `utime` int(25) DEFAULT '0' COMMENT '修改时间',
   `logo` varchar(255) DEFAULT NULL COMMENT '公司logo',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='公司表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='公司表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_company
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_company` VALUES ('1', '武汉纺友技术有限公司', '969696@qq.com', '武汉洪山区珞喻路融众国际14楼', 'VsTcIm15d', '13245678945', '1542178724', '1542269295', '/Uploads/20181115/e91d87fd0fc6e51564d392ec8c4c3106.png');
 INSERT INTO `c_company` VALUES ('7', '武汉纺友技术有限公司1', '969696@qq.com', '重庆', 'tR4UOULnS', '13245678945', '1542788218', '0', '/Uploads/20181121/cd9b0c062fd06da6dd823e35192baa54.jpg');
 
@@ -864,6 +1179,21 @@ INSERT INTO `c_company_resources` VALUES ('2', '37', '', '', '', '', '', '', '',
 
 -- ----------------------------
 -- Table structure for c_dangyuan
+=======
+INSERT INTO `c_company` VALUES ('5', '腾讯天美', '123456qq.com', '深圳大梅沙', 'RNKwyyVL7', '13245678945', '1536911220', '1539759963', '\\Uploads\\20181017\\b484e831d8223ad52c9a2c6010cc655d.png');
+INSERT INTO `c_company` VALUES ('8', '重庆天美', '123456qq.com', '重庆', 'qpt3DceaL', '13245678945', '1536918087', null, '');
+INSERT INTO `c_company` VALUES ('9', '武汉天美', '123456qq.com', '武汉', 'iDcKZKgUm', '13245678945', '1536918188', null, '');
+INSERT INTO `c_company` VALUES ('10', '北京天美', '123456qq.com', '北京', 'ugVI6VJ1J', '13245678945', '1536918207', null, '');
+INSERT INTO `c_company` VALUES ('11', '厦门天美', '123456qq.com', '厦门', 'K5ryOFZak', '13245678945', '1536918226', null, '');
+INSERT INTO `c_company` VALUES ('12', '劲酒集团', '82596444', 'safasfaasg', 'd8ptjiTis', '13098001110', '1537349073', null, '');
+INSERT INTO `c_company` VALUES ('13', '劲酒集团', '啊三国杀刚', '鞍山嘎嘎', 'oXL2cAaRK', '萨法', '1537349115', null, '');
+INSERT INTO `c_company` VALUES ('17', '123', '123456qq.com', '深圳', 'WeU2uMN3Q', '13245678945', '1539757505', '1539759940', '\\Uploads\\20181017\\9aa0e1cebd75d58043e691323a957d45.jpg');
+INSERT INTO `c_company` VALUES ('18', '纺友', '123456@qq.com', '武汉', 'IoTJM4XyA', '15527854695', '1539834311', null, '/Uploads/20181018/272bf17bae988e7d87a3001e313e0f05.png');
+INSERT INTO `c_company` VALUES ('19', '辛丙亮测试', '709464835@qq.com', '111111111111111111111111111111', 'JwPU9NwRZ', '15102724518', '1540283272', '0', '\\Uploads\\20181023\\8c8a94ec6c06fe83f4077d9c06ed9808.png');
+
+-- ----------------------------
+-- Table structure for `c_dangyuan`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_dangyuan`;
 CREATE TABLE `c_dangyuan` (
@@ -877,7 +1207,11 @@ CREATE TABLE `c_dangyuan` (
   `create_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='党成员表';
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='党成员表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_dangyuan
@@ -891,12 +1225,18 @@ INSERT INTO `c_dangyuan` VALUES ('6', '1', '王铁锤', '\\Uploads\\20181017\\13
 INSERT INTO `c_dangyuan` VALUES ('7', '1', '如花', '\\Uploads\\20181017\\cb5c6a94b2647350691fc6f6fc99042d.jpg', '1', '1', null, null, null);
 INSERT INTO `c_dangyuan` VALUES ('8', '1', '狗六子', '\\Uploads\\20181017\\6aeabea0dd80d6e6fe45a78efd5ba998.jpg', '2', '1', null, null, null);
 INSERT INTO `c_dangyuan` VALUES ('9', '1', '王小虎', '\\Uploads\\20181018\\2afddced7fb4d63aaa12f6448c3726d7.jpg', '1', '1', null, '1539833897', null);
+<<<<<<< HEAD
 INSERT INTO `c_dangyuan` VALUES ('10', '36', '彭畅', '/Uploads/20181102/cd6b489323b95a35c7b60231ee632176.jpg', '27', '1', null, null, null);
 INSERT INTO `c_dangyuan` VALUES ('11', '36', '纺友11.2', '/Uploads/20181102/3fd3bc0f12680e4ee1282bc47e5a9dbd.jpg', '28', '1', null, null, null);
 INSERT INTO `c_dangyuan` VALUES ('12', '32', '1231', '/Uploads/20181110/33e828fd35be1bb885f7f545941bd0cb.jpg', '29', '1', null, null, '1541833774');
 
 -- ----------------------------
 -- Table structure for c_dangyuan_jobid_branchsid
+=======
+
+-- ----------------------------
+-- Table structure for `c_dangyuan_jobid_branchsid`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_dangyuan_jobid_branchsid`;
 CREATE TABLE `c_dangyuan_jobid_branchsid` (
@@ -907,8 +1247,13 @@ CREATE TABLE `c_dangyuan_jobid_branchsid` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_dangyuan_jobid_branchsid
@@ -918,11 +1263,17 @@ INSERT INTO `c_dangyuan_jobid_branchsid` VALUES ('2', '1,3,4', '2', null, null, 
 INSERT INTO `c_dangyuan_jobid_branchsid` VALUES ('3', '1,4,5', '3', null, null, null, null);
 INSERT INTO `c_dangyuan_jobid_branchsid` VALUES ('4', '11,12,16,18,19', '5', null, '1539490409', '1539565493', null);
 INSERT INTO `c_dangyuan_jobid_branchsid` VALUES ('5', '17', '6', null, '1539565478', '1539565478', null);
+<<<<<<< HEAD
 INSERT INTO `c_dangyuan_jobid_branchsid` VALUES ('6', '27,28', '36', null, null, null, null);
 INSERT INTO `c_dangyuan_jobid_branchsid` VALUES ('7', '29', '32', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for c_dangyuan_jobname
+=======
+
+-- ----------------------------
+-- Table structure for `c_dangyuan_jobname`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_dangyuan_jobname`;
 CREATE TABLE `c_dangyuan_jobname` (
@@ -931,8 +1282,13 @@ CREATE TABLE `c_dangyuan_jobname` (
   `update_time` int(11) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_dangyuan_jobname
@@ -962,6 +1318,7 @@ INSERT INTO `c_dangyuan_jobname` VALUES ('23', '群众公仆', '1539746820', nul
 INSERT INTO `c_dangyuan_jobname` VALUES ('24', '政治处长', '1539746887', null, null);
 INSERT INTO `c_dangyuan_jobname` VALUES ('25', '最佳导演', '1539747412', null, null);
 INSERT INTO `c_dangyuan_jobname` VALUES ('26', '12323', '1539747432', null, null);
+<<<<<<< HEAD
 INSERT INTO `c_dangyuan_jobname` VALUES ('27', '书记', null, null, null);
 INSERT INTO `c_dangyuan_jobname` VALUES ('28', '主任', null, null, null);
 INSERT INTO `c_dangyuan_jobname` VALUES ('29', '12321', null, null, null);
@@ -1028,11 +1385,17 @@ INSERT INTO `c_exampaper_admin` VALUES ('13', '测试关卡2', '31,50,64,87,124,
 
 -- ----------------------------
 -- Table structure for c_exam_activity
+=======
+
+-- ----------------------------
+-- Table structure for `c_exam_activity`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_exam_activity`;
 CREATE TABLE `c_exam_activity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `exam_activity_name` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '活动名称',
+<<<<<<< HEAD
   `company_id` int(11) DEFAULT NULL COMMENT '活动所属的公司id',
   `create_time` int(11) DEFAULT NULL COMMENT '活动创建时间',
   `update_time` int(11) DEFAULT NULL,
@@ -1040,37 +1403,66 @@ CREATE TABLE `c_exam_activity` (
   `img_src` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '活动背景图片',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='答题小程序活动表';
+=======
+  `branchs_id` int(11) DEFAULT NULL COMMENT '活动所属的组织id',
+  `create_time` int(11) DEFAULT NULL COMMENT '活动创建时间',
+  `update_time` int(11) DEFAULT NULL,
+  `delete_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='答题小程序活动表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_exam_activity
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_exam_activity` VALUES ('1', '两学一做', '1', '1540172201', '1540172201', null, '/Uploads/20181119/12dfc9ff556a788067800461ef08bccb.png');
 INSERT INTO `c_exam_activity` VALUES ('2', '党纪处分条例', '1', '1540173275', '1540173275', null, '/Uploads/20181119/655b93988d9adc4bd7b282f3aac78107.png');
 
 -- ----------------------------
 -- Table structure for c_exam_info
+=======
+INSERT INTO `c_exam_activity` VALUES ('1', '两学一做', '1', '1540172201', '1540172201', null);
+INSERT INTO `c_exam_activity` VALUES ('2', '党纪处分条例', '1', '1540173275', '1540173275', null);
+
+-- ----------------------------
+-- Table structure for `c_exam_info`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_exam_info`;
 CREATE TABLE `c_exam_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
   `exam_activity_id` int(11) DEFAULT NULL COMMENT '对应活动表的主键id',
   `exampaper_id` int(11) DEFAULT NULL COMMENT '对应试卷表的主键id',
   `user_id` int(11) DEFAULT NULL COMMENT '对应用户表c_user表的主键id',
+=======
+  `exampaper_id` int(11) DEFAULT NULL COMMENT '对应试卷表的主键id',
+  `user_id` int(11) DEFAULT NULL COMMENT '对应用户表的主键id',
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
   `result_score` int(11) DEFAULT NULL COMMENT '考试得分',
   `exam_score` int(11) DEFAULT NULL COMMENT '试卷总分数',
   `right_num` int(11) DEFAULT NULL COMMENT '答对数量',
   `exam_questions_num` int(11) DEFAULT NULL COMMENT '试卷题目总数量',
   `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
   `use_time` int(11) DEFAULT NULL COMMENT '答题花费时间',
+<<<<<<< HEAD
   `company_id` int(11) DEFAULT NULL COMMENT '对应用户的公司id',
   `exam_record` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '考生答题记录由题目主键id和选项构成的json形式的字符串{"1":"opt1"}',
   `is_pass` enum('0','1') COLLATE utf8_bin DEFAULT NULL COMMENT '''0''为不通过，''1''为通过',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='党员考试信息记录表';
+=======
+  `branchs_id` int(11) DEFAULT NULL COMMENT '对应用户的组织id',
+  `exam_result` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '考生答题记录由题目主键id和选项构成的json形式的字符串{"1":"opt1"}',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='党员考试信息记录表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_exam_info
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_exam_info` VALUES ('1', '1', '1', '9', '60', '100', '6', '10', '1540437009', '1800', '32', '', '1');
 INSERT INTO `c_exam_info` VALUES ('2', '1', '2', '9', '10', '100', '1', '10', '1542015381', '160', '32', '{\"49\":\"B\",\"63\":\"D\",\"64\":\"C\",\"87\":\"C\",\"90\":\"C\",\"157\":\"A\",\"216\":\"D\",\"230\":\"D\",\"265\":\"D\",\"268\":\"B\"}', '1');
 INSERT INTO `c_exam_info` VALUES ('3', '1', '3', '9', '60', '100', '6', '10', '1540437100', '1900', '32', null, '1');
@@ -1088,6 +1480,11 @@ INSERT INTO `c_exam_info` VALUES ('23', '2', '5', '10', '80', '100', '8', '10', 
 
 -- ----------------------------
 -- Table structure for c_exam_questions
+=======
+
+-- ----------------------------
+-- Table structure for `c_exam_questions`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_exam_questions`;
 CREATE TABLE `c_exam_questions` (
@@ -1099,17 +1496,27 @@ CREATE TABLE `c_exam_questions` (
   `opt4` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '选项4',
   `answer_k` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '''opt1'',''opt2'',''opt3'',''opt4''',
   `answer_v` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '答案解析',
+<<<<<<< HEAD
   `company_id` int(11) DEFAULT NULL COMMENT '所属公司id',
+=======
+  `branchs_id` int(11) DEFAULT NULL COMMENT '所属组织id',
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
   `error_count` int(11) DEFAULT NULL COMMENT '本题答错次数累计',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='题目表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='题目表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_exam_questions
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_exam_questions` VALUES ('1', '根据中国共产党巡视工作条例，（ ）有义务向巡视组如实反映情况。', '群众', '公民', '党员', '公务员', 'opt3', '<p>这是解析</p>', '1', '1539924282', '1542088984', null, null);
 INSERT INTO `c_exam_questions` VALUES ('2', '《中国共产党巡视工作条例》是落实党的十八大和十八届三中、四中全会精神，加强党内法规制度建设的具体成果，是全面从严治党的（ ）利器。', '制度', '道德', '法律', '人情', 'opt1', '这是解析', '1', '1539924282', null, null, null);
 INSERT INTO `c_exam_questions` VALUES ('3', '巡视制度被首次写进党章的是哪一年？（ ）', '2005年', '2007年', '2009年', '2015年', 'opt2', '这是解析', '1', '1539924282', null, null, null);
@@ -1412,6 +1819,336 @@ INSERT INTO `c_exam_questions` VALUES ('300', '中国共产党的最高理想和
 
 -- ----------------------------
 -- Table structure for c_heart
+=======
+INSERT INTO `c_exam_questions` VALUES ('1', '根据中国共产党巡视工作条例，（ ）有义务向巡视组如实反映情况。', '群众', '公民', '党员', '公务员', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('2', '《中国共产党巡视工作条例》是落实党的十八大和十八届三中、四中全会精神，加强党内法规制度建设的具体成果，是全面从严治党的（ ）利器。', '制度', '道德', '法律', '人情', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('3', '巡视制度被首次写进党章的是哪一年？（ ）', '2005年', '2007年', '2009年', '2015年', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('4', '《中国共产党巡视工作条例》明确规定，（ ）承担巡视工作的主体责任。', '党的基层组织', '中央政治局', '开展巡视工作的党组织', '党的领导小组', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('5', '巡视是（ ）的“利剑”，《中国共产党巡视工作条例》是发挥这一“利剑”作用的重要制度保障。', '法律监督', '党内监督', '新闻监督', '制度监督', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('6', '为使（ ）成为“刚性”要求，确保如期完成任务，《中国共产党巡视工作条例》将“实现巡视 、全国一盘棋”明确写入“总则”。', '基本覆盖', '全覆盖', '随行就市', '常态化', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('7', '《中国共产党巡视工作条例》规定，巡视期间，经巡视工作领导小组批准，巡视组（ ）对群众反映强烈、明显违反规定并且能够及时解决的问题，向被巡视党组织提出处理建议。', '可以', '不可以', '应当', '不应当', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('8', '党的中央和省、自治区、直辖市委员会实行巡视制度，建立专职巡视机构，在（ ）届任期内对所管理的地方、部门、企事业单位党组织全面巡视。', '四', '三', '二', '一', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('9', '巡视工作领导小组组长由（ ）担任。', '同级党的纪律检查委员会书记', '同级党委组织部部长', '同级党委宣传部部长', '同级党委纪检监察部部长', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('10', '（ ）为落实整改工作的第一责任人。', '巡视组领导小组组长', '被巡视党组织问题责任人', '被巡视党组织主要负责人', '巡视组领导小组', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('11', '发现领导干部在政治思想、履行职责、工作作风、道德品质、廉政勤政等方面的苗头性问题，党委(党组)、纪委和党委组织部门应当按照干部管理权限及时对其进行（ ）', '批评教育', '严肃处理', '追究责任', '诫勉谈话', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('12', '党内监督条例规定，基层党委、纪委、党总支、党支部负责人，每年在规定范围内述职述廉（ ）次。', '一次', '两次', '三次', '四次', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('13', '《中国共产党党内监督条例(试行)》制定的依据是（ ）', '中华人民共和国宪法', '中国共产党章程', '中共中央关于加强党的建设几个重大问题的决定', '中共中央关于加强党的建设几个重大问题的决定', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('14', '党的各级领导班子应当制定、完善并严格执行（ ），保证决策科学、民主。', '议事规则', '管理办法', '监督办法', '纪律规定', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('15', '党的各级组织和党员领导干部，应当自觉接受并正确对待（ ）的监督。', '全体党员', '全国人民', '党和人民群众', '地方政府', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('16', '对重要信访事项的办理，应当（ ）', '交于上级组织办理', '交于上级组织办理', '督促检查，直至妥善处理', '交于地方检察机关', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('17', '认为下级领导班子民主生活会不符合规定要求，可以（ ）', '直接通报意见', '不召开', '重新召开', '间接确定意见', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('18', '罢免或撤换要求可以（ ）提出，并有根据地陈述理由。', '书面形式署真实姓名', '口头形式', '会议形式', '匿名形式', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('19', '党的各级代表大会代表在代表大会（ ）期间，除履行党员的监督责任和享有党员的监督权利外，按照有关规定对其选举产生的党的委员会、纪律检查委员会及其成员进行监督，反映所在选举单位党员的意见和建议。', '会前', '开会', '闭会', '筹备', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('20', '当党员对党的决议和政策有不同意见时，下列说法中，正确的应该是（ ）', '可以不执行党的决议和政策', '在坚决执行的前提下，可以声明保留，并且可以把自己的意见向党的上级组织直至中央提出', '必须坚决执行，不可以声明保留，也不允许向上级组织提出', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('21', '本条例由（ ）负责解释。', '中央纪律检查委员会', '中共中央政治局', '全国人大', '中央组织部', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('22', '问责应当分清责任。参与决策和工作的班子其他成员承担（ ）', '全面领导责任', '主要领导责任', '重要领导责任', '直接领导责任', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('23', '对履行职责不力的党的领导干部，应当严肃批评，依规整改，并在一定范围内（ ）', '降职', '停职检查', '通报', '调整岗位', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('24', '管辖范围内有令不行、有禁不止，团团伙伙、拉帮结派问题严重，造成恶劣影响的,被列入（ ）范畴进行问责。', '推进党风廉政建设和反腐败工作不坚决、不扎实', '全面从严治党不力', '维护党的纪律不力', '党的领导弱化', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('25', '对党的领导干部失职失责、情节较轻的，应当采取哪种问责方式（ ）', '通报', '诫勉', '组织调整或者组织处理', '纪律处分', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('26', '建立健全问责典型问题通报曝光制度。这既体现了“严”和“实”的精神，也可以通过一个个具体鲜活的案例，发挥警示作用，唤醒责任意识，激发担当精神，真正做到（ ）', '依规依纪、实事求是', '失责必问、问责必严', '惩前毖后、治病救人', '分级负责、层层落实责任', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('27', '干部选拔任用工作中问题突出，党内和群众反映强烈，损害党的形象，削弱党执政的政治基础,被列入（ ）范畴进行问责。', '党的建设缺失', '维护党的纪律不力', '全面从严治党不力', '其他应当问责的失职失责情形', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('28', '在问责工作中，要把该打的板子狠狠打下去，不搞下不为例、网开一面，不能大事化小、小事化了，使问责的利剑生锈，形成“破窗效应”。体现了问责应坚持（ ）原则。', '依规依纪、实事求是', '失责必问、问责必严', '惩前毖后、治病救人', '分级负责、层层落实责任', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('29', '参与决策和工作的班子其他成员承担（ ）责任。', '全面领导责任', '主要领导责任', '重要领导责任', '直接领导责任', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('30', '以下属于问责主体的是（ ）', '各级党委（党组）', '各级党的工作部门', '各级纪委（纪检组）', '有管理权限的党组织', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('31', '党中央从中央部委和省一级抓起，把责任让党委（党组）书记扛上。省委书记再把责任传导给所有班子成员、压给市委书记，市委书记压给县委书记，一直压到基层，形成一级抓一级、层层抓落实的局面。体现了问责应坚持（ ）原则。', '依规依纪、实事求是', '失责必问、问责必严', '惩前毖后、治病救人', '分级负责、层层落实责任', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('32', '对党组织的问责方式包括检查、通报、改组。对党的领导干部的问责方式包括：通报、诫勉、组织处理、纪律处分。', '对', '错', '', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('33', '中央八项规定精神不落实，作风建设流于形式，被列入（ ）范畴进行问责。', '推进党风廉政建设和反腐败工作不坚决、不扎实', '维护党的纪律不力', '全面从严治党不力', '党的建设缺失', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('34', '管辖范围内腐败蔓延势头没有得到有效遏制，损害群众利益的不正之风和腐败问题突出的,被列入（ ）范畴进行问责。', '推进党风廉政建设和反腐败工作不坚决、不扎实', '全面从严治党不力', '维护党的纪律不力', '党的领导弱化', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('35', '受到问责的党的领导干部应当向问责决定机关（ ），并在民主生活会或者其他党的会议上作出深刻检查。', '就有关情况作出说明', '进行书面汇报', '写出书面检讨', '深刻检讨', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('36', '问责对象是各级党委(党组)、党的工作部门及其领导成员，各级纪委(纪检组)及其领导成员，重点是（ ）', '领导干部', '主要负责人', '直接责任者', '重要领导责任者', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('38', '我国首次提出巡视工作的概念是在哪一年？（ ）', '1993年', '1994年', '1995年', '1996年', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('39', '党员领导干部不重视家风建设,对配偶、子女及其配偶失管失教,造成不良影响或者严重后果的,给予警告或者严重警告处分;情节严重的,给予（ ）处分。', '严重警告', '撤销党内职务', '留党察看', '开除党籍', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('40', '巡视工作人员应当具备的首要条件是（ ）。', '理想信念坚定，对党忠诚，在思想上政治上行动上同党中央保持高度一致', '坚持原则，敢于担当，依法办事，公道正派，清正廉洁', '遵守党的纪律，严守党的秘密', '熟悉党务工作和相关政策法规，具有较强的发现问题、沟通协调、文字综合等能力', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('41', '巡视工作人员实行任职回避、（ ）回避、公务回避。', '亲属 ', '交流 ', '地域', '轮岗', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('42', '巡视组设组长、副组长、巡视专员和其他职位。巡视组实行（ ），副组长协助组长开展工作。', '民主集中制', '组长负责制', '人民代表大会制', '党组织负责制', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('43', '盲目举债、铺摊子、上项目,搞劳民伤财的“形象工程”“政绩工程”:致使国家、集体或者群众财产和利益遭受较大损失的,对直接责任者和领导贡任者,给予（ ）处分;情节严重的,给予撤销党内职务、留党察看或者开除党籍处分。', '警告或者严重警告', '警告或者撤销党内职务', '严重警告或者撤销党内职务', '严重警告或者留党察看', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('44', '开展巡视巡察工作的（）承担巡视巡察工作的主体责任。', '专项工作小组', '党组织书记', '党组织', '党内监督小组', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('45', '利用职权或者职务上的影响,违反有关规定占用公物归个人使用,时间超过（ ），情节较重的,给予警告或者严重警告处分;情节严重的,给予撤销党内职务处分', '一个月', '三个月', '六个月', '一年', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('46', '根据（ ），制定《中国共产党巡视工作条例》。', '《中国共产党纪律处分条例》', '《中国共产党党内监督条例》', '《中华人民共和国宪法》', '《中国共产党章程》', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('47', '党员领导干部的配偶、子女及其配偶,违反有关规定在该党员领导干部管辖的地区和业务范围内从事可能影响其公正执行公务的经营活动,或者在该党员领导干部管辖的地区和业务范围内的外商独资企业、中外合资企业中担任由外方委派、聘任的高级职务或者违规任职、兼职取酬的,该党员领导干部应当按照规定予以纠正;拒不纠正的,其本人应当辞去现任职务或者由组织予以调整职务;不辞去现任职务或者不服从组织调整职务的,给予（ ）处分。', '严重警告', '撤销党内职务', '留党察看', '开除党籍', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('48', '《中国共产党巡视工作条例》规定，被巡视党组织收到巡视组反馈意见后，应当认真整改落实，并于( )将整改情况报告和主要负责人组织落实情况报告，报送巡视工作领导小组办公室。', '一年内', '2个月内', '数月内', '半年内', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('49', '纵容、默许配偶、子女及其配偶等亲属、身边工作人员（ ）利用党员干部本人职权或者职务上的影响谋取私利,情节较轻的,给予警告或者严重警告处分;情节较重的,给予撤销党内职务或者留党察看处分;情节严重的,给予开除党籍处分。', '及其配偶、子女', '及其配偶、亲属', '和其他关系人', '和其他特定关系人', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('50', '《中国共产党巡视工作条例》规定，巡视组依靠被巡视党组织开展工作，不干预被巡视地区(单位)的正常工作， (  ) 执纪审查的职责。', '履行', '根据授权履行', '不履行', '根据授权不履行', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('51', '驻外机构或者临时出国(境)团(组)中的党员,脱离组织出走时间不满（ ）又自动回归的,给予撤销党内职务或者留党察看处分;脱离组织出走时间超过（ ）的,按照自行脱党处理,党内予以除名。', '三个月 三个月', '六个月 六个月', '九个月 九个月', '一年 一年', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('52', '《中国共产党巡视工作条例》规定，巡视工作领导小组组长由同级党的纪律检查委员会书记担任，副组长一般由同级党委( )部长担任。', '组织部', '宣传部', '统战部', '工作部', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('53', '党员领导干部对违反政治纪律和政治规矩等错误思想和行为不报告、不抵制、不斗争,放任不管,搞无原则团和气,造成不良影响的,给予警告或者严重警告处分;情节严重的,给予（ ）处分。', '严重警告或者撤销党内职务', '严重警告或者留党察看', '撤销党內职务或者留党察看', '留党察看或者开除党籍', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('54', '《中国共产党巡视工作条例》规定，违反政治纪律和政治(  ) ，存在违背党的路线方针政策的言行，有令不行、有禁不止，阳奉阴违，拉帮结派等问题，是巡视组要着力发现的问题之一。', '规矩', '要求', '习惯', '规定', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('55', '擅自对应当由党中央决定的重大政策问题作出决定、对外发表主张的,对直接责任者和领导责任者,给予严重警告或者撤销党内职务处分;情节严重的,给予（ ）处分。', '撤销党内职务或者留党察看', '严重警告或者撤销党内职务', '留党察看或者开除党籍', '', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('56', '对党不忠诚不老实,表里不一,阳奉阴违,欺上瞒下,搞两面派,做两面人,情节较轻的,给予警告或者严重警告处分;情节较重的,给予撤销党内职务或者留党察看处分;情节严重的,给予（ ）处分。', '严重警告', '撤销党内职务', '留党察看', '开除党籍', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('57', '通过网络、广播、电视、报刊、传单、书籍等,或者利用讲座、论坛、报告会、座谈会等方式,公开发表坚持资产阶级自由化立场、反对四项基本原则,反对党的改革开放决策的文章、演说、宣言、声明等的,给予（ ）处分。', '警告', '严重警告', '留党察看', '开除党籍', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('58', '《中国共产党巡视工作条例》是落实党的十八大和十八届三中、四中全会精神，加强党内法规制度建设的具体成果，是全面从严治党的(  )利器。', '制度', '道德', '法律 ', '法制', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('59', '本条例所称主动交代,是指涉嫌违纪的党员在组织初核 （ ）向有关组织交代自己的问题,或者在初核和立案审查其问题（ ）交代组织未掌握的问题。', '前;期间', '期间;前', '后;期间', '期间;后', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('60', '党组织在纪律审查中发现党员有贪污贿赂、滥用职权、玩忽职守、权力寻租、利益输送、徇私舞弊、浪费国家资财等违反法律涉嫌犯罪行为的，（ ）给予撤销党内职务、留 党察看或者开除党籍处分。', '可以', '必须', '应当', '建议', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('61', '巡视期间，经（ ）批准，巡视组可以将被巡视党组织管理的干部涉嫌违纪违法的具体问题线索，移交有关纪律检查机关或者政法机关处理。', '巡视工作领导小组', '党的领导小组', '中央政治局', '党的基层组织', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('62', '以下不属于巡视工作领导小组职责的是（ ）。', '研究提出巡视工作规划、年度计划和阶段任务安排', '听取巡视工作汇报', '统筹、协调、指导巡视组开展工作', '研究巡视成果的运用，分类处置，提出相关意见、建议', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('63', '巡视期间，巡视组可以对群众反映强烈、明显违反规定并且能够及时解决的问题，向（ ）提出处理建议。', '同级纪律检查机关', '同级政法机关', '被巡视党组织', '中央巡视组', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('64', '根据中国共产党巡视工作条例，巡视工作领导小组办公室应当提前（ ）个工作日将巡视工作安排书面通知被巡视地区、单位，并协调安排巡视组进驻有关事宜。', '15', '10', '5', '3', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('65', '根据中国共产党巡视工作条例，对省、自治区、直辖市党委，市（地、州、盟）党委和同级人大常委会、政府、政协委员会党组领导班子及其成员的巡视，在每届任期内开展（ ）。', '3至5次', '1至2次', '3至4次', '2至3次', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('66', '根据中国共产党巡视工作条例，巡视组应当严格执行请示报告制度，对巡视工作中的（ ）要及时请示报告。', '重要情况和重大问题', '全部情况', '各类问题', '全部情况和主要问题', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('67', '根据中国共产党巡视工作条例，巡视工作坚持党的领导、分级负责，实事求是、客观公正，（ ）的原则。', '发扬民主、依靠群众', '立足民主、依法办事', ' 严格规范、富有效率', '充满活力、联系群众', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('68', '询问人对有关部门所作的说明不满意的情况下，可以书面形式（ ）对同一问题提出质询。', '署真实姓名', '和他人联名', '匿名', '笔名', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('69', '新闻媒体应当坚持党性原则，遵守新闻纪律和职业道德，把握（ ），注重舆论监督的社会效果 。', '舆论监督的正确导向', '舆论监督的尺度', '舆论监督的成果', '舆论监督的社会效果', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('70', '领导班子成员在民主生活会上，应当针对自身存在的（ ）方面的问题以及党员、群众、领导班子其他成员和下级党组织提出的意见，负责任地作出检查或说明，积极开展批评和自我批评。', '民主作风', '履行职责', '廉洁自律', '组织作风', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('71', '对于应当经集体讨论决定的事项而未经集体讨论，也未征求其他成员意见，由个人或少数人决定的，除遇紧急情况外，应当（ ）。', '追究主要责任人的责任', '区别情况追究主要责任人的责任', '追究责任', '给予批评教育', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('72', '上级组织认为下级领导班子民主生活会不符合规定要求时，可以（ ）。', '责令重新召开', '提出整改意见', '提出规定要求', '进行批评教育', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('73', '县以上党和国家机关党员领导干部应当按照规定参加（ ）。', '组织生活会', '民主生活会', '双重组织生活会', '民主评议', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('74', '巡视制度被首次写进党章是在哪一年？（ ）', '2004年', '2005年', '2006年', '2007年', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('75', '巡视的三个监督主体不包括以下哪项？（ ）', '党的各级委员会', '党的巡视机构', '党的各级纪委', '党的政协组织', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('76', '中央各部门、直属机构、派出机关以及相当于这一级别的党组(党委)，地方各级党委、纪委和党委工作部门、直属机构、派出机关以及相当于这一级别的党组(党委)的领导班子成员，分别在届中和换届前（ ）在规定范围述职述廉一次。', '半年', '一年', '一年半', '两年', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('77', '中共中央关于修改《中国共产党巡视工作条例》的决定自2017年（ ）起施行。', '43291', '43296', '43301', '43311', '7月10日', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('78', '有关纪律检查机关、组织部门收到巡视移交的问题或者线索后，应当及时研究提出谈话函询、初核、立案或者组织处理等意见，并于（ ）内将办理情况反馈巡视工作领导小组办公室。', '1年', '6个月', '3个月', '1个月', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('79', '《中国共产党党内监督条例（试行）》是由（ ）颁布实施的。', '党的中央纪律检查委员会', '中共中央', '党的中央政治局', '党的基层组织', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('80', '下列与巡视组工作程序相关说法有误的一项是（ ）', '对领导干部涉嫌违纪的线索和作风方面的突出问题，移交有关纪律检查机关', '对执行民主集中制、干部选拔任用等方面存在的问题，移交有关纪律检查机关', '派出巡视组的党组织应当及时听取巡视工作领导小组有关情况汇报，研究并决定巡视成果的运用', '根据巡视工作领导小组要求，巡视组将巡视的有关情况通报同级党委和政府有关领导及其职能部门', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('81', '（ ）有权对党的委员会全体会议决议、决定执行中存在的问题提出询问和质询。', '党的地方各级纪律检查委员会', '党的地方各级委员会委员', '党的各级领导机关', '党的基层组织', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('82', '下列对巡视组工作方式和权限说法有误的一项是（ ）', '特殊情况下，中央巡视组可以直接向中央巡视工作领导小组组长报告', '巡视期间，经巡视工作领导小组批准，巡视组可以将被巡视党组织管理的干部涉嫌违纪违法的具体问题线索，移交有关纪律检查机关或者政法机关处理', '对群众反映强烈、明显违反规定并且能够及时解决的问题，直接执纪审查', '与被巡视党组织领导班子成员和其他干部群众进行个别谈话', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('83', '党的各级领导班子决定重要事项，应当进行（）。', '集体讨论', '征求意见', '表决', '调查研究', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('84', '巡视组依靠（ ）开展工作，不干预被巡视地区（单位）的正常工作。', '巡视党组', '被巡视党组织', '巡视领导小组', '巡视领导小组组长', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('85', '党的各级委员会实行（ ）制度。', '民主集中', '集体领导和个人分工负责相结合', '个别酝酿、会议决定', '科学民主决策', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('86', '中央巡视工作领导小组办公室设在（ ）', '中央纪律检查委员会', '中央党内监督委员会', '中央反腐委员会', '国务院', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('87', '党的市（地、州、盟）和县（市、区、旗）委员会建立（ ）制度，设立巡察机构，对所管理的党组织进行（ ）监督。', '巡视', '反腐', '巡察', '纪检', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('88', '党内监督要与（ ）监督相结合。', '人民群众', '各级领导', '党外', '舆论', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('89', '（ ）可以实行巡视制度，设立巡视机构，对所管理的党组织进行巡视监督。', '党的市和县委员会', '中央有关部委、中央国家机关部门党组（党委）', '党的地和区委员会', '党的盟和旗委员会', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('90', '各级党组织应当认真贯彻（ ），加强思想政治教育，健全工作制度，有效防范各种违纪行为的发生。', '党风廉政建设责任制', '民主集中制', '.依法执政', '党内监督', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('91', '《中国共产党巡视工作条例》规定，巡视进驻、反馈、整改等情况，应当以适当方式公开，（ ）党员、干部和人民群众监督。', '不接受', '邀请', '接受', '不邀请', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('92', '《中国共产党巡视工作条例》规定，巡视组实行组长负责制，副组长协助组长开展工作。巡视组组长根据（ ）确定并授权。', '巡视对象', '每次巡视任务', '职务高', '每次巡视情况', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('93', '党员、党组织对处理决定不服的，可以向作出处理决定的（ ）申诉。', '党委', '党组织', '党员大会', '地方检察机关', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('94', '《中国共产党巡视工作条例》改进了巡视工作领导体制，明确要求“中央巡视工作领导小组应当加强对省、自治区、直辖市巡视工作的 （ ）”。', '指导', '协调', '领导', '指导', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('95', '中央纪委、中央组织部和中央直属机关工委、中央国家机关工委领导班子成员，除参加所在领导班子民主生活会外，（）应当参加一个以上省部级领导班子的民主生活会，了解情况。', '每人每月', '每人每季度', '每人半年', '每人每年', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('96', '《中国共产党巡视工作条例》明确规定，有关纪律检查机关、组织部门收到巡视移交的问题或者线索后，应当及时研究提出谈话函询、初核、立案或者组织处理等意见，并于（ ）个月内将办理情况反馈巡视工作领导小组办公室。', '3', '9', '1', '5', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('97', '坚持对市、县两级实行（ ）巡视监督。', '经常化', '常态化', '日常化', '组织化', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('98', '党组织应当坚持和健全(  )制度。', '党员领导干部民主生活会', '党员大会', '党员代表大会', '党委委员会议', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('99', '特殊情况下，省委巡视组可以直接向（ ）报告。', '省委书记', '中央巡视工作领导小组', '中央巡视组', '政法机关', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('100', '对下级请示不及时答复、批复或对下级报告中反映的问题在职责范围内不及时处置，造成严重后果的，追究(  )的责任。', '组织领导', '.责任人', '全体人员', '领导干部', '责任人', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('101', '对巡视组进行管理和监督是（ ）的职责。', '派出巡视组的党组织', '巡视工作领导小组', '巡视工作领导小组办公室', '巡视政法机关', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('102', '党的(  )是党内监督的专门机关。', '纪律检查委员会', '党委', '组织部', '直属机构', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('103', '根据中国共产党巡视工作条例，（ ）有义务向巡视组如实反映情况。', '群众', '公民', '党员', '公务员', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('104', '《中国共产党巡视工作条例》于（ ）起施行。', '42217', '42219', '42064', '42125', '2015年8月3日', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('105', '按照议事规则应当由集体讨论决定的事项，（ ）会议议程。', '经组织审批可以列入', '不可以列入', '可以列入', '可以根据实际情况列入', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('106', '党员署真实姓名进行检举的，应当（ ）听取其意见。', '视情况告知处理结果', '告知全部结果', '不告知结果', '告知部分结果', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('107', '领导班子成员个人向党组织推荐领导干部人选，必须负责地写出推荐材料并署（ ）。', '化名', '笔名', '代号', '真实姓名', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('108', '党内监督条例制定的依据（ ）。', '《中国共产党问责条例》', '《中国共产党章程》', '《中国共产党廉洁自律准则》', '《中国共产党纪律处分条例》', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('109', '设常委会的基层党组织的党委常委会、纪委常委会分别向委员会全体会议（ ）报告工作一次。', '一个月', '一季度', '半年', '一年', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('110', '党的问责工作是由党组织按照职责权限，追究在党的建设和党的事业中失职失责党组织和党的领导干部的（ ）、监督责任和领导责任。', '主要责任', '主体责任', '重要责任', '全面责任', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('111', '党的问责工作做到（ ）、有责要担当、失责必追究，落实党组织管党治党政治责任，督促党的领导干部践行忠诚干净担当', '有权必有责', '有权必追责', '有权必问责', '有权必负责', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('112', '为全面从严治党，规范和强化党的问责工作，根据（ ），制定《中国共产党问责条例》。', '中国共产党章程', '中国共产党纪律处分条例', '中国共产党巡视工作条例', '中国共产党廉洁自律准则', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('113', '党的问责工作应当坚持的原则：依规依纪、实事求是，（ ），惩前毖后、治病救人，分级负责、层层落实责任。', '有责必追、形成威慑', '失责必问、问责必严', '失责必追、问责必严', '有责必问、形成威慑', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('114', '问责应当分清责任，党组织领导班子主要负责人和直接主管的班子成员在职责范围内负有（ ）', '全面领导责任', '主要领导责任', '重要领导责任', '监督领导责任', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('115', '党内政治生活不正常，组织生活不健全，党组织软弱涣散，党性教育特别是理想信念宗旨教育薄弱，被列入（ ）范畴进行问责。', '党的领导弱化', '党的建设缺失', '全面从严治党不力', '推进党风廉政建设和反腐败工作不坚决、不扎实', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('116', '制定问责条例的根据是（）', '党纪处分条例', '廉洁自律准则', '中国共产党章程', '党内监督条例', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('117', '对失职失责，严重违反党的纪律、本身又不能纠正的党组织，采取的问责方式为（ ）', '检查', '组织处理', '组织调整', '改组', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('118', '问责条例由（ ）负责解释。', '中央纪律检查委员会', '中央纪律检查委员会和监察部', '中央纪律检查委员会和中组部', '中央纪律检查委员会和中共中央办公厅', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('119', '实行终身问责，对失职失责性质恶劣、后果严重的，不论其责任人是否（ ）、提拔或者退休，都应当严肃问责。', '辞职', '离任', '调离转岗', '免职', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('120', '党内监督乏力，该发现的问题没有发现，发现问题不报告不处置、不整改不问责，造成严重后果的,被列入（ ）范畴进行问责。', '推进党风廉政建设和反腐败工作不坚决、不扎实', '全面从严治党不力', '维护党的纪律不力', '党的领导弱化', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('121', '问责决定应当由纪检监察机关或者组织人事部门作出。其中对党的领导干部，纪委(纪检组)、党的工作部门有权采取通报、诫勉方式进行问责;提出组织调整或者组织处理的建议。( )', '对', '错', '', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('122', '对党组织履行职责不力、情节较重的，应当采取哪种问责方式（ ）', '检查', '通报', '改组', '解散', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('123', '党组织和党的领导干部违反党章和其他党内法规，不履行或者不正确履行职责，有维护党的政治纪律、组织纪律、廉洁纪律、群众纪律、工作纪律、生活纪律不力，导致违规违纪行为多发，特别是维护政治纪律和政治规矩失职，管辖范围内有令不行、有禁不止，团团伙伙、拉帮结派问题严重，造成恶劣影响情形的，应当予以问责。(  )', '对', '错', '', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('124', '在问责工作中，通过强化问责，使干部真正扛起责任，不犯或少犯错误特别是严重错误，这才是党组织对党员、干部最大的关心和爱护。体现了问责应坚持（ ）原则。', '依规依纪、实事求是', '失责必问、问责必严', '惩前毖后、治病救人', '分级负责、层层落实责任', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('125', '党的问责工作是由纪检监察机关按照职责权限，追究在党的建设和党的事业中失职失责党组织和党的领导干部的主体责任、监督责任和领导责任。(  )', '对', '错', '', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('126', '涉及组织调整或者组织处理的，应当在（ ）办理完毕相应手续。', '一个月内', '六个月', '三个月', '30天', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('127', '党的理论和路线方针政策、党中央的决策部署没有得到有效贯彻落实，被列入（ ）范畴进行问责。', '党的领导弱化', '党的建设缺失', '全面从严治党不力', '维护党的纪律不力', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('128', '问责决定应当由党中央或者有管理权限的( )作出。', '党组织', '.审计部门', '纪委(纪检组) ', '组织人事部门', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('129', '利用宗族或者黑恶势力等欺压群众,或者纵容涉黑涉恶活动,为黑恶势力充当“保护伞”的,给予（ ）处分;情节严重的,给予开除党籍处分。', '警告或严重警告', '严重警告或者撤销党内职务', '撤销党内职务或者留党察看', '严重警告或者留党察看', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('130', '在干部选拔任用工作中,有任人唯亲、排斥异己、封官许恳、说情干预、跑官要官、突击提拔或者调整干部等违反干部选拔任用规定行为,对直接责任者和领导责任者,情节较轻的,给予警告或者严重警告处分:情节较重的,给予撒销党内职务或者留党祭看处分;情节严重的;给予（ ）处分', '劝其退党', '勒令退党', '党内除名', '开除党籍', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('131', '对信仰宗教的党员,应当加强思想教育,经党组织帮助教育仍没有转变的,应当（ ）;劝而不退的,予以（ ）参与利用宗教搞煽动活动的,给予开除党籍处分。', '劝其退党 勒令退党', '劝其退党 除名', '勒令退党 除名', '除名  开除党籍', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('132', '干扰巡视巡察工作或者不落实巡视巡察整改要求情节较轻的,给予警告或者严重警告处分;情节较重的,给予处分;情节严重的,给予开除党籍处分（ ）', '严重警告或者留党察看', '严重警告或者撤销党内职务', '撤销党内职务或者留党察看', '留党察看或者开除党籍', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('133', '不按照有关规定向组织请示、报告重大事项,情节较重的,给予警告或者严重警告处分;情节严重的,给予（ ）处分。', '撤销党内职务或者留党察看', '严重警告或者撤销党内职务', '留党察看或者开除党籍', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('134', '制造、散布、传播政治谣言,破坏党的团结统一的给予警告或者严重警告处分;情节较重的,给予（ ）处分;情节严重的,给予开除党籍处分。', '严重警告', '严重警告或者撤销党内职务', '开除党籍', '撤销党內职务或者留党察看', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('135', '落实党中央决策部署不坚决,打折扣、搞变通,在政治上造成不良影响或者严重后果的,给予警告或者严重警告处分;情节严重的,给予（ ）处分。', '开除党籍', '留党察看', '撤销党內职务、留党察看或者开除党籍处分', '撤销党內职务、留党察看', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('136', '党员领导干部在本人主政的地方或者分管的部门自行其是,搞山头主义,拒不执行党中央确定的大政方针,甚至背着党中央另搞一套的,给予（ ）处分。', '撤销党內职务、留党察看或者开除党籍', '撤销党内职务、留党察看', '留党察看', '开除党籍', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('137', '在重大原则问题上,不同党中央保持一致且有实际言论、行为或者造成不良后果的,给予（ ）处分;情节较重的,给予（）处分;情节严重的,给予（ ）处分。', '警告;严重警告;撤销党内职务', '严重警告;撤销党内职务;留党察看', '严重警告或者撤销党内职务;留党察看;开除党籍', '警告或者严重警告;撤销党内职务或者留党察看;开除党籍', '警告或者严重警告;撤销党内职务或者留党察看;开 除党籍', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('138', '党员被依法（ ）、逮捕的,党组织应当按照管理权限中止其表决权、选举权和被选举权等党员权利。', '拘留', '留置', '传唤', '讯问', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('139', '党组织在纪律审查中发现党员严重违纪涉嫌违法犯罪的,原则上先做出（ ）决定,并按照规定给予政务处分后,再移送有关国家机关依法处理。', '行政处罚', '政纪处分', '组织处理', '党纪处分', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('140', '党员受到开除党籍处分，（ ）内不得重新入党，也不得推荐担任与原任职务相当或者高于其原任职务的党外职务。', '两年', '三年', '四年', '五年', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('141', '党员受留党察看处分期间,没有（ ）。', '表决权、选举权和被选举权', '选举权和被选举权', '表决权、选举权', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('142', '对党组织履行职责不力、情节较轻的，应当采取哪种问责方式（ ）', '检查', '通报', '改组', '解散', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('143', '要坚持求真务实，是哪一级责任就追究到哪一级，该采取什么问责方式就采取什么方式，不应当问责的就决不能追究责任，做到宽严适度、不枉不纵。体现了问责应坚持（ ）原则。', '依规依纪、实事求是', '失责必问、问责必严', '惩前毖后、治病救人', '分级负责、层层落实责任', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('144', '有关问责情况应当向组织部门通报，组织部门应当将问责决定材料归入被问责领导干部个人档案，并报上一级党组织备案。', '对', '错', '', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('145', '对党组织或党的领导干部的问责方式，可以单独使用，也可以合并使用。', '对', '错', '', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('146', '主体责任、监督责任落实不到位，管党治党失之于宽松软，好人主义盛行、搞一团和气，不负责、不担当，被列入（ ）范畴进行问责。', '党的建设缺失', '维护党的纪律不力', '全面从严治党不力', '党的领导弱化', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('147', '在推进经济建设、政治建设、文化建设、社会建设、生态文明建设中，出现重大失误，给党的事业和人民利益造成严重损失，产生恶劣影响,被列入（ ）范畴进行问责', '全面从严治党不力', '党的建设缺失', '党的领导弱化', '维护党的纪律不力', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('148', '问责对象是各级党委(党组)、党的工作部门及其领导成员，各级纪委(纪检组)及其领导成员，重点是主要负责人。', '对', '错', '', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('149', '《中国共产党问责条例》自（ ）起施行。此前发布的有关问责的规定，凡与本条例不一致的，按照本条例执行。', '42559', '42370', '颁布之日', '42736', '2016年7月8日', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('150', '《中国共产党问责条例》规定对党的领导干部实行（ ）', '一次性问责', '阶段性问责', '任期问责', '终身问责', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('151', '问责决定作出后，应当及时向被问责党组织或者党的领导干部及其所在党组织宣布并督促执行。涉及组织调整或者组织处理的，应当在（ ）内办理完毕相应手续。', '15日', '一个月', '二个月', '六个月', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('152', '问责应当分清责任。党组织领导班子在职责范围内负有（ ）', '全面领导责任', '主要领导责任', '重要领导责任', '直接领导责任', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('153', '党的问责工作是由（ ）按照职责权限，追究在党的建设和党的事业中失职失责党组织和党的领导干部的主体责任、监督责任和领导责任。', '纪检监察机关', '党组织', '组织部门', '以上都不是', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('154', '违背社会公序良俗,在公共场所有不当行为,造成不良影响的,给予（ ）处分情节较重的,给予撤销党内职多或者留党察看处分情节严重的,给予开除党籍处分。', '警告或者严重警告', '撤销党内职务', '留党察看', '开除党籍', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('155', '在党的纪律检查、组织、宣传、统一战线工作以及机关工作等其他工作中,不履行或者不正确履行职责,造成损失或者不良影响的,应当视具体情节给予（ ）处分。', '警告直至开除党籍', '严重警告直至开除党籍', '警告直至留党察看', '警告直至撤销党内职务', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('156', '在考试、录取工作中,有泄露试题、考场舞弊、涂改考卷、违规录取等违反有关规定行为的,给予警告或者严重警告处分;情节较重的,给予（ ）处分;情节严重的,给予开除党籍处分。', '严重警告或者留党查看', '严重警告或者撤销党内职务', '撒销党内职务或者留党察看', '留党察看或者开除党籍', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('157', '工作中不负责任或者疏于管理,贯彻执行、检查督促落实上级决策部署不力,给党、国家和人民利益以及公共财产造成较大损失的,对直接责任者和领导贵任者,给予警告或严重瞀告处分;造成重大损失的,给予撤销党內职务、留党察看或者开除党籍处分贯彻创新、协调、绿色、开放、共享的发展理念不力,对职责范围内的问题失察失责,造成较大损失或者重大损失的，（ ）处分。', '从轻或者减轻', '从重或者加重', '酌情给予', '免除', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('158', '收受可能影响公正执行公务的礼品、礼金、消费卡和（ ）等财物,情节较轻的,给予警告或者严重警告处分;情节较重的,给予撒销党内职务或者留党察看处分;情节严重的:给予开除党籍处分。', '有价证券、股权、其他金融产品', '汽车、房产', '电脑、汽车、房产', '有价证券、债券、其他金融产品', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('159', '党员干部必须正确行使人民赋予的权力,清正廉洁，（ ）任何滥用职权、谋求私利的行为', '反对', '避免', '应当反对', '尽量避免', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('160', '在党内组织秘密集团或者组织其他分裂党的活动的,给予（ ）处分。', '警告', '严重警告', '留党察看', '开除党籍', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('161', '党纪处分决定作出后,应当在（ ）向受处分党员所在党的基层组织中的全体党员及其本人宣布,是领导班子成员的还应当向所在党组织领导班子宣布,并按照干部管理权限和组织关系将处分决定材料归入受处分者档案。', '一周内', '半个月内', '一个月内', '两个月内', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('162', '留党察看处分,分为留党察看（ ）、留党察看（ ）', '半年 一年', '二年 三年', '一年 二年', '一年 三年', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('163', '党员受到警告处分（ ）、 受到严重警告处分（ ），不得在党内提升职务和向党外组织推荐担任高于其原任职务的党外职务', '半年内 一年内', '一年内 一年半内', '一年内 两年内', '半年内 两年内', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('164', '违反有关规定办理因私出国（境）证件、前往港澳通行证，或者未经批准出入国（边）境，情节较轻的，给予（）处分。', '警告或者严重警告', '留党察看', '严重警告', '警告', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('165', '故意作出与党和国家的方针政策以及决策部署相违背的决定的，情节严重的，给予（ ）处分。', '警告', '严重警告', '撤销党内职务', '留党察看或者开除党籍', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('166', '对违纪后下落不明的党员超过（ ）的，党组织应当按照党章规定对其予以除名。（第三十六条）', '六个月', '一年', '两年', '三年', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('167', '收受可能影响公正执行公务的礼品、礼金、消费卡等，情节较重的，给予（ ）处分。', '严重警告', '留党察看', '开除党籍', '撤销党内职务或者留党察看', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('168', '对有丧失党员条件，严重败坏党的形象行为的，应当给予（ ）（第二十九条）', '开除党籍', '警告', '留党察看', '撤销党内职务', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('169', '执行党纪处分决定的机关或者受处分党员所在单位，应当在（ ）内将处分决定的执行情况向作出或者批准处分决定的机关报告。', '三个月', '六个月', '九个月', '一年', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('170', '受到改组处理的党组织领导机构成员除应受到（ ）及以上处分的外，均自然免职。(第十四条)', '严重警告', '撤销党内职务', '留党察看', '开除党籍', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('171', '党员受到开除党籍处分， ( ) 年内不得重新入党。另有规定不准重新入党的，依照规定。', '一', '三', '五', '', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('172', '新修订的《准则》和《条例》是对（ ）的具体化', '习总书记讲话精神', '党章规定', '十八大精神', '十八届三中全会精神', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('173', '党员受到留党察看处分，其党内职务（ ）', '自然撤销', '暂时保留', '视情况而定', '每悔过表现的，可以保留', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('174', '《廉洁自律准则》第四条，坚持吃苦在前、享受在后、甘于奉献，反映了廉洁的（ ）', '界线', '底线', '防线', '高线', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('175', '党员受到撤销党内职务处分，( ) 年内不得在党内担任和向党外组织推荐担任与其原任职务相当或者高于其原任职务的职务。', '一', '二', '三', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('176', '对于应当受到撤销党内职务处分，但是本人没有担任党内职务的，应当给予其（）', '警告处分', '严重警告处分', '留党察看处分', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('177', '《中国共产党廉洁自律准则》要求党员领导干部廉洁齐家，（ ）', '自觉维护人民根本利益', '自觉保持人民公仆本色', '自觉提升思想道德境界', '自觉带头树立良好家风', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('178', '《中国共产党廉洁自律准则》明确了党员领导干部廉洁自律规范，第七条强调，廉洁修身，（ ） 。', '自觉保持人民公仆本色', '自觉维护人民根本利益', '自觉提升思想道德境界', '自觉带头树立良好家风', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('179', '新《准则》第二条，坚持崇廉拒腐，清白做人，干净做事，反映了廉洁的（ ）', '界线', '底线', '防线', '高线', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('180', '《中国共产党廉洁自律准则》明确了党员廉洁自律规范，第四条强调，坚持吃苦在前，（ ）。', '先公后私，克己奉公', '享受在后，甘于奉献', '清白做人，干净做事', '艰苦朴素，勤俭节约', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('181', '（ ）负责新《中国共产党廉洁自律准则》.《中国共产党纪律处分条例》的贯彻实施。', '人大', '政协', '党委（党组）', '党的纪律检查机关', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('182', '《中国共产党廉洁自律准则》要求党员领导干部廉洁修身，（ ）', '自觉维护人民根本利益', '自觉保持人民公仆本色', '自觉提升思想道德境界', '自觉带头树立良好家风', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('183', '《中国共产党廉洁自律准则》的施行日期为（ ）', '42296', '42368', '42370', '42399', '2016年1月1日', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('184', '新修订的《中国共产党廉洁自律准则》和《中国共产党纪律处分条例》是对（ ）的具体化。', '习总书记讲话精神', '党章规定', '十八大精神', '十八届三中全会精神', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('185', '《关于新形势下党内政治生活的若干准则》规定，“三会一课”要突出政治学习和教育，突出党性锻炼，坚决防止（ ）：① 表面化；②形式化；③娱乐化；④庸俗化', '①②③', '②③④', '①③④', '①②③④', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('186', '修订后的《廉洁自律准则》紧扣“廉洁自律”、坚持正面倡导、面向全体党员、突出（ ），强调自律，重在立德。', '关键多数', '关键少数', '关键群体', '关键个体', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('187', '《关于新形势下党内政治生活的若干准则》规定，必须尊重党员主体地位、保障党员民主权利，落实党员（ ）', '知情权', '参与权', '选举权', '监督权', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('188', '新颁布的《廉洁自律准则》坚持正面倡导、（ ），是党员和党员领导干部能够看得见、够得着的高标准。', '以人为本', '重在立德', '重在立法', '重在立规', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('189', '《关于新形势下党内政治生活的若干准则》规定，凡属重大问题，要按照（ ）的原则，由集体讨论、按少数服从多数作出决定：① 集体领导；②民主集中；③个别酝酿；④会议决定', '①②③', '②③④', '①③④', '①②③④', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('190', '修订后的《廉洁自律准则》共8条、281字，包括导语、党员廉洁自律规范和党员领导干部廉洁自律规范等3部分，主要内容可以概括为：（ ）', '“四个必须”“八项规定”', '“四个必须”“八条规范”', '“四个必须”“八条禁止”', '“８个禁止”“52个不准”', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('191', '《关于新形势下党内政治生活的若干准则》规定，党的各级组织、全体党员特别是高级干部都要（ ）：① 向党中央看齐；②向党的理论和路线方针政策看齐；③向党中央决策部署看齐；④向上级领导人看齐', '①②③', '②③④', '①③④', '①②③④', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('192', '《关于新形势下党内政治生活的若干准则》规定，实行（ ） 制度，公开权力运行过程和结果，健全不当用权问责机制，把权力关进制度笼子，让权力在阳光下运行。', '权力监督', '权力清单', '权力运行', '权力看管', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('193', '《关于新形势下党内政治生活的若干准则》规定，全党要坚持不懈努力，共同营造风清气正的政治生态，确保（ ）始终成为中国特色社会主义事业的坚强领导核心。', '人大', '政治局', '国务院', '党', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('194', '《廉洁自律准则》第三条，坚持尚俭戒奢、艰苦朴素、勤俭节约，反映了廉洁的（ ）。', '界线', '底线 ', '防线', '高线', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('195', '《关于新形势下党内政治生活的若干准则》规定，按期进行（ ）、总支部和支部委员会换届。', '党的基层委员会', '党委会', '党支部', '党员大会', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('196', '《廉洁自律准则》是规范党员领导干部从政行为的（ ）。', '根本性党内法规', '重要基础性党内法规', '党的重要法规', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('197', '《关于新形势下党内政治生活的若干准则》规定，纪检监察、司法机关严格依纪依法按 （ ） 对涉嫌严重违纪违法行为进行调查。', '指示', '舆论', '领导要求', '程序', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('198', '新《准则》第二条，坚持崇廉拒腐，清白做人，干净做事，反映了廉洁的（ ）。', '界线', '底线', '防线', '高线', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('199', '《关于新形势下党内政治生活的若干准则》规定，党内监督必须突出党的领导机关和领导干部特别是（ ）', '个别领导干部', '主要领导干部', '中央委员', '中央政治局常委', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('200', '《廉洁自律准则》是对党章关于廉洁自律要求的（ ）。', '系统化', '可操作化', '具体化', '科学化', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('201', '《廉洁自律准则》第四条，坚持吃苦在前、享受在后、甘于奉献，反映了廉洁的（ ）。', '界线', '底线', '防线', '高线', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('202', '《中国共产党廉洁自律准则》要求党员领导干部廉洁从政，（ ）。', '自觉维护人民根本利益 ', '自觉保持人民公仆本色', '自觉提升思想道德境界', '自觉带头树立良好家风', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('203', '加强和规范党内政治生活的重要任务是（ ）', '为全党统一意志、统一行动提供保障', '全心全意为人民服务', '建设廉洁政治，坚决反对腐败', '为全党统一意志、统一行动提供保障', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('204', '《中国共产党廉洁自律准则》要求党员领导干部廉洁用权，（ ）。', '自觉维护人民根本利益', '自觉保持人民公仆本色', '自觉提升思想道德境界', '自觉带头树立良好家风', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('205', '《关于党内政治生活的若干准则》指出，党内真正实行(  )，才有可能建立起在党员和群众中有威信的强有力的领导班子。', '民主决策', '民主选举', '民主管理', '民主投票', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('206', '《中国共产党廉洁自律准则》对全体党员和各级党员领导干部提出了（ ）的要求。', '“三个必须”', '“四个必须”', '“五个必须”', '“六个必须”', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('207', '（ ）是全党统一意志、统一行动、步调一致前进的重要保障，是党内政治生活的重要内容。', '实事求是', '从严治党', '向党中央看齐', '纪律严明', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('208', '加强和规范党内政治生活的重要目的是（ ）', '坚决维护党中央权威、保证全党令行禁止', '实现共产主义和中国特色社会主义', '建设党内民主', '为全党统一意志、统一行动提供保障', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('209', '《关于新形势下党内政治生活的若干准则》规定，干部是党的宝贵财富，必须既严格教育、严格管理、严格监督，又在（ ）真诚关爱，鼓励干部干事创业、大胆作为。', '政治上', '思想上', '工作上', '生活上', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('210', '中国共产党人的精神支柱和政治灵魂是（ ）', '马列主义', '共产主义理想', '中国特色社会主义共同理想', '共产主义远大理想和中国特色社会主义共同理想', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('211', '《关于新形势下党内政治生活的若干准则》规定，党内选举必须体现（ ）意志，规范和完善选举制度规则。', '党员', '选举人', '干部', '被选举人', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('212', '加强和规范党内政治生活，关键是（ ）', '各级领导机关和领导干部', '高级干部', '基层干部', '全体干部', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('213', '（ ）是党内政治生活正常开展的重要制度保障。', '纪律严明', '组织生活制', '民主集中制', '批评与自我批评', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('214', '《关于新形势下党内政治生活的若干准则》规定，建立容错纠错机制，（ ）干部在工作中特别是改革创新中的失误。', '惩罚', '制裁', '宽容', '放任', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('215', '全党必须聚精会神抓好发展这个党执政兴国的第一要务，坚持以（  ）为中心的发展思想，统筹推进“五位一体”总体布局和协调推进“四个全面”战略布局。', '经济建设', '人民', '改革', '创新', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('216', '《关于新形势下党内政治生活的若干准则》规定，思想理论上的坚定清醒是（  ）坚定的前提。', '政治上', '经济上', '文化上', '思想上', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('217', '（ ）是全党学习践行社会主义核心价值体系的重中之重。', '思想理论教育', '理想信念教育', '传统文化教育', '优良作风建设', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('218', '《关于党内政治生活的若干准则》要求，对待思想上理论上的是非，只能采取(  )的办法求得解决，决不能采取压服的办法。', '领导班子集体决定', '群众投票', '少数服从多数', '摆事实、讲道理、民主讨论', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('219', '社会主义核心价值体系的灵魂是（ ）', '社会主义理想信念', '爱国主义精神', '优良道德情操', '马克思主义思想', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('220', '中国共产党在领导社会主义事业过程中，要抓紧时机，加快发展，必须实施科教兴国战略和（  ）发展战略', '可持续', '跨越式', '前瞻性', '推进式', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('221', '党的领导核心作用主要体现为（ ）', '科学决策、管好干部', '总揽全局、协调各方', '领导一切、为民作主', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('222', '党的建设的第一条经验是（ ）', '坚持把思想理论建设放在首位', '坚持立党为公、执政为民', '坚持党要管党、从严治党', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('223', '党领导人民治理国家的基本方略是（ ）', '依法治国，建设社会主义法治国家', '依法治国，人民当家作主', '依法治国与以德治国的统一', '', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('224', '在党组织讨论决定对党员的党纪处分或作出鉴定时，下列说法中，正确的应该是（ ）', '本人无权参加和进行申辩', '其他党员不可以为他作证和辩护', '本人有权参加和进行申辩，其他党员可以为他作证和辩护', '', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('225', '加强和规范党内政治生活的重要举措是（ ）', '自律', '批评和自我批评', '监督', '举报', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('226', '党章规定，中国共产主义青年团是中国共产党领导的（ ）的群众组织。', '青年', '青少年', '先进青年', '', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('227', '党要管党、从严治党必须从（  ）管起、严起。', '党内政治生活', '党的民主生活', '党的组织生活', '党的基层工作', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('228', '为人民服务是党的根本宗旨，以人为本、（ ）是检验党一切执政活动的最高标准', '执政为民', '依靠人民', '加快发展', '造福于民', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('229', '党的各级委员会要加强对共青团的领导，注意团的干部的（ ）和培训。', '选拔', '培养', '监督', '管理', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('230', '（ ）是党最根本、最重要的纪律，遵守党的（ ）是遵守党的全部纪律的基础。', '工作纪律', '政治纪律', '组织纪律', '群众纪律', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('231', '党的基层组织是党的全部工作和战斗力的（ ）。', '体现', '核心', '重点', '基础', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('232', '党员如果没有正当理由，连续（ ）个月不参加党的组织生活，或不交纳党费，或不做党所分配的工作，就被认为是自行脱党。', '三个月', '六个月', '十二个月', '十八个月', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('233', '党内（ ）是党的生命。', '监督', '纪律', '民主', '原则', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('234', '对马克思主义的信仰，对社会主义和共产主义的信念，是共产党人的（）', '政治灵魂', '精神支柱', '政治底线', '道德底线', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('235', '（ ）是党内的最高处分', '移送司法机关', '开除党籍', '开除公职', '判刑', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('236', '党的全国代表大会举行的时间（ ）？', '每三年举行一次', '每四年举行一次', '每五年举行一次', '每六年举行一次', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('237', '党员不符合党员条件，支部应当对其进行教育，要求其限期改正，仍无转变的，应当（ ）', '劝其退党', '给予相应处罚', '继续教育', '双开', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('238', '党员要求退党，应当经（ ）讨论后宣布除名，并报上级党组织备案。', '党委常委', '基层党委', '党小组', '支部大会', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('239', '党员的党龄应如何计算（ ）', '预备党员开始算起', '递交入党申请书算', '从预备期满转为正式党员之日算起', '党校结业算起', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('240', '党执政后的最大危险是（ ）？', '贪污腐败', '官僚作风', '脱离群众', '国外分裂势力', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('241', '我们党的最大政治优势是（ ）?', '密切联系群众', '实事求是', '统一战线', '以马克思主义为指导思想', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('242', '时代精神的核心是什么（ ）？', '改革创新', '锐意进取', '努力拼搏', '科技为先', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('243', '我国的强国之路是什么（）？', '坚持科教兴国', '坚持创新发展', '坚持艰苦奋斗', '坚持改革开放', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('244', '民族精神的核心是什么（ ）？', '诚信友善', '艰苦朴素', '甘于奉献', '爱国主义', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('245', '我国的立国之本是什么（ ）？', '坚持改革开放', '坚持发展经济', '坚持四项基本原则', '坚持党的领导', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('246', '以下选项属于我国目前分配制度的是（ ）？', '完全按劳分配 ', '完全按需分配 ', '按劳分配为主 ', '按需分配为主', '按劳分配为主', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('247', '在新世纪新阶段，经济和社会发展的战略目标是，巩固和发展已经初步达到的小康水平，到（ ）一百年时，人均国内生产总值达到中等发达国家水平，基本实现现代化。', '建党', '建国', '改革开放', '建军', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('248', '党执政兴国的第一要务是什么（ ）？', '发展', '稳定', '持续', '改革', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('249', '邓小平理论的精髓和活的灵魂是什么（）？', '解放思想，实事求是', '一个国家，两种制度', '为人民服务', '以经济建设为中心，坚持四项基本原则，坚持改革开放', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('250', '对妄议中央大政方针，破坏党的集中统一的，且情节严重的，给予（   ）处分。第四十六条', '警告或严重警告', '撤销党内职务', '开除党籍', '留党察看', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('251', '《中国共产党纪律处分条例》把党章对纪律的要求整合成政治纪律、组织纪律和廉洁纪律等“（   ）类纪律”。', '五', '六', '七', '八', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('252', '受到留党察看处分的党员，恢复党员权利后（   ）年内，不得在党内担任和向党外组织推荐担任与其原任职务相当或者高于其原任职务的职务。', '一', '二', '三', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('253', '执行党纪处分决定的机关或者受处分党员所在单位，应当在（   ）内将处分决定的执行情况向作出或者批准处分决定的机关报告。', '三个月', '六个月', '九个月', '一年', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('254', '《中国共产党廉洁自律准则》分为两部分：一是党员廉洁自律规范；二是（   ）。', '领导廉洁从政规范', '领导干部廉洁自律规范', '党员领导干部廉洁自律规范', '领导干部廉洁从政规范', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('255', '《廉洁自律准则》导语部分，重申关于理想信念、根本宗旨、优良传统作风、高尚情操等“四个必须”的原则要求，强调廉洁自律、接受监督的主旨，最后将落脚点放在永葆党的（ ）上。', '先进性和纯洁性', '优良传统', '生机活力', '政治本色', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('256', '《中国共产党廉洁自律准则》分为两部分：一是党员廉洁自律规范；二是（ ）。', '领导廉洁从政规范', '领导干部廉洁自律规范', '党员领导干部廉洁自律规范', '领导干部廉洁从政规范', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('257', '《中国共产党廉洁自律准则》自（ ）起施行。', '印发之日', '42289', '42299', '42370', '2016年1月1日', null, null, '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('258', '2015年10月12日召开会议，（ ）审议通过《中国共产党廉洁自律准则》、《中国共产党纪律处分条例》。', '中共中央政治局', '中共中央', '中共中央书记处', '中共中央办公厅', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('259', '《廉洁自律准则》第一条，坚持公私分明、先公后私、克己奉公，反映了廉洁的（ ）。', '界线', '底线', '防线', '高线', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('260', '《廉洁自律准则》坚持（ ）。', '依法治国与以德治党相结合', '依规治党与以德治党相结合', '依规治党与以德治国相结合', '高标准与守底线相结合', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('261', '《廉洁自律准则》的主题是（ ）。', '自省', '自觉', '自律', '', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('262', '《廉洁自律准则》坚持（ ）。', '依法治国与以德治党相结合', '依规治党与以德治党相结合', '依规治党与以德治国相结合', '高标准与守底线相结合', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('263', '《中国共产党廉洁自律准则》分为两部分：一是党员廉洁自律规范；二是（ ）。', '领导廉洁从政规范', '领导干部廉洁自律规范', '党员领导干部廉洁自律规范', '领导干部廉洁从政规范', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('264', '《中国共产党廉洁自律准则》对全体党员提出了（ ）条廉洁自律规范。', '3', '4', '5', '6', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('265', '《关于新形势下党内政治生活的若干准则》规定，领导干部特别是高级干部必须注重（ ），教育管理好亲属和身边工作人员。', '家庭', '家教', '家风', '家族利益', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('266', '《关于新形势下党内政治生活的若干准则》规定，全党必须自觉防止和反对（ ） 。', '个人主义', '分散主义', '自由主义', '本位主义', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('267', '《关于新形势下党内政治生活的若干准则》规定，全党必须牢固树立（ ）', '政治意识', '大局意识', '核心意识', '看齐意识', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('268', '《关于新形势下党内政治生活的若干准则》规定，在长期实践中，我们党坚持把开展严肃认真的党内政治生活作为党的建设的重要任务来抓，形成了以（ ）、理论联系实际、民主集中制、 等为主要内容的党内政治生活基本规范。', '实事求是', '密切联系群众', '批评和自我批评', '严明党的纪律', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('269', '《关于新形势下党内政治生活的若干准则》规定，研究涉及全局的重大事项或作出重大决定要及时向（ ）请示报告，执行党中央重要决定的情况要专题报告。', '国务院', '党中央', '全国人大', '全国政协', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('270', '《关于新形势下党内政治生活的若干准则》规定，任何（ ）都不能游离于党的组织之外，更不能凌驾于党的组织之上。', '领导干部', '公民', '党员', '党委', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('271', '《关于新形势下党内政治生活的若干准则》规定，领导干部要以（ ）身份参加所在党支部或党小组的组织生活，坚持党员领导干部讲党课制度。', '群众', '公民', '领导', '普通党员', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('272', '《关于新形势下党内政治生活的若干准则》规定，党员、干部反映他人的问题，应该出于（ ），通过党内正常渠道实名进行。', '私怨', '报复', '陷害', '党性', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('273', '《关于新形势下党内政治生活的若干准则》规定，全体党员、干部特别是高级干部必须增强党的意识，时刻牢记自己第一身份是（   ）。', '党员', '干部', '服务者', '领导者', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('274', '加强和规范党内（    ）是全党的共同任务，必须全党一起动手。', '政治生活', '党纪严明', '问责机制', '民主法治', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('275', '考察识别干部特别是高级干部必须首先看（   ）。', '是否坚定不移贯彻党的基本路线', '是否坚持实事求是', '是否坚持群众路线', '是否坚持理论联系实际', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('276', '《关于党内政治生活的若干准则》要求，维护党的集中统一，严格遵守党的纪律，必须反对和防止（ ）', '教条主义', '自由主义', '分散主义', '本位主义', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('277', '加强和规范党内（   ）是全党的共同任务，必须全党一起动手。', '政治生活', '党纪严明', '问责机制', '民主法治', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('278', '考察识别干部特别是高级干部必须首先看（   ）。', '是否坚定不移贯彻党的基本路线', '是否坚持实事求是', '是否坚持群众路线', '是否坚持理论联系实际', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('279', '加强和规范党内政治生活的重要任务是（   ）', '为全党统一意志、统一行动提供保障', '全心全意为人民服务', '建设廉洁政治，坚决反对腐败', '为全党统一意志、统一行动提供保障', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('280', '加强和规范党内政治生活的根本要求是（   ）', '坚决维护党中央权威、保证全党令行禁止', '为全党统一意志、统一行动提供保障', '坚定理想信念', '坚持全心全意为人民服务的根本宗旨、保持党同人民群众的血肉联系', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('281', '党内政治生活正常开展的根本保证是（   ）', '党在社会主义初级阶段的基本路线', '坚定理想信念', '纪律严明', '坚决维护党中央权威', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('282', '加强和规范党内政治生活，必须以（  ）为根本遵循。', '党章', '法律', '党内监督条例', '宪法', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('283', '《关于新形势下党内政治生活的若干准则》明确规定，必须把（  ）作为开展党内政治生活的首要任务。', '坚定理想信念', '严明党的纪律', '加强党内民主', '坚持民主集中制', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('284', '（ ）是党的生命，是党内政治生活积极健康的重要基础。', '党内教育', '党内自由', '党内团结', '党内民主', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('285', '坚决维护（ ）、保证全党令行禁止，是党和国家前途命运所系，是全国各族人民根本利益所在。', '党的基本路线', '党的领导', '党规党纪', '党中央权威', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('286', '新形势下加强和规范党内政治生活，重点是（ ）', '党的各级代表大会代表', '各级领导干部', '各级领导机关和领导干部', '各级领导机关', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('287', '《关于新形势下党内政治生活的若干准则》在（ ）上通过。', '党的十八届六中全会', '十八届中央纪委六次全会', '庆祝党成立95周年大会', '党的十八届五中全会', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('288', '马克思主义在社会主义时期中国化的最大理论成果是（ ）', '毛泽东思想', '社会主义核心价值体系', '科学发展观', '中国特色社会主义理论体系', 'opt4', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('289', '社会主义初级阶段我国的基本经济制度是什么？（ ）', '公有制为主体、多种所有制经济共同发展', '按劳分配为主体、多种分配方式并存', '公有制为主体，实行按劳分配', '按劳分配和按生产要素分配的结合', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('290', '社会主义初级阶段的主要矛盾是什么？（ ）', '生产力与生产关系的矛盾', '人民日益增长的物质文化需要与落后的社会生产之间的矛盾', '改革、发展与稳定之间的矛盾', '人口增长与经济发展不适应的矛盾', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('291', '坚持中国先进文化的前进方向，就是要发展：（ ）', '面向现代化、面向世界、面向未来的社会主义文化', '民族的科学的大众的社会主义文化', '面向现代化、面向世界、面向未来的，民族的科学的大众的社会', '', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('292', '中国共产党领导全国各族人民，经过长期的反对帝国主义、封建主义、（ ）资本主义的革命斗争，取得了新民主主义革命的胜利。', '剥削', '权贵', '官僚', '垄断', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('293', '申请入党的人必须有两名党员作介绍人。这里的党员是指（ ）', '党员领导干部', '正式党员', '预备党员', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('294', '党员除了享有表决权、选举权和被选举权以外，还有权要求（ ）或撤换不称职的干部。', '开除', '罢免', '辞退', '', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('295', '党组的成员，由批准成立党组的党组织决定。党组设书记，必要时还可以设（  ）。', '常务委员', '副书记', '党组委员', '监督员', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('296', '（  ）是中央政治局和它的常务委员会的办事机构;成员由中央政治局常务委员会提名，中央委员会全体会议通过。', '中央办公厅', '中央书记处', '中组部', '中宣部', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('297', '预备党员转为正式党员，或延长预备期，或取消预备党员资格的，都应当经过（  ）讨论。', '党委会', '支部大会', '党代会', '党委常委会', 'opt2', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('298', '一个中心是以（  ）建设为中心？', '政治', '文化', '经济', '生态', 'opt3', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('299', '在新世纪新阶段，经济和社会发展的战略目标是，巩固和发展已经初步达到的小康水平，到（   ）一百年时，建成惠及十几亿人口的更高水平的小康社会。', '建党', '建国', '改革开放', '建军', 'opt1', null, '1', '1539924282', null, null, null);
+INSERT INTO `c_exam_questions` VALUES ('300', '中国共产党的最高理想和最终目标是什么？（ ）', '实现小康社会', '迈入中等发达国家', '中华民族伟大复兴', '实现共产主义', 'opt4', null, '1', '1539924282', null, null, null);
+
+-- ----------------------------
+-- Table structure for `c_exampaper`
+-- ----------------------------
+DROP TABLE IF EXISTS `c_exampaper`;
+CREATE TABLE `c_exampaper` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `exampaper_name` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '试卷名称',
+  `exam_activity_id` int(11) DEFAULT NULL COMMENT '对应活动表的主键id',
+  `questions_ids` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '对应题目的主键ids',
+  `long_time` int(11) DEFAULT NULL COMMENT '考试时长',
+  `score` int(11) DEFAULT '100' COMMENT '试卷满分值',
+  `pass_score` int(11) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL COMMENT '试卷创建时间',
+  `branchs_id` int(11) DEFAULT NULL COMMENT '试卷对应的组织id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='试卷表（或者称为关卡表）';
+
+-- ----------------------------
+-- Records of c_exampaper
+-- ----------------------------
+INSERT INTO `c_exampaper` VALUES ('1', '基本技能测试', '1', '268,156,165,92,266,66,168,6,155,252', '360', '100', '80', '1540172910', '1');
+INSERT INTO `c_exampaper` VALUES ('2', '素质测试1', '1', '90,157,230,268,63,64,216,87,265,49', '360', '100', '60', '1540173207', '1');
+INSERT INTO `c_exampaper` VALUES ('3', '综合能力测试', '1', '264,87,293,236,280,113,102,240,238,90', '720', '100', '60', '1540173235', '1');
+INSERT INTO `c_exampaper` VALUES ('4', '三个重点', '2', '188,166,212,189,148,10,108,255,152,190', '360', '100', '60', '1540173313', '1');
+INSERT INTO `c_exampaper` VALUES ('5', '四个意识', '2', '143,89,109,96,276,3,160,235,5,253', '3600', '100', '60', '1540173334', '1');
+
+-- ----------------------------
+-- Table structure for `c_heart`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_heart`;
 CREATE TABLE `c_heart` (
@@ -1427,6 +2164,7 @@ CREATE TABLE `c_heart` (
   `is_del` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除（0未删除1已删除）',
   `visit` int(10) unsigned DEFAULT '0' COMMENT '浏览次数',
   `recommend` tinyint(1) unsigned DEFAULT '0' COMMENT '推荐（0不推荐1推荐）',
+<<<<<<< HEAD
   `take` varchar(255) DEFAULT NULL COMMENT '投稿照片url',
   `rudang_time` int(10) DEFAULT NULL,
   `department` varchar(200) DEFAULT NULL,
@@ -1434,10 +2172,16 @@ CREATE TABLE `c_heart` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `cate_id` (`cate_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='一颗红心 ';
+=======
+  PRIMARY KEY (`id`),
+  KEY `cate_id` (`cate_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='一颗红心 ';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_heart
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_heart` VALUES ('1', '1', '测试红心', '1', '人民网内比都7月9日电  （记者林芮）7月9日，由中共中央宣传部、缅甸联邦政府宣传部共同主办的《习近平谈治国理政》缅文版首发式暨中缅治国理政研讨会在缅甸首都内比都举行。缅甸人民院副议长吞吞亨、民族院副议长埃达昂，联邦政府宣传部部长佩敏、自然资源和环境保护部部长翁温，以及中缅两国各界代表300多人出席此次首发式和研讨会。\r\n\r\n双方嘉宾表示，《习近平谈治国理政》一书，为中外读者认识和理解习近平新时代中国特色社会主义思想提供了重要文献，为国际社会更好了解当代中国提供了一把钥匙，集中反映了中国共产党所做的一切就是为中国人民谋幸福、为中华民族谋复兴、为人类谋和平与发展。《习近平谈治国理政》第一卷缅文版的出版发行，为缅甸人民更好了解中国打开了一扇新窗口，为增进中缅人民“胞波”情谊搭建了新桥梁，为深化两国治国理政经验交流提供了新载体。\r\n\r\n双方嘉宾表示，中缅是山水相连、血脉相通的友好邻邦，是天然的命运共同体。当前，中缅都处于改革发展的关键期，两国加强治国理政经验交流和互鉴，对于两国各自走好今后的道路、推进国家事业发展、增进人民福祉，具有重要意义。\r\n\r\n《习近平谈治国理政》第一卷于2014年9月出版、2018年1月再版，受到中外读者广泛关注和好评。目前，该书已出版24个语种27个版本，发行到160多个国家和地区。《习近平谈治国理政》第一卷缅文版由中国外文出版社与缅甸亚洲名望媒体集团合作翻译出版，是该书再版后首个通过国际出版合作完成的文版。', '0', '', '2', '1534755685', '1', '10', '1', null, null, null, '0');
 INSERT INTO `c_heart` VALUES ('2', '1', '让群众对脱贫攻坚更有获得感', '2', '为深入贯彻落实党的十九大精神，深入贯彻落实习近平总书记关于打赢脱贫攻坚战以及开展扶贫领域腐败和作风问题专项治理的系列重要讲话和批示精神，中央纪委决定从2018年到2020年持续开展扶贫领域腐败和作风问题专项治理。半年多来，各地各部门迅速跟进，一个个腐败和作风问题被查处曝光，形成了有力震慑。从今天起，本刊聚焦“扶贫领域腐败和作风问题专项治理”，推出系列报道，敬请关注。\r\n\r\n——编 者 \r\n\r\n“我们这次来是从整治扶贫领域腐败和作风问题这个切口，看看脱贫攻坚的任务完成得怎么样，各项政策能不能落地生根，群众反映强烈的问题解决得怎么样？”今年以来，中央纪委国家监委有关负责人以及相关室干部分赴广西、海南、贵州等18个省区市开展扶贫领域腐败和作风问题专项治理调研督导，直插基层进村入户实地查看，面对面了解实情，指出问题，督促各地区各单位抓好专项治理工作。\r\n\r\n打赢脱贫攻坚战，是党的庄严承诺，是一项必须完成的政治任务。党的十九大以来，中央和各级纪检监察机关扎实推进扶贫领域腐败和作风问题专项治理工作，有力推动了一大批群众反映强烈的扶贫领域突出问题得到解决，增强了群众对脱贫攻坚的获得感。\r\n\r\n到脱贫攻坚第一线深入摸排，提高发现问题精准度\r\n\r\n今年农历大年初三，年味正浓，新疆维吾尔自治区纪委干部李靓和同事们已切换到工作模式。翻开一个多月前在喀什地区疏勒县督导时发现问题的台账，李靓锁定了当天的行程：“先去巴仁乡尤喀克巴仁村！”\r\n\r\n之前，自治区纪委抽调纪检干部组成群众工作督导组在疏勒县走访时，村民麦麦提·玉麦尔向督导组反映，不仅自己的富民安居名额被人挤占，村支书还强迫他自费修建富民安居房。督导组将问题线索移交给县纪委。经查，穆合塔尔·麦麦提伊敏明作为村支书，不仅不帮麦麦提·玉麦尔讨回被他人冒领的富民安居物资，还在其经济能力不足且住房足够的情况下，强迫其自费3万多元，修建40平方米的“面子工程”。最终，穆合塔尔·麦麦提伊敏明受到严肃处理。\r\n\r\n敲开麦麦提·玉麦尔家门，李靓他们关切地问：“上个月您向我们反映的问题解决了吗？满不满意？”“满意，一百个满意！”麦麦提·玉麦尔说，“没想到问题解决得这么快，年前村里把富民安居房的物资款退给我们了，村干部的态度也好多了！”\r\n\r\n今年以来，新疆先后采取机动式、交叉式、点穴式、蹲点式开展6轮督导检查，覆盖自治区14个地州、96个县市区、872个乡镇、9155个村社区，累计走访各族群众24663户58844人。为保证督导中发现的问题整改到位，督导组还在整改结束后进行“回头看”。\r\n\r\n专项治理工作开展以来，中央纪委国家监委充分发挥信访主渠道作用，认真受理和及时处置群众信访举报，并定期专题分析研判；同时，建立与扶贫、审计、财政等部门的协作机制，广泛收集问题线索；督促各级纪检监察机关开展扶贫领域腐败和作风问题线索大起底大排查，深入基层一线发现问题。各地也积极行动起来：江西开设“扶贫领域违规违纪问题举报”直通车、在农村集市进行大接访、常态化开展明察暗访，将监督触角延至“最后一公里”。四川探索运用“群众监督+舆论监督+纪检监督”一体化模式，近年来通过“阳光问廉”问责2218人，处分1028人。河南省纪委与省直19个部门建立问题收集、线索移交核查、督查问责等联动机制，统筹检察、审计、信访、巡视巡察等多个问题线索收集渠道……', '0', '', '3', '0', '0', '0', '1', null, null, null, '0');
 INSERT INTO `c_heart` VALUES ('11', '16', '你好', '2', '啊', '1533195656', '', '2', '1534755676', '1', '0', '1', null, null, null, '0');
@@ -1486,15 +2230,71 @@ INSERT INTO `c_heart` VALUES ('54', '29', '三位基层扶贫女干部的故事'
 
 -- ----------------------------
 -- Table structure for c_heart_cate
+=======
+INSERT INTO `c_heart` VALUES ('1', '1', '测试红心', '1', '人民网内比都7月9日电  （记者林芮）7月9日，由中共中央宣传部、缅甸联邦政府宣传部共同主办的《习近平谈治国理政》缅文版首发式暨中缅治国理政研讨会在缅甸首都内比都举行。缅甸人民院副议长吞吞亨、民族院副议长埃达昂，联邦政府宣传部部长佩敏、自然资源和环境保护部部长翁温，以及中缅两国各界代表300多人出席此次首发式和研讨会。\r\n\r\n双方嘉宾表示，《习近平谈治国理政》一书，为中外读者认识和理解习近平新时代中国特色社会主义思想提供了重要文献，为国际社会更好了解当代中国提供了一把钥匙，集中反映了中国共产党所做的一切就是为中国人民谋幸福、为中华民族谋复兴、为人类谋和平与发展。《习近平谈治国理政》第一卷缅文版的出版发行，为缅甸人民更好了解中国打开了一扇新窗口，为增进中缅人民“胞波”情谊搭建了新桥梁，为深化两国治国理政经验交流提供了新载体。\r\n\r\n双方嘉宾表示，中缅是山水相连、血脉相通的友好邻邦，是天然的命运共同体。当前，中缅都处于改革发展的关键期，两国加强治国理政经验交流和互鉴，对于两国各自走好今后的道路、推进国家事业发展、增进人民福祉，具有重要意义。\r\n\r\n《习近平谈治国理政》第一卷于2014年9月出版、2018年1月再版，受到中外读者广泛关注和好评。目前，该书已出版24个语种27个版本，发行到160多个国家和地区。《习近平谈治国理政》第一卷缅文版由中国外文出版社与缅甸亚洲名望媒体集团合作翻译出版，是该书再版后首个通过国际出版合作完成的文版。', '0', '', '2', '1534755685', '1', '10', '1');
+INSERT INTO `c_heart` VALUES ('2', '1', '让群众对脱贫攻坚更有获得感', '2', '为深入贯彻落实党的十九大精神，深入贯彻落实习近平总书记关于打赢脱贫攻坚战以及开展扶贫领域腐败和作风问题专项治理的系列重要讲话和批示精神，中央纪委决定从2018年到2020年持续开展扶贫领域腐败和作风问题专项治理。半年多来，各地各部门迅速跟进，一个个腐败和作风问题被查处曝光，形成了有力震慑。从今天起，本刊聚焦“扶贫领域腐败和作风问题专项治理”，推出系列报道，敬请关注。\r\n\r\n——编 者 \r\n\r\n“我们这次来是从整治扶贫领域腐败和作风问题这个切口，看看脱贫攻坚的任务完成得怎么样，各项政策能不能落地生根，群众反映强烈的问题解决得怎么样？”今年以来，中央纪委国家监委有关负责人以及相关室干部分赴广西、海南、贵州等18个省区市开展扶贫领域腐败和作风问题专项治理调研督导，直插基层进村入户实地查看，面对面了解实情，指出问题，督促各地区各单位抓好专项治理工作。\r\n\r\n打赢脱贫攻坚战，是党的庄严承诺，是一项必须完成的政治任务。党的十九大以来，中央和各级纪检监察机关扎实推进扶贫领域腐败和作风问题专项治理工作，有力推动了一大批群众反映强烈的扶贫领域突出问题得到解决，增强了群众对脱贫攻坚的获得感。\r\n\r\n到脱贫攻坚第一线深入摸排，提高发现问题精准度\r\n\r\n今年农历大年初三，年味正浓，新疆维吾尔自治区纪委干部李靓和同事们已切换到工作模式。翻开一个多月前在喀什地区疏勒县督导时发现问题的台账，李靓锁定了当天的行程：“先去巴仁乡尤喀克巴仁村！”\r\n\r\n之前，自治区纪委抽调纪检干部组成群众工作督导组在疏勒县走访时，村民麦麦提·玉麦尔向督导组反映，不仅自己的富民安居名额被人挤占，村支书还强迫他自费修建富民安居房。督导组将问题线索移交给县纪委。经查，穆合塔尔·麦麦提伊敏明作为村支书，不仅不帮麦麦提·玉麦尔讨回被他人冒领的富民安居物资，还在其经济能力不足且住房足够的情况下，强迫其自费3万多元，修建40平方米的“面子工程”。最终，穆合塔尔·麦麦提伊敏明受到严肃处理。\r\n\r\n敲开麦麦提·玉麦尔家门，李靓他们关切地问：“上个月您向我们反映的问题解决了吗？满不满意？”“满意，一百个满意！”麦麦提·玉麦尔说，“没想到问题解决得这么快，年前村里把富民安居房的物资款退给我们了，村干部的态度也好多了！”\r\n\r\n今年以来，新疆先后采取机动式、交叉式、点穴式、蹲点式开展6轮督导检查，覆盖自治区14个地州、96个县市区、872个乡镇、9155个村社区，累计走访各族群众24663户58844人。为保证督导中发现的问题整改到位，督导组还在整改结束后进行“回头看”。\r\n\r\n专项治理工作开展以来，中央纪委国家监委充分发挥信访主渠道作用，认真受理和及时处置群众信访举报，并定期专题分析研判；同时，建立与扶贫、审计、财政等部门的协作机制，广泛收集问题线索；督促各级纪检监察机关开展扶贫领域腐败和作风问题线索大起底大排查，深入基层一线发现问题。各地也积极行动起来：江西开设“扶贫领域违规违纪问题举报”直通车、在农村集市进行大接访、常态化开展明察暗访，将监督触角延至“最后一公里”。四川探索运用“群众监督+舆论监督+纪检监督”一体化模式，近年来通过“阳光问廉”问责2218人，处分1028人。河南省纪委与省直19个部门建立问题收集、线索移交核查、督查问责等联动机制，统筹检察、审计、信访、巡视巡察等多个问题线索收集渠道……', '0', '', '3', '0', '0', '0', '1');
+INSERT INTO `c_heart` VALUES ('11', '16', '你好', '2', '啊', '1533195656', '', '2', '1534755676', '1', '0', '1');
+INSERT INTO `c_heart` VALUES ('13', '19', '测试', '1', '测试内容', '1533626422', '', '2', '1534755675', '1', '0', '1');
+INSERT INTO `c_heart` VALUES ('14', '19', 'Rrrrr', '1', 'The first new ', '1533719985', '', '1', '1534755672', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('15', '16', '啊啊啊', '1', '你好', '1533866361', '', '1', '1534755670', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('16', '19', '4654', '2', '595456465', '1533866676', '', '1', '1534755668', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('17', '19', '111', '1', '1111', '1533868721', '', '1', '1534755665', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('18', '19', '1', '1', '测试', '1534149565', '', '1', '1534755661', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('19', '19', '1', '1', '测试', '1534149597', '', '1', '1534755663', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('20', '19', '1', '1', '测试', '1534149616', '', '1', '1534755659', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('21', '20', '测试', '1', '测试测试', '1534149681', '', '1', '1534755653', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('22', '20', '投稿', '2', '11111', '1534149802', '', '1', '1534755651', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('23', '19', '1', '1', '测试', '1534149840', '', '1', '1534755649', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('24', '19', '1', '1', '测试', '1534149847', '', '1', '1534755646', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('25', '19', '1', '1', '测试', '1534150175', '', '1', '1534753325', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('26', '19', '1', '1', '测试', '1534150194', '', '1', '1534753323', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('27', '19', '1', '1', '测试', '1534150212', '', '1', '1534753321', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('28', '19', '1', '1', '测试', '1534150221', '', '1', '1534753319', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('29', '20', 'lalalalal', '1', '111', '1534150257', '', '2', '1534753317', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('30', '16', '哎呦', '3', '是的', '1534753779', '', '1', '1534755644', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('31', '16', '年轻干部怎一个“智”字了得', '1', '　　横平竖直显功力，一字多义添神秘。汉字是中华民族的瑰宝，记录和承载着中华文明，每一个汉字都集聚着中华民族的智慧结晶，每一个汉字都可以给人启示和感悟，每个汉字的组成部分都彰显着多重内涵。“智”字便是诸多内涵丰富的汉字之一，一个“智”字由“矢、口、日”三个简单的汉字组成，却暗含着年轻干部的成长之道，发展之路。新时代的年轻干部不仅要拥有“智”，更要懂得“智”从何来，“智”当如何。\n　　年轻干部的“智”，当是矢志不渝、初心不改。“亦余心之所善兮，虽九死其犹未悔。”作为年轻干部，必须牢固树立忠诚于党，服务为民的理念。作为未来党和国家事业的继承者和接班人，必须牢牢珍惜自己的党员身份，必须牢牢珍惜自己的公职人员身份，从入党宣誓那日起，就当牢记使命与担当，为了共产主义事业和共产主义理想而奋斗终生。年轻干部阅历较浅，对党的初心和理想通常缺少足够且深入的思考，面对这样的境况，必须坚定理想信念，补充“精神之钙”，加强党性修养，坚定政治方向，以一颗赤诚之心了解党，爱戴党，拥护党，把握好理想信念的“方向盘”，拧紧信仰思想的“总开关”，夯实忠诚之基，传承初心之志。\n　　年轻干部的“智”，当是心口如一、芳华绽放。习近平总书记强调，优秀年轻干部要把当老实人、讲老实话、做老实事作为人生信条。这对年轻干部的道德品质提出了明确的要求，年轻干部在奋勇前行的新时代绝不能依靠耍耍小聪明，绝不能做一个表里不一的“两面人”。新时代描绘新蓝图，新目标开启新征程，真正拥有智慧的年轻人，当知行合一，鼓足干劲，勇立潮头，一如既往干事业，一以贯之求进步，光明磊落，奋发有为，在芳华绽放的年纪，做一名勇往直前的奋进者，做一名继往开来的开拓者。\n　　年轻干部的“智”，当是日积月累、破茧成蝶。古语有云：不飞则已，一飞冲天；不鸣则已，一鸣惊人。年轻干部肩负着实现中华民族伟大复兴的使命，应始终志存高远、脚踏实地，切不可沉沦颓废，得过且过，虚度时光，耗费大好青春；要始终抱有一颗拳拳为党为国为民之心，积累知识，增长才干，不断打磨自己，不断磨练意志，在日积月累中百炼成钢。“灵明无著，物来顺应，未来不迎，当时不杂，既过不恋”，年轻干部当以曾国藩的这句话自勉，不怀念过去，不空想未来，面对问题不逃避、敢担当，用心做好当下的事，当思任重而道远，欲速则不达蕴含的深刻道理，厚积跬步以至千里，肩负起时代赋予的使命担当。', '1534753883', '', '2', '0', '0', '0', '1');
+INSERT INTO `c_heart` VALUES ('32', '16', '“麦穗”精神不可丢', '5', '　　蒙田说：“真正的学者就像田野上的麦穗。麦穗空瘪的时候，它总是长得很挺，高傲地昂起头；麦穗饱满成熟的时候，它总是表现出温顺的样子，低垂着脑袋。”麦穗如“岁寒三友”即“竹”“梅”“松柏”一样有其独特的优秀品质，它象征着收获、谦逊、吉祥……在我国国徽上也出现了“麦穗”这一图案，代表着党和国家对农业和粮食的重视，也代表着对民生的高度重视。可见，麦穗精神始终伴随着国家的发展和民族的复兴。\n　　麦穗，建设之所在。“九牛一毫莫自夸，骄傲自满必翻车。历览古今多少事，成由谦逊败由奢。”从中透露着我国自古以来就崇尚“谦虚使人进步，骄傲使人落后”这一优秀的传统文化。麦穗作为优秀传统文化的代名词，一跃成为文人墨士、迁客骚人的宠儿也未尝不可。时代精神永不朽，先进文化永长存，富强民主总相随。不管身在何时、何地，总要把精神文明传承下去。这样才不负极具智慧的“古人”和满心抱负的“今人”。建设“和谐中国”“美丽中国”“文明中国”“现代化中国”必须要善于学习先进典范，用如饥似渴的精神不断吮吸知识，用一点一滴的坚韧来积累，用吾日三省完善自己，用小事小节修炼自己，扎实苦干，脚踏实地，时刻以一颗饱满的“麦穗”之心来不断升华自己。\n　　麦穗，遨游之所在。知识似海洋，我们驾驶一叶之扁舟行驶在这深不可测的大海之上，只有深一步、更深一步，才知道自己的渺小，沧海之广袤。古语云：“学然后知困，教然后知不足。”只有不断地学习，才能认识到海洋的广袤，才能始终保持谦逊之心。在此之外，茫茫的知识海洋之上，还包括了太多未解之谜，需要我们去探索、去追寻。正如当代伟人毛泽东所说：“好好学习，天天向上。”这对知识的追求、尊崇和那份保存在骨子里的谦逊和探索品质被展现得淋漓尽致。学识越高的人越能知晓学习的重要性，也就更能持之以恒地追逐着大海，遨游于大海之中。“谦受益，满招损”的劝诫一直伴随在我们左右，“麦穗”的精神也从未离我们而去。\n　　麦穗，富强之所在。习近平曾在离开宁德时临别赠言中说到：“我作为一个党员，一个领导干部，我只是做了一些职责要求的分内之事。”这句话没有华丽的辞藻，只是有了几个普通、直白的词语串联在了一起。足以看得出总书记身上的那份谦逊，他一直用谦虚、平和的态度来做人做事。自己做的事都是职责所在，功劳都是大家的。习近平总书记指出：“虚心公听，言无逆逊，唯是从之”是执政党应有的胸襟。可见，谦虚一直伴随着我们生活的始终，我们要牢记仲永之伤，莫要骄傲自大。感怀典范之举，时常把爱国奉献挂心间。常举“麦穗”精神之旗，用初生牛犊不怕虎、泥牛入海之精神，在一叶扁舟中仰视天空，在广袤沧海中摸爬打滚，在人生旅途中继续前行，才能使党和时代精神永存不朽，才能使国家变得越来越和谐，才能使国家越来越强大。', '1534754380', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('33', '16', '组工干部的通关秘籍', '2', '　　时下，有一部叫《延禧攻略》的电视剧热播，讲述的是一位叫魏璎珞的小宫女凭借着自己坚定的理想信念、不屈不挠的意志和过硬的业务本领化解在宫廷中遇到的种种困难，最终成为襄助乾隆盛世的令贵妃的故事。魏璎珞一步一步的成长轨迹不禁让我想起了同样具备这些优秀品质的组工干部们，而这些品质也正是他们成为新时代的奋斗者的通关秘籍。\n　　守住初心才能担负使命。魏璎珞自进宫起，一直秉持着自己的理想信念，大有不达目的不罢休的精神，从小宫女到令贵妃的角色转变，她一直没有忘记过自己的初心和使命。正如组工干部，虽然每天忙于各种报表资料的上交、会议的筹备、文稿的写作等，但是他们的初心并没有被这些繁琐的小事湮没，他们时刻谨记入党时的庄重誓言，保持对党忠诚的本色，从这些小事中积累大智慧，从这些小事中有了新作为，从这些小事中坚守住信念。在新的历史条件下，他们牢记老一辈组工干部的事迹精神，准确把握党的性质宗旨、政治主张、奋斗理想和对党员的基本要求，自觉做共产主义远大理想和中国特色社会主义共同理想的坚定信仰者、忠实实践者。\n　　肩负责任才能有所作为。自进宫之日起，魏璎珞就面对重重困难和挑战，比如尔晴的背叛、纯妃的背后捅刀、高贵妃的杀心大起等都令她防不胜防，但在面对这些事情时，她沉着冷静，积极思考解决之道，而不是哀叹、哭泣或推卸责任。就像组工干部，他们聚焦组织工作主职主业，时刻牢记肩上担负的责任，始终保持奋发有为的状态，以严谨细致、精益求精的态度对待工作，大力发扬“安专迷”精神，敢啃“硬骨头”、敢于涉险滩，不畏艰难困苦。针对组织工作的重点难点问题，他们盯住不放、着力解决，推动组织工作在攻坚克难中创新发展，用自己的行动向人民群众交上一份满意的答卷。\n　　业务过硬才能脱颖而出。魏璎珞是绣女，她的绣工出类拔萃，她绣花鸟、绣云朵、绣霞光、绣凤袍、绣龙袍，最后，作为绣女的No.1，成功被招入长春宫。俗话说，“没有金刚钻，不揽瓷器活”。组工干部是党的事业的推动者和实施者，过硬的业务本领是推动党的事业发展的基本保障。在知识日新月异的时代，在激烈的竞争环境中，组工干部要时时保持“学如逆水行舟，不进则退”的态度，不断吸收最新的理论、掌握最有效的工作方法，时刻存在忧患意识，不断给自己“充电”。同时，要对党和国家的政策精神“吃透”“摸准”，把最新的理论拿到工作实践当中去检验，用实践来推动理论的完善和创新，真正成为业务领域的行家里手。', '1534754456', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('34', '16', '奋进搭“鹊桥”干群来“相会”', '2', '　　老一辈革命家习仲勋曾说过：“人民就是江山，江山就是人民”。搭好干群鹊桥，越过激流险滩，守护中华河山，是我党始终能够攻坚克难、接续梦想的动力之源，是广大党员干部与人民心心相印、与人民同甘共苦、与人民千里相会的必经之路。新时代要求每一位党员干部用踏实的脚步追寻群众路线的脉络，用满怀的热情保持与群众的血肉联系，用实实在在的行动维护自身形象，努力向人民群众交出一份满意的答卷。\n　　搭好干群“鹊桥”，需要质朴真挚的为民情怀。为民情怀是党员干部为民务实的强大精神支撑，也是拉近干群党群关系的意识保障。一个党员干部只有常怀为民爱民情怀，才会时刻把群众的冷暖疾苦放在心上，才会经常触摸群众的真情实感，才会心里想着为人民群众排忧解难，才会把权力当作为人民服务的工具，充分展现一个党员干部的至高情怀。广大党员干部应将“坚持以人民为中心”作为干事创业的出发点和落脚点，时刻提醒自己要甘当蹄疾深耕的“拓荒牛”、埋头苦干的“老黄牛”、甘于奉献的“孺子牛”，在干事创业的大舞台上，不怕吃亏、不怕吃苦、不怕得罪人，始终保持同人民群众的血肉联系，想人民之所想、急人民之所虑、做人民之所需。\n　　搭好干群“鹊桥”，需要互通有无的民意畅通。人民群众有许多急需解决的困难和问题，也有许多诉求和愿望，基层群体中更蕴藏着无穷的智慧和力量。把群众的困难、愿望和锦囊妙计及时反馈给党和政府，在党员干部和群众之间架设一条“民意直通车”，是每一位人民公仆的使命和责任。一方面，要“下得去”，不做“理论上的巨人、行动上的矮子”，深入调查研究、体察民情、听取民声，在不同的声音、批评的声音、反对的声音中，要听出警醒和反思，要提炼精华和方向；另一方面，要“上得来”，拓宽民意反馈渠道，肃清干群交流障碍，加强政府信息公开的整合力度，充分发挥新媒体、融媒体等现代信息技术的高效性，保证民意顺畅多一些，干群关系近一些。\n　　搭好干群“鹊桥”，需要扎实过硬的爱民本领。汉代徐干的《中论·修本》有曰：“路不险，则无以知马之良；任不重，则无以知人之才。”走上伟大的新征程，荆棘险滩并不会比来路少。在走基层、访民生、解民忧的道路上，党员干部要牢记事业为上、责任为重，始终拿出“逢山开路、遇水架桥”的勇气，豁出“抓铁有痕、踏石留印”的干劲，保持“摩拳擦掌、热血沸腾”的激情，抱定“青山不移、挖山不止”的决心，不满足于现状、不甘于平庸、不沾沾自喜、不自怨自艾，敢啃“硬骨头”，敢接“烫手山芋”，不断提升、磨练、驾驭和解决问题的能力，练就一身担当作为的真本领，在工作岗位上实现自身价值。', '1534754535', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('35', '16', '组工人的行动哲学', '2', '　　近日，《风雨无阻创造美好生活》一文在社交媒体刷屏。文章的一个提法格外醒目——行动哲学。“为者常成，行者常至”。新时代是干出来的，幸福的生活也是干出来的，不干，半点马克思主义都没有。组工干部不是“清谈馆”，而是行动队。贯彻落实全国组织工作会议精神，组工人有自己的行动哲学。\n　　行有目标、行有方向，组工人的行动哲学是为民谋利的哲学。人民群众对美好生活的向往就是组工人的奋斗目标。组工人的行动哲学不是“进了组织部，天天有进步”的哲学，而是在党的领导下、为着人民幸福不断奋斗的哲学。组工工作千条万条，落实新时代党的组织路线是第一条。组工干部必须踏踏实实、兢兢业业吃透政策、狠抓落实，消除政策执行的“堵点”和政策贯通的“温差”。组工干部服务群众重在把忠诚干净担当的好干部选出来。干部业绩在实践，干部声名在民间。要多到基层干部群众中、多在乡语口碑中了解干部。坚决执行好干部标准，让能吃苦的干部更吃香，能吃劲的干部受重用，为担当者担当，为实干者撑腰。\n　　行有本领、行有担当，组工人的行动哲学是精益求精的哲学。没有精钢钻，不揽瓷器活。落实全国组织工作会议精神，要有信心和热诚，也要有素质和本领。组工人的行动哲学不是静止、书斋的哲学，是辩证的哲学、发展的哲学。要有踱方步的习惯，既要低头拉车，也要抬头看路；既要立足当前，也要着眼长远；既要干好本职，也要胸怀大局，善于“复盘”，总结经验，虚实并举，循环往复。要发扬“安、专、迷”精神，静下心来多读书，沉下心来干工作，稳住心神钻业务，做到干一行、爱一行、精一行。要下“绣花”工夫，发扬钉钉子精神，养成平静、平和、平实的心态，不急躁、不粗糙，不浮躁、不冒进，认认真真，一步一个脚印地推进工作。\n　　行有界限、行有底线，组工人的行动哲学是正道直行的哲学。组织部门是党的政治机关，是模范部门，公道正派是组工干部的核心竞争力，公道才能选贤，正派才能服众。组工人的行动哲学不是亲亲疏疏、团团伙伙的庸俗哲学。组工干部要出以公心、秉公用权，公正客观评价干部，一是一、二是二，不拔高、不贬低。要坚持原则、坚持程序，敢于反映真实情况，敢于指出干部存在的问题，敢于抵制用人上的不正之风。组工干部的生活不是真空里的生活，难免受到别有用心者的诱惑、围猎。但只要组工干部坚守清正廉洁、坚持艰苦奋斗，以廉当福、视贪为祸，就能经得住考验，守得住底线，练就“金刚不坏之身”。', '1534754582', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('36', '16', '“爱吾国”方能“兴国梦”', '4', '\n　　“三十二年如一日，守岛守国奉一生”，王继才同志用他持之以恒的信念和孜孜不倦的行动生动地诠释了“爱国奉献精神”。爱国，是一个人立德之源、立功之本；是一个国家兴国之魂、强国之魂。习近平总书记多次对爱国主义作出重要论述，强调要开创中华民族伟大复兴新局面，必须大力弘扬伟大的爱国主义精神。\n　　“身既死兮神以灵，魂魄毅兮为鬼雄”，爱国，是中华民族继往开来的精神传承。自古即有范仲淹“先天下之忧而忧，后天下之乐而乐”的政治抱负，陆游“位卑未敢忘忧国”的信念抉择，文天祥“人生自古谁无死，留取丹心照汗青”的浩然正气，林则徐“苟利国家生死以，岂因祸福避趋之”的报国情怀。5000多年来，中华民族之所以能够经受住无数难以想象的风险和考验，始终保持旺盛生命力，生生不息，薪火相传，同中华民族深厚持久的爱国主义传统是紧密联系、互不可分的。孙中山先生说，“做人最大的事情，就是要知道怎么样爱国”。中华儿女，秉承中华文化基因，应当做到“利于国者爱之，害于国者恶之”。\n　　“愿得此身长报国，何须生入玉门关”，爱国，是中华民族自强不息的力量源泉。屈原“路漫漫其修远兮”的求索，夏明瀚“还有后来人”的信仰，焦裕禄“死了也要看着你们把沙丘治好”的坚守……一代又一代中华儿女怀着深厚的爱国主义情怀，凭借个人“繁霜尽是心头血，洒向千峰秋叶丹”决心和拼劲，为祖国和人民作出了彪炳史册的重大贡献。如今，实现中华民族伟大复兴的中国梦，是当代中国鲜明主题。伟大的事业需要伟大的精神，鲁迅说，“惟有民魂是值得宝贵的，惟有它发扬起来，中国人才有真进步”。我们要不忘初心，牢记使命，积极把实现个人梦、家庭梦融入国家梦、民族梦之中，用我们4亿多家庭、13亿多人民的智慧和力量，汇聚起夺取新时代中国特色社会主义伟大胜利、实现中华民族伟大复兴中国梦的磅礴力量。\n　　“但愿苍生俱饱暖，不辞辛苦出山林”，爱国，是中华儿女拼搏奋斗的精神动力。理想和奋斗，是中国精神和中国力量的生命力所在。“人民不仅有权爱国，而且爱国是个义务，是一种光荣”，每一位中华儿女，既是追梦者，也是圆梦人。追梦需要激情和理想，圆梦需要奋斗和奉献。我们要秉持“心有大我、至诚报国”的爱国情怀，学习“粉笔讲台系国运，丹心秉烛筑国魂”的敬业精神，学习“淡泊名利、甘于奉献”的高尚情操。不待扬鞭自奋蹄，在奋斗中释放青春激情、追逐青春理想，把爱国之情、报国之志融入祖国改革发展的伟大事业之中、融入人民创造历史的伟大奋斗之中。以此，更好地为民族复兴铺路架桥，为祖国美好建设添砖加瓦。\n　　坚定理想，信念执著，勇于开拓，顽强拼搏。唯此知行合一，“爱吾国”，方能“兴国梦”。', '1534754620', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('37', '1', '透过“熬”字看组工', '2', '　　每次遇见老组工，看着他们不管在什么岗位都能游刃有余、独当一面、成绩斐然，无比羡慕、崇拜、向往，跟他们讨教经验，他们会以“过来人”的口吻说，“在组织部的大熔炉里再熬几年，你们也一样”。莫言说：“懂事需要经历，经历需要时间，用漫长的时间去经历，这就是熬。”\n　　“熬”字很有穿透力、想像力、说服力，一个字概述了量变到质变的过程，而透过它就会发现，熬是起点与终点间必不可少的转化阶段，就好比茶需要慢慢泡才有味，酒要慢慢酿才香醇，生米要慢慢煮才会变熟。曾国藩说，“熬过此关，便可少进。再进再困，再熬再奋，自有亨通精进之日。”这给我们组工干部指明了奋斗的方向：不断精进，透过眼前，一步步走，一天天学，一年年熬，熬出笑对酸甜苦辣咸的组工能力，自有繁花似锦未来！\n　　组织部的熬，看似任务重，实际上是在考验、是在历练。在组织部工作，忙是绕过不去的经历，写不完的材料，开不完的会议，加不完的班。常言道：“干活原本无技巧，能忍自然效率高，人生态度千万种，一个熬字万事销。”可有时候我们也会觉得熬不动了，真的很累，或许“头晕眼花腰酸背疼腿抽筋”能形容一下累的程度。但是，经过一步步考验后再回头看看，一切都熬过去了。当大大小小的任务接踵而至，经过不分昼夜的连续作战，组工们从手忙脚乱、到勉强应付、再到得心应手，收获了超乎常人的坚毅品格，慢慢具备了泰山压顶不弯腰的责任担当、在任何岗位都能“以一当十”的本能。\n　　组织部的熬，看似要求高，实际上是在打磨、是在蜕变。组织部是“讲政治、重公道、业务精、作风好”的模范部门。举例来说，考察的严密、材料的工整、会议的严谨等都是组织工作的常规要求，一切冠以组织部的“名号”都是严之又严、慎之又慎的，每一件出品也都是磨出来的，但是出品必是精品！曾经有领导评价说，“组织部的所有材料都不需要修改”。可是在百折千磨中，组工们也常遇到写材料的抓狂，头皮的发炸，文字的词穷。毛主席说过：“往往有这种情形，有利的情况和主动的恢复，产生于再‘坚持’一下的努力之中。”此时的熬，每一天都是骨子里的坚持，是对困难的不惧，是对高标准的思维定位。组工们自觉把疼痛作为砥砺自己的“磨刀石”，心性越磨越坚韧，追求越来越执着，磨出了“千磨万击还坚韧，任尔东南西北风”的抵御力，形成了“轻舟飘过万重山”的气质。\n　　组织部的熬，看似时间长，实际上是在积蓄、是在升华。组织部的同志都知道，进了组织部，县级要工作5年以上，市级要工作10年以上，省级就更长了.....熬着熬着，似乎看不到边际，没有进展。大家都听说过竹子的成长经历，竹子熬了4年时间，仅仅长了3厘米。从第五年开始，以每天30厘米的速度疯长，仅用六周时间就长到了15米。竹子若熬不过那3厘米，哪能6周就长15米。此时的熬，是海纳百川，有容乃大。组工们甘于寂寞、埋头苦干、自觉奉献，把自己当做一颗永不生锈的“螺丝钉”，牢牢地钉在岗位上慢慢积蓄。一年年后，当内心已宁静，处世已淡定，则有“猝然临之而不惊，无故加之而不怒”之认识，有了“岩下清泉须旋汲，熬出霜根生蜜汁”的特质。\n　　粥多熬黏稠，汤多熬有味。没有经历过“熬”的人，哪能知道“不经历风雨怎能见彩虹”的道理，怎能具备“站起来能说、坐下来能写、静下来能思、沉下去能干”的能力。组织部的熬是自己与成长对话的机会，是最具有“财富”的时候，是“天将降大任于斯人也”的先兆。“聚是一团火，散是满天星”是组工干部的现实写照。我想老组工回首组工经历的时候，应会感慨，“幸得人生此煎熬，他日陌上多暖春。”', '1534755004', '', '2', '0', '0', '0', '1');
+INSERT INTO `c_heart` VALUES ('38', '1', '以身许国 何事不敢为', '5', '\n　　有一种精神叫“爱国奋斗精神”，有一种情怀叫“爱国奋斗情怀”，有一种赤心叫“爱国奋斗赤心”。岳飞率军北上时对将士们说：“以身许国，何事不可为？以身许国，何事不敢为？”作为新时代的一名组工干部，要常怀一颗赤诚之心，诚心于党、痴心于事、倾心于民，以实际行动诠释“拳拳爱国心、殷殷报国志”。\n　　诚心于党，是“忠诚向来金石贯，勋烈遂将天壤并”的一片赤诚忠心。从屈原“虽九死其犹未悔”、心系国家、壮志未酬、投身汨罗，到霍去病“匈奴未灭，何以家为”、面对封赏、坚辞不就，再到岳飞“壮志饥餐胡虏肉，笑谈渴饮匈奴血”、励志报国、勇战沙场，无不向我们展示了仁人志士矢志不渝追求国家兴盛的高尚价值取向，更时刻警醒组工干部要对党忠诚、对组织忠诚、对人民忠诚，思考问题、做事情要讲政治、讲大局，言行举止、内涵外延都要展现一名组工干部应有的正气与担当，更要在干事创业的大舞台上，始终牢记党的宗旨，牢记人民的期待与嘱托，兢兢业业、勤勤恳恳、如履薄冰，把党和人民的事业不断推向前进。\n　　痴心于事，是“尊儒敬业宏图阐，纬武经文盛德施”的一腔凌云壮志。习近平总书记强调，“铭记党的奋斗历程，时刻不忘初心，担当党的崇高使命，矢志永远奋斗。”对于组工干部而言，奋斗是块试金石，它检验的是组工人忠诚于党的事业的纯度、硬度与高度。“守岛英雄”王继才将生命最后一刻定格在孤岛上，把生命的灿烂留在了自己钟爱的工作岗位上，用一生的坚守诠释了一种永不懈怠、自强不息的人生态度，一种夙夜为公、无悔坚守的担当精神，一种一心为民、无私奉献的爱国情怀。打铁还需自身硬，面对组织工作的繁重任务，组工干部要不断追求业务工作的纯熟，既要成为精通专项业务的“活字典”，又要成为够胜任多项工作的“多面手”，在基层、在一线，尽情燃烧自己的无悔青春，以“安专迷”精神为国家发展贡献组工力量，以永不懈怠的精神状态和一往无前的奋斗姿态，奋力开创事业发展新局面。\n　　倾心于民，是“采得百花成蜜后，为谁辛苦为谁甜”的一幅桑梓画卷。“求木之长者，必固其根本；欲流之远者，必浚其泉源。”心系群众、服务群众是党的优良传统，作为组工干部，我们要带头发扬党的传统，坚持走群众路线，真诚地问一问，深入地看一看，耐心地听一听，把蕴藏在人民群众中的力量积蓄起来，获取破解难题的“锦囊妙计”。更要常怀爱民为民之心，无论是对待工作服务对象，还是来访群众，都要有一颗博爱的心、一颗宽容的心，用一张笑脸、一把椅子、一杯热茶、一颗诚心，热情周到地服务他们，诚恳悉心地关心他们，让他们切实感受组织部门的关怀和温暖，提升群众的“幸福指数”和“满意指数”。\n　　古人说：“为政以德，譬如北辰，居其所而众星共之。”没有爱国、爱党、爱人民的大爱，就不是一名合格的组工人。组工干部行走在新时代组织路线的康庄大道上，更应该以一颗赤诚之心耐得住寂寞、守得住清贫，不断地磨砺自身，将党和国家的事业作为自己的终极追求去奋斗、去拼搏，才无愧于自己组工干部的身份。', '1534755036', '', '2', '0', '0', '0', '1');
+INSERT INTO `c_heart` VALUES ('39', '1', '做新时代有“识”之“士”', '4', '　　日前，中央组织部、中央宣传部发出通知，对在广大知识分子中深入开展“弘扬爱国奋斗精神、建功立业新时代”活动作出部署。这既是号角，又是行动。华夏神州又将迎来一个繁花似锦的“春天”。\n　　我们党历来重视知识分子，重视人才培养。不同的历史时期，广大知识分子发挥着举足轻重的作用。在民主革命时期，他们敢于打破思想枷锁，顺应时代潮流，推动社会进步；在民族危难时刻，他们投笔从戎，抗击外敌入侵，发出强有力的怒吼；在和平年代，他们积极参与社会主义建设，贡献智慧和力量。习近平总书记指出：我国知识分子历来有浓厚的家国情怀，有强烈的社会主责任感，重道义、勇担当。一代又一代知识分子为我国革命、建设、改革事业贡献智慧和力量，有的甚至献出宝贵生命，留下了可歌可泣的事迹。\n　　新时代是奋斗者的时代。只有奋斗的人生才是幸福的人生。知识分子要在新时代的广阔天地里，大显身手、大展宏图，做一个有“识”之“士”。\n　　有大我意识，做爱国志士。大道之行，天下为公。新时代开启新征程。知识分子是中华民族的智慧源泉，要秉承爱国之心、强烈报国之志、深怀为民之情，担起民族复兴使命，舍小家顾大家，去“小我”顾“大我”，向阳而生、相时而动，听从党和国家的召唤，到祖国最需要的地方去，奉献青春热血、实现理想抱负。要大力弘扬“两弹一星”精神、载人航天精神、“西迁”精神等，以钱学森、邓稼先、郭永怀等老一辈知识分子，以及黄大年、李保国、南仁东等新时代优秀知识分子为榜样，始终与党和国家的发展同向同行，不计较个人得失、不追求荣华富贵，积极投身于社会主义现代化建设事业，展示新形象，实现新作为。\n　　有扎实学识，做奋斗勇士。习近平总书记指出，每一代人有每一代人的长征路，每一代人都要走好自己的长征路。知识分子要勇于走在时代前列，不驰于空想、不骛于虚声，踏实工作、顽强拼搏，勇攀科学技术高峰。中国第一位获得诺贝尔科学奖项的本土科学家屠呦呦，毕生致力于青蒿素研究，以强烈的责任感和使命感，带领团队坚韧不拔、锲而不舍，不断探索、不断进取，攻克一个又一个难关，在她86岁高龄获得了最高科学成就，为党和国家做出了巨大贡献。广大知识分子是社会主义现代化建设事业的宝贵财富，要在新时代的广阔天地里，人尽其才、才尽其用，多向实践学习、拜人民为师，在实干中磨砺意志，在奋斗中锤炼本领，做“春天”里的“百花一朵”，“昂首怒放，争奇斗妍”。\n　　有创业胆识，做攻坚战士。97年前，中国共产党十几个“知识分子”从“红船”出发，筚路蓝缕，以前所未有的“胆识”，点燃了中国革命“星星之火”，书写了一部波澜壮阔的创业史诗。“今天，我们比历史上任何时期都更接近、更有信心和能力实现中华民族伟大复兴的目标。”“中华民族伟大复兴，绝不是轻轻松松、敲锣打鼓就能实现的。”“越到后，越有更多的“硬骨头”和“劣顽石”。”习近平总书记指出：担当大小，体现着干部的胸怀、勇气、格调，有多大担当才能干多大事业。广大知识分子要勇立潮头、敢于担当，在实现“两个一百年”奋斗目标的大会战中，冲锋陷阵、建功立业。', '1534755192', '', '2', '0', '0', '0', '1');
+INSERT INTO `c_heart` VALUES ('40', '1', '做一棵开山岛上的“苦楝树”', '4', '　“时代楷模”王继才的动人之处，莫过于苦境建功：“守岛卫国32年，用无怨无悔的坚守和付出，在平凡的岗位上书写了不平凡的人生华章”。虽正值壮年的生命戛然而逝，但他的品格操守和精神境界却成了新时代奋斗者的价值追求。\n　　在海量的新闻宣传中，我注意到一个细节，王继才夫妇刚上岛的前几年，“一斤多的苦楝树种子撒下去，终于长出一棵小苗”。一斤多的苦楝树种子有多少颗粒？我不知道该如何换算，但其中有一颗脱颖而出。这就是希望，就是栋梁，就是脊梁。\n　　岛上无电无淡水无居民，“三无”之地，谁愿自讨苦气？难怪设民兵哨所之初，人武部曾先后派出10多个民兵守岛，但最长的只待了13天。连植物都不愿意扎根的地方，离开，是最好的选择；放弃，也是理所当然。但王继才却逆风起飞，选择了留下，老婆没把他劝走，反而一同守岛。\n　　以岛为家的王继才夫妇，不就是从一斤多苦楝树种子中破土而出的希望之芽吗？守岛，在常人眼里就是日复一日的单调重复，无聊而乏味，孤独而寂寞。但他们每天升旗、巡逻执勤，把枯燥的重复变成了生动的重复，这就是生命的意义，也是使命的意义；更是奋斗的意义和坚守的意义。不必羡慕于岛外的灯红酒绿，对于精神的成长和攀登而言，灯红酒绿是扼杀生命的沙漠，而孤岛则是砥砺斗志、激励精神的家园。\n　　王继才是一株扎根于开山岛上的“苦楝树”，我们学习王继才，就要自觉在心底养一股扎根苦境、萌芽成长的“苦楝树精神”。\n　　做一棵开山岛上的“苦楝树”，就是要萌忠诚之芽，扎信仰之根。王安石说：“世之奇伟、瑰怪，非常之观，常在于险远，而人之所罕至焉，故非有志者不能至也。”古人所论述的“志”，就是我们今天讲的忠诚与信仰，没有忠诚之志，没有信仰之志，身临苦境就会选择退缩和放弃。忠诚于党，坚定信仰，是共产党人的灵魂，每名共产党员都要在心中培养一块像开山岛一样的精神圣地，净化思想，历练品格，才能保证革命之志不减，精神之树长青。志存高远，方可“涉深水”“得蛟龙”。\n　　做一棵开山岛上的“苦楝树”，就是要萌坚毅之芽，扎奋斗之根。“锲而舍之，朽木不折；锲而不舍，金石可镂。”王继才的意义就是苦干不苦熬，就是在苦境中奋斗，在坚守中作为。当时一斤多苦楝树种子只长出了一棵小苗，30多年后，变成了30多棵苦楝树、松树在岛上顽强生长。开山岛从过去不宜植物、不宜居民到今天安居乐业、旧貌新颜，就是王继才夫妇锲而不舍努力奋斗的结果。新时代新征程，党员干部都要像扎树在开山岛上的苦楝树一样，独行引领，携行致远，就能从一棵到一片，从树木到森林。\n　　做一棵开山岛上的“苦楝树”，就是要萌事业之芽，扎精神之根。苦楝树何以名“苦”？这是奋斗事业与成长精神的最好象征。冰心说：“成功的花，人们只惊慕她现时的明艳！然而当初她的芽儿，浸透了奋斗的泪泉，洒遍了牺牲的血雨！”回首波澜壮阔的革命史，从胜利走向胜利的骄傲之花，都离不开革命先烈的鲜血浇灌。金一南在《苦难辉煌》的序言中写道：“物质不灭宇宙不灭，唯一能与苍穹比阔的是精神”。王继才的事业与开山岛同在，王继才的精神与苦楝之花同开，他的事业与精神将成为共产党人的富贵财富，激励更多的人在平凡的岗位上奋力书写不平凡的人生华章，交出无愧于时代无愧于人生的合格答卷。', '1534755224', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('41', '1', '党员干部莫患“空调病”', '4', '　“炎炎日正午，灼灼火俱燃。”进入盛夏，各地气温居高不下，空调房成了人们防暑降温的好去处。然而空调虽好，却不可过分依赖，否则会患上头晕、上呼吸道感染、关节酸痛等“空调病”，得不偿失。与此同时，一些党员干部也贪恋空调带来的“清凉”，患上了一系列作风“空调病”，值得引起警惕。\n　　警惕得上“冷漠病”。空调房的本质，是在自然界的大环境中，人为创造出一小块温度受人控制的“世外桃源”，其基本的要求，是与外界环境进行隔离。人在这样的环境中，感受不到外界真正的温度，久而久之身体感官会产生错觉，极大地降低人体对自然环境的适应力。现实当中，有些党员干部长期家庭—单位“两点一线”，足不出户活在自己的“空调房”里，把自己与外界隔离开来，不愿接触群众、不敢接触群众、不会接触群众，群众是冷是热、是寒是暖，早已高高挂起、与己无关。民心是杆秤，谁好谁孬、谁优谁劣，谁在认真干事、谁在偷奸耍滑，老百姓的眼睛是雪亮的。1960年，为了解决当地千百年来的缺水问题，林县县委开始了长达十年的凿渠工程，最终修成了“人工天河”红旗渠，为群众带来了千秋万代的福音；焦裕禄初到兰考，大年初一大雪纷纷，他只身一人到许贡庄挨家挨户走访，直至确认乡亲们年饭无忧，才安心离去。党的这些好干部之所以让人民念念不忘，就是因为他们时刻与群众在一起，知冷知热，做群众的“贴心人”而不是“陌路人”。\n　　警惕得上“漂浮病”。干部在“空调房”里待久了，除了会脱离群众，还容易得上其他“并发症”。比如，有的干部喜欢坐在“空调房”里“遥控指挥”，打打电话、发发文件、开开调度会，自以为这就是把工作落实了，把事情办妥了，这其实是犯了“以声作则”的病。须知，“以声作则”和“以身作则”，效果差得远。如果台上拍得胸脯砰砰响，台下落实却始终“静悄悄”，要求基层干部村村走、户户到，自己却常年脚不沾地、走马观花，只会寒了群众的心，丧失了党员干部的榜样和激励作用。又比如，有的干部窝在“空调房”里搞创新，不顾实际要求基层开展工作必须“实时展现”“事事留痕”，以为这样事半功倍、省心省力，实则是犯了“重形式不重实效”的病。最好的展现，是在街头巷尾的“民意闲谈中”；最好的留痕，是留在百姓心中。总有一些交流，需要走出“微信群”走进“人群”；总有一些工作，“点一点”不如“转一转”；总有一些问题，解决靠“速度”更要靠“温度”。党员干部还是应该走出“空调房”，多沾些“烟火气”，工作干起来才会底气足、效果好。\n　　警惕得上“感染病”。空调房由于环境恒定，空气流动差，时间一长容易滋生有害细菌，引发呼吸系统感染。与之类似，党员干部长时间在“空调房”般稳定、舒适的环境里，也极易导致“免疫力”下降，使各种“病毒”“细菌”趁虚而入。古人有诫，“生于忧患，死于安乐”。有的干部，总想着“大树底下好乘凉”，总是这山望着那山高，遇到困难就打退堂鼓，受到挫折就意志消沉，抗压能力弱、遇事就崩溃。这样的干部，就应当从“空调房”里拉出来，让他到艰苦环境、吃劲岗位经历一些险峻情况，接一接“烫手山芋”，当几回“热锅上的蚂蚁”，才能磨出真功夫、练出“大心脏”。“由俭入奢易，由奢入俭难。”还有的干部，醉心于“空调房”的舒适，内心的“小我”不断膨胀，在享乐的路上越走越远，逐渐丧失了初心、丢失了灵魂、迷失了自我。作为党员干部，就要走出“空调房”，切身感受一下“汗滴禾下土”的民生之艰，经历一下“人在事上磨”的干事之难，思考一下“君子有常度”的自律之道，方能激浊扬清、行稳致远。\n　　习近平总书记曾说过：“我认为认认真真地当好共产党的‘官’是很辛苦的。我也没有听到哪一个称职的领导人说过当官真舒服。”各级党员干部要敢于走出“空调房”，敢于走出自己的“舒适地带”，到火热的时代前沿去奋斗拼搏、建功立业。', '1534755274', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('42', '1', '铁匠、木匠和泥匠', '5', '　　习近平在全国组织工作会议上强调：“优秀年轻干部要自觉向实践学习、拜人民为师。”本人认为年轻干部要想增强才干、做好工作，就需要锤炼铁匠、木匠和泥匠三种境界。\n　　学铁匠，在强身健体中担当作为。“世上三行苦，撑船打铁磨豆腐。”对于一名铁匠而言，打造一件工具，需要经历选料、烧火、捶打、成型、淬火等十几道工序，不仅要忍受烟熏火燎的环境之苦，而且还要承受汗流浃背的劳动之累，如果没有知难而进的铁心和厚实过硬的“铁骨”，很难打出好铁。同理，作为党员干部，要想胜任本职工作，首先要像铁匠打铁一样，先得让自身硬起来：一是思想要过硬。要坚定理想信念，始终做到政治信仰不变、政治立场不移、政治方向不偏。二是能力要过硬。要常怀本领恐慌，常感能力危机，既读万卷书，又行万里路，努力锤炼工作能力，成为行家里手。三是作风要过硬。切实以更高的标准、更严的要求、更实的作风充分展现党员干部的责任担当，发挥先锋模范作用。\n　　学木匠，在精雕细琢中开拓创新。木匠是一门认真细致、精雕细刻的工艺，既讲究尺寸标准，又讲究设计精巧。党的工作就好比木匠做工，既需要依图案行事制作；又不拘泥于旧式，善于突破创新，讲究设计出彩创新。大巧不一，在木匠们的眼里，设计样式千变万变，但对质量的精益求精、对工艺的一丝不苟、对完美的孜孜以求永远不会变化。在推动工作落实的过程中，党员干部理应以木匠为镜，牢固树立规矩意识和精细思维，严格按制度和程序办事，对每一项工作逐项细化量化，确保中央各项决策部署不折不扣地落到实处；注重培养开拓意识和创新精神，敢于突破陈规旧习、思维定势，创造性地开展工作，突破旧格局，闯出新路子，打开新局面。\n　　学泥匠，在统筹兼顾中把握平衡。一个出色的泥瓦匠在砌墙时，会十分重视石块之间的相互融合，他们会将凸出的石块与凹入的石块相配，将带棱角的与残缺的咬合，在石块定位后，再抹之以砂浆，校之于准绳，一道坚固美观的石墙才会出现在我们面前。如果只是简单地将各类石块堆砌，乱搭一通，这样出来的墙，就会不美观，甚至还会倒塌。对于党员干部而言，干工作就像泥匠砌墙，从大局着眼、从细节入手，即考虑到整面墙的特点，又要考虑到每块砖的个性，做到人事相宜、人尽其才、物尽其用，才会实现1＋1大于2的整体效果。我们在学会统筹兼顾的同时，也需要像泥匠把握准“横平竖直，上有齿口下有线”工作诀窍，在各类纷繁事务中找出提纲挈领的关键要点，抓住主要矛盾和矛盾的主要方面，这样做工作才会又稳又快又好。', '1534755301', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('43', '1', '把青春奉献在一线的“90后”', '3', '　　谈到“90后”，许多人不再用“叛逆、个性、自我”等带有青春期特有性质的词语去标签这一批已经步入社会的年轻人，取而代之的是“担当、成熟、有责任感”等充满鼓励和正能量的词语，仿佛眨眼的功夫，“90后”们改变了……\n　　情景一：\n　　“正步走！向右看齐！向前看”……练兵场上，身穿绿色军装的士兵们站成一排，顶着烈日，汗如雨下，不敢有一丝的松懈，黝黑的脸上展现出来的是刚毅和不屈，目光如炬……谁能想到，这些人曾被说是最飞扬跋扈，不务实事、不思进取的一代。社会对“90后”是包容的，你看，经过时间的洗礼，这些“叛逆”的孩子们，他们有些站在了祖国的最边缘，坚守岗位，禁止他人侵略我国领土，维护祖国领土完整，不容侵犯；他们有些站在了维和部队里，用行动向世界表达了中华人民热爱和平的心声；他们有些来到了西藏，不畏严寒酷暑，在那小小的哨岗上，一站就是好几年，不动声色地守护着高原上的牧羊人和藏族同胞……\n　　情景二：\n　　“跟着我读，花魁”“花魁”“勇士”“勇士”……清甜的声音从教室内飘来，在这被大山包裹着的小山村里，好久没听到这么响亮又整齐的声音了。\n　　不得不感叹，祖国发展得太快了，在高楼耸立的城市看不到低矮破旧的房屋，当然，在四面环山的小乡村也看不到城市的灯红酒绿，在这个贫富差距越来越显著的时代，支教，成为了一些人自我锤炼的方式。\n　　他们也许是一批刚毕业或者未毕业的大学生，也许是一批刚刚考上特岗的年轻教师，就这样，头也不回，拉着行李箱来到了远离家乡、远离城市生活的偏远山村，他们脸上或许还带着一些稚气，但是从到那个地方起，他们知道自己又多了一种身份，也担负了一种责任。\n　　在通讯设备不够发达，居住环境也谈不上舒适的条件下，不能像以往一样靠着软绵绵的沙发刷着微博和朋友圈，身边还堆放着父母买的爱心零食，眼前就是一张连转身都会发出“吱呀吱呀”声响的木板床，狭隘的空间里，自己稍微提高嗓门说话都能听到回声，但这样的日子，“90后”依旧过得有滋有味。看，手巧的姑娘们用粉色的墙纸铺满小小的房间，在网上买了便宜的吊灯挂饰，再在墙上钉几排不规则的置物架，还去河边找了一些奇形怪状的小石头放进玻璃瓶里，插上几束从路边摘来的野花，夜幕降临，房间的吊灯一闪一闪的，仿佛把整个星空都搬到了房间里，野花散发的清香弥漫了整个房间，闭上眼睛，轻轻嗅一下，一整天的疲劳瞬间就消失了。\n　　善于干工匠活的男生们则是从山上扛木柴下来，一块块看似平淡的竹棍，摇身一变就成了笔筒、筷子、发髻等用品，这才是真正的纯手工、原生态制品，虽然远离了城市生活，却感受到了另一番不曾感受过的日子，依山傍水，跟着乡亲们日出而作，日落而息，原来慢节奏的生活，更是别有一番滋味。\n　　说起支教，我本人也颇有体会，我曾到家乡的深度贫困村支教过，虽然只是短短的十五天，却足以让我重新认识自己。在那里，第一次五点起床为队友们做早餐，第一次和5个小女生睡在地板上，就铺着薄薄的一层床单，房间因为长时间没人睡，有不少木板已经裂开，晚上山间的风“嗖嗖”地吹进房里，因为是冬天，第二天醒来，支教队全部都感冒了，一群人就围着柴火取暖，很满足，心里很暖。每当唱起队歌“爱，因为在心中”就瞬间能量满满，未曾想过放弃，因为经历的都会被纪念。\n　　“90后”，已经逐渐崭露头角，敢于挑大梁，担重任，经过岁月的洗礼，他们真正成长起来了……\n　　他们有担当！2008年的四川汶川大地震，许多年轻的服役士兵和志愿者冒着余震的危险第一时间深入灾区进行救援。他们有理想！2015年9月3日举行的纪念反法西斯战争胜利70周年的大阅兵上，我看到了英姿飒爽的中国军人，也看到了快速成长的一批“90后”军人，他们自信、骄傲地走过天安门广场，接受主席的检阅，这是他们的军旅梦。他们有责任心！主动下基层，来到最偏远最艰苦的地区，争当青年致富带头人，扎身农村，带领广大农民谋福利、奔小康……\n　　“90后”们，完美诠释了什么叫“蜕变”，现在人们谈论起“90后”，嘴角是上扬的，神情是骄傲的，这一代热血青年用行动向社会证明，建设祖国和保卫祖国的重任，他们能行！他们一定行！', '1534755353', '', '2', '0', '0', '0', '1');
+INSERT INTO `c_heart` VALUES ('44', '1', '组织部的孩子', '3', '　　前些时间，《组织部的灯》《组织部的风》《组织部织什么布》《组织部的那些人那些事》《组织部的女孩》等关于组织部门工作和组工干部的文章在朋友圈点赞无数，文中写到的真实例子也在身边的组工干部中引起共鸣。文章语言或平实、或幽默、或感人，给了组工人满满的“正能量”。\n　　在组织部，还有很多感动和鼓舞我们的故事。每个人在家庭和工作之间，都避免不了面临着很多的艰难“选择”，组工干部也一样，他们同样为人子女、为人夫妻、为人父母，很多时候因为“组工干部”的事业心和责任感，“放松”了作为一个家庭成员的责任。\n　　在周末的组织部，我们有时候可以在半掩的办公室中听到一两声孩子的声音，但很快又会被“莫吵到隔壁的叔叔阿姨”的安慰声掩盖，最后一层办公楼又变得安静起来。这是一群“组织部的孩子”，因为父母周末加班，他们也会在父母办公室安安静静地学习，他们不哭不闹，不会埋怨父母经常不去家长会，不会主动要求父母带他们去玩耍，只是默默听着父母为他们讲述“组织部织的什么布”“组织部的灯是什么样的灯”“组织部的叔叔阿姨们是怎样的一群人”……慢慢的，懂事的他们在成长的路上会骄傲地说起：“我的爸妈是组工人，我们是组织部的孩子！”\n　　组织部的孩子不会孤单，因为他们一直向阳生长。“前方的路是那么漫长，也许你会迷失方向，如果你可以，如果你能够，希望你是那纯洁的向阳花，在这美丽的艰辛的生命中，坚强地、灿烂地绽放……”这是汪峰《向阳花》中的一句歌词，如果说组工干部的孩子是向阳花，那我们的党就是最耀眼夺目的太阳。组织部门作为管党治党的重要职能部门，组工干部一直都恪守着“讲政治、重公道、业务精、作风好”十二字要求，这十二个字也是组织部门的“好家风”。在教育孩子的时候，组工干部也让这样的“家风”潜移默化的影响着孩子。所以，组织部的孩子们，你们从小就在党的身边长大，必将向阳生长，绽放最美丽的人生。\n　　组织部的孩子不会害怕，因为他们知道生来坚强。在火遍朋友圈的视频短片《妈妈，您在组织部织什么布？》中，讲述了一个可爱的“组工娃娃”对忙碌的“组工妈妈”从“失落”到“懵懂”再到“理解”的过程，故事普通但不平凡，欢快但不可笑，感动但不悲伤，是每一个组工干部都在经历或者已经经历教育孩子那些点点滴滴的真实写照，让每一个组工干部感同身受，笑出泪水。这是一个组工妈妈苦口婆心得到女儿理解的过程，也是一个“组工娃娃”慢慢成长从理解变得坚强的过程。身在组织部，很多男同志甚至陪产假没有休完就因为紧要的任务不得不临时被“召回”，孩子的成长过程中，也因为加班时间多没有陪伴照顾而心怀愧疚，但是他们都是顾家的好丈夫、好爸爸，因为一有时间就会把心全放在家里，他们需要你们的理解。组织部的孩子们，你们生来学会了坚强，在今后的岁月中将无畏忧伤。\n　　组织部的孩子不会迷惘，因为他们也有奋斗荣光。邓小平同志曾说，“在艰难困苦的时候需要艰苦奋斗，在物质条件优越的时候也需要艰苦奋斗”。《组织部的灯》里有这样一句话，“只要这里的灯还亮着，人民的幸福生活就有希望，民族的伟大复兴就有希望，国家的富强、民主、文明、和谐、美丽就有希望。”组织部是党员之家、干部之家、人才之家，为党的事业、民族的事业、人民的事业提供了坚实的组织保障和干部人才保障，没有人比组工干部更懂得“奋斗”的真谛。其实，组工干部也是人，也有累的时候，但是，当每天拖着疲惫的身躯回到家里，最能驱散疲惫的，便是孩子的笑脸。所以，组织部的孩子们，他们取得的优秀成绩中，同样有你们的一份功劳；他们通过不懈努力开创的伟大事业中，你们也配得上奋斗的荣光。\n　　组织部的孩子们，虽然父母不能经常陪你们上课放学，但他们可以给你们树立起最好的榜样；虽然父母不能经常为你们准备上可口的菜肴，但他们可以为你们准备最好的精神食粮；虽然父母不能经常在雨天为你们撑开一把伞，但他们可以让你们在晴朗蓝天下茁壮成长。只因为你们是组织部的孩子！', '1534755410', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('45', '9', '“差不多先生”变形计', '5', '　　“凡事只要差不多，就好了。何必太精明呢？”这是胡适先生《差不多先生传》中，差不多先生的口头禅。作品中差不多先生把红糖买成了白糖，把山西说成了陕西，千字和十字常常混用，直到有一天他得了急病，牛医王大夫用医牛的法子给他治病，结果一命呜呼了，要死的时候断断续续地说：“活人和死人差不多，凡事差不多就好了，何必太认真呢？”\n　　在干部队伍中，不乏有部分“差不多先生”：一些干部认为自己年龄大点，就倚老卖老，工作能躲就躲，能蒙就蒙；一些干部认为自己的工作思路、阅历经验足够处理日常事务，就抱着“吃老本”的心态，学习激情减退，岗位才干发挥不充分；一些干部认为自己不谋一官半职，保证饭碗不丢就万事大吉，工作不思进取，不勇于创新，领导指哪儿打哪儿，成为工作上的“木偶人”，更有甚者对自己经手的工作不以为意，认为“天塌下来有个儿高的顶着”。\n　　德、能、勤、绩、廉是考核干部的“天规”，在这个“能上能下”、物竞天择的“生态圈”，高标准、严要求成为干部日常管理的基本原则。业务一知半解，学习浅尝辄止，工作满足应付，思想止步不前，以马马虎虎的态度对待任何事务，已经不能适应新常态下的工作要求。“生存空间”日益变窄的“差不多先生”，怎样才能摒弃熟悉的“温床”，通过不断“变形”，获得一席之地呢？\n　　对标高要求，盯住最完美。最完美就是无懈可击，高要求就是看齐标杆。继承发扬杨汉军、李林森等干部的优良传统，树立担当意识、奉献意识、细节意识，严肃严谨地对待工作，不忽视细节，不放过疑点，不漏落重点，不绕过难点，让任意一件任务就算吹毛求疵也找不出任何纰漏，做到最完美。\n　　树学习意识，锤炼新本领。“不吃饭则饥，不读书则愚”，学习是干部日常工作中需要持之以恒的事情，坚持学习工作化、工作学习化，在干中学、在学中干。学习是一件逆水行舟的事，加之平时工作任务繁重，留给学习的时间是零碎零散的，如何提高学习和工作的效率，就是要在学的过程中结合实际，在干的过程中感悟学习，将理论基础和实践经验有机结合才会迸发思想的火花，得到事半功倍的效果，同时也要坚持向书本、实践、群众、领导等等学习，边学边用，边用边学，在学和用的过程中不断淬炼本领。\n　　杜绝“拖延症”，做事有条理。养成“今日事　今日毕”的工作惯性，列好工作清单，分清轻重缓急，保证任务不拖延、事情不遗漏。如果工作中有“明日复明日”的心态，今天的事情拖到明天做，明天的事情拖到后天做，这样拖下去工作量不断累积，工作压力不断增加，处于“打混战”的状态，影响工作效率和干事创业的积极性。只有做好统筹规划，理清工作思路，做好今天该完成的事，计划好明天将要完成的事，才能够游刃有余、井然有序地开展工作。\n　　开阔眼界、拓展思维、提升能力、锐意进取是干部成长的不二法门，“差不多先生”只有在干事创业中不断鞭策自身“变形”，确立崭新的“生存法则”，拓展更大的“生存空间”，才能彻底摘掉“差不多”帽子，“变形”成功。', '1534755529', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('46', '29', '【改革开放记忆】问候语见证我家的酸甜苦辣', '1', '&lt;p&gt;改革开放40年，我家的生活发生了翻天覆地的变化，而最能体现这一巨变的是那些出现于人们日常生活中的“问候语”。从上世纪70～80年代的“你吃了吗”“你忙什么”，到90年代的“你买房了吗”“你炒股了吗”“你旅游了吗”，再到“你身体还好吗”“你儿子上大学了吗”，变成现在的“你电商了吗”“你自驾游了吗”这些问候语的变化，从另一个侧面真实反映了40年来人们日常生活的变迁。\n　　我老家在偏远的农村，那时候生活很困难，有时一天三顿都吃不饱，整天都是吃红苕干和高粱面，偶儿才下一小半碗米，就连所谓的“打牙祭”也只见几颗油珠珠。\n　　记得有一年，因为一家人已经几个月没吃上一回肉了，嘴里成天冒着清口水，痨得很，所以干活自然也没什么力气。过中秋节时，邻居家的儿子从新疆部队回来探亲，带了猪肉罐头。这家人像过年一样，下午早早地就开始蒸罐头，准备晚饭。闻到那股子香味，我和哥哥借故三天两头地来这家人屋里串门，嘴上说是看看当兵的小伙伴，其实就是想尝一口猪肉罐头。当时不仅是我哥俩，还有好几户邻居都去了他们家，为的就是一饱口福！我至今还依稀记得当年的情形。\n　　那些年，邻里之间一见面都要问：“你吃了吗？”即便是上午十点或下午三四点也这么问，虽然只是一句简单的问候，但其实在大家的心里把吃饭问题都看得很重。那时候，粮食紧张、物资匮乏，老百姓买什么都需要票。做新衣要布票，买煤油要油票，逢年过节买几两红苕酒都要酒票。我家娃儿多，只有父母是劳动力，挣的工分少，分的粮食也不多，所以每顿饭吃完都会把粘在碗底的粥糊饭粒舔干净，这还觉得意犹未尽。成天想的也是怎样把肚子填饱，所以见面都说吃饭的事。\n　　自改革开放以来，农村实行了家庭联产承包制，我家7口人承包了7亩地，每年可收1万多斤粮食，不仅自己家吃不完，还要卖几千斤出去。村民收入增加了，见面时的问候语也发生了变化，由“你吃了吗”变成“你在忙啥”“你今年收入多少”。\n　　虽然温饱已不是问题，但父母要赡养年迈多病的爷爷奶奶，还要供我上大学，一家人的收入仍有些捉襟见肘。父亲只留下妈妈和小侄女在家，他自己和哥哥姐姐们出外打工挣钱。那时，父亲只要一听到别人问他：“你有存款吗”“你准备给儿子买房了”，脸上就露出深深的愧疚和无奈。\n　　2014年，我大学毕业，找了很多工作都不甚满意。家里的亲朋好友一见面，就问父亲：“你儿子找到工作了没？”这让他十分苦恼。正当一家人为此犯愁时，村主任来到我家，找到我父亲：“现在国家有了新政策，支持大学生创业，你儿子又是学农业的，我看可以试试自己创业。如果你儿子决定好创业，村里一定尽全力帮助。”父亲当时心里便有了主意，随后给我做了一通思想工作，我也欣然接受了。在村里的帮助下，我结合专业所学，经过考察论证，选择了当年栽种当年挂果的山东槟榔核桃，通过利用国家政策的扶持资金，承包了村里的200亩荒地，结果第二年就有了收益。\n　　现在除了种植核桃，我家还盖起了几十亩的无公害蔬菜大棚，开启了电商业务，不出家门就能把产品卖出去，一年净收入有20多万元。家里不仅装修了农村的房子，也在城里给我买了商品房和小汽车。婚后，节假日期间我们一家人经常自驾游，看祖国大好河山。一与人拉家常，父亲总掩不住内心的激动，说个不停。最让我意外的是，父亲还开始用微信，经常和远在省城读研究生的外侄女视频聊天。每每如此，他的脸上总洋溢着幸福和喜悦。\n　　这40年来，我家的生活一天比一天好，吃饱吃好之余还讲究营养搭配。以前的“高档食品”也进入寻常百姓家。家庭聚会、好友聚餐把“下馆子”视作常事，不像从前那样算计着过日子。“你电商了吗”“你自驾游了吗”，成为农村人日常见面的时兴话。\n　　去年四川凉山地震，父亲第一时间向灾区捐了2万元，还发动合作社的10位种养大户为灾区捐款捐物，遇到熟悉或不熟悉的，见面就问：“你捐了吗？”在他的倡议下，社里10名党员还交纳了3000多元的“特殊党费”。他说：“改革开放40年，我们脱贫致富。现在国家日益强盛，受惠于党和国家的好政策，我们的日子越过越红火，有了一定的家底，也该想想其他受困的人。能够为灾区人民出一份力、尽一份心，也是我们回馈社会的一份心意啊！”&lt;/p&gt;', '1535594054', '', '2', '1535595414', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('47', '29', '【改革开放记忆】问候语见证我家的酸甜苦辣', '5', '&lt;p&gt;改革开放40年，我家的生活发生了翻天覆地的变化，而最能体现这一巨变的是那些出现于人们日常生活中的“问候语”。从上世纪70～80年代的“你吃了吗”“你忙什么”，到90年代的“你买房了吗”“你炒股了吗”“你旅游了吗”，再到“你身体还好吗”“你儿子上大学了吗”，变成现在的“你电商了吗”“你自驾游了吗”这些问候语的变化，从另一个侧面真实反映了40年来人们日常生活的变迁。\n　　&amp;nbsp;&lt;/p&gt;&lt;p&gt;我老家在偏远的农村，那时候生活很困难，有时一天三顿都吃不饱，整天都是吃红苕干和高粱面，偶儿才下一小半碗米，就连所谓的“打牙祭”也只见几颗油珠珠。\n　　\n记得有一年，因为一家人已经几个月没吃上一回肉了，嘴里成天冒着清口水，痨得很，所以干活自然也没什么力气。过中秋节时，邻居家的儿子从新疆部队回来探亲，带了猪肉罐头。这家人像过年一样，下午早早地就开始蒸罐头，准备晚饭。闻到那股子香味，我和哥哥借故三天两头地来这家人屋里串门，嘴上说是看看当兵的小伙伴，其实就是想尝一口猪肉罐头。当时不仅是我哥俩，还有好几户邻居都去了他们家，为的就是一饱口福！我至今还依稀记得当年的情形。\n　　&amp;nbsp;&lt;/p&gt;&lt;p&gt;那些年，邻里之间一见面都要问：“你吃了吗？”即便是上午十点或下午三四点也这么问，虽然只是一句简单的问候，但其实在大家的心里把吃饭问题都看得很重。那时候，粮食紧张、物资匮乏，老百姓买什么都需要票。做新衣要布票，买煤油要油票，逢年过节买几两红苕酒都要酒票。我家娃儿多，只有父母是劳动力，挣的工分少，分的粮食也不多，所以每顿饭吃完都会把粘在碗底的粥糊饭粒舔干净，这还觉得意犹未尽。成天想的也是怎样把肚子填饱，所以见面都说吃饭的事。\n　　&amp;nbsp;&lt;/p&gt;&lt;p&gt;自改革开放以来，农村实行了家庭联产承包制，我家7口人承包了7亩地，每年可收1万多斤粮食，不仅自己家吃不完，还要卖几千斤出去。村民收入增加了，见面时的问候语也发生了变化，由“你吃了吗”变成“你在忙啥”“你今年收入多少”。\n　　&amp;nbsp;&lt;/p&gt;&lt;p&gt;虽然温饱已不是问题，但父母要赡养年迈多病的爷爷奶奶，还要供我上大学，一家人的收入仍有些捉襟见肘。父亲只留下妈妈和小侄女在家，他自己和哥哥姐姐们出外打工挣钱。那时，父亲只要一听到别人问他：“你有存款吗”“你准备给儿子买房了”，脸上就露出深深的愧疚和无奈。\n　　&lt;/p&gt;&lt;p&gt;2014年，我大学毕业，找了很多工作都不甚满意。家里的亲朋好友一见面，就问父亲：“你儿子找到工作了没？”这让他十分苦恼。正当一家人为此犯愁时，村主任来到我家，找到我父亲：“现在国家有了新政策，支持大学生创业，你儿子又是学农业的，我看可以试试自己创业。如果你儿子决定好创业，村里一定尽全力帮助。”父亲当时心里便有了主意，随后给我做了一通思想工作，我也欣然接受了。在村里的帮助下，我结合专业所学，经过考察论证，选择了当年栽种当年挂果的山东槟榔核桃，通过利用国家政策的扶持资金，承包了村里的200亩荒地，结果第二年就有了收益。\n　　&amp;nbsp;&lt;/p&gt;&lt;p&gt;现在除了种植核桃，我家还盖起了几十亩的无公害蔬菜大棚，开启了电商业务，不出家门就能把产品卖出去，一年净收入有20多万元。家里不仅装修了农村的房子，也在城里给我买了商品房和小汽车。婚后，节假日期间我们一家人经常自驾游，看祖国大好河山。一与人拉家常，父亲总掩不住内心的激动，说个不停。最让我意外的是，父亲还开始用微信，经常和远在省城读研究生的外侄女视频聊天。每每如此，他的脸上总洋溢着幸福和喜悦。\n　　&amp;nbsp;&lt;/p&gt;&lt;p&gt;这40年来，我家的生活一天比一天好，吃饱吃好之余还讲究营养搭配。以前的“高档食品”也进入寻常百姓家。家庭聚会、好友聚餐把“下馆子”视作常事，不像从前那样算计着过日子。“你电商了吗”“你自驾游了吗”，成为农村人日常见面的时兴话。\n　　\n去年四川凉山地震，父亲第一时间向灾区捐了2万元，还发动合作社的10位种养大户为灾区捐款捐物，遇到熟悉或不熟悉的，见面就问：“你捐了吗？”在他的倡议下，社里10名党员还交纳了3000多元的“特殊党费”。他说：“改革开放40年，我们脱贫致富。现在国家日益强盛，受惠于党和国家的好政策，我们的日子越过越红火，有了一定的家底，也该想想其他受困的人。能够为灾区人民出一份力、尽一份心，也是我们回馈社会的一份心意啊！”&lt;/p&gt;', '1535595521', '', '2', '1535595608', '1', '0', '0');
+INSERT INTO `c_heart` VALUES ('48', '29', '小家变 大家兴', '5', '&lt;p&gt;前些天，我和母亲唠家常时，她不停感慨：“和你爸结婚已经30多年了，日子就像糖水一样，越过越甜。以前许多不敢想的事，现在都变成了现实。”细想母亲的话，回想这些年家里的变化，心中更加确信：改革开放改善了我们的生活。\n \n　　&lt;/p&gt;&lt;p&gt;走出农村，来到城市\n　　&lt;/p&gt;&lt;p&gt;1983年6月，父母在激动兴奋中迎来第一个孩子——我的哥哥庆伟。当时，正值麦子收割的时节，天气异常炎热。母亲生下哥哥的第二天，便扎起头巾，强撑着虚弱的身体到田里干活。外婆非常心疼在地头哭喊的哥哥，便把他抱回家，一直养到三岁。1984年11月，母亲又生下我。据父亲回忆，当母亲得知又是一个男孩时，便摇头叹气：“一个男孩已经够操心了，再来一个恐怕以后找媳妇都难。”第三年，母亲又生下了妹妹。\n　　&lt;/p&gt;&lt;p&gt;父母都是老实巴交的庄稼人，靠着十几亩地过日子，要是庄稼欠收，日子便过得紧巴巴。还记得那时，家里伙食不好，顿顿吃的都是自家种的蔬菜，主食则是红薯面和白面搀合一起蒸的馒头、擀的面条。至于肉蛋，只有等到逢年过节才能吃到稍微解解馋。贫困艰苦的生活，让父母常为我们兄妹三人的将来担心。\n　　&lt;/p&gt;&lt;p&gt;随着年龄增长，我们相继入学，父母的担子更重了。为了供我们上学，只会同土地“打交道”的父母，东拼西凑地买了辆农用三轮车，开始学着跑运输。父母起早贪黑、没日没夜地为生活奔波，吃尽了苦头，而我们仨也没让他们失望，学习成绩一直名列前茅。\n　　&lt;/p&gt;&lt;p&gt;1997年，哥哥为了给家里减轻负担，考入省城郑州的一所中专学校学习计算机。第二年，我考入县第二高中，妹妹则在我们镇的重点中学念书。\n　　&lt;/p&gt;&lt;p&gt;2001年，祸从天降，父母驾车回家，中途被一辆长途客车撞翻在地。所幸的是父母在医院昏迷两个星期后双双被救醒，但肇事司机却逃得无影无踪，家里的积蓄全部花光，还欠下一大笔债务。我们兄妹三人见到家里举步维艰，便全都选择辍学。村里人也为我们感动惋惜：“老陈一家经此一事，孩子们想要有出息就难咯！”\n　　&lt;/p&gt;&lt;p&gt;倔强的哥哥发誓：不混出模样，决不回家，于是带着妹妹踏上了开往北京的火车。而我穿上军装，准备到部队去寻找属于我的一片天地。谁也没曾想到，我们这一走，还真“走出”了农村。哥哥和妹妹一边打工一边学习，不断给自己“充电”，工作上越干越出色。如今，哥哥在一家IT公司做设计师，年薪不菲。妹妹在一家投资公司上班，并在北京结婚生子。而我在部队找到了出路，从南京政治学院毕业后被分配到天津，留在了大城市。母亲说：“孩子们，这是你们赶上了好时候，改革开放帮了咱一家啊！”\n \n　　&lt;/p&gt;&lt;p&gt;告别土屋，住进楼房\n　　&lt;/p&gt;&lt;p&gt;我的爷爷有九个孩子，父亲排行第八。父亲结婚时，爷爷已经没钱再盖砖瓦房，只能勉强搭了四间土瓦屋。我一出生就住在土瓦屋，直到2001年我参军去部队。土瓦屋保留了我太多的珍贵回忆。\n　　&lt;/p&gt;&lt;p&gt;土瓦屋的墙体主要由麦秸杆和泥土搅合而成，房顶上铺了一层柏油纸，柏油纸上盖着青灰色的瓦片，远远看上去像土包。这种房子居住条件极差，冬冷夏热，还时常漏雨，着实让我们一家吃了不少苦头。每到夏天，屋内闷得像蒸笼，身上的汗出个不停，躺在床上如“烙烧饼”一样。而最苦的莫过于冬天和雨天。冬夜特别漫长、寒冷，我和哥哥挤一张床，盖着两床被子，棉衣棉裤压在身上，还冻得直哆嗦。冬天最不愿起夜，短短二十几米的距离，却感觉要走特别久。下雨天更是糟糕，土瓦房就像漏斗，到处漏水。一到雨天，屋内摆满了盆子，滴落的雨水发出噼噼啪啪的声响，不得安宁。\n　　&lt;/p&gt;&lt;p&gt;父母曾几次计划重新盖房，但最终都不得不放弃这个念头。我们兄妹三人离家后，经常给父母寄钱，帮他们减轻负担。前些年，农村不但取消了农业税，而且每亩地还有一定的经济补助，慢慢的父母不仅还清了欠债，还有了一些存款。\n　　&lt;/p&gt;&lt;p&gt;2005年春节刚过，我们兄妹三人凑钱把老房子彻底翻新了一遍。三年后，哥哥凭借自己的能力，在北京买了一套两室一厅的房子，从此告别了租房的日子。2013年9月，我和妻子住进了部队的公寓房，家具家电一应俱全，我俩不禁热泪盈眶。2015年，妹妹在北京也拥有了自己的房子。\n　　&lt;/p&gt;&lt;p&gt;近年来，农村的生活水平越来越好，乡亲们竞相在县城买房。去年春节，我们兄妹一合计，决定也给父母在县城买一套小两居。父母虽不情愿，但仍拗不过我们，只好默许。\n　　&lt;/p&gt;&lt;p&gt;从昔日破旧的土瓦房到如今舒适的楼房，我们一家的日子越过越红火，这一切得益于改革开放。尤其是党的十八大以后，以习近平同志为核心的党中央肩负起团结带领全党全国各族人民共同奋斗的历史使命，让亿万人民对祖国的未来更有信心、更加期待。\n \n　　&lt;/p&gt;&lt;p&gt;老沱河，新风采\n　　&lt;/p&gt;&lt;p&gt;我的家乡有一条美丽的小河——沱河。每当想起它，那清澈的河水与儿时的记忆便一起涌上心头，让人魂牵梦绕。\n　　&lt;/p&gt;&lt;p&gt;沱河十分平静，宛若一位娴静的女子，偶尔会有几只野鸭从碧绿的水草中钻出，留下阵阵涟漪。沱河清澈透亮，像一面闪光的镜子。沱河两岸水草丰茂，到处是羊群。夏天，孩子们在水中嬉戏，爽朗的笑声回荡在这片水域。\n　　&lt;/p&gt;&lt;p&gt;天还没亮，渔民们就驾着木船去撒网。傍晚时分，火烧云紧贴着河面，折射出道道霞光。这时，渔民们驾着小船开始收网，一条条鱼儿在网中翻腾着，大家脸上洋溢着灿烂的笑容。此刻，沱河犹如一幅绝美的风景画，令人流连忘返。\n　　&lt;/p&gt;&lt;p&gt;沱河是我儿时的“玩伴”，分享着我成长的喜怒哀乐。随着经济发展，县城建起了造纸厂和化工厂，工业废水不断排入河中。渐渐地，沱河变了模样，失去了往日的生机：水质越来越差，还散发着恶臭，鱼儿没了踪影。\n　　&lt;/p&gt;&lt;p&gt;去年5月，县政府作出整改决定，改变经济发展方式，高度重视生态建设，沱河水又恢复了清澈，沱河航运建设与两岸景观工程也陆续上马。\n　　&lt;/p&gt;&lt;p&gt;见此种种，我不禁感慨万千：绿水青山就是金山银山。中央明确把生态文明建设摆在更加突出的位置，这是一种思想观念的变革。古老的沱河在新思想的指引下重新焕发出生机。\n \n　　&lt;/p&gt;&lt;p&gt;离部队，进机关\n　　&lt;/p&gt;&lt;p&gt;我所在的部队正面临军队改革，一大批战友即将脱下军装。作为一名从农村走出来的军官，我怀着感恩之情，顺应军队改革的大潮，决定转业去地方。2016年，军转工作开始后，我毅然向组织提交了转业申请书。尽管内心有万般不舍，但我坚信这是改革的阵痛期，必须咬紧牙关挺过去。军改期间，习近平主席的重要讲话和中央文件，无疑给我们这些转业干部吃了定心丸。最终，我转业到天津市人大常委会工作。\n　　&lt;/p&gt;&lt;p&gt;从一名部队军官转变为地方公务员，我深切地感受到个人重大的使命感与责任感。不论是在部队，还是在机关，我必定人尽其才、才尽其用、用有所成，为改革开放的持续推进贡献自己的一份心力。&lt;/p&gt;', '1535617941', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('49', '29', '两代人的40年', '3', '&lt;p&gt;花谢花开，秋去冬来。蓦然回首，改革开放已40载。看几多风雨，叹潮起潮落，当春风拂面，刹那间，一切涌上心头……\n \n　　&lt;/p&gt;&lt;p&gt;一\n　　&lt;/p&gt;&lt;p&gt;1978年，愿你吃饱穿暖\n　　&lt;/p&gt;&lt;p&gt;“新三年，旧三年，缝缝补补又三年……”大年三十将近，一家老小围坐在炕头，梅子一边看着妈妈皱着眉为她和其他五个兄弟姐妹缝补裤子，一边啃着手里的冻豆包，想着年夜饭上能有她心心念念的饺子。那时，梅子瘦小，不爱吃饭，因为整日只有棒子面粥可以喝。父亲一人工作养活全家十分不易，一年到头，即使是棒子面，也常常不够吃。梅子那会儿最希望生病，因为只有生病了，母亲才会用节省下来的钱到离家几里外的小卖铺给她买一瓶罐头，哪怕是五个孩子哄抢过后只能喝到一口罐头汤也心满意足许久。那时候，吃饱穿暖就是一大家子唯一的愿望。\n \n　　&lt;/p&gt;&lt;p&gt;2007年，许你衣食富足\n　　&lt;/p&gt;&lt;p&gt;“妈，我上学去了，中午我想吃炖羊肉！”显苹一口气喝完了杯子里的牛奶，背起书包便急匆匆地要去上学。女孩的母亲连忙追出来，一边帮她把帽子扶正，再整理一下新校服的领口，一边叮嘱道：“慢点走，红领巾带了没？还有放学不准买零食吃，再买就扣你的零花钱！”显苹听完后做了个鬼脸，随声附和着就小步向学校跑去。\n　　&lt;/p&gt;&lt;p&gt;“我今天上街给你买了一条漂亮的裙子，当作你期末考试第一名的奖励。”正在看电视的显苹欢呼雀跃地跑了过来，迫不及待地穿上美美的裙子，舞动着裙摆又转了一圈，便笑嘻嘻地说：“谢谢妈妈，以后我会更努力学习。”\n　　&lt;/p&gt;&lt;p&gt;落日的余晖洒满了宁静的小城，慵懒的氛围随着显苹银铃般的笑声渐渐消弭，她牵着爸爸的手，催促道：“爸爸快点，说好教我打羽毛球呢！”父女俩笑盈盈地在体育场上挥动着球拍，汗珠从两人额头上滴落，在平坦的地面上映出了一朵花。\n \n　　&lt;/p&gt;&lt;p&gt;二\n　　&lt;/p&gt;&lt;p&gt;1987年，居者有其屋\n　　&lt;/p&gt;&lt;p&gt;“我想有个家,一个不需要多大的地方……”那一年，这首歌响彻大街小巷的每一处。梅子正好18岁，依旧每天和一大家子挤在一张炕上，一大早起来,她也已经习惯去胡同口的公厕排队上厕所。这几天，梅子发现：屋子中间裂开了一条缝,土渣掉落在她的头发上。眼看着外头就要下雨，她心里有些闷闷不乐，一边将炕上的被子往里挪了挪，以防雨水滴落弄湿它，一边拿了几个盆放在经常漏雨的地方，她暗想：马上又得听一阵子协奏曲了。\n　　&lt;/p&gt;&lt;p&gt;“妈，今天远房的表叔来，我去同学家住一晚吧！”梅子懂事地说。家里着实太小，有时来了客人,连坐的地方都没有,只能站着聊天，更别说在这儿住下。大哥今年要结婚,父母决定在自家院子里加盖一间房子，顺便再翻新一下老屋，想到这，梅子露出了会心的一笑。\n \n　　&lt;/p&gt;&lt;p&gt;2007年，居者优其屋\n　　&lt;/p&gt;&lt;p&gt;“快来搭把手帮爸爸把冰箱放好！”显苹听到爸爸的召唤，三步并作两步地从客厅跑出来，看着比自己还高的新冰箱，想着她自己动手制作的冻冰棍，嘴角不由得上扬。\n　　去年，显苹一家从平房搬到了这个100平方米的楼房，她不仅有了自己的小天地，还得了一台电脑。家里摆放了各式各样的新家具，柜子上显眼地放着一台29寸的彩电，闲暇时她和同学约在家里一起看VCD。\n　　&lt;/p&gt;&lt;p&gt;“听说咱小区被评为文明示范小区了！”刚放学回家的显苹无意中听到邻居大爷大妈的闲聊，不禁放慢了脚步。她抬头又望了望小区内，假山溪水相映成趣，喷泉花坛错落有致，自然人文相得益彰。在如此舒适的社区，心旷神怡自然不在话下。\n \n　　&lt;/p&gt;&lt;p&gt;三\n　　&lt;/p&gt;&lt;p&gt;1993年，风雨飘摇夜难行\n　　&lt;/p&gt;&lt;p&gt;今天，梅子要去东校区参加市教师大会，一大早，她便与同事结伴骑车而去。晚上返程时，天下起了雨，必经之路的小桥被冲毁。两个小姑娘在河边等了许久也不见有行人经过，雨水早已把她俩淋湿。河面不算太宽，但水流湍急，无奈之下二人只能趟河。天色渐晚，同事在前面推着自行车，梅子在后面扶着车架缓慢挪动，这时河水都已漫到了她们的腰身。刚过河心，一个水流扑来，梅子一个趔趄倒在水里。幸好同伴一把抓住了她，可新买的自行车却付诸东流。她俩相互搀扶，好不容易上了岸，可全身如落汤鸡一般。\n \n　　&lt;/p&gt;&lt;p&gt;2018年，华夏大地任遨游\n　　&lt;/p&gt;&lt;p&gt;周末，显苹正兴高采烈地一件一件往皮箱里装郊游的必需品，妈妈则在一旁不时地叮咛：“别忘了带防晒霜、雨伞，记得把帐篷也带上……”\n　　&lt;/p&gt;&lt;p&gt;2012年，显苹家买了一辆SUV越野车。2014年，他们全家一道自驾游去广西桂林。观石林，游山水，荡舟漓江，徜徉人间仙境。2016年，一家人坐飞机去了山西、陕西、甘肃、四川……还登了华山，逛了九寨沟，领略了黄河壶口瀑布。2018年“五一”假期，乘高铁，上轮船，去大连看海。温饱之余享受出行的便利，生活变得多姿多彩。\n　　&lt;/p&gt;&lt;p&gt;其实，我就是显苹，梅子是我的母亲。闲暇时，我和母亲会聊起过往的点点滴滴。改革开放40年，两代人生活的巨变恰好见证了这一段岁月。40年的改革之路，泱泱大国勇立潮头，铸就历史辉煌。春风十里，耀我中华，一句话常存我心间：此生无悔入华夏,来世还生中华家。&lt;/p&gt;', '1535617983', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('50', '29', '乡村标语“进化史”', '1', '&lt;p&gt;改革开放40年，一路披荆斩棘的历史，都“写”在我老家那些斑驳的土墙上。\n　　&lt;/p&gt;&lt;p&gt;在老家的村里，有一面土墙，专门用来写宣传标语。这些标语向村民介绍改革开放以来国家推出的各项政策，一条接着一条，记录下了这40年的变迁。\n　　&lt;/p&gt;&lt;p&gt;1978年，我刚满9岁。当年12月，一个关乎国家命运的重要会议在北京召开。\n　　&lt;/p&gt;&lt;p&gt;等会议精神传到老家村子里时，村长从公社开会回来，手里挥舞着一纸文件，刚到山梁上就扯开嗓子喊：“李永德，快点上坡来，接受任务！”\n　　&lt;/p&gt;&lt;p&gt;村长喊的这个人，是我一个本家二叔。二叔略通文墨，在村子里也算个文化人。他平时走在村里，总是像公鸡一样昂着头挺着胸，有时与人发生争执时，常以一句“你没有文化”来收尾，然后一个人悻悻地离去。我二叔骨子里是个清高的人，这样的人在当时注定不合群。\n　　&lt;/p&gt;&lt;p&gt;但每逢接到村里写标语的任务时，就是二叔最得意的时刻。我看他提着石灰桶（后来改成涂料），挥动手里的一把大刷子就开始在墙壁上展示他的好手艺。写标语时，二叔总喜欢半蹲着，仿佛在暗暗运气，把体内气流导入右手，随后一气呵成，一条标语就算写完了。\n　　&lt;/p&gt;&lt;p&gt;二叔曾说过一句话：“北京的会议精神，翻过万水千山跑到咱们村来，还得靠我在墙上写出来才算完事。”二叔的话咋一听似乎没问题，但这股子狂妄劲儿着实让人唏嘘。\n　　&lt;/p&gt;&lt;p&gt;1979年春，二叔又把标语写到了村里各个路口、电线杆子以及渠堰天桥上。改革春风在村里“来回打转”，那些标语口号也家喻户晓，处处洋溢着热闹的气氛。再回想二叔当年刷写的标语：“解放思想，实事求是，团结一致向前看”“全体群众行动起来，大干一场”，真不由得让人心潮澎湃……虽然村子里的父老乡亲不一定都能明白标语的意思，但二叔一旦有空就会给他们讲解一二。当年留下的这些标语，已然成为纪念改革开放元年的印记。\n　　&lt;/p&gt;&lt;p&gt;1981年，中华大地迎来新一轮土地改革，如春雷般唤醒了我生活的那个小山村。二叔当年写的标语是：“打多少收多少，由你自己说了算！”“交足国家的，留够集体的，剩下的都是自己的”…\n　　&lt;/p&gt;&lt;p&gt;1982年，计划生育成为基本国策。村里的土墙上写满了标语：“一对夫妇只生一个好”“提倡一胎、控制二胎、杜绝三胎”……二叔写的标语都是按照上级的规定去完成，不敢“添油加醋”。\n　　&lt;/p&gt;&lt;p&gt;2015年10月，国家全面放开二胎政策，二叔那年已经76岁。满头白发的他，欣然受命，提着涂料桶，又出现在村里的房前屋后和公路两旁，写下新的标语：“一个太少、两个正好”“春风吹大地、播种播两粒”，而后面一条是二叔原创，他自己甚为满意。\n　　&lt;/p&gt;&lt;p&gt;在我记忆中，二叔40年里刷写的标语实在太多，多到可以出一本“教科书”。1988年殡葬改革：“坚决反对土葬，实行火葬”；1996年安全宣传：“遇到电线着了火，千万不要用水泼”；1998年发展农村经济：“全村人民行动起来，多栽果树”；2006年全国取消农业税：“农业税，不交了，党的政策真是好”； 2002年环保宣传：“保护青山绿水，实施退耕还林”； 2008年奥运会：“北京就要开奥运会啦！”；2018年：“美丽乡村是我家，农村不比城里差”。\n　　&lt;/p&gt;&lt;p&gt;前不久，我回老家探亲，看见79岁的二叔还在村里刷写标语，他用颤抖的手写下这样的标语：“不忘初心跟党走，共同建设新农村！”\n　　&lt;/p&gt;&lt;p&gt;在我们村，如今有卖房、卖电器、卖车、推销保险和电商平台等各种喷绘广告，它们纷纷出现在交通要道、办公楼和果园附近，可是这些都及不上二叔刷写的标语令人印象深刻。二叔仍然不时地出现在村里的各个角落，继续向村民宣传着党的政策，这也成为村里的一道风景，成为我乡愁的一部分。\n　　&lt;/p&gt;&lt;p&gt;40年改革开放的记忆，浓缩在二叔写下的那些乡村老标语中，一点一滴留存于我的脑海。&lt;/p&gt;', '1535618028', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('51', '29', '一勤无难事', '3', '&lt;p&gt;家庭是人生的第一课堂。父母的言行，时刻影响着我们做人做事的态度。家风正，则人正。\n　　&lt;/p&gt;&lt;p&gt;我刚上学那年，同母亲一起随军到武汉。30多岁的母亲被安排到一个要求会电脑、有电算会计证的职位。这对于当时还是一个“电脑盲”的母亲来说，无疑是一大挑战，可她没有退缩。每天晚上，母亲辅导完我的功课，就开始学习会计电算化知识；早上，我还没起床，母亲就已经起床背五笔字根。天道酬勤，经过一段时间的勤奋努力，母亲的打字速度已经达到每分钟五六十个字，并且还拿到了电算化会计证书。勤奋是一笔财富，而获得这笔财富没有捷径。后来，母亲还成为单位的业务能手。看着她在工作中取得的一本本荣誉证书，我明白了一勤天下无难事的道理。\n　　&lt;/p&gt;&lt;p&gt;如今，我成为武警边防部队的一员。在基层带兵时，母亲教育我，要勤学习，勤思考，勤深入到战士中间去，才能知兵爱兵。在带兵的同时，我牢记母亲的教诲，勤奋努力学习，先后考取了“国家二级心理咨询师证书”和“国家二级人力资源师证书”。去年我参加赴利比里亚维和警察防暴队的选拔，集训迎考期间，我固强补弱，起早贪黑，勤学苦练。苦心人天不负，凭着对 “勤”的孜孜不倦，我顺利通过了联合国的甄选考核并成为一名维和队员。现在我已到利比里亚任务区，要在这里进行为期一年的维和任务。这里条件艰苦，环境恶劣，在防暴队临时党总支的领导下，我们不等不靠，自己动手，顶着高温，建大棚种菜地，硬化营区道路。现在营区环境整洁，菜地硕果累累，工作顺利推进。我相信只要我们勤字当头，勤动脑筋，勤思对策，勤奋工作，勤勉尽责，一定会不辱使命，圆满完成此次维和任务。\n　　&lt;/p&gt;&lt;p&gt;感谢母亲，她让我懂得了一勤无难事的道理；感激母亲，她教会了我勤能补拙的工作方法；感恩母亲，她培养了我勤学苦练的习惯。我相信在人生的道路上，只要有勤为伴，任何困难都可以坦然面对。&lt;/p&gt;', '1535618080', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('52', '29', '孝心“接力棒”', '3', '&lt;p&gt;　正月初二，虽说是已立春，然而年前一场大雪，仍然寒气逼人。天寒地冻挡不住86岁的婆婆回娘家的迫切心情。吃过早饭，我便和婆婆、爱人、小儿子，开车向村南面山里驶去。连绵起伏的山岭映入眼帘，原野里白雪皑皑 ,小路上积雪车碾马踏的痕迹清晰可见。汽车开到半山腰上，泥泞路滑，喘着粗气再也走不动了，只好爱人在前面开，我和小儿子在后面推，却怎么也推不上去。“把车放在路边，我把妈背到舅舅家。”爱人说着背起婆婆，我和儿子拿着礼品，急忙跟在后面走。看着爱人气喘吁吁的样子，小儿子也抢着背起奶奶，父子俩就这样深一脚、浅一脚，你一程、我一程，一直把老人背到沟壑的最低处，大约走了10里路，下午3时方到舅舅家。看着满头大汗的爱人，还有沾满泥的鞋子以及裤子上湿迹斑斑，我想这就是孝道。 “百善孝为先”早已在这个大家庭里深深扎根，成了我们家中最动人的传统家风。\n　　&lt;/p&gt;&lt;p&gt;“我奶奶哪天来北京？”电话里传来了在北京工作的大儿子的声音。趁休假期间，他要把他奶奶接到北京看看。北京的十月，秋高气爽，天气清朗，还夹杂着秋风的丝丝冷意。儿子、儿媳推着奶奶，游玩在北京的故宫和天安门广场。婆婆的脸上始终洋溢着幸福、开心的笑容。\n　　&lt;/p&gt;&lt;p&gt;“你又给奶奶买衣服啦” “噢，奶奶去你哥哥那儿，我怕天气发生变化，多备了几件。还有，最近你老爸给家里安装了许多扶手，方便奶奶行走。“太好了”！电话那边传来小儿子爽朗、开心的笑声。这么多年，小儿子一放学、放假回来，总是陪在奶奶旁边，给奶奶捶捶背说说话。好吃的菜、瓜果都是让奶奶先品尝。这些年，我们无论走到哪儿，就把他奶奶带到哪儿。\n　　&lt;/p&gt;&lt;p&gt;孝心传递，让爱生生不息，也让我们的社会更加和谐与美好。让孝心化为爱的“接力棒”，传承我们“孝老爱亲”的好家风。&lt;/p&gt;', '1535619274', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('53', '29', '一群青年志愿者的乡村环保试验', '4', '&lt;p&gt;水库、茶园、竹林、民宿，路边开满野花，道路干净整洁。长江边的黄龙岘俨然已是南京人心中的“桃花源”。\n　　&lt;/p&gt;&lt;p&gt;这个昔日偏僻山村的“大变身”，与一些年轻人的到来有关。\n　　&lt;/p&gt;&lt;p&gt;2015年底，十几名大学毕业生来到这里。起初，村民并不清楚他们的来意，既不搞民宿，也不做餐饮，老关着门谈事，还经常带外人回来，村民甚至以为他们是搞传销的。直到一次村支书的到访，才揭开了谜底。\n　　&lt;/p&gt;&lt;p&gt;原来，几个小伙子来自南京大学农村环境治理与生态修复中心，一次野外考察，他们偶然发现黄龙岘具有良好的生态“底子”，又是长江边上一个小的流域单元，特别适合开展生态保护和环境教育。他们走进山村，为的是设立千百园生态环境保护中心，给当地自然环境把脉，推动乡村可持续发展和生态保护。\n　　&lt;/p&gt;&lt;p&gt;2013年，黄龙岘开始搞农家乐、兴办民宿，一下子成了人流量爆棚的乡村景点。每逢节假日，村里便会迎来数万名游客、两万多辆外来车辆。\n　　&lt;/p&gt;&lt;p&gt;“人来了，经济活动多起来了，整个地方的资源需求不断膨胀，化肥农药的使用量随之增大，村民们也希望加盖一些房子，多占一亩三分地。”在环境专家、千百园生态环境保护中心顾问祝栋林看来，随着经济的发展，这些行为本无可厚非，但也给当地环境造成不小的负荷。\n　　&lt;/p&gt;&lt;p&gt;如何守住生态红线，不逾越人与自然的边界，不超出环境最大承载力？“通过绿色转型的方式，减少化肥农药的使用，建设可持续乡村”，成了千百园团队研究解决的课题。祝栋林说，他们不希望城市的粗放式发展方式在农村再来一遍。\n　　&lt;/p&gt;&lt;p&gt;2016年初入驻后，千百园队长、南京师范大学生态学硕士刘文杰带领十余名志愿者依托小山村的生态体系，开展了一系列绿色项目，包括打造生态创意工作室、蝴蝶工坊、雨水花园、人工湿地、有机菜园、摇篮水田，共约70亩。\n　　&lt;/p&gt;&lt;p&gt;他们的乡村环保试验，也带动了当地村民。为了取得村民信任，增加彼此互动，一到晚上，刘文杰等人就提供基地场所，教跳广场舞，放映环保电影。村民们很快便和他们打成一片，逐步了解了他们的想法，开始在思想和行动上做出改变。\n　　&lt;/p&gt;&lt;p&gt;村民吴纪全听说做生态沟、雨水花园、有机农业可以保护生态环境，主动将自家两栋房屋以每年5万元的价格租给了他们，而这两栋房原本有人愿以每年八九万元的价格租下来开农家乐。吴纪全还积极行动，在村里随手捡拾垃圾。\n　　&lt;/p&gt;&lt;p&gt;让刘文杰更欣慰的是，村民们对吴纪全低价租房、捡拾垃圾的行为从最初的嘲笑转变为认可和点赞，少数人的环保行动逐渐变成全村人的自觉行动，街坊邻居也和吴纪全一样加入到随手捡垃圾的行列。\n　　&lt;/p&gt;&lt;p&gt;千百园雇了当地一位农民帮忙种植、照看有机菜园。按照当地传统习惯，种植蔬菜必须施用化肥农药，这样长出来的作物产量高、个头大，杂草不生。所以，当得知无需除草施肥时，这位农民有些手足无措。\n　　&lt;/p&gt;&lt;p&gt;祝栋林花了不少功夫解释，“沟渠有流水，有野草，蛙、蛇等动物会以此进入农田管理。届时生态系统趋于平衡，就不需要人为干预了。”农民们渐渐相信了祝栋林，开始按照他的方法管理农田。\n　　&lt;/p&gt;&lt;p&gt;事实证明，这些行动改变的不仅是村民的环保意识，更直接推动了当地人经济收入的增长，经营理念的转变。\n　　&lt;/p&gt;&lt;p&gt;萤火虫是生态系统的晴雨表，对生长环境特别敏感，一旦受到化肥农药、灯光污染的影响，它们的存活率会直接下降。\n　　&lt;/p&gt;&lt;p&gt;今年5月，刘文杰带领团队在黄龙岘茶园附近调研萤火虫种群及分布情况，一边拍摄萤火虫，一边记录其数量、出现时间等信息。通过复原其生存环境，让萤火虫越来越多地出现。\n　　&lt;/p&gt;&lt;p&gt;萤火虫茶园的名声一传十，十传百。当地村民开始意识到，对茶园及其周围沟渠、湿地环境进行管理，萤火虫数量增多，分布区域更广，可直观印证茶园无农业污染，种植的茶叶品质上乘。那时候，不仅生态环境得以改善，茶园的收入也必将蒸蒸日上。慢慢地，他们也加入到保护萤火虫的队列。\n　　&lt;/p&gt;&lt;p&gt;除了改善当地生态环境和产业经济，千百园还积极借助茶文化村的人气开展环境教育。针对不同的空间，开发不同的环境教育课程：在山里，帮助认识动植物，了解生物多样性；在水边，传授湿地保护与建设知识；在农田，讲解有机农田和摇篮水田的种植。\n　　&lt;/p&gt;&lt;p&gt;一年多来，千百园先后为江宁街道、陆郎社区小学、南京市博物馆、马鞍山学校等单位开展专项环境教育活动8次，服务近千人次，基地接待来访游客约6000人，接待各类交流活动数十场，有力宣传了环保理念。\n　　&lt;/p&gt;&lt;p&gt;“孩子应从小接触自然，这种接触不是蜻蜓点水，一次两次而已，而是一到两年全程参与。”祝栋林告诉记者，千百园未来还将与南京大学、南京师范大学、黄龙岘村委共建自然学校，推动环境教育的普及。此外，开展童子军夏令营，让孩子从中认识自然，受到自然教育，而且形成解决实际环境问题的能力。\n　　&lt;/p&gt;&lt;p&gt;与此同时，当地政府也越来越重视第三方团队介入对环境保护的作用，传达出一种引导人才回流乡村的信号，他们鼓励千百园继续为生态保护工作服务，协助整个村做垃圾分类。\n　　&lt;/p&gt;&lt;p&gt;事实上，如今的千百园已跟黄龙岘渐渐“融为一体”，刘文杰等人正积极推动村里的垃圾收运体系、水资源管理、绿色茶园和农田的建设。&lt;/p&gt;', '1535619306', '', '2', '0', '0', '0', '0');
+INSERT INTO `c_heart` VALUES ('54', '29', '三位基层扶贫女干部的故事', '1', '&lt;p&gt;盛夏时节,广西融安县的脱贫攻坚已进入决战阶段,当地干部顶烈日、冒风雨、披星戴月,奋战在扶贫一线。在众多忙碌的身影中,女干部显得尤为不易。记者近日采访了三位扶贫一线的基层女干部,她们克服家庭、性别、身体等重重困难,不喊苦不叫累,脸晒黑、晒红了,她们自豪地称之为“扶贫红”。\n \n　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;“为了脱贫摘帽,大家都拼上了”&lt;/strong&gt;　　&lt;/p&gt;&lt;p&gt;蓬乱的头发、黑红的脸庞,沾着泥巴和尘土的衣服……融安县分管扶贫工作的副书记石祖芝刚刚下村归来,脸都没顾得上洗一把。\n　　&lt;/p&gt;&lt;p&gt;“为了脱贫摘帽,大家都拼上了,也顾不上梳洗打扮了。”石祖芝笑着对记者说,“我们扶贫女干部的脸晒黑了、晒红了,大家都不觉着丑,反而自豪地叫这是‘扶贫红’。”\n　　&lt;/p&gt;&lt;p&gt;沙子乡位于融安县东南部石山区,距县城50公里,因道路崎岖难行,记者到达这个乡的三睦村石岩屯整整走了一个半小时。36岁的乡党委书记陶媚开着一辆落满尘土的红色私家车赶来。“这辆车风里来雨里去的,去年跑了1万多公里,车牌都被尘土遮盖了,一些朋友还笑话我‘这哪是女人开的车!’”\n　　&lt;/p&gt;&lt;p&gt;陶媚毕业于广西民族大学,从团县委调到乡镇工作已有4年多,经过摸爬滚打,当年文静的女大学生已成为一位泼辣的女书记。她一身运动装打扮,走起路来风风火火,只有脸上那幅近视镜,显得干练中透出一些书生气。\n　　&lt;/p&gt;&lt;p&gt;本来白白净净的她,在烈日下脸晒得红红的。陶媚说:“哪个女人不爱美,但现在脱贫攻坚任务这么重,顾不上讲究了。”为了不让群众感觉跟干部有距离,陶媚在乡里专门定了规矩:女干部下村不能打伞、不能穿裙子。\n　　&lt;/p&gt;&lt;p&gt;陶媚的随身装备中,总是常备着一双解放鞋和一双塑料凉鞋。“穿解放鞋走山路轻便不打滑,特别稳,穿塑料凉鞋再深的水也能蹚过去。”这都是工作实践中总结出来的。　　&lt;/p&gt;&lt;p&gt;陶媚回忆起前两年,当地遭遇一场50年不遇的洪水,在转移群众过程中,当时她穿了一双橡胶雨靴,结果水位上涨太快,雨靴灌满水后根本抬不起脚,于是她甩掉鞋子,赤着脚泡在水里,直到最后完成转移。这次教训也让她此后把雨靴换成了塑料凉鞋。\n \n　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;做扶贫干部不易,做扶贫女干部更是不易&lt;/strong&gt;　　&lt;/p&gt;&lt;p&gt;白天冒着高温酷暑奔走在田间地头、扶贫产业一线,晚上到贫困户家里开展完夜访已是深夜,这些对扶贫女干部已习以为常。在一个周末,一位乡镇女干部高烧近40度还坚持开扶贫会,石祖芝问她:“高烧40度你咋还来开会?”她回答说:“现在是39度。”\n　　&lt;/p&gt;&lt;p&gt;晚上进村入户遇到狗和蛇是常事,这对女干部来说是个挑战。陶媚夜访时多次跌进水沟里,皮肤也常因毛毛虫爬过而起红疙瘩。陶媚告诉记者,乡镇工作时间长、强度大,从周一到周五都在乡里,经常是从早上8点干到晚上11点才回宿舍。有时周六、周日也还要在乡镇处理工作。去年初以来,她瘦了14斤。\n　　&lt;/p&gt;&lt;p&gt;陶媚的爱人2015年10月至今年3月在另外一个乡镇的贫困村当第一书记。夫妻俩都在扶贫一线,两个孩子全靠外公外婆带。说到孩子,陶媚充满了愧疚:大女儿9岁,上小学3年级,陶媚一个学期也没接送过她几次,3年了只参加过一次家长会。\n　　&lt;/p&gt;&lt;p&gt;小女儿2岁零4个月。陶媚怀她时,正是石岩屯发展乡村旅游的关键期,她挺着大肚子每天在屯里忙活,经常下午两三点还没吃午饭,晚上还要加班到11点多,因劳累过度导致3次面临流产危险。休产假期间,因为有重要工作,孩子只吃了5个月母乳就断奶了。\n　　&lt;/p&gt;&lt;p&gt;因为天天泡在村里,石岩屯每个村民都认识这位女书记。让陶媚颇为感动的是,村民看她怀着孕还这么拼很心疼她,热情邀请她到家里吃饭,有时拿出家里煮熟的红薯、玉米塞到她手里。\n　　&lt;/p&gt;&lt;p&gt;在陶媚一手推动下,“养在深山人未识”的石岩屯被打造为国家3A级旅游景区,带动了当地群众加快脱贫步伐。\n　　&lt;/p&gt;&lt;p&gt;东起乡党委书记江昕颐毕业于广西大学,是家里的独生女,爱人在县公安局工作。因为夫妻双方工作都很忙,5岁的儿子和3岁的女儿全靠外公外婆带着。两年前,江昕颐的母亲被检查出患有严重的尿毒症,每周要做两次透析,还紧急抢救过两次,现在更是隔一天就要去透析一次。但母亲从未抱怨喊累,全力支持女儿的工作。\n　　&lt;/p&gt;&lt;p&gt;“妈妈病情加重,是帮我带两个孩子累的。”江昕颐哽咽着说。\n　　&lt;/p&gt;&lt;p&gt;有时候母亲做透析,孩子没人照看,她只好带着孩子去贫困户家夜访。\n \n　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;“白+黑”“5+2”的扶贫工作&lt;/strong&gt;　　&lt;/p&gt;&lt;p&gt;作为主抓扶贫的县领导,石祖芝面临很大压力:融安县是自治区级贫困县,今年要争取脱贫摘帽,目前正是“大决战”时期,县委、县政府出台很多真扶贫、扶真贫的政策措施,县、乡镇领导干部夜访活动正如火如荼开展,大家“比学赶超”氛围浓厚。\n　　&lt;/p&gt;&lt;p&gt;融安县委常委、宣传部长、副县长蒋玉对记者说:“为让全县早日脱贫攻坚,石书记带头没日没夜地干,没见她有一天休息。”\n　　&lt;/p&gt;&lt;p&gt;沙子乡共有3个贫困村,去年两个贫困村脱贫,目前还有一个深度贫困村以及429户1380人未脱贫。陶媚坦言压力不小。\n　　&lt;/p&gt;&lt;p&gt;为决战脱贫攻坚,今年5月开始,融安县开展夜访贫困户活动,县、科级干部都要到贫困户家中察民情、解民意、排民忧。沙子乡建档立卡贫困户共计649户2205人,乡党委书记、乡长、人大主席和分管扶贫的副乡长要分片走完所有贫困户,每人需夜访160多户。截至目前,陶媚已经走访了120多户贫困户。“群众白天都要下地干活,晚上去不影响他们劳动。还有很多户没走完呢,得加把劲……”陶媚说。\n　　&lt;/p&gt;&lt;p&gt;在东起乡有个贫困村屯叫铜板屯,是当地有名的“空巢村”。近几年,在各级党委政府大力帮扶下,铜板屯成立合作社发展规模种植和特色观光旅游,如今村民返乡就业、创业,村子逐渐热闹和红火起来。\n　　&lt;/p&gt;&lt;p&gt;“扶贫需要‘领头雁’,铜板是一个很有潜力的地方,虽基础差、底子薄,但群众依靠自身发展脱贫致富的意愿很强烈。”江昕颐说,目前,乡里全力打造以铜板屯为核心的农业核心示范区,推动脱贫攻坚示范点建设,也引来了饮水、观光路、污水处理厂等不少项目,依托李花、油菜花等发展乡村旅游初见成效。\n　　&lt;/p&gt;&lt;p&gt;江昕颐表示:“现在国家政策这么好,不管有多难,我们都要用心把脱贫攻坚工作做好。”\n　　&lt;/p&gt;&lt;p&gt;石祖芝说,“上面千条线,下面一根针”,扶贫工作千头万绪,但最终都要靠基层干部来落实各项政策。现在,县乡村各级干部都在发扬“白+黑”“5+2”的工作精神做扶贫工作。看到工作见到成效,贫困村水电路等基础设施改善,产业发展、集体经济有起色,群众幸福指数提高,干部们没有比这更欣慰的了。&lt;/p&gt;', '1535619337', '', '2', '0', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for `c_heart_cate`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_heart_cate`;
 CREATE TABLE `c_heart_cate` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '分类名称',
   `sort` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `sort` (`sort`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='一颗红心 分类';
+=======
+  PRIMARY KEY (`id`),
+  KEY `sort` (`sort`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='一颗红心 分类';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_heart_cate
@@ -1506,7 +2306,11 @@ INSERT INTO `c_heart_cate` VALUES ('4', '学习体会', '2');
 INSERT INTO `c_heart_cate` VALUES ('5', '随笔漫谈', '1');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_history
+=======
+-- Table structure for `c_history`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_history`;
 CREATE TABLE `c_history` (
@@ -1520,9 +2324,15 @@ CREATE TABLE `c_history` (
   `dtime` int(11) DEFAULT '0' COMMENT '删除时间',
   `is_del` tinyint(1) DEFAULT '0' COMMENT '是否删除 0未删除1已删除',
   `vtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '视频时长',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `cate_id` (`cate_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='党史';
+=======
+  PRIMARY KEY (`id`),
+  KEY `cate_id` (`cate_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='党史';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_history
@@ -1537,7 +2347,11 @@ INSERT INTO `c_history` VALUES ('7', '建党 2集', '1', 'Uploads/2018-08-20/5b7
 INSERT INTO `c_history` VALUES ('10', '11123', '5', 'Uploads/2018-08-20/5b7a2d589e039.jpg', 'http://pc5hsiop1.bkt.clouddn.com/2018-08-10_5b6d0d71c451b.mp4', '1', '1533873436', '0', '0', '202');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_history_cate
+=======
+-- Table structure for `c_history_cate`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_history_cate`;
 CREATE TABLE `c_history_cate` (
@@ -1545,8 +2359,13 @@ CREATE TABLE `c_history_cate` (
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '名称',
   `introduce` text NOT NULL COMMENT '介绍',
   `sort` tinyint(2) unsigned DEFAULT '0' COMMENT '排序',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='党史分类';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='党史分类';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_history_cate
@@ -1558,7 +2377,11 @@ INSERT INTO `c_history_cate` VALUES ('4', '抗战篇', '抗战篇', '2');
 INSERT INTO `c_history_cate` VALUES ('5', '解放战争篇', '&lt;p&gt;解放战争篇，，&lt;/p&gt;', '1');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_menu
+=======
+-- Table structure for `c_menu`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_menu`;
 CREATE TABLE `c_menu` (
@@ -1566,12 +2389,21 @@ CREATE TABLE `c_menu` (
   `menu_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '菜单名称',
   `menu_description` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '菜单描述',
   `ctime` int(10) NOT NULL COMMENT '创建时间',
+<<<<<<< HEAD
   `company_id` int(11) NOT NULL COMMENT '公司id',
   `menu_lv` int(1) NOT NULL COMMENT '菜单栏等级 1 一级 2二级',
   `p_lv_id` int(11) NOT NULL DEFAULT '0' COMMENT '上一级菜单id 0代表一级菜单',
   `menu_url` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '菜单绑定url',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='微信菜单表';
+=======
+  `branch_admin_id` int(11) NOT NULL COMMENT '支部管理员表id(branch_admin)',
+  `menu_lv` int(1) NOT NULL COMMENT '菜单栏等级 1 一级 2二级',
+  `p_lv_id` int(11) NOT NULL DEFAULT '0' COMMENT '上一级菜单id 0代表一级菜单',
+  `menu_url` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '菜单绑定url',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='微信菜单表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_menu
@@ -1585,7 +2417,36 @@ INSERT INTO `c_menu` VALUES ('16', 'test1018', 'test1018', '1539836720', '1', '1
 INSERT INTO `c_menu` VALUES ('17', '你好', '测试', '1540371649', '1', '1', '0', 'http://www.baidu.com');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_news
+=======
+-- Table structure for `c_new_cate`
+-- ----------------------------
+DROP TABLE IF EXISTS `c_new_cate`;
+CREATE TABLE `c_new_cate` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '分类名称',
+  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父id',
+  `sort` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  PRIMARY KEY (`id`),
+  KEY `type` (`pid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='新闻分类';
+
+-- ----------------------------
+-- Records of c_new_cate
+-- ----------------------------
+INSERT INTO `c_new_cate` VALUES ('1', '党建要闻', '0', '0');
+INSERT INTO `c_new_cate` VALUES ('2', '反腐倡廉', '0', '0');
+INSERT INTO `c_new_cate` VALUES ('3', '时政热点', '1', '2');
+INSERT INTO `c_new_cate` VALUES ('4', '党建动态', '1', '3');
+INSERT INTO `c_new_cate` VALUES ('6', '反腐动态', '2', '1');
+INSERT INTO `c_new_cate` VALUES ('7', '廉政时评', '2', '2');
+INSERT INTO `c_new_cate` VALUES ('8', '警钟长鸣', '2', '3');
+INSERT INTO `c_new_cate` VALUES ('9', '通报曝光', '2', '4');
+
+-- ----------------------------
+-- Table structure for `c_news`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_news`;
 CREATE TABLE `c_news` (
@@ -1599,9 +2460,15 @@ CREATE TABLE `c_news` (
   `dtime` int(10) unsigned DEFAULT '0' COMMENT '删除时间',
   `is_del` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除（0未删除 1已删除）',
   `recommend` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0不推荐1推荐',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `cate_id` (`cate_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='新闻  党建要闻和反腐倡廉';
+=======
+  PRIMARY KEY (`id`),
+  KEY `cate_id` (`cate_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8 COMMENT='新闻  党建要闻和反腐倡廉';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_news
@@ -1619,7 +2486,11 @@ INSERT INTO `c_news` VALUES ('21', '“红船精神”集中表达了中国共�
 INSERT INTO `c_news` VALUES ('24', '人民论坛：“多开会”莫如“沉下去”', 'Uploads/2018-08-07/5b69167c948a4.jpg', '&lt;p&gt;眼下，改革发展稳定任务繁重，面临不少新问题新矛盾，需要及时加以解决。尤其是基层，由于常面临一些棘手问题，特别渴望得到上级的帮助和指导。可是，经常听到机关干部抱怨工作太忙，时间不够用，“想深入基层也深入不下去”。时间到底去哪儿了呢？&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;原来，相当一部分时间被各种各样的会议占据了。某贫困县的县委书记抱怨，今年上半年才刚结束，自己就参加了上级召开的几十个会议，加上县里召开的各种会议，粗略算了算，平均下来几乎一半的时间在开会。“要么在开会，要么在去开会的路上”，结果很少有时间静下心来研究、分析问题。如此一来，工作被动应付，更鲜有时间督促检查抓落实。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;现实中，类似情况时有发生：大家都被“按”在会议室中，“窝”在里面动弹不得。本来，上级要求基层干部狠抓工作落实，蹲点一线去解决矛盾和问题，但基层干部却被上级召集的各种会议缠住了，没有时间沉下去。基层干部很期盼上级多下来调研指导，出出主意、想想办法、给点政策，可上级也被自己安排的过多会议拖住了，想下去也下不去。过多过滥、内容重复、形式大于内容的会议，占用了干部大量的时间和精力，也在一定程度上影响了基层工作的有序开展。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;开会是部署工作、解决问题的一种重要方式，尤其是中央召开的重大会议，省一级召开的贯彻落实中央精神和重大决策部署的会议，必不可少。但对于市县及以下的基层单位和部门，就应把时间和精力用在狠抓落实上，而不能搞以会议来落实会议那一套。一些地方和单位开会过多过滥，源自一些人迷信会议的作用，在思想上把开会当作首选的工作方式，当作推动工作和抓落实的灵丹妙药。工作还没开始，先开个会来动员一下；工作遇阻了，就开个会推进一下；工作结束了，还要通过会议来总结表彰一下。此外，还有一个原因值得关注，即一些领导干部以开会来敷衍塞责：你说我不重视，我的会开得比谁都及时，讲得比谁都重要；你说我抓得不紧，我的会比谁开得都多，讲得比谁都全面；你说我不负责任，我在会上要求都十分明确，会议记录详实且有据可查。说到底，这是形式主义作祟，也是懒政惰政、不作为的表现，危害不容小觑。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;那么，如何精简会议、提高实效呢？关键在于上级带头、各级“一把手”率先垂范，对要求召开的会议严格控制、科学规划，做到心中有数、心里有底。我们倡导会议开得少一些、短一些、精一些，多开一些更有准备、更能解决问题的会。除此之外，不妨变多开会为沉下去，将一些会议直接安排为基层调研、现场办公。开会本来就是要解决问题的，与其隔靴搔痒地开会，还不如一竿子插到底，直接到基层一线多开一些调度会、协调会、督导会，把工作直接拿到现场去布置。通过直接传达、面对面指导，有利于推动上级精神转化为基层行动，也必能有效减少会议。&lt;/p&gt;&lt;p&gt;开会是一门学问。把该开的会议安排好、开好，不该开的、冗余的会议坚决精简，就能推动干部作风持续转变，进一步革除“表态多调门高、行动少落实差”的官僚主义、形式主义积弊。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '3', '1', '1533613692', '1534812901', '1', '0');
 INSERT INTO `c_news` VALUES ('25', '红船观澜：“一团和气”要不得', 'Uploads/2018-08-07/5b6916bdcaeaf.jpg', '&lt;p&gt;前不久，贵州黔南布依族苗族自治州纪委监委通报了三都水族自治县委原常委、县委办公室原主任违纪违法的消息。2017年9月，其明知三都县委没有贯彻落实州委纠正三都县严重政治乱象的“约法三章”，不仅在汇报材料上签了“审核”，还向州委调研组吹捧时任县委书记（已于2018年1月落马）的“政绩”……&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;对问题视而不见，给同事“打掩护”，对组织不老实……现实中，像这样的干部并非个例。有的在民主生活会上将批评与自我批评变成表扬与自我表扬，或是隔靴搔痒，说些不痛不痒的话。有的在组织考察干部时，明知被考察对象不合格，或怕得罪人、或想“送瘟神”，反而为其净说好话。还有的干部在工作中遇到矛盾当“和事佬”，对一些不良现象不敢抓、不敢管，对违纪现象不批评、不制止……凡此种种，都是无原则的一团和气，最终导致一个地区或单位软弱涣散，纪律松弛。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;搞这样的“一团和气”，丢的是原则、缺的是担当。少数干部信奉“多一事不如少一事”“多栽花，少栽刺”，看似与世无争，实则明哲保身，重“乌纱”、谋晋升。然而，这种看上去“高明”的做法，并非为官“护身符”。习近平同志曾指出：“一团和气、好好先生、你好我好大家好，这不是团结，而是涣散，也是一种麻痹。”同志间搞“一团和气”，往往会掩盖问题、掩饰矛盾。比如，一旦民主生活会走过场，搞一团和气，就烧不旺党内政治生活的“大熔炉”，锻造不出“好钢”；一旦干部犯了错误没人愿意“咬耳扯袖”“猛击一掌”，犯错干部就不能及时“悬崖勒马”。实践证明，“一团和气”盛行，就难免把党性原则、纪律规矩丢在一边，党员干部一旦失了原则、没了坚守，就容易突破底线，在各种诱惑、“围猎”面前难保不败下阵来。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;陈云同志说过，要正面地坦率地辨明是非，这是应有的原则态度，不是得罪人。否则，就会助长混乱，不能解决问题。“老实的态度，是则是，非则非”，这是老一辈革命家留下的好传统，也是党员干部应有的原则和立场。对党员干部来说，心中有党、对党忠诚，从来都是具体的而非抽象的。那些逢人只挑好话说，动不动就违心夸赞，搞无原则一团和气的干部，说到底就是对党的不忠诚、不老实。如此“同乎流俗”，混淆是非善恶，绝非共产党人该有的样子。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;《中国共产党纪律处分条例》明确规定，党员领导干部对违反政治纪律和政治规矩等错误思想和行为放任不管，搞无原则一团和气，造成不良影响的，给予警告或者严重警告处分；情节严重的，给予撤销党内职务或者留党察看处分。可见，党员干部只有对党绝对忠诚，永葆赤子之心，“眼里揉不下沙子”，对党和人民的事业高度负责，既直言他过，也闻过则喜，才能确保党组织的肌体健康而有活力。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '3', '3', '1533613757', '1534812899', '1', '0');
 INSERT INTO `c_news` VALUES ('26', '中科院开展“讲爱国奉献，当时代先锋”主题活动—— 不忘初心跟党走', 'Uploads/2018-08-07/5b691784541b9.jpg', '&lt;p&gt;新时代是奋楫前行的时代。实现党的十九大提出的宏伟目标，需要广大知识分子进一步砥砺家国情怀，唱响爱国奉献主旋律，以实干托举梦想，用奋斗成就事业。&lt;/p&gt;&lt;p&gt;从今天起，本报开设“弘扬爱国奋斗精神&amp;nbsp;建功立业新时代”专栏，报道广大知识分子胸怀祖国、立足岗位、艰苦奋斗、学以报国的先进事迹和崇高精神，激发更多知识分子不辱使命，做新时代的奋斗者，为实现“两个一百年”奋斗目标、实现中华民族伟大复兴的中国梦贡献才智。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;为深入开展“弘扬爱国奋斗精神、建功立业新时代”活动，中科院日前启动“讲爱国奉献，当时代先锋”主题活动，主题活动启动现场，国家最高科学技术奖获得者、中科院院士赵忠贤以“向老一辈科学家学习爱国奉献精神”为题，给现场400余名来自一线的青年科技人员上了一堂生动的党课。&lt;/p&gt;&lt;p&gt;“一个人，或一个团队花十年时间、二十年时间，给国家解决一个重要的科学难题，或解决一个核心技术问题，就能推动国家科学技术更好更快地发展。”赵忠贤讲述了老一辈党员科学家对党忠诚、以国家需要为先的事迹和精神，也讲述了自己兑现入党誓言、围绕国家需求开展科技创新的感人事迹。&lt;/p&gt;&lt;p&gt;当天，中科院首个“党员主题教育基地”在物理所揭牌。据统计，现在和曾在物理所工作、学习过的两院院士共68人，其中有41位院士是中国共产党党员。设立以“信念·党旗·科学”为主题的教育基地，旨在引导广大青年科技骨干传承老一辈科学家建设世界科技强国的坚定信念、忠于党和人民的政治品质、追求卓越和敢为人先的科学精神，牢固树立“不忘初心跟党走，科技报国为人民”的信念追求，将自己的理想追求与党、国家和人民的奋斗目标和共同理想紧密结合在一起，为建设科技强国贡献力量。&lt;/p&gt;&lt;p&gt;随后，来自中科院化学研究所、生物物理研究所、微电子研究所、植物研究所、国家空间科学中心等不同科研领域的青年党员科研骨干重温入党志愿书，回顾入党初心，牢记职责使命，再现入党时的庄严时刻。&lt;/p&gt;&lt;p&gt;“一个科研工作者，如果能够把自己的工作和国家、社会以及时代赋予的使命紧密相连，充分施展才干，为国争光、作出贡献，就是人生最大的成就，也是最大的幸福。”来自物理所的李泓研究员说。&lt;/p&gt;&lt;p&gt;为弘扬爱国奉献精神，加强先进典型选树，中科院前不久决定在全院组织开展“一所一人一事”先进事迹征集评选活动，“先进个人”评选向青年科技骨干倾斜。“通过评选活动，挖掘和选树一批新时代榜样先锋，发挥‘身边人、身边事’淡泊名利、爱国奉献、追求卓越的典型示范作用，激励全院广大科技工作者为建设创新型国家作出新的更大成绩。”中科院有关负责人表示。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180814/1534239537674698.jpg&quot; title=&quot;1534239537674698.jpg&quot; alt=&quot;timg (4).jpg&quot;/&gt;&lt;/p&gt;', '4', '5', '1533613956', '1534812896', '1', '0');
+<<<<<<< HEAD
 INSERT INTO `c_news` VALUES ('32', '中央党校习近平新时代中国特色社会主义思想研究中心', 'Uploads/2018-08-15/5b7395b0193bb.jpg', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;中央党校习近平新时代中国特色社会主义思想研究中心&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;我们党团结带领人民走过97年风雨历程，谱写了人类历史上惊天动地的壮丽史诗。在我们党领导下，中华民族实现了从东亚病夫到站起来的伟大飞跃，实现了从站起来到富起来的伟大飞跃，迎来了从富起来到强起来的伟大飞跃。今天，我们比历史上任何时候都更接近、更有信心和能力实现中华民族伟大复兴的目标。所有这一切，都是在中国共产党领导下取得的，体现了中国共产党强大的领导力。党的十九大报告指出，中国特色社会主义最本质的特征是中国共产党领导，中国特色社会主义制度的最大优势是中国共产党领导，党是最高政治领导力量。新时代，我们党要在坚持和发展中国特色社会主义的历史进程中始终成为坚强领导核心，必须进一步锻造新时代党的领导力。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;强大的领导力是中国共产党的显著标志&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;截至2017年底，中国共产党党员总数为8956.4万名，比上年增加11.7万名；党的基层组织457.2万个，比上年增加5.3万个。这样一个成立97年、执政69年的大党，带领亿万人民完成新民主主义革命和社会主义革命、建立起中华人民共和国和社会主义基本制度，带领亿万人民走过40年改革开放伟大征程、推动中国特色社会主义进入新时代，靠的是什么？靠的就是我们党强大的领导力。习近平同志指出：“中国共产党是世界上最大的政党。大就要有大的样子。”在“大的样子”中，党的强大领导力无疑是一个重要标志。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党强大的领导力，说到底是由党的指导思想决定的。中国共产党坚持以马克思主义为指导。马克思主义是科学的理论，创造性地揭示了人类社会发展规律；马克思主义是人民的理论，第一次创立了人民实现自身解放的思想体系；马克思主义是实践的理论，指引着人民改造世界的行动；马克思主义是不断发展的开放的理论，始终站在时代前沿。在人类思想史上，没有一种思想理论像马克思主义那样对人类产生了如此广泛而深刻的影响。坚持以马克思主义为指导，决定了我们党必然具有强大的领导力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党强大的领导力，说到底是践行党的性质和根本宗旨所要求的。中国共产党是中国工人阶级的先锋队，同时是中国人民和中华民族的先锋队。作为先进的马克思主义政党，中国共产党始终以全心全意为人民服务为根本宗旨，始终着眼于实现好、维护好、发展好最广大人民的根本利益，因此能得到人民群众的衷心拥护和支持。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党的领导力是一种大“道”，而非小“术”。这个大“道”植根于党领导革命、建设、改革的伟大实践，在新时代则植根于党领导人民坚持和发展中国特色社会主义的伟大实践。深刻认识中国共产党的领导力，就要善于运用马克思主义辩证唯物主义和历史唯物主义、运用马克思主义党建理论来观察和研究领导力问题。毛泽东思想、邓小平理论、“三个代表”重要思想、科学发展观、习近平新时代中国特色社会主义思想中的党建思想，是马克思主义党的学说和党建原理同中国革命、建设、改革的实践紧密结合的产物，形成了中国化的马克思主义党建理论体系，内容十分丰富，其中蕴含的领导理念、领导价值观、领导方略和方式、领导制度和艺术，深刻体现了中国共产党的强大领导力。&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;&lt;p&gt;强调锻造新时代党的领导力，是由我们党肩负的历史使命所决定的。我们党清醒地认识到，实现“两个一百年”奋斗目标和中华民族伟大复兴的中国梦，在前进道路上还面临许多矛盾、困难、风险和挑战。我们党要始终成为时代先锋、民族脊梁，始终成为马克思主义执政党，自身必须始终过硬。为此，党的十九大报告把“不断增强党的政治领导力、思想引领力、群众组织力、社会号召力，确保我们党永葆旺盛生命力和强大战斗力”这个重大课题提到全党面前。锻造新时代党的领导力，就要不忘中国共产党人的初心、牢记中国共产党人的使命。只有这样，我们才能站得更高、看得更远、想得更实，把我们党建设好、建设强，形成更加强大的领导力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;锻造新时代党的领导力要以提升政治领导力为灵魂&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;毫无疑问，政治领导力是中国共产党领导力的核心范畴。中国共产党是有政治信仰、政治纲领、政治路线、政治纪律的政治组织，政治属性是中国共产党的根本属性。从我们党带领人民长期奋斗的历史经验看，党的政治领导力集中体现在坚持马克思主义指导思想，用一脉相承、与时俱进的马克思主义中国化的科学理论武装全党、教育人民；体现在正确制定并执行党的政治纲领和政治路线，推动党的事业朝着正确方向前进；体现在建立健全坚持和加强党的全面领导的组织体系、制度体系、工作机制，切实把党的领导落实到改革发展稳定、内政外交国防、治党治国治军等各领域各方面各环节；体现在坚持和完善党的民主集中制，维护党中央权威和集中统一领导，引导全党增强“四个意识”，自觉在思想上政治上行动上同党中央保持高度一致；等等。因此，党的政治领导力理所当然在中国共产党领导力中居于首要的、核心的位置。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;党的政治领导力不能孤立地存在和发挥作用，必须同党的思想引领力、群众组织力、社会号召力等形成一个有机整体。党的思想引领力、群众组织力、社会号召力寓于党的政治领导力之中，受党的政治原则、政治规矩的指引和约束，并为提高党的政治领导力提供实现途径和有力保障。只有自觉把政治领导力作为中国共产党领导力的灵魂和统领，才能真正形成中国共产党强大的领导力、号召力、凝聚力和战斗力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;正因为党的政治领导力如此重要，党的十八大以来，习近平同志高度重视党的政治建设，强调“党是最高政治领导力量”，指出“讲政治，是我们党补钙壮骨、强身健体的根本保证，是我们党培养自我革命勇气、增强自我净化能力、提高排毒杀菌政治免疫力的根本途径”；提出“把党的政治建设摆在首位”，强调“党的政治建设是党的根本性建设，决定党的建设方向和效果。”在中共中央政治局第六次集体学习时，习近平同志更是强调“党的政治建设决定党的建设方向和效果，不抓党的政治建设或背离党的政治建设指引的方向，党的其他建设就难以取得预期成效。”在实践中，党的十八大以来，以习近平同志为核心的党中央展示了高超的政治领导力，形成强大的政治导向、政治定力和政治引领，以巨大的政治勇气、强烈的责任担当解决了许多长期想解决而没有解决的难题，办成了许多过去想办而没有办成的大事，推动党和国家事业发生历史性变革。我们要深入总结和研究其中的经验和规律，在新时代不断提升党的政治领导力。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;锻造新时代党的领导力要以提升领导干部的领导力为基础&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;党的干部是党的事业的骨干和中坚力量。没有领导干部领导力的提升，就没有党的整体领导力的提升。从某种意义上说，领导干部的领导力是党的全部领导力的基础。因此，提升领导干部的领导力，是提升党的领导力必须下功夫完成的重要任务。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;领导干部的领导力主要体现在两个方面，一是政治过硬，二是本领高强。所谓政治过硬，主要是指对党政治上忠诚，牢固树立“四个意识”；理想信念坚定，始终坚定“四个自信”；注重政治担当，善于从政治上观察和处理问题；做到政治自律，严格遵守党的政治纪律和政治规矩。此外，各级领导干部特别是高级干部要提升把握方向、把握大势、把握全局的能力，提升辨别政治是非、保持政治定力、驾驭政治局面、防范政治风险的能力，做到善于从政治上分析问题、解决问题。尤其需要强调的是，领导干部做到政治过硬，就要坚决维护习近平同志党中央的核心、全党的核心地位。党的十八大以来，习近平同志在领导党和国家事业发展、领导开展具有许多新的历史特点的伟大斗争中，赢得了全党全国各族人民的衷心爱戴和坚决拥护，成为党中央的核心、全党的核心。领导干部要更加自觉、更加坚定地维护习近平同志的核心地位，维护党中央权威和集中统一领导，在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;所谓本领高强，要求领导干部全面增强执政本领。习近平同志在党的十九大报告中提出“全面增强执政本领”，并从学习本领、政治领导本领、改革创新本领、科学发展本领、依法执政本领、群众工作本领、狠抓落实本领、驾驭风险本领八个方面提出明确要求。这些要求最终都要落实到领导干部身上。比如，领导干部要增强改革创新本领，就要保持锐意进取的精神风貌，善于结合实际创造性推动工作，善于运用互联网技术和信息化手段开展工作；领导干部要增强狠抓落实本领，就要坚持说实话、谋实事、出实招、求实效，把雷厉风行和久久为功有机结合起来，勇于攻坚克难，以钉钉子精神做实做细做好各项工作；领导干部要增强驾驭风险本领，就要健全各方面风险防控机制，善于处理各种复杂矛盾，勇于战胜前进道路上的各种艰难险阻，牢牢把握工作主动权。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;锻造新时代党的领导力要以人民群众对党的拥护、支持和追随状况为标尺&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;我们党来自人民，植根人民，服务人民。习近平同志在党的十九大报告中指出，中国共产党人的初心和使命，就是为中国人民谋幸福，为中华民族谋复兴。这个初心和使命是激励中国共产党人不断前进的根本动力。党的领导力体现为党对社会、对人民群众的影响力。没有人民群众的拥护、支持和追随，领导力必然落空。党的十八大以来，以习近平同志为核心的党中央坚持以人民为中心，把人民对美好生活的向往作为奋斗目标，把党的群众路线贯彻到治国理政的全部活动之中，以高度的政治自觉和可贵的政治勇气全面从严治党，以一系列带有突破性的重大举措开辟管党治党新境界，赢得了广大人民群众发自内心的拥护和支持，党的领导力不断彰显，党的威信日益提高。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党能够由一个最初只有50多名党员的政党，在极其艰难困苦的条件下迅速发展壮大，不仅夺取了全国政权，而且领导一个世界上人口最多的国家从一穷二白走向繁荣昌盛，就是因为得到了最广大人民的拥护和支持，获得了永无穷尽的力量源泉。一个能够得到最广大人民拥护、支持和追随的政党，必然是一个具有强大领导力的政党。锻造新时代党的领导力，要紧扣民心这个最大的政治，把赢得民心民意、汇集民智民力作为重要着力点。广大党员、干部要站稳人民立场，贯彻党的群众路线，同人民想在一起、干在一起，始终保持党同人民群众的血肉联系，着力解决人民群众最关心最直接最现实的利益问题。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;（执笔：虞云耀）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '3', '0', '1534301616', '0', '0', '1');
+=======
+INSERT INTO `c_news` VALUES ('32', '中央党校习近平新时代中国特色社会主义思想研究中心', 'Uploads/2018-08-15/5b7395b0193bb.jpg', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;中央党校习近平新时代中国特色社会主义思想研究中心&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;我们党团结带领人民走过97年风雨历程，谱写了人类历史上惊天动地的壮丽史诗。在我们党领导下，中华民族实现了从东亚病夫到站起来的伟大飞跃，实现了从站起来到富起来的伟大飞跃，迎来了从富起来到强起来的伟大飞跃。今天，我们比历史上任何时候都更接近、更有信心和能力实现中华民族伟大复兴的目标。所有这一切，都是在中国共产党领导下取得的，体现了中国共产党强大的领导力。党的十九大报告指出，中国特色社会主义最本质的特征是中国共产党领导，中国特色社会主义制度的最大优势是中国共产党领导，党是最高政治领导力量。新时代，我们党要在坚持和发展中国特色社会主义的历史进程中始终成为坚强领导核心，必须进一步锻造新时代党的领导力。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;强大的领导力是中国共产党的显著标志&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;截至2017年底，中国共产党党员总数为8956.4万名，比上年增加11.7万名；党的基层组织457.2万个，比上年增加5.3万个。这样一个成立97年、执政69年的大党，带领亿万人民完成新民主主义革命和社会主义革命、建立起中华人民共和国和社会主义基本制度，带领亿万人民走过40年改革开放伟大征程、推动中国特色社会主义进入新时代，靠的是什么？靠的就是我们党强大的领导力。习近平同志指出：“中国共产党是世界上最大的政党。大就要有大的样子。”在“大的样子”中，党的强大领导力无疑是一个重要标志。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党强大的领导力，说到底是由党的指导思想决定的。中国共产党坚持以马克思主义为指导。马克思主义是科学的理论，创造性地揭示了人类社会发展规律；马克思主义是人民的理论，第一次创立了人民实现自身解放的思想体系；马克思主义是实践的理论，指引着人民改造世界的行动；马克思主义是不断发展的开放的理论，始终站在时代前沿。在人类思想史上，没有一种思想理论像马克思主义那样对人类产生了如此广泛而深刻的影响。坚持以马克思主义为指导，决定了我们党必然具有强大的领导力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党强大的领导力，说到底是践行党的性质和根本宗旨所要求的。中国共产党是中国工人阶级的先锋队，同时是中国人民和中华民族的先锋队。作为先进的马克思主义政党，中国共产党始终以全心全意为人民服务为根本宗旨，始终着眼于实现好、维护好、发展好最广大人民的根本利益，因此能得到人民群众的衷心拥护和支持。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党的领导力是一种大“道”，而非小“术”。这个大“道”植根于党领导革命、建设、改革的伟大实践，在新时代则植根于党领导人民坚持和发展中国特色社会主义的伟大实践。深刻认识中国共产党的领导力，就要善于运用马克思主义辩证唯物主义和历史唯物主义、运用马克思主义党建理论来观察和研究领导力问题。毛泽东思想、邓小平理论、“三个代表”重要思想、科学发展观、习近平新时代中国特色社会主义思想中的党建思想，是马克思主义党的学说和党建原理同中国革命、建设、改革的实践紧密结合的产物，形成了中国化的马克思主义党建理论体系，内容十分丰富，其中蕴含的领导理念、领导价值观、领导方略和方式、领导制度和艺术，深刻体现了中国共产党的强大领导力。&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;&lt;p&gt;强调锻造新时代党的领导力，是由我们党肩负的历史使命所决定的。我们党清醒地认识到，实现“两个一百年”奋斗目标和中华民族伟大复兴的中国梦，在前进道路上还面临许多矛盾、困难、风险和挑战。我们党要始终成为时代先锋、民族脊梁，始终成为马克思主义执政党，自身必须始终过硬。为此，党的十九大报告把“不断增强党的政治领导力、思想引领力、群众组织力、社会号召力，确保我们党永葆旺盛生命力和强大战斗力”这个重大课题提到全党面前。锻造新时代党的领导力，就要不忘中国共产党人的初心、牢记中国共产党人的使命。只有这样，我们才能站得更高、看得更远、想得更实，把我们党建设好、建设强，形成更加强大的领导力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;锻造新时代党的领导力要以提升政治领导力为灵魂&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;毫无疑问，政治领导力是中国共产党领导力的核心范畴。中国共产党是有政治信仰、政治纲领、政治路线、政治纪律的政治组织，政治属性是中国共产党的根本属性。从我们党带领人民长期奋斗的历史经验看，党的政治领导力集中体现在坚持马克思主义指导思想，用一脉相承、与时俱进的马克思主义中国化的科学理论武装全党、教育人民；体现在正确制定并执行党的政治纲领和政治路线，推动党的事业朝着正确方向前进；体现在建立健全坚持和加强党的全面领导的组织体系、制度体系、工作机制，切实把党的领导落实到改革发展稳定、内政外交国防、治党治国治军等各领域各方面各环节；体现在坚持和完善党的民主集中制，维护党中央权威和集中统一领导，引导全党增强“四个意识”，自觉在思想上政治上行动上同党中央保持高度一致；等等。因此，党的政治领导力理所当然在中国共产党领导力中居于首要的、核心的位置。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;党的政治领导力不能孤立地存在和发挥作用，必须同党的思想引领力、群众组织力、社会号召力等形成一个有机整体。党的思想引领力、群众组织力、社会号召力寓于党的政治领导力之中，受党的政治原则、政治规矩的指引和约束，并为提高党的政治领导力提供实现途径和有力保障。只有自觉把政治领导力作为中国共产党领导力的灵魂和统领，才能真正形成中国共产党强大的领导力、号召力、凝聚力和战斗力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;正因为党的政治领导力如此重要，党的十八大以来，习近平同志高度重视党的政治建设，强调“党是最高政治领导力量”，指出“讲政治，是我们党补钙壮骨、强身健体的根本保证，是我们党培养自我革命勇气、增强自我净化能力、提高排毒杀菌政治免疫力的根本途径”；提出“把党的政治建设摆在首位”，强调“党的政治建设是党的根本性建设，决定党的建设方向和效果。”在中共中央政治局第六次集体学习时，习近平同志更是强调“党的政治建设决定党的建设方向和效果，不抓党的政治建设或背离党的政治建设指引的方向，党的其他建设就难以取得预期成效。”在实践中，党的十八大以来，以习近平同志为核心的党中央展示了高超的政治领导力，形成强大的政治导向、政治定力和政治引领，以巨大的政治勇气、强烈的责任担当解决了许多长期想解决而没有解决的难题，办成了许多过去想办而没有办成的大事，推动党和国家事业发生历史性变革。我们要深入总结和研究其中的经验和规律，在新时代不断提升党的政治领导力。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;锻造新时代党的领导力要以提升领导干部的领导力为基础&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;党的干部是党的事业的骨干和中坚力量。没有领导干部领导力的提升，就没有党的整体领导力的提升。从某种意义上说，领导干部的领导力是党的全部领导力的基础。因此，提升领导干部的领导力，是提升党的领导力必须下功夫完成的重要任务。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;领导干部的领导力主要体现在两个方面，一是政治过硬，二是本领高强。所谓政治过硬，主要是指对党政治上忠诚，牢固树立“四个意识”；理想信念坚定，始终坚定“四个自信”；注重政治担当，善于从政治上观察和处理问题；做到政治自律，严格遵守党的政治纪律和政治规矩。此外，各级领导干部特别是高级干部要提升把握方向、把握大势、把握全局的能力，提升辨别政治是非、保持政治定力、驾驭政治局面、防范政治风险的能力，做到善于从政治上分析问题、解决问题。尤其需要强调的是，领导干部做到政治过硬，就要坚决维护习近平同志党中央的核心、全党的核心地位。党的十八大以来，习近平同志在领导党和国家事业发展、领导开展具有许多新的历史特点的伟大斗争中，赢得了全党全国各族人民的衷心爱戴和坚决拥护，成为党中央的核心、全党的核心。领导干部要更加自觉、更加坚定地维护习近平同志的核心地位，维护党中央权威和集中统一领导，在思想上政治上行动上同以习近平同志为核心的党中央保持高度一致。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;所谓本领高强，要求领导干部全面增强执政本领。习近平同志在党的十九大报告中提出“全面增强执政本领”，并从学习本领、政治领导本领、改革创新本领、科学发展本领、依法执政本领、群众工作本领、狠抓落实本领、驾驭风险本领八个方面提出明确要求。这些要求最终都要落实到领导干部身上。比如，领导干部要增强改革创新本领，就要保持锐意进取的精神风貌，善于结合实际创造性推动工作，善于运用互联网技术和信息化手段开展工作；领导干部要增强狠抓落实本领，就要坚持说实话、谋实事、出实招、求实效，把雷厉风行和久久为功有机结合起来，勇于攻坚克难，以钉钉子精神做实做细做好各项工作；领导干部要增强驾驭风险本领，就要健全各方面风险防控机制，善于处理各种复杂矛盾，勇于战胜前进道路上的各种艰难险阻，牢牢把握工作主动权。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;锻造新时代党的领导力要以人民群众对党的拥护、支持和追随状况为标尺&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;我们党来自人民，植根人民，服务人民。习近平同志在党的十九大报告中指出，中国共产党人的初心和使命，就是为中国人民谋幸福，为中华民族谋复兴。这个初心和使命是激励中国共产党人不断前进的根本动力。党的领导力体现为党对社会、对人民群众的影响力。没有人民群众的拥护、支持和追随，领导力必然落空。党的十八大以来，以习近平同志为核心的党中央坚持以人民为中心，把人民对美好生活的向往作为奋斗目标，把党的群众路线贯彻到治国理政的全部活动之中，以高度的政治自觉和可贵的政治勇气全面从严治党，以一系列带有突破性的重大举措开辟管党治党新境界，赢得了广大人民群众发自内心的拥护和支持，党的领导力不断彰显，党的威信日益提高。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国共产党能够由一个最初只有50多名党员的政党，在极其艰难困苦的条件下迅速发展壮大，不仅夺取了全国政权，而且领导一个世界上人口最多的国家从一穷二白走向繁荣昌盛，就是因为得到了最广大人民的拥护和支持，获得了永无穷尽的力量源泉。一个能够得到最广大人民拥护、支持和追随的政党，必然是一个具有强大领导力的政党。锻造新时代党的领导力，要紧扣民心这个最大的政治，把赢得民心民意、汇集民智民力作为重要着力点。广大党员、干部要站稳人民立场，贯彻党的群众路线，同人民想在一起、干在一起，始终保持党同人民群众的血肉联系，着力解决人民群众最关心最直接最现实的利益问题。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;（执笔：虞云耀）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '3', '0', '1534301616', '0', '0', '0');
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 INSERT INTO `c_news` VALUES ('34', '习近平：改革只有进行时、没有完成时', 'Uploads/2018-08-15/5b73a3590049c.jpg', '&lt;p&gt;【学习进行时】&lt;/p&gt;&lt;p&gt;新华社近日播发万字长文《风生水起逐浪高——党的十九大以来以习近平同志为核心的党中央坚定不移推进全面深化改革述评》，披露了十九大后党中央决策、部署、推进全面深化改革全过程，其中一些重要论述、关键数据和具体细节为首次公开。新华社《学习进行时》为您梳理。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;以下就是这篇重磅报道的大量干货：&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;首次披露习近平总书记关于全面深化改革的一系列重要论述&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;“始终牢记改革只有进行时、没有完成时”&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;——这是习近平总书记在十九届中央深改领导小组第一次会议上的讲话。此前，“改革只有进行时、没有完成时”的论述已广为人知，但此次加上“始终牢记”4个字，进一步彰显出党的十九大继续推进全面深化改革的坚定决心。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“要在保持经济社会大局稳定的前提下，在经济体制改革上步子再快一些。推进基础性关键领域改革取得新突破，同时抓好已出台改革举措落实。”&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——这是习近平总书记在2017年底召开的中央工作会议上的讲话，对经济体制改革进一步提出明确要求。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“新时代坚持和发展中国特色社会主义，根本动力仍然是全面深化改革。要适应新时代中国特色社会主义事业发展进程，牢牢把握全面深化改革总目标，统筹推进各领域各方面改革。”&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——这是习近平总书记在党的十九届一中全会上的讲话，明确提出全面深化改革是新时代坚持和发展中国特色社会主义的根本动力。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“一个山头一个山头地攻，一个难关一个难关地破”&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;&lt;p&gt;　——这是习近平总书记在中央深改委第三次会议上的讲话，强调要把更多精力聚焦到改革的重点难点问题上来。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“先立后破、不立不破”“不仅要把‘块’切好，还要把‘条’理顺”&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——这是习近平总书记在中央深改委第二次会议上的讲话，对深化党和国家机构改革如何做好职责配置和划转提出明确要求，为机构改革科学有序、有条不紊推进指明了方向。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“站在新的起点谋划和推进改革，关键还是要真抓实干”“一定要有求实精神，真刀真枪干”&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——这是习近平总书记分别在十九届中央深改领导小组第一次、第二次会议上的讲话，彰显出党中央对于狠抓改革落实工作的高度重视和明确要求。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;首次公开全面深化改革两大关键数据：“158”和“156”&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“158”：党的十九大报告共提出158项改革举措。《党的十九大报告重要改革举措实施规划（2018-2022年）》对158项改革举措进行梳理，列明牵头单位、改革起止时间、改革目标路径、成果形式等要素，形成了未来5年全面深化改革的“大施工图”。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;“156”：2018年，党中央明确了全面深化改革156项任务。要把蓝图变为现实，必须按照习近平总书记明确要求的“不驰于空想、不骛于虚声”，不断推深做实。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;首次提出党的十九大后全面深化改革“四大主线”：更谋长远、更高起点、更涉险滩、更惠民生&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;更谋长远的改革大布局——表决通过《中华人民共和国宪法修正案》，深化党和国家机构改革，成立国家监察委员会……全面深化改革向着“完善和发展中国特色社会主义制度，推进国家治理体系和治理能力现代化”的总目标不断奋进。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;更高起点的改革再出发——支持海南全面深化改革开放，赋予雄安新区更大改革自主权，复制推广自贸试验区改革试点经验……吸吮着40年改革开放积蓄的丰厚养分和过去5年改革积累的宝贵经验，全面深化改革站上更高起点。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;更涉险滩的改革攻坚战——以不断深化、精准的改革举措为脱贫攻坚注入强大动力，建立企业职工基本养老保险基金中央调剂制度，开展防范和惩治统计造假、弄虚作假督察工作……新的历史关口，唯有以更大决心、更强勇气破藩篱、涉险滩，才能开辟党和国家事业全新局面。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;更惠民生的改革新指向——出台农村人居环境整治三年行动方案，规范校外培训机构发展，完善全科医生培养与使用激励机制……一系列改革举措精准出击，始终向着满足人民日益增长的美好生活需要的目标迈进。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;首次披露改革督察发现突出问题：一些地方对改革认识不清、落实不力&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;党的十九大后，中央改革办迅速组织对山东、黑龙江、四川、广东等地改革任务落实情况进行全面督察，还对青少年校园足球工作情况、围填海管控办法落实情况、法官检察官员额制改革落实情况等进行了专项督察。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;督察人员深入一线召开座谈会、查看台账，实地查看社区、企业、农村等改革推进和落实情况，既有效发掘了一批基层抓改革落实的有益经验，也如实反映了一些地方存在的改革认识不清、落实不力等问题，既严肃批评工作不足又明确提出整改建议。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '3', '0', '1534305112', '0', '0', '0');
 INSERT INTO `c_news` VALUES ('35', '习近平以勇毅推进改革攻坚克难', 'Uploads/2018-08-15/5b73bbe940d05.jpg', '&lt;p&gt;“改革关头勇者胜。”中国前进的每一步，靠的正是那么一股子闯劲和勇气：政府部门“刀刃向内”，以壮士断腕的气魄把“放管服”改革向纵深推进；军队改革靶标聚焦体制重构，大刀阔斧解决“脖子”以上的问题；防范化解重大风险、精准脱贫、污染防治三大攻坚战接连打响，一鼓作气、破立并举，解决人民群众最关心的问题……&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;成就世人瞩目，任务却依然艰巨。改革开放40年，到今天剩下的都是难啃的“硬骨头”。我们唯有继续大胆探索、勇于开拓，才能在实践中不断开创新局面。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;“勇”者无惧——逢山开路、遇水架桥&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　&lt;strong&gt;　&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;改革开放只有进行时 没有完成时&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;改革开放是决定当代中国命运的关键一招，也是决定实现“两个一百年”奋斗目标、实现中华民族伟大复兴的关键一招，实践发展永无止境，解放思想永无止境，改革开放也永无止境，停顿和倒退没有出路，改革开放只有进行时、没有完成时。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2013年11月9日 习近平在中共十八届三中全会上作的关于《中共中央关于全面深化改革若干重大问题的决定》的说明&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;剩下的都是难啃的硬骨头&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;容易的、皆大欢喜的改革已经完成了，好吃的肉都吃掉了，剩下的都是难啃的硬骨头。这就要求我们胆子要大、步子要稳。胆子要大，就是改革再难也要向前推进，敢于担当，敢于啃硬骨头，敢于涉险滩。步子要稳，就是方向一定要准，行驶一定要稳，尤其是不能犯颠覆性错误。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2014年2月7日 习近平在俄罗斯索契接受俄罗斯电视台专访时答问&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;改革关头勇者胜&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;改革关头勇者胜，我们将以敢于啃硬骨头、敢于涉险滩的决心，义无反顾推进改革。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2015年9月22日 习近平在华盛顿州当地政府和美国友好团体联合欢迎宴会上的演讲&lt;/p&gt;&lt;p&gt;&amp;nbsp;　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;逢山开路遇水架桥 将改革进行到底&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;在新时代，中国人民将继续自强不息、自我革新，坚定不移全面深化改革，逢山开路，遇水架桥，敢于向顽瘴痼疾开刀，勇于突破利益固化藩篱，将改革进行到底。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2018年4月10日 习近平在博鳌亚洲论坛2018年年会开幕式上的主旨演讲&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;既要敢于突破 又要稳扎稳打&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;改革是循序渐进的工作，既要敢于突破，又要一步一个脚印、稳扎稳打向前走，确保实现改革的目标任务。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2014年2月17日 习近平在省部级主要领导干部学习贯彻十八届三中全会精神全面深化改革专题研讨班开班式上的讲话　　·&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;“勇”立潮头——不走老路、不走邪路&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;&lt;strong&gt;既不走封闭僵化的老路 也不走改旗易帜的邪路&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;改革开放是决定当代中国命运的关键抉择，是党和人民事业大踏步赶上时代的重要法宝。改革必须坚持正确方向，既不走封闭僵化的老路、也不走改旗易帜的邪路。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2016年7月1日 习近平在庆祝中国共产党成立95周年大会上的讲话&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;谁排斥变革 谁拒绝创新 谁就会落后于时代 谁就会被历史淘汰&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;当今世界，变革创新的潮流滚滚向前。中国的先人们早在2500多年前就认识到：“苟利于民，不必法古；苟周于事，不必循俗”。变革创新是推动人类社会向前发展的根本动力。谁排斥变革，谁拒绝创新，谁就会落后于时代，谁就会被历史淘汰。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2018年4月10日 习近平在博鳌亚洲论坛2018年年会开幕式上的主旨演讲&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;因循守旧没有出路 畏缩不前坐失良机&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;因循守旧没有出路，畏缩不前坐失良机。改革开放的过程就是思想解放的过程。没有思想大解放，就不会有改革大突破。解放思想不是脱离国情的异想天开，也不是闭门造车的主观想象，更不是毫无章法的莽撞蛮干。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2018年4月13日 习近平在庆祝海南建省办经济特区30周年大会上的讲话&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;要有强烈的问题意识&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;全面深化改革，关键要有新的谋划、新的举措。要有强烈的问题意识，以重大问题为导向，抓住重大问题、关键问题进一步研究思考，找出答案，着力推动解决我国发展面临的一系列突出矛盾和问题。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2013年9月17日 习近平主持党外人士座谈会时的讲话&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;在实践中求真知 在探索中找规律&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;当前，改革在很多领域突入了“无人区”，经济特区要坚持摸着石头过河，逢山开路，遇水架桥，在实践中求真知，在探索中找规律，不断形成新经验、深化新认识、贡献新方案。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2018年4月13日 习近平在庆祝海南建省办经济特区30周年大会上的讲话&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;“勇”往直前——总结经验、乘势而上&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;必须一代又一代人接力干下去&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;改革开放是一项长期的、艰巨的、繁重的事业，必须一代又一代人接力干下去。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2012年12月31日 习近平在十八届中共中央政治局第二次集体学习的讲话&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;总结经验 乘势而上&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;我们将总结经验、乘势而上，继续推进国家治理体系和治理能力现代化，坚定不移深化各方面改革，坚定不移扩大开放，使改革和开放相互促进、相得益彰。我坚信，中华民族伟大复兴必将在改革开放的进程中得以实现。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2017年10月25日 习近平在十九届中共中央政治局常委同中外记者见面会上的讲话&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;新征程上改革仍大有可为&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;过去几年来改革已经大有作为，新征程上改革仍大有可为。各地区各部门学习贯彻党的十九大精神，要注意把握蕴含其中的改革精神、改革部署、改革要求，接力探索，接续奋斗，坚定不移将改革推向前进。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;——2017年11月20日 习近平在十九届中央全面深化改革领导小组第一次会议上的讲话&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;（责任编辑：武淳）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '4', '0', '1534311401', '0', '0', '0');
 INSERT INTO `c_news` VALUES ('36', '为中国人民谋幸福，为中华民族谋复兴', 'Uploads/2018-08-15/5b73bd1a1b503.jpg', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;——从李大钊建党思想看中国共产党人的初心和使命&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;作者：汤志江 李箭飞 牛伟&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;&amp;nbsp;党的十九大报告指出：“中国共产党人的初心和使命，就是为中国人民谋幸福，为中华民族谋复兴。这个初心和使命是激励中国共产党人不断前进的根本动力。”2017年10月31日，党的十九大刚刚闭幕不久，习近平总书记就带领中共中央政治局常委瞻仰上海中共一大会址和浙江嘉兴南湖红船。习近平总书记指出，建党时的每件文物都十分珍贵、每个情景都耐人寻味，我们要经常回忆、深入思索，从中解读我们党的初心。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;李大钊同志是中国最早的马克思主义者和共产主义者，是中国共产党的主要创始人之一。建立一个什么样的政党，是李大钊特别关心的问题。在他的《团体的训练与革新的事业》等文章中可以清晰地看出，为中国人民谋幸福、为中华民族谋解放，是李大钊建党思想的核心内容，也是党的早期创始人的初衷。他的建党思想对中国共产党的成立具有突出的贡献。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;为中国人民谋幸福&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;党的十八大以来，以习近平同志为核心的党中央坚持以人民为中心的发展思想，把人民群众对美好生活的向往作为奋斗目标，这与李大钊等老一辈无产阶级革命家的建党思想一脉相承。学懂弄通做实习近平新时代中国特色社会主义思想和党的十九大精神，必须牢记李大钊等党的早期创始人建党思想的初心。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;近代以来，由于西方列强的入侵和封建统治本身所固有的腐败，中华大地山河破碎、生灵涂炭，中国逐渐沦落为半殖民地半封建社会。目睹国家危亡局势和社会黑暗状况，李大钊等老一辈无产阶级革命家肩负起了为人民谋幸福、救民众于水火的历史重任。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;为民忧。民众是李大钊内心最牵挂的，民生是他最忧虑的。《大哀篇》集中体现了他“为民担忧”的思想：“吾民瘁于晚清稗政之余，复丁干戈大乱之后，满地兵燹，疮痍弥目，民生彫敝，亦云极矣”“吾侪小民，固不识政党之作用奚似，但见吾国今之所谓党者，敲吾骨吸吾髓耳。夫何言哉！夫何言哉”。李大钊严厉抨击当时执政者剥削民众甚至草菅人命，以及“民生益沦于涂炭”。他曾深入唐山煤矿了解工人生活，痛感“工人不如骡马”。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;为民愤。1913年9月11日驻昌黎车站的日军杀害5名中国路警。李大钊对此异常愤慨，奋笔疾书：“勿忘此弥天之耻辱，所与倭奴不共戴天者，有如碣石”。他尖锐地指出：“农失其田，工失其业，商失其源，父母兄弟妻子离散茕焉，不得安其居，刀兵水火，天灾乘之，人祸临之，荡析离居，转死沟洫，尸骸暴露，饿殍横野”的悲惨生活是由军阀统治造成，人民是无辜的受害者。他痛批不顾人民幸福的腐败政治，“共和自共和，幸福何有于吾民也”，“国家权力之及于民者，微乎渺矣”。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;为民想。人民大众在李大钊心中有至高无上的地位，他认为执政者应时时刻刻为人民谋求幸福，国家治乱抑或政治得失的评判标准，在于人民大众自身利益能否得到保证和满足。他痛感辛亥革命没有真正解决中国人民的问题，认为“中国者为吾四万万国民之中国”，所以当政者应该只做“福民”的事情，而不应该做“损民”的事情，只有这样，人民对国家才会有“甘心之爱”。他还特别深刻地指出农民的问题是中国当时最大的问题，农民的问题得不到解决，中国的问题就得不到彻底的解决。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;为民呼。在袁世凯窃取辛亥革命胜利果实后，李大钊发出“吾惟哀吾民而已矣”的呼唤。在《庶民的胜利》中，他认为俄国十月革命的胜利之所以值得庆祝，是因为这次革命是人民的胜利。“夫圣智之与凡民，其间知能相去不远。彼其超群轶类者，非由时会之因缘，即在众庶之信仰。”他深刻地认识到人民群众在历史发展中的巨大力量，“离于众庶则无英雄。离于众意总积则英雄无势力”，认为吃穿住用行“靡有一样不是从劳动中得来”，离了劳动人民则一无所有，中国革命必须要充分发挥人民大众的力量。“苟吾四亿同胞之心力，稍有活泼之机，创造改造之业，姑且莫论，但能顺应此环境而利用之，已足以雄视五洲威震欧亚矣”“国家前途，实利赖之矣”。由此看出，坚定地相信人民、依靠人民，为人民谋幸福，是李大钊建党思想的基础。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;br/&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;为中华民族谋复兴&lt;/strong&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;习近平总书记指出，实现中华民族伟大复兴是近代以来中华民族最伟大的梦想。中国共产党自成立之日起，李大钊等老一辈无产阶级革命家就义无反顾肩负起实现中华民族伟大复兴的历史使命，团结带领人民进行了艰苦卓绝的斗争，谱写了气吞山河的壮丽史诗。深入学习贯彻党的十九大精神，深刻领会习近平新时代中国特色社会主义思想，必须牢记李大钊建党思想赋予中国共产党人的使命。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;先天下之忧而忧。1912年中华民国建立后，李大钊发现这个国家并未解决当时中国面临的现实问题，这引起了他对共和国前途的担忧，使他重新思考中国前途和命运问题。为此他写下了《隐忧篇》，其中列举了当时中国的边患、兵忧、财困、食艰、业敝、才难六个方面的问题，“凡此种种，足以牵滞民国建设之进行”。党私、省私、匪氛“三端”，“百思恐不获免。凡百君子，其有以嘉谋嘉猷而弭于未然者乎？曷有以解我忧？”表达了他忧国忧民的革命情怀。在生命最后时刻，他“惟吾中国，自鸦片战役而后，继之以英法联军之役，太平天国之变，甲午之战，庚子之变，乃至辛亥革命之变，直到于今，中国民族尚困轭于列强不平等条约之下，而未能解脱”，体现了革命先烈壮心不已的忧国情怀。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;矢志不渝立志报国。他在《狱中自述》中写道，“钊自束发受书，即矢志努力于民族解放之事业”，并说明为何青年时期便开始深研政理：“钊感于国势之危迫，急思深研政理，求得挽救民族、振奋国群之良策”。为救中华民族于危难之中，他立志研究政治，“乃赴天津投考北洋法政学校”。他“随政治知识之日进，而再建中国之志趣亦日益腾高”，北洋法政学校毕业后“仍感学识之不足，乃承友朋之助，赴日本东京留学，入早稻田大学政治本科。留东三年，益感再造中国之不可缓”。李大钊回国后，仍继续“深研政理”，继续探索“以青春之我，创建青春之家庭，青春之国家，青春之民族”的重大理论问题和现实问题。在看到一些人对中国前途悲观失望时，他著文鼓劲助威“中国至于今日，诚已濒于绝境，但一息尚存，断不许吾人以绝望自灰”，呼吁中国人“本自由意志之理，进而努力，发展向上”，以改变中国现实境遇。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;寻求中国出路。李大钊将“改进立国之精神”“求一可爱之国家而爱之”作为自己毕生奋斗的事业，经过多年苦苦求索，他终于找到解决中国问题的关键所在——马克思主义。俄国十月革命爆发后，他运用初步掌握的马克思主义原理证明十月革命是社会主义革命的真谛，并科学阐释了我国所面临的形势，指明“中国将来只有实行社会主义才能兴盛起来”，指出只有马克思主义才能救中国。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;探索国家振兴之策。李大钊考证了世界劳工阶级的巨大作用，认识到帝国主义必然灭亡的历史命运，并把中国命运与俄国十月革命相联系进行论证，他运用马克思主义原理分析中国内忧外患的国情，得出了“试看将来的环球，必是赤旗的世界”“共产主义在世界、在中国，必然要得到光荣的胜利”的重要结论。于是他和陈独秀等老一辈无产阶级革命家，决定建立无产阶级的政党，确定了党的指导思想为马克思主义，并强调党的组织必须是一个强密精固的组织，党的任务是领导“劳工阶级，促他们联合起来，推倒资本主义”，“要想把现代的新文明，从根底输到社会里面，非把知识阶级与劳工阶级打成一气不可”，“联合一个‘民主的联合阵线’”，“抵抗国际的资本主义”，来实现社会主义，建设一个人民的国家。这是李大钊等老一辈无产阶级革命家的建党使命。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;在中国特色社会主义新时代，中国共产党人应不忘李大钊等无产阶级革命家建党的初心，牢记他们赋予中国共产党人的使命，永远把人民对美好生活的向往作为奋斗目标，不断为实现中华民族伟大复兴集聚强大精神动力，始终以习近平新时代中国特色社会主义思想为指导，增强“四个意识”，进行伟大斗争，建设伟大工程，推进伟大事业，实现伟大梦想。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;（作者：汤志江 李箭飞 牛伟，均系河北省中国特色社会主义理论体系研究中心研究员）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '4', '0', '1534311706', '0', '0', '0');
@@ -1687,6 +2558,7 @@ INSERT INTO `c_news` VALUES ('102', '中机国际组织学习贯彻习近平新�
 INSERT INTO `c_news` VALUES ('103', '轴研科技党总支组织公司党员赴红旗渠参观学习', 'Uploads/2018-08-17/5b7629fd09c93.jpg', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534470534751354.jpg&quot; title=&quot;1534470534751354.jpg&quot; alt=&quot;W020180716563492853346.jpg&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;巍巍太行，承载了林州几代人的梦想；滔滔渠水，流淌着林州百万人的精神。“自力更生、艰苦创业、团结协作、无私奉献”的红旗渠精神，感动了中原，震撼了世界。7月8日，为纪念中国共产党成立97周年，结合国机集团即将开展的“不忘初心牢记使命”主题活动，国机集团所属洛阳轴研科技股份有限公司党总支组织全体党员赴红旗渠进行参观学习，旨在培养党员开拓进取、迎难而上、攻坚克难的精神。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;活动当天，公司党委副书记胡爱丽首先带领总部党员沿着依山而建的渠道参观了红旗渠总干渠的咽喉工程——青年洞，走在紧贴着山崖凌空而建的栈道上，看着穿山而过的红旗渠水，再次感受了“愚公奋起十春秋,引来漳河润田禾”的艰辛和不易，实地见证了红旗渠工程的伟大。大家深切感受了当年林县人民不屈不挠的革命斗志和战天斗地的英雄气概，无不为红旗渠所展现的辉煌和气势所感动和震撼。4个小时的车程，3个小时的路程，公司全体党员在烈日下学习着红旗渠精神，洗涤着自己的内心。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;随后，全体党员在党委副书记胡爱丽的引领下，走进红旗渠纪念馆。在展馆入口，面对鲜红的党旗，庄严宣誓，全体党员重温了入党誓词，激励自己牢记党的宗旨，永葆先进本色。&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;在红旗渠纪念馆展厅，大家认真聆听讲解员精彩生动的讲解。一幅幅生动的图片、一段段感人的故事、一件件珍贵的实物，让大家身临其境地感受到林州人民建造人工天河时不畏艰险，顽强拼搏，撼天动地的恢弘场景，无不为“自力更生、艰苦创业、团结协作、无私奉献”的红旗渠精神所震撼。深刻感受了“自力更生、艰苦创业、团结协作、无私奉献”的红旗渠精神。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;红旗渠，是一座不朽的“改造自然”的丰碑，更是一面永恒的旗帜。通过参观学习，踏寻红色足迹，对“红旗渠精神”有了更加深刻的理解和感受，党员们经历了一次思想上的神圣洗礼、心灵上的巨大震撼，他们的斗志和拼搏精神得到了极大地鼓舞和激励。这次参观学习活动富含了深远的教育意义。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;红旗渠的精神也在鞭策着我们轴研人：勿忘昨天的苦难辉煌，无愧今天的使命担当，不负明天的伟大梦想！&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '4', '1', '1534470653', '0', '0', '1');
 INSERT INTO `c_news` VALUES ('104', '中国自控举办学习贯彻党的十九大精神集中轮训班', 'Uploads/2018-08-17/5b762b3b33bf7.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534470748292500.jpg&quot; title=&quot;1534470748292500.jpg&quot; alt=&quot;W020180716563491481009.jpg&quot;/&gt;&lt;/p&gt;&lt;p style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534470758743344.jpg&quot; title=&quot;1534470758743344.jpg&quot; alt=&quot;W020180716563491492871.jpg&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;6月25日至29日，国机集团所属中国自控系统工程有限公司（以下简称“中国自控”）成功举办学习贯彻党的十九大精神集中轮训班。中国自控本次轮训班是与国机集团所属中国海航、国机汽车等兄弟公司共同举办，轮训时间为期一周。学员覆盖公司部门副职及以上领导干部、所属企业领导班子成员。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中国自控党委书记刘刚在开班仪式上发表讲话。刘刚同志指出，本次十九大精神集中轮训班是按照中组部和国机集团党委统一部署要求，结合公司党委工作安排举办，各级领导高度重视；希望大家珍惜学习机会，端正学习态度，切实将思想认识统一到党的十九大精神上来，将力量凝聚到落实党的十九大确定的各项重要任务上来，不断开拓公司改革发展的新局面。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;刘刚同志还就本次培训提出四点要求：一是全面准确领会把握党的十九大精神，切实将思想统一到党的十九大精神上来；二是要学懂、弄通、做实，做到结合思想学、联系工作学、带着问题学，确保学深、学透、入脑、入心，要将学习成果通过会议、调研、谈心谈话等方式深入党员群众；三是要做到理论武装头脑、指导实践、推动工作，以更宽广的视野谋划公司发展新思路，真正将学习成果转化为推动企业发展的强大动力；四是要坚定不移落实新时代全面从严治党的新要求，为推动中心工作做好坚强的政治保障。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;本次轮训班课程以聘请老师集中授课、观看视频、分组研讨等形式开展；学习内容涉及十九大报告的详细解读、国有企业改革30年历程回顾、企业文化建设、中国共产党发展的光荣历程、《中国共产党廉洁自律准则》以及结合案列对学员进行警示教育等；全方位讲解十九大精神产生的历史根源、现实意义和必须全面准确贯彻的政治原则。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;6月27日下午，三家单位在中国海航总部集中交流。本次轮训班是国机集团内部兄弟公司之间资源共享及党务协同的一次成功实践；几天的集中授课，既让大家实现了思想洗礼和理论升华，也增进了兄弟公司之间的了解，通过理论学习促进业务交流。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;6月29日上午，学员在公司分组开展头脑风暴，将成果进行集中展示，公司领导班子成员现场听取汇报，并充分肯定本次轮训成果。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;6月29日下午，公司总经理、党委副书记王兆杰同志在轮训班结业式上作总结讲话。&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '4', '2', '1534470971', '0', '0', '1');
 INSERT INTO `c_news` VALUES ('105', '中国自控开展2018年度“七•一”主题党日活动', 'Uploads/2018-08-17/5b762c9be0281.jpg', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534471164168678.jpg&quot; title=&quot;1534471164168678.jpg&quot; alt=&quot;W020180723547170305369.jpg&quot;/&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534471172468673.jpg&quot; title=&quot;1534471172468673.jpg&quot; alt=&quot;W020180723547170589400.jpg&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;6月22日，为庆祝中国共产党成立97周年，进一步深入学习贯彻党的十九大精神，结合中央关于开展“不忘初心&amp;nbsp;牢记使命”主题教育活动的安排，国机集团所属中国自动化控制系统总公司（以下简称“中国自控”）组织“走进伟人寻找初心”七一主题党日活动。公司全系统在职党员、中层以上干部、入党积极分子及团干部共80余人参加活动。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;上午，同志们来到“周恩来邓颖超纪念馆”进行参观，学习周恩来、邓颖超夫妇“为追求真理不懈探索、为民族解放建立功勋、为人民幸福鞠躬尽瘁”的历史贡献。通过实物和影片了解他们在那段峥嵘岁月的工作和生活环境，深深缅怀两位不朽的共产主义战士。周恩来、邓颖超夫妇那不忘初心、无私奉献的坚定信念和将有限的生命投入到无限的事业的崇高人格深深感染了在场的每一个人。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;在主展厅，参加活动的党员同志集体重温入党誓词，面对党旗再次坚定地做出自己的承诺。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;下午，一行人又来到“新中国反腐败第一大案展览馆”。如果说战争时期敌人的武器是“明枪”，那么和平时期就是“暗箭”。在展览馆通过了解刘青山和张子善是如何从革命功臣最终堕落成历史罪人的惨痛教训，使大家时刻谨记“打铁还需自身硬”的深刻道理。&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '4', '3', '1534471323', '0', '0', '1');
+<<<<<<< HEAD
 INSERT INTO `c_news` VALUES ('106', '国机联讯：中机六院及时传达学习集团2018年党建工作会暨党风廉政建设和反腐败工作会议精神', '/Uploads/20181027/9f62171805b9189d778bdf7f3d055f1c.jpg', '<p style=\"text-align:center\"><img src=\"/Uploads/ueditor/image/20180817/1534475436565293.jpg\" title=\"1534475436565293.jpg\" alt=\"W020180129361736566848.jpg\"/></p><p><br/></p><p>1月24日，中机六院召集公司领导班子成员、党委委员、纪委委员、职能部门和各生产单位负责人会议，及时传达学习国机集团2018年党建工作会暨党风廉政建设和反腐败工作会议精神，结合公司实际对有关重点工作做出部署。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>公司党委书记传达了石柯书记讲话和集团党建工作报告精神，要求把党的政治建设摆在首位，用习近平新时代中国特色社会主义思想武装头脑，坚决维护以习近平同志为核心的党中央权威和集中统一领导；不忘初心、牢记使命，落实全面从严治党要求和党建责任；坚持党管人才原则，加强党的组织建设，激发基层党组织活力；加强党风廉政建设和反腐败工作，巩固拓展落实中央八项规定精神成果，弛而不息纠正“四风”。公司纪委书记传达了雷光华书记作的党风廉政建设和反腐败工作报告精神，详细解读了集团党委《关于进一步改进工作作风的若干意见》，要求大家深刻领会文件精神实质，严格贯彻执行；传达了集团2017年第二轮巡视反馈意见，要求公司各级党组织和领导干部按照全面从严治党要求，对照集团两轮巡视反馈意见一一对照检查，落实自查自报自纠工作；强调公司要认真落实监督执纪“四种形态”要求，加大监督检查力度，坚持问题导向，抓早抓小，防微杜渐，通过建立容错纠错机制，把严管和厚爱结合起来，为担当者担当，为负责者负责，为干事者撑腰，为广大干部职工干事创业营造风清气正环境。(中机六院）</p><p><br/></p>', '6', '0', '1534475480', '0', '0', '1');
 INSERT INTO `c_news` VALUES ('107', '国机联讯：国机集团召开2017年度所属企业纪委书记述职述廉会', '/Uploads/20181027/75043fea1f78afd182d1c3c35f012ea7.jpg', '<p style=\"text-align:center\"><img src=\"/Uploads/ueditor/image/20180817/1534475633888985.jpg\" title=\"1534475633888985.jpg\" alt=\"W0201802013746583990522.jpg\"/></p><p><br/></p><p>1月20日，集团纪委召开2017年度所属企业纪委书记述职述廉会。集团纪委委员、所属企业纪委书记、巡视组组长、党风廉政建设和反腐败工作领导小组监督协调组成员单位负责人、纪检监察部和巡视办有关同志参加会议。集团党委常委、纪委书记雷光华同志主持会议并作点评讲话。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;</p><p>国机集团所属企业纪委书记述职采取现场述职和书面述职相结合的方式，由二级企业纪委书记向集团纪委述职。中装集团、中国机床、中国重机、中国自控、国机资产、中汽工程、天津电气院等7家企业纪委书记进行现场述职，其余二级企业纪委书记提交书面述职报告。与会同志对纪委书记年度履职情况进行了打分评价。雷光华同志听取7位纪委书记述职述廉发言后作了简要点评讲话。&nbsp;</p><p>&nbsp; &nbsp;</p><p>他强调，各所属企业纪委书记要深入贯彻落实党的十九大和中央纪委二次全会、中央企业党风廉政建设和反腐败工作会议精神，认真学习贯彻习近平新时代中国特色社会主义思想，落实好集团党建会暨党风廉政建设和反腐败工作会议精神，履行好监督执纪问责的职责，树立起忠诚干净担当的形象，做到“四个带头”：带头讲政治、讲党性，落实新时代全面从严治党新要求；带头增强学习能力、增强专业能力，培育新时代企业纪检监察干部新素质；带头担当尽责、聚焦主责主业，展现新时代企业纪检监察工作新作为；带头从严律己、从严带队伍，塑造新时代企业纪检监察干部新形象，圆满完成2018年各项工作任务，向集团党委和16万员工交上一份满意的答卷。</p><p><br/></p>', '6', '0', '1534475713', '0', '0', '1');
 INSERT INTO `c_news` VALUES ('108', '国机联讯：树海外党建新风，清廉洁工程之源——国机集团海外工程项目巡察组巡察中汽工程海外项目', '/Uploads/20181027/ad24555b714a60d050deb4609af7d7df.jpg', '<p>2018年5月10日和12日，国机集团党委常委、纪委书记雷光华同志为组长的海外工程项目巡察组，分别前往中汽工程上汽通用五菱印尼项目现场和上汽正大泰国项目现场进行巡察，国机集团巡视巡察办副主任徐刚、中国电工党委副书记郭晓峰、国机集团纪检监察部综合处处长王永祥参加巡察。</p><p><br/></p><p style=\"text-align: center;\"><img width=\"3968\" height=\"2239\" alt=\"\" oldsrc=\"W020180521503545527775.jpg\" src=\"/Uploads/ueditor/image/20180817/1534475788187662.jpg\" style=\"border: 0px none;overflow: hidden;vertical-align: top;height: 406px;width: 602px\"/></p><p>　</p><p style=\"text-align: center;\">　<img width=\"605\" height=\"402\" alt=\"\" oldsrc=\"W020180521503545611403.jpg\" src=\"/Uploads/ueditor/image/20180817/1534475788383050.jpg\" style=\"border: 0px none;overflow: hidden;vertical-align: top;height: 402px;width: 620px\"/></p><p>&nbsp; &nbsp; &nbsp;</p><p>雷书记一行分别在两个项目业主方代表——上汽通用五菱印尼公司总经理徐飞云、副总经理粟鸿斌，上汽正大有限公司总经理石国勇、新工厂建设总指挥戴建军，及中汽工程两个项目现场负责人张剑飞、高宏刚的陪同下，实地查看工厂建设情况，看望慰问所有现场员工。项目部经理、全体党员参加了巡察座谈会。</p><p>　　</p><p>巡察组在听取项目管理及党建和廉洁风险防控情况的汇报后，雷书记代表国机集团对一线员工表示慰问，对两个汽车整车建设项目取得的成绩给予充分肯定，对项目部项目管理和党建及党风廉政建设工作两手抓、两不误表示赞赏，并给全体党员讲了专题党课。</p><p>　　</p><p>雷书记指出，要认真学习习近平新时代中国特色社会主义思想和党的十九大精神，准确把握企业发展形势，坚持海外业务发展和党建工作的正确方向；认真贯彻中央和上级部署要求，把全面从严治党落实到海外工程的方方面面、各个环节、每个员工；认真落实中央八项规定及其实施细则精神和集团党委关于进一步改进工作作风的意见，持之以恒纠 “四风”、改作风；认真执行集团党委关于海外党建工作的要求和党风廉政有关制度规定，坚决防范廉洁风险，严厉惩治腐败问题，廉洁从业、廉洁创业，平安回国、平安回家；要认真组织开展海外项目党建日常工作和有关活动，凝聚党员、职工，共建文明园区；认真发挥党支部战斗堡垒作用和党员先锋模范作用，自觉维护大国央企良好形象，让五星红旗在海外工程项目高高飘扬。</p><p>　　</p><p>中汽工程纪委书记张会义强调，要认真落实集团党委有关文件精神和巡察组工作要求，创新开展有特色的党建活动，时刻绷紧廉洁风险防控这根弦，找准风险点，制定具体措施，促进廉洁从业，维护中汽工程良好形象。(中汽工程）</p><p><br/></p>', '6', '0', '1534475924', '0', '0', '1');
@@ -1729,6 +2601,24 @@ INSERT INTO `c_new_cate` VALUES ('9', '通报曝光', '2', '4');
 
 -- ----------------------------
 -- Table structure for c_notice
+=======
+INSERT INTO `c_news` VALUES ('106', '国机联讯：中机六院及时传达学习集团2018年党建工作会暨党风廉政建设和反腐败工作会议精神', 'Uploads/2018-08-17/5b763cd83ac27.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534475436565293.jpg&quot; title=&quot;1534475436565293.jpg&quot; alt=&quot;W020180129361736566848.jpg&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;1月24日，中机六院召集公司领导班子成员、党委委员、纪委委员、职能部门和各生产单位负责人会议，及时传达学习国机集团2018年党建工作会暨党风廉政建设和反腐败工作会议精神，结合公司实际对有关重点工作做出部署。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;公司党委书记传达了石柯书记讲话和集团党建工作报告精神，要求把党的政治建设摆在首位，用习近平新时代中国特色社会主义思想武装头脑，坚决维护以习近平同志为核心的党中央权威和集中统一领导；不忘初心、牢记使命，落实全面从严治党要求和党建责任；坚持党管人才原则，加强党的组织建设，激发基层党组织活力；加强党风廉政建设和反腐败工作，巩固拓展落实中央八项规定精神成果，弛而不息纠正“四风”。公司纪委书记传达了雷光华书记作的党风廉政建设和反腐败工作报告精神，详细解读了集团党委《关于进一步改进工作作风的若干意见》，要求大家深刻领会文件精神实质，严格贯彻执行；传达了集团2017年第二轮巡视反馈意见，要求公司各级党组织和领导干部按照全面从严治党要求，对照集团两轮巡视反馈意见一一对照检查，落实自查自报自纠工作；强调公司要认真落实监督执纪“四种形态”要求，加大监督检查力度，坚持问题导向，抓早抓小，防微杜渐，通过建立容错纠错机制，把严管和厚爱结合起来，为担当者担当，为负责者负责，为干事者撑腰，为广大干部职工干事创业营造风清气正环境。(中机六院）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534475480', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('107', '国机联讯：国机集团召开2017年度所属企业纪委书记述职述廉会', 'Uploads/2018-08-17/5b763dc121573.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/Uploads/ueditor/image/20180817/1534475633888985.jpg&quot; title=&quot;1534475633888985.jpg&quot; alt=&quot;W0201802013746583990522.jpg&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;1月20日，集团纪委召开2017年度所属企业纪委书记述职述廉会。集团纪委委员、所属企业纪委书记、巡视组组长、党风廉政建设和反腐败工作领导小组监督协调组成员单位负责人、纪检监察部和巡视办有关同志参加会议。集团党委常委、纪委书记雷光华同志主持会议并作点评讲话。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;国机集团所属企业纪委书记述职采取现场述职和书面述职相结合的方式，由二级企业纪委书记向集团纪委述职。中装集团、中国机床、中国重机、中国自控、国机资产、中汽工程、天津电气院等7家企业纪委书记进行现场述职，其余二级企业纪委书记提交书面述职报告。与会同志对纪委书记年度履职情况进行了打分评价。雷光华同志听取7位纪委书记述职述廉发言后作了简要点评讲话。&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p&gt;他强调，各所属企业纪委书记要深入贯彻落实党的十九大和中央纪委二次全会、中央企业党风廉政建设和反腐败工作会议精神，认真学习贯彻习近平新时代中国特色社会主义思想，落实好集团党建会暨党风廉政建设和反腐败工作会议精神，履行好监督执纪问责的职责，树立起忠诚干净担当的形象，做到“四个带头”：带头讲政治、讲党性，落实新时代全面从严治党新要求；带头增强学习能力、增强专业能力，培育新时代企业纪检监察干部新素质；带头担当尽责、聚焦主责主业，展现新时代企业纪检监察工作新作为；带头从严律己、从严带队伍，塑造新时代企业纪检监察干部新形象，圆满完成2018年各项工作任务，向集团党委和16万员工交上一份满意的答卷。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534475713', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('108', '国机联讯：树海外党建新风，清廉洁工程之源——国机集团海外工程项目巡察组巡察中汽工程海外项目', 'Uploads/2018-08-17/5b763e94e36d7.jpg', '&lt;p&gt;2018年5月10日和12日，国机集团党委常委、纪委书记雷光华同志为组长的海外工程项目巡察组，分别前往中汽工程上汽通用五菱印尼项目现场和上汽正大泰国项目现场进行巡察，国机集团巡视巡察办副主任徐刚、中国电工党委副书记郭晓峰、国机集团纪检监察部综合处处长王永祥参加巡察。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img width=&quot;3968&quot; height=&quot;2239&quot; alt=&quot;&quot; oldsrc=&quot;W020180521503545527775.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534475788187662.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top;height: 406px;width: 602px&quot;/&gt;&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;　&lt;img width=&quot;605&quot; height=&quot;402&quot; alt=&quot;&quot; oldsrc=&quot;W020180521503545611403.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534475788383050.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top;height: 402px;width: 620px&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p&gt;雷书记一行分别在两个项目业主方代表——上汽通用五菱印尼公司总经理徐飞云、副总经理粟鸿斌，上汽正大有限公司总经理石国勇、新工厂建设总指挥戴建军，及中汽工程两个项目现场负责人张剑飞、高宏刚的陪同下，实地查看工厂建设情况，看望慰问所有现场员工。项目部经理、全体党员参加了巡察座谈会。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;巡察组在听取项目管理及党建和廉洁风险防控情况的汇报后，雷书记代表国机集团对一线员工表示慰问，对两个汽车整车建设项目取得的成绩给予充分肯定，对项目部项目管理和党建及党风廉政建设工作两手抓、两不误表示赞赏，并给全体党员讲了专题党课。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;雷书记指出，要认真学习习近平新时代中国特色社会主义思想和党的十九大精神，准确把握企业发展形势，坚持海外业务发展和党建工作的正确方向；认真贯彻中央和上级部署要求，把全面从严治党落实到海外工程的方方面面、各个环节、每个员工；认真落实中央八项规定及其实施细则精神和集团党委关于进一步改进工作作风的意见，持之以恒纠 “四风”、改作风；认真执行集团党委关于海外党建工作的要求和党风廉政有关制度规定，坚决防范廉洁风险，严厉惩治腐败问题，廉洁从业、廉洁创业，平安回国、平安回家；要认真组织开展海外项目党建日常工作和有关活动，凝聚党员、职工，共建文明园区；认真发挥党支部战斗堡垒作用和党员先锋模范作用，自觉维护大国央企良好形象，让五星红旗在海外工程项目高高飘扬。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;中汽工程纪委书记张会义强调，要认真落实集团党委有关文件精神和巡察组工作要求，创新开展有特色的党建活动，时刻绷紧廉洁风险防控这根弦，找准风险点，制定具体措施，促进廉洁从业，维护中汽工程良好形象。(中汽工程）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534475924', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('109', '国机联讯：国机集团党委党风廉政建设和反腐败工作领导小组监督协调组召开2018年上半年监督工作联席会', 'Uploads/2018-08-17/5b763f30e2102.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Uploads/ueditor/image/20180817/1534475991634183.jpg&quot; oldsrc=&quot;W020180622568410697205.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;2018年6月22日上午，国机集团党委党风廉政建设和反腐败工作领导小组监督协调组召开上半年监督工作联席会。会议由集团纪委副书记王锡岩同志主持，集团党委党风廉政建设和反腐败工作领导小组监督协调组成员单位负责人、纪检监察部、巡视巡察办有关人员参加会议。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;会上，监督协调组成员单位负责人分别介绍了上半年职责范围内的监督工作、发现的主要问题、采取的解决措施和效果、需要协调的相关事项，以及下半年的监督工作安排等。王锡岩同志对各成员单位上半年开展的工作表示了充分肯定，并对进一步深化开展监督工作提出了建议。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;国机集团党委党风廉政建设和反腐败工作领导小组监督协调组通过定期召开监督工作联席会的方式，交流了相关监督信息，集中研究了监督工作中的具体问题，增强了监督效能，形成了监督合力，起到了良好效果。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534476080', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('110', '国机联讯：国机集团纪委召开集团2018年纪检监察工作中期推进会议暨“新风讲堂”第一期专题报告会', 'Uploads/2018-08-17/5b7644c206c24.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Uploads/ueditor/image/20180817/1534477447753574.jpg&quot; oldsrc=&quot;W020180717546571449670.jpg&quot; style=&quot;border: 0px none; overflow: hidden; vertical-align: top;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;7月5日上午，国机集团纪委召开2018年纪检监察工作中期推进会议暨“新风讲堂”第一期专题报告会, 深入学习贯彻习近平新时代中国特色社会主义思想、党的十九大、中央纪委二次全会、省区市纪检监察工作座谈会精神，传达学习贯彻中央企业纪检监察工作中期推进会部署，坚持稳中求进基本工作方针，推动国机集团纪检监察工作实现高质量发展。国机集团党委常委、纪委书记雷光华传达了2018年中央企业纪检监察工作中期推进会精神和中央纪委国家监委驻国资委纪检监察组组长陈超英同志的重要讲话精神。会议就各级纪检监察和巡视巡察机构学习贯彻落实陈超英同志讲话精神，做好今年下半年工作提出了具体要求。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;会上，雷光华以“深入贯彻落实中央八项规定精神，锲而不舍纠正“四风”改进作风”为题，做了专场报告，向集团纪检监察和巡视巡察系统党员干部讲了主题党课，从深入学习领会习近平新时代中国特色社会主义思想和党的十九大精神，特别是中央八项规定及其实施细则精神、党的十八大以来作风建设取得的历史性成就、对有关政策的理解把握及下一步工作考虑三个方面，谈了学习和工作体会，并对下一步深入贯彻落实中央八项规定精神提出了明确意见。&amp;nbsp;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;国机集团纪检监察和巡视巡察系统干部共220多人参加会议。&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;ul style=&quot;padding: 0px; overflow: hidden; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; white-space: normal; background-color: rgb(247, 248, 250);&quot; class=&quot; list-paddingleft-2&quot;&gt;&lt;/ul&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '1', '1534477506', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('111', '利剑高悬 警钟长鸣——中汽工程纪委组织参观天津市警示教育主题展', 'Uploads/2018-08-17/5b7645b66c3a6.jpg', '&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p style=&quot;text-align:center&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Uploads/ueditor/image/20180817/1534477697106095.jpg&quot; oldsrc=&quot;W020171220539209851664.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;2017年&amp;nbsp;12月9日上午，中汽工程纪委组织中层及以上领导干部、各党支部书记、纪检委员、关键岗位员工等共99人，前往天津市美术馆，参观了“利剑高悬、警钟长鸣”天津市警示教育主题展。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;“利剑高悬、警钟长鸣”警示教育主题展是天津市运用党的十八大以来正风反腐成果对全市党员干部加强反腐倡廉警示教育的重要举措，展览突出政治站位，注重警示特色，由序厅、成果厅、警示厅和尾厅四个部分构成。成果厅从“回眸历史、不忘初心，全面从严治党新征程，全面从严治党重要论述，全面从严治党伟大实践”等四个方面，集中展示了十八大以来，以习近平同志为核心的党中央推进全面从严治党的战略部署、取得的伟大成就和天津市全面从严治党的具体实践；警示厅从“以案为鉴、以案为训，放纵欲望、毁掉人生，系统贪腐、触目惊心，顶风违纪、咎由自取”等八个方面，以图片、视频、忏悔书等多种形式，集中展示了党的十八大以来天津市查处的违纪违法领导干部典型案例。一个个身边的案例，一段段惨痛的忏悔，一件件震撼的实物，无不鲜明地昭示广大党员干部，诱惑的陷阱无处不在，被“围猎”的风险就在身边，一旦放松思想警惕、放松自我约束，就有可能坠入深渊，走上不归之路。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;公司参观人员认真听取了讲解介绍，仔细观看了成果展示和案例剖析，一段段文字、一句句警语、一个个案例，使大家受到了强烈的震撼和警醒，接受了一场深刻的党性教育和警示教育。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;参观结束前，公司全体党员干部面向党旗肃立，郑重举起右拳，由纪委书记张会义带领大家庄严宣誓，集体重温了入党誓词。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;此次参观活动，是中汽工程纪委结合年度纪检监察工作计划和天津市纪委的参观学习要求组织开展的，旨在深入开展党风廉政警示教育，引导广大党员干部深刻学习领会习近平总书记关于全面从严治党重要论述精神，不忘初心，牢记使命，以案为警，强化纪律和规矩意识，不断筑牢拒腐防变的思想防线。（中汽工程纪检监察室）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534477750', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('112', '中汽工程纪委开展“一代伟人周恩来廉洁奉公事迹暨 ‘不忘初心 牢记使命’十九大精神系列宣讲”主题教育活动', 'Uploads/2018-08-17/5b764624a518f.jpg', '&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p style=&quot;text-align:center&quot;&gt;&lt;img alt=&quot;&quot; oldsrc=&quot;W020171220534226172174.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534477791644821.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;2017年11月24日，为了全面深入落实党的十九大精神，持续推进党风廉政建设及反腐败工作，进一步筑牢广大领导干部的思想道德防线，中汽工程纪委邀请到了周恩来邓颖超纪念馆宣讲团，举办了一场以“廉洁自律做表率 严以修身养正气”为主题的廉洁自律教育宣讲活动。宣讲会由纪委书记、党委副书记张会义主持，公司中层以上干部、关键岗位员工共210余人聆听宣讲。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;周邓纪念馆宣讲团围绕“廉洁奉公做表率一餐一饭帐分明”、 “严以修身养正气 廉洁自律树家风”、“海棠花祭”、“学习党章 不忘初心 牢记使命 永远奋斗”等六个宣讲主题，从周恩来总理的点滴事例讲起，讲述了周总理外出视察不搞特殊化一餐一饭都要用自己的工资按价付费、邢台地震中亲临视察深入百姓家中排忧解难、西花厅的装修风波、严格的家规和清廉家风、以及周邓坚贞不渝的爱情和坚定的共产主义信仰……大量珍贵的历史资料，配合以精美的幻灯片和温情的音乐，通过宣讲团成员用心、用情的精彩讲述，呈现出了周总理独特的人格魅力、廉洁奉公严以修身的高贵品质，聆听者被周总理的事迹深深地感动，甚至湿润了眼眶。最后宣讲团还结合党的十九大对《党章》的107处修改中核心的修改内容进行了重点宣讲。大家对宣讲团成员的精彩宣讲报以阵阵热烈的掌声。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;宣讲结束后，张会义书记作了总结讲话，他对此次宣讲给予高度评价，认为这是一堂非常有价值、有意义的廉洁自律教育课，对公司进一步学习宣传贯彻党的十九大精神，继续推进两学一做制度化常态化教育，以及年度的各项工作非常有作用、有帮助。张书记要求会后各部门、各党支部要结合公司“学习十九大大干四季度 再上新台阶”的主题宣讲教育活动，推动工作见诸行动，真正达到党的十九大报告精神提出的“学懂弄通做实”的要求。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;宣讲活动还受到了南开有线电视台的高度关注和全程采录，活动结束后，纪委书记张会义接受了现场采访。（中汽工程纪检监察室）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534477860', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('113', '国机联讯：国机集团纪检监察部和巡视办学习中央纪委二次全会和中央企业党风廉政建设和反腐败工作会议精神', 'Uploads/2018-08-17/5b7646967d4c1.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;799&quot; height=&quot;600&quot; alt=&quot;&quot; oldsrc=&quot;W020180126372635083245.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534477914876778.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top;height: 353px;width: 545px&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;1月19日，国机集团纪委召开集团纪检监察部和巡视办全体干部会议，认真学习贯彻十九届中央纪委二次全会和中央企业党风廉政建设和反腐败工作会议精神。国机集团党委常委、纪委书记雷光华主持会议。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;会上，雷光华同志传达了中央纪委二次全会上习近平总书记重要讲话和赵乐际同志代表中央纪委常委会作的工作报告主要精神以及中央企业党风廉政建设和反腐败工作会议精神。雷光华在会上对学习贯彻工作提出了明确要求，并就贯彻落实会议精神、全面落实2018年工作任务，进行了具体的安排部署。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;会议要求，国机集团各级纪检监察机构和纪检监察干部要深入学习贯彻中央纪委二次全会和中央企业党风廉政建设和反腐败工作会议精神，把思想和行动统一到中央的决策部署上来，以对党忠诚、高度负责的态度认真履行监督执纪问责的职责，一刻不停歇地推进全面从严治党向纵深发展，为国机集团二次创业、再造海外新国机和建设具有全球竞争力的世界一流企业提供坚强保证。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '1', '1534477974', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('114', '国机联讯：国机集团纪委召开部分所属企业纪委书记座谈会', 'Uploads/2018-08-17/5b7647300a388.jpg', '&lt;p style=&quot;text-align:center&quot;&gt;&lt;sup&gt;&lt;img width=&quot;475&quot; height=&quot;301&quot; alt=&quot;&quot; oldsrc=&quot;W020180507596923331910.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534478071516146.jpg&quot; style=&quot;border: 0px none; overflow: hidden; vertical-align: top; height: 301px; width: 475px;&quot;/&gt;&lt;/sup&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;5月3日上午，国机集团纪委召开部分所属企业纪委书记座谈会。会议由集团纪委副书记、纪检监察部部长、巡视巡察办主任王锡岩同志主持，中国恒天、中设集团、中工国际、国机汽车、国机重装、中国一拖、苏美达等7家单位纪委书记及集团纪检监察部和巡视巡察办全体人员参加座谈交流。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;座谈会上，7家单位纪委书记围绕本企业纪检监察机构开展监督检查工作以及企业海外工程项目党组织建设、党风廉政建设和廉洁风险防控等方面的做法和经验进行了座谈交流，注重用具体案例说话，提炼工作亮点，比如恒天集团介绍了通过总部直管和按照业务单元划分授权子集团管理两种管理模式对境外企业进行有效管控，坚持内外一体，切实加强了境外企业领导人员政治素质；坚持“点、面”结合，构建了大监督体系，通过综合施策，加强了境外机构各方面的管理水平，防范了廉洁风险。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;中设集团以海外工程管理缺失问题为导向，加强海外工程的业务流程管控和监督检查，建立了“海外工程建设巡检制度”，将海外工程纳入公司纪委日常监督的范围和年度工作计划，对重大项目有计划的安排巡检；对有群众反映和出现经营问题的项目，及时安排巡检调查。同时发挥审计监督职能作用，运用审计成果，认真严肃处理问责，督促整改落实，有效的传导监督压力，延伸了监督的边界。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;中工国际创新境外党建工作体制机制，组建了海外单位党支部，在业务领域相对集中的境外不同项目，按地区、片区、人数设置区域联合党支部和6个党小组，并在党支部增设纪检委员，开创境外机构区域党建工作新局面。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;国机汽车在制定《巡察工作规定》、《巡察工作操作规程》文件，明确了巡察工作规范、工作规程的基础上，组建巡察组，已完成了所属6家企业的巡察工作。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;国机重装以采购业务监督检查为切入点，有效发挥纪检监察“围绕中心，服务大局”的功能，认真贯彻任洪斌董事长对二重采购工作提出的“约法三章”要求，从2016年3月到今年持续开展了采购业务监督检查工作，监督检查的重点随着工作的持续和深入不断调整，取得了良好的效果。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;中国一拖连续10年开展“反腐倡廉宣传教育月”活动。公司和所属单位在每年的活动月期间，不断创新反腐倡廉宣传教育方式方法，组织开展了一系列有特色、有影响的宣传教育活动，如开展反腐倡廉主题书法、摄影、短信作品征集，组织查找身边不良现象活动，廉洁微电影展映等，在企业内营造了健康向上的廉洁氛围。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;苏美达纪检监察部门围绕“1121”的工作机制来开展工作，即“一个中心、一个基础、二个保障、一个检查”，以落实“两个责任”为中心，以思想建设为基础，以制度体系建设和纪检干部队伍建设为保障，以效能监察为检查督促手段，切实做好纪检监察各项工作。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;座谈会上大家还提出工作中存在的困难、问题和意见建议。&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;王锡岩对所属企业纪检监察机构开展的各项工作和境外单位或项目廉洁风险防控工作进行了充分的肯定，并对大家提出的困难和问题，提出了解决问题的意见建议。他指出，各单位纪检监察机构要进一步加强纪检监察各项工作任务的落实，强化监督执纪问责，发现问题要及时向上级纪委报告。他强调，国机集团有一半以上的业务是涉外业务，做好境外单位党风廉政建设和廉洁风险防控工作极为重要，各单位要站在讲政治的高度，进一步加强境外单位党组织建设；要坚持问题导向，建立健全并落实境外单位廉洁风险防控制度，制定有效措施加强境外项目监管，营造风清气正的干事创业环境和良好政治生态，提升国机集团国际化经营水平、促进境外资产保值增值，为实现“再造海外新国机”战略目标提供坚强保证。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '0', '1534478128', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('115', '国机联讯： 国机集团党委常委、纪委书记雷光华一行巡察中国电工泰国TPI项目', 'Uploads/2018-08-17/5b7647f0a70d7.jpg', '&lt;p&gt;2018年5月13日，国机集团党委常委、纪委书记雷光华率领国机集团海外工程项目巡察组对中国电工泰国TPI项目进行了巡察，国机集团巡视巡察办副主任徐刚、中汽工程纪委书记张会义、国机集团纪检监察部综合处处长王永祥参与巡察；CMEC纪委书记王天翼、中国电工党委副书记郭晓峰等陪同巡察。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img alt=&quot;&quot; oldsrc=&quot;W020180521371468532139.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534478183967180.jpg&quot; style=&quot;border: 0px none;overflow: hidden;vertical-align: top&quot;/&gt;&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;巡察组到项目现场开展了实地考察，查阅了相关制度、资料和记录，参观了TPI项目主控室及党员活动室，听取了泰国TPI项目进展情况汇报及王天翼书记和郭晓峰副书记关于海外项目党建工作和廉洁风险防控工作的汇报。雷光华书记高度肯定了泰国TPI项目部和党支部的工作,并为项目部全体党员和入党积极分子上了一堂生动、深刻、富富有教育意义和警示作用的党课。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img alt=&quot;&quot; oldsrc=&quot;W020180521371468558580.jpg&quot; src=&quot;/Uploads/ueditor/image/20180817/1534478184974302.jpg&quot; style=&quot;text-align: center; border: 0px none; overflow: hidden; vertical-align: top;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p&gt;雷书记指出，海外工程项目是国机集团主业之一，为加快集团“走出去”步伐做出了重要贡献。进一步规范和加强国机集团境外单位党的建设，一刻不停歇地推进党风廉政建设和反腐败斗争，营造风清气正的干事创业环境和良好政治生态，是提升国机集团国际化经营水平、促进境外资产保值增值、实现“再造海外新国机”战略目标的现实需要和坚强保证。作为奋战在一线的项目团队，一定要提高政治站位，保持政治定力，确保党中央全面从严治党的战略部署在国机集团落到实处。要加强境外党风廉政建设，不断健全完善对外承包工程业务风险防控体系，锲而不舍地把海外项目党建和党风廉政建设引向深入，为集团二次创业、再造海外新国机，建设具有国际竞争力的世界一流企业而不懈奋斗。&lt;/p&gt;&lt;p&gt;　　&lt;/p&gt;&lt;p&gt;巡察组的到来极大鼓舞了项目现场党员同志们的干劲，大家表示一定以习近平新时代中国特色社会主义思想为指导，认真落实党的十九大精神和中央决策部署，在集团党委的坚强领导下，开拓创新、奋发进取，进一步做好党建和党风廉政建设工作，促进项目更好地发展，为再造海外新国机和“一带一路”建设做出新贡献！(中国电工）&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;', '6', '2', '1534478320', '0', '0', '1');
+INSERT INTO `c_news` VALUES ('130', '666', '\\Uploads\\20181022\\258af0cece67402b29b12d3b93c82634.png', '<p>666</p>', '3', '0', '0', '0', '0', '0');
+INSERT INTO `c_news` VALUES ('131', '修改测试', '\\Uploads\\20181019\\4ccdf55e1d92a815da23a430e9686711.jpg', '<p>修改测试</p>', '4', '0', '0', '0', '0', '0');
+INSERT INTO `c_news` VALUES ('132', '测试专用', '\\Uploads\\20181022\\5e09d8e773e41af374748112ec93529a.jpg', '<p>阿萨德</p>', '3', '0', '0', '1540168674', '1', '0');
+
+-- ----------------------------
+-- Table structure for `c_notice`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_notice`;
 CREATE TABLE `c_notice` (
@@ -1741,9 +2631,15 @@ CREATE TABLE `c_notice` (
   `istop` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '置顶值(不置顶为0 置顶按照值从大到小排序)',
   `dtime` int(10) unsigned DEFAULT '0' COMMENT '删除时间',
   `is_del` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除（0未删除1已删除）',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `cate_id` (`cate_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='通知';
+=======
+  PRIMARY KEY (`id`),
+  KEY `cate_id` (`cate_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='通知';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_notice
@@ -1760,15 +2656,24 @@ INSERT INTO `c_notice` VALUES ('9', '向廖俊波同志学习的通知', 'Upload
 INSERT INTO `c_notice` VALUES ('10', '优秀党员评选', 'Uploads/2018-08-20/5b7a79dd82189.jpeg', '&lt;p&gt;明天下午于2号礼堂举行优秀党员评选活动，清所有党员准时赴会并头上神圣一票！&lt;/p&gt;', '2', '1534753245', '0', '0', '0');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_notice_cate
+=======
+-- Table structure for `c_notice_cate`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_notice_cate`;
 CREATE TABLE `c_notice_cate` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '分类名称',
   `sort` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='通知分类';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='通知分类';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_notice_cate
@@ -1777,6 +2682,7 @@ INSERT INTO `c_notice_cate` VALUES ('1', '重要通知', '2');
 INSERT INTO `c_notice_cate` VALUES ('2', '紧急通知', '1');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_pagemodule
 -- ----------------------------
 DROP TABLE IF EXISTS `c_pagemodule`;
@@ -1827,6 +2733,9 @@ INSERT INTO `c_party_information` VALUES ('1', '58', null, null, null, null, nul
 
 -- ----------------------------
 -- Table structure for c_permissions
+=======
+-- Table structure for `c_permissions`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_permissions`;
 CREATE TABLE `c_permissions` (
@@ -1842,8 +2751,13 @@ CREATE TABLE `c_permissions` (
   `hidden` int(2) DEFAULT NULL COMMENT '是否隐藏（0代表不隐藏，1代表隐藏）',
   `public_id` int(3) DEFAULT NULL COMMENT '公众号id',
   `menu_url` varchar(255) DEFAULT NULL COMMENT '菜单地址',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='权限列表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COMMENT='权限列表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_permissions
@@ -1864,7 +2778,11 @@ INSERT INTO `c_permissions` VALUES ('13', 'AI小荷', null, null, '', null, '3',
 INSERT INTO `c_permissions` VALUES ('14', '举报平台', null, null, '', null, '3', '0', '1536300390', null, '1', 'https://www.baidu.com/');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_permissions_role
+=======
+-- Table structure for `c_permissions_role`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_permissions_role`;
 CREATE TABLE `c_permissions_role` (
@@ -1872,15 +2790,24 @@ CREATE TABLE `c_permissions_role` (
   `Permissions_id` int(10) NOT NULL COMMENT '权限id',
   `role_id` int(10) NOT NULL COMMENT '角色id',
   `sort` tinyint(2) NOT NULL COMMENT '排序',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='权限—角色表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限—角色表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_permissions_role
 -- ----------------------------
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_photo
+=======
+-- Table structure for `c_photo`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_photo`;
 CREATE TABLE `c_photo` (
@@ -1890,9 +2817,15 @@ CREATE TABLE `c_photo` (
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `dtime` int(10) unsigned DEFAULT '0' COMMENT '删除时间',
   `is_del` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除(0未删除1已删除)',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `is_del` (`is_del`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='党建相册';
+=======
+  PRIMARY KEY (`id`),
+  KEY `is_del` (`is_del`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COMMENT='党建相册';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_photo
@@ -1926,21 +2859,34 @@ INSERT INTO `c_photo` VALUES ('73', '苏美达隆重召开纪念建党97周年�
 INSERT INTO `c_photo` VALUES ('74', '习近平：国企一定要改革，抱残守缺不行', '&lt;p&gt;6月13日上午，正在山东考察的习近平来到万华烟台工业园。得知企业走出一条引进、消化、吸收、再创新直至自主创造的道路，技术创新能力从无到有、从弱到强，成为行业领军者，习近平十分高兴。他说，回顾你们这个历程，一路走得很好，虽然是一个艰辛创业之路，但是很成功。之所以取得成功，我的一个体会就是走了自主创新之路。没有不可能的事情，就要有这么一股劲儿，正像屈原讲的“路漫漫其修远兮，吾将上下而求索”。谁说国企搞不好？要搞好就一定要改革，抱残守缺不行，改革能成功，就能变成现代企业。希望大家再接再厉，一鼓作气，一气呵成，一以贯之，朝着你们既定的目标奋勇直前。&lt;/p&gt;', '1534497159', '1540348028', '1');
 INSERT INTO `c_photo` VALUES ('75', '习近平在武汉考察', '&lt;p&gt;4月26日上午，中共中央总书记、国家主席、中央军委主席习近平在烽火集团有限公司考察。&lt;/p&gt;', '1534497509', '1540348025', '1');
 INSERT INTO `c_photo` VALUES ('102', '测试相册2', '<p>测试信息2</p>', '1540285881', '1540368743', '1');
+<<<<<<< HEAD
 INSERT INTO `c_photo` VALUES ('103', '测试相册1', '<p>测试相册1</p>', '1540368780', '1541137006', '1');
 INSERT INTO `c_photo` VALUES ('104', '测试相册3', '<p>测试相册</p>', '1540871011', '0', '0');
 INSERT INTO `c_photo` VALUES ('105', '相册', '<p>相册测试</p>', '1541137054', '0', '0');
 
 -- ----------------------------
 -- Table structure for c_photo_img
+=======
+INSERT INTO `c_photo` VALUES ('103', '测试相册1', '<p>测试相册1</p>', '1540368780', '0', '0');
+
+-- ----------------------------
+-- Table structure for `c_photo_img`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_photo_img`;
 CREATE TABLE `c_photo_img` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `photo_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '相册id',
   `path` varchar(255) DEFAULT '' COMMENT '图片地址',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `photo_id` (`photo_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='相册图片';
+=======
+  PRIMARY KEY (`id`),
+  KEY `photo_id` (`photo_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COMMENT='相册图片';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_photo_img
@@ -2025,6 +2971,7 @@ INSERT INTO `c_photo_img` VALUES ('90', '102', '\\Uploads\\20181023\\5e44910c2f1
 INSERT INTO `c_photo_img` VALUES ('93', '103', '\\Uploads\\20181024\\9e83b541aaf56889c4123a343d4089f1.jpg');
 INSERT INTO `c_photo_img` VALUES ('94', '103', '\\Uploads\\20181024\\0bca4315dc345e797c9694ef60a49c3b.jpg');
 INSERT INTO `c_photo_img` VALUES ('95', '103', '\\Uploads\\20181024\\2634d7590fda510ace4d0f6ae009a538.jpg');
+<<<<<<< HEAD
 INSERT INTO `c_photo_img` VALUES ('96', '104', '/Uploads/20181030/5ce1691d103c1e8e60a48ec39315b4c7.jpg');
 INSERT INTO `c_photo_img` VALUES ('97', '104', '/Uploads/20181030/cac987ad77222d96623ed55a69079665.jpg');
 INSERT INTO `c_photo_img` VALUES ('98', '104', '/Uploads/20181030/c4bce236f43a8ace6056b379c3813d2b.jpg');
@@ -2034,6 +2981,11 @@ INSERT INTO `c_photo_img` VALUES ('101', '105', '/Uploads/20181102/164dd82e79053
 
 -- ----------------------------
 -- Table structure for c_report
+=======
+
+-- ----------------------------
+-- Table structure for `c_report`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_report`;
 CREATE TABLE `c_report` (
@@ -2045,8 +2997,13 @@ CREATE TABLE `c_report` (
   `rank` varchar(10) NOT NULL DEFAULT '' COMMENT '职级',
   `question_type` varchar(32) NOT NULL DEFAULT '' COMMENT '问题类别',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '举报时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='举报';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 COMMENT='举报';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_report
@@ -2072,7 +3029,11 @@ INSERT INTO `c_report` VALUES ('138', '标题', '内容', '所属公司', '被�
 INSERT INTO `c_report` VALUES ('139', '标题', '内容', '所属公司', '被反应对象', '职级', '问题类别', '1538290773');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_report_attach
+=======
+-- Table structure for `c_report_attach`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_report_attach`;
 CREATE TABLE `c_report_attach` (
@@ -2080,9 +3041,15 @@ CREATE TABLE `c_report_attach` (
   `report_id` int(11) NOT NULL DEFAULT '0' COMMENT '举报id',
   `path` varchar(255) NOT NULL DEFAULT '' COMMENT '附件路径',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '附件类型 1图片 2视频',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `report_id` (`report_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+=======
+  PRIMARY KEY (`id`),
+  KEY `report_id` (`report_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_report_attach
@@ -2116,7 +3083,11 @@ INSERT INTO `c_report_attach` VALUES ('170', '128', 'http://pc5hsiop1.bkt.cloudd
 INSERT INTO `c_report_attach` VALUES ('171', '128', '', '2');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_role
+=======
+-- Table structure for `c_role`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_role`;
 CREATE TABLE `c_role` (
@@ -2126,14 +3097,20 @@ CREATE TABLE `c_role` (
   `menu_id` varchar(255) DEFAULT NULL COMMENT '权限菜单id',
   `description` varchar(255) DEFAULT NULL COMMENT '简介描述',
   `status` int(2) DEFAULT '0' COMMENT '0代表该角色没有使用，1代表该角色被使用',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='角色表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='角色表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_role
 -- ----------------------------
 INSERT INTO `c_role` VALUES ('7', '党风建设', '1536669690', '1,4,5,6,59,2,7,8,9,10,3,11,12,13,14', '党员风气，树立榜样', '0');
 INSERT INTO `c_role` VALUES ('8', '国机新风', '1536730103', '2,7,8,9,10', '国机新风权限', '0');
+<<<<<<< HEAD
 INSERT INTO `c_role` VALUES ('9', '纺友', '1539834411', '1,4,5,6,2,7,8,9,10,3,11,12,13,14', '党员风气，树立榜样', '0');
 INSERT INTO `c_role` VALUES ('11', '教育', '1541150065', '1,4,5,6,16,2,7,8,9,10,3,11,12,13,14', '国机新风权限', '0');
 INSERT INTO `c_role` VALUES ('12', '测试角色', '1541406993', '1,4,5,6,2,7,8,9,10,3,11,12,13,14', '测试', '0');
@@ -2141,28 +3118,54 @@ INSERT INTO `c_role` VALUES ('14', '武汉纺友', '1541582141', '1,4,5,6,2,7,8,
 
 -- ----------------------------
 -- Table structure for c_roles
+=======
+INSERT INTO `c_role` VALUES ('9', '纺友', '1539834411', '1,4,5,6,59,60,2,7,8,9,10,3,11,12,13,14', '党员风气，树立榜样', '0');
+
+-- ----------------------------
+-- Table structure for `c_roles`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_roles`;
 CREATE TABLE `c_roles` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `roles_name` varchar(20) NOT NULL DEFAULT '' COMMENT '角色/用户组名称',
   `roles_auth_ids` varchar(128) NOT NULL DEFAULT '' COMMENT '权限ids,1,2,5，权限表中的主键集合',
+<<<<<<< HEAD
   `company_id` int(11) NOT NULL COMMENT '对应公司的id',
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
   `roles_note` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_time` int(11) unsigned DEFAULT NULL,
   `update_time` int(11) unsigned DEFAULT NULL,
   `delete_time` int(11) unsigned DEFAULT NULL,
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='子级角色表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='子级角色表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_roles
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_roles` VALUES ('2', '纺友-技术', '22,24,34,35,31,32,36,37,41,42,44,50,51,52,53,54,55', '32', '测试用', null, null, null);
 INSERT INTO `c_roles` VALUES ('3', '纺友测试', '1,6,11,27,28,29,30,38,39,40,31,32,36,37,41,42,44', '32', '11.2', null, null, null);
 
 -- ----------------------------
 -- Table structure for c_system
+=======
+INSERT INTO `c_roles` VALUES ('1', 'dong', '27,29,30,38,39,40,31,32,36,37,41,42,44', '测试', '1539747593', '1539831619', null);
+INSERT INTO `c_roles` VALUES ('2', '副部长', '27,28,29,30,38,39,40,31,32,36,37,41,42,44', '部长以下最大的管', null, '1539841271', null);
+INSERT INTO `c_roles` VALUES ('3', '副经理', '1,6,7,2,4,3,10,31,32,36,37,41,42,44', '管理公司内部', '1536649685', '1539831739', null);
+INSERT INTO `c_roles` VALUES ('4', '副经理', '1,6,7,11,2,5,8', '管理公司内部', '1537407002', '1537408253', null);
+INSERT INTO `c_roles` VALUES ('7', 'hahah', '1,6,11,2,8,3,10', 'fasafs', '1537408303', '1537408303', null);
+INSERT INTO `c_roles` VALUES ('9', 'test', '1,6,7,11,27,28,29,30,38,39,40,31,32,36,37,41,42,44,45,46', '测试', '1539834783', '1539834783', null);
+
+-- ----------------------------
+-- Table structure for `c_system`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_system`;
 CREATE TABLE `c_system` (
@@ -2172,8 +3175,13 @@ CREATE TABLE `c_system` (
   `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '关键词',
   `copyright` varchar(32) NOT NULL DEFAULT '' COMMENT '版权',
   `record` varchar(32) NOT NULL DEFAULT '' COMMENT '备案号',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_system
@@ -2181,14 +3189,23 @@ CREATE TABLE `c_system` (
 INSERT INTO `c_system` VALUES ('1', '国机云党建', '国机,党建', '国机,党建', 'Copyright@武汉纺友技术有限公司 版权所有', '鄂ICP备09014919号');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_test
+=======
+-- Table structure for `c_test`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_test`;
 CREATE TABLE `c_test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `test` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '测试使用',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='测试使用哦';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='测试使用哦';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_test
@@ -2198,7 +3215,11 @@ INSERT INTO `c_test` VALUES ('2', '{\"2\":\"opt2\",\"3\":\"opt1\",\"4\":\"opt2\"
 INSERT INTO `c_test` VALUES ('4', '{\"2\":\"opt1\",\"3\":\"opt1\",\"4\":\"opt3\"}');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_user
+=======
+-- Table structure for `c_user`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_user`;
 CREATE TABLE `c_user` (
@@ -2207,7 +3228,11 @@ CREATE TABLE `c_user` (
   `password` varchar(32) DEFAULT NULL COMMENT '用户密码',
   `ctime` int(30) DEFAULT NULL COMMENT '创建时间',
   `token` varchar(255) DEFAULT NULL COMMENT '用户的token',
+<<<<<<< HEAD
   `company_id` varchar(255) DEFAULT NULL COMMENT '所属公司id',
+=======
+  `company` varchar(255) DEFAULT NULL COMMENT '所属公司',
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
   `last_time` int(30) DEFAULT NULL,
   `tel` char(11) DEFAULT NULL,
   `status` int(2) DEFAULT NULL COMMENT '账号状态（0禁用，1正常）',
@@ -2218,13 +3243,19 @@ CREATE TABLE `c_user` (
   `branchs_id` int(10) DEFAULT NULL COMMENT '子支部id',
   `nickname` varchar(255) DEFAULT NULL COMMENT '微信用户昵称',
   `weixin_id` int(10) DEFAULT NULL COMMENT '微信的id',
+<<<<<<< HEAD
   `dangyuan_stats` int(2) DEFAULT '0' COMMENT '党员是否通过对应支部审核 1 0',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_user
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `c_user` VALUES ('7', '老王', '14e1b600b1fd579f47433b88e8d85291', '1539305070', 'tyq4x0dpx7', '1', '1539305093', '15927668469', null, '1231222222', '微信openid', '微信头像地址', '2', '5', '微信昵称  全部必填', null, '0');
 INSERT INTO `c_user` VALUES ('8', 'test', '14e1b600b1fd579f47433b88e8d85291', '1539919673', '1XGKwHXjcSvbd3CBIr2ecfTIsLpOGoOI', '1', '1539935548', '15527854695', null, '33', '22', '44', '1', '36', '55', null, '0');
 INSERT INTO `c_user` VALUES ('9', 'Sky', '14e1b600b1fd579f47433b88e8d85291', '1541035907', '4TpMZTCtGmjg0e0Cs07ubNliFN2PNqQR', '32', '1541063133', '1541063133', null, '232131213', '微信openid', '微信头像地址', '1', '36', '微信昵称  全部必填', null, '0');
@@ -2232,6 +3263,16 @@ INSERT INTO `c_user` VALUES ('10', '老张', '14e1b600b1fd579f47433b88e8d85291',
 
 -- ----------------------------
 -- Table structure for c_user_chapter
+=======
+INSERT INTO `c_user` VALUES ('1', '71cloud', '383eafdd5d7d6221612fe7e10cf703f0', '0', '', '', '0', '15927668465', '1', null, null, null, null, null, '', null);
+INSERT INTO `c_user` VALUES ('3', 'mm', '', '0', '', '', '0', '', null, null, '0', null, null, null, 'CURD', null);
+INSERT INTO `c_user` VALUES ('4', 'cc', '', '0', '', '', '0', '', null, null, 'oecaE0ii_-oWQHrUB8NF5kzV7HZA', null, null, null, 'CURD', null);
+INSERT INTO `c_user` VALUES ('7', '老王', '14e1b600b1fd579f47433b88e8d85291', '1539305070', 'tyq4x0dpx7', null, '1539305093', '15927668469', null, null, null, 'http://pc5hsiop1.bkt.clouddn.com/avaturl.png', '2', '5', null, null);
+INSERT INTO `c_user` VALUES ('8', 'test', '14e1b600b1fd579f47433b88e8d85291', '1539919673', '1XGKwHXjcSvbd3CBIr2ecfTIsLpOGoOI', null, '1539935548', '15527854695', null, null, null, 'http://pc5hsiop1.bkt.clouddn.com/avaturl.png', '1', '1', null, null);
+
+-- ----------------------------
+-- Table structure for `c_user_chapter`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_user_chapter`;
 CREATE TABLE `c_user_chapter` (
@@ -2240,10 +3281,17 @@ CREATE TABLE `c_user_chapter` (
   `chapter_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '章节id',
   `see_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '观看时长',
   `is_over` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否看完 1看完0未看完',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `uid` (`uid`) USING BTREE,
   KEY `chapter_id` (`chapter_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户章节表';
+=======
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`) USING BTREE,
+  KEY `chapter_id` (`chapter_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='用户章节表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_user_chapter
@@ -2346,7 +3394,11 @@ INSERT INTO `c_user_chapter` VALUES ('95', '24', '81', '664', '1');
 INSERT INTO `c_user_chapter` VALUES ('96', '24', '40', '599', '1');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_user_class
+=======
+-- Table structure for `c_user_class`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_user_class`;
 CREATE TABLE `c_user_class` (
@@ -2356,9 +3408,15 @@ CREATE TABLE `c_user_class` (
   `over_period` tinyint(2) DEFAULT '0' COMMENT '已完成课时',
   `last_time` int(10) unsigned DEFAULT '0' COMMENT '最后一次学习日期',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '加入学习时间',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `uid` (`uid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户课程表';
+=======
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COMMENT='用户课程表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_user_class
@@ -2409,7 +3467,11 @@ INSERT INTO `c_user_class` VALUES ('51', '24', '17', '1', '1535693920', '1535693
 INSERT INTO `c_user_class` VALUES ('52', '15', '32', '0', '1535962012', '1535962012');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_user_msg
+=======
+-- Table structure for `c_user_msg`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_user_msg`;
 CREATE TABLE `c_user_msg` (
@@ -2419,9 +3481,15 @@ CREATE TABLE `c_user_msg` (
   `message` varchar(255) NOT NULL DEFAULT '' COMMENT '内容',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '发送时间',
   `is_see` tinyint(1) unsigned DEFAULT '0' COMMENT '查看状态 0未读1已读',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE,
   KEY `uid` (`uid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='消息中心';
+=======
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='消息中心';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_user_msg
@@ -2455,7 +3523,11 @@ INSERT INTO `c_user_msg` VALUES ('27', '29', '2', '您的稿件《两代人的40
 INSERT INTO `c_user_msg` VALUES ('28', '29', '2', '您的稿件《小家变 大家兴》已被采用，再接再厉！', '1535619851', '0');
 
 -- ----------------------------
+<<<<<<< HEAD
 -- Table structure for c_user_score
+=======
+-- Table structure for `c_user_score`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_user_score`;
 CREATE TABLE `c_user_score` (
@@ -2465,7 +3537,11 @@ CREATE TABLE `c_user_score` (
   `score` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '增加分数',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '加分时间',
   KEY `uid` (`uid`) USING BTREE
+<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户分数表';
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户分数表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_user_score
@@ -2565,10 +3641,16 @@ INSERT INTO `c_user_score` VALUES ('24', '召开“追问初心”读书分享�
 INSERT INTO `c_user_score` VALUES ('24', '农村土地经营权流转有关政策', '2', '2', '1535621929');
 INSERT INTO `c_user_score` VALUES ('24', '职务犯罪问题研究（一）现今我国职务犯罪的概况', '2', '2', '1535622085');
 INSERT INTO `c_user_score` VALUES ('24', '不忘初心、做合格党员', '2', '2', '1535693912');
+<<<<<<< HEAD
 INSERT INTO `c_user_score` VALUES ('9', 'test1', '3', '2', '1540605882');
 
 -- ----------------------------
 -- Table structure for c_weixin
+=======
+
+-- ----------------------------
+-- Table structure for `c_weixin`
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 -- ----------------------------
 DROP TABLE IF EXISTS `c_weixin`;
 CREATE TABLE `c_weixin` (
@@ -2584,11 +3666,19 @@ CREATE TABLE `c_weixin` (
   `status` int(1) DEFAULT NULL COMMENT '验证结果 0 验证不通过 1代表验证通过',
   `rand` varchar(255) DEFAULT NULL COMMENT '微信生成随机数',
   `access_token` varchar(255) DEFAULT NULL COMMENT 'URL—token地址',
+<<<<<<< HEAD
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='公众号表';
+=======
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='公众号表';
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 -- ----------------------------
 -- Records of c_weixin
 -- ----------------------------
 INSERT INTO `c_weixin` VALUES ('31', ' wxdb8a9536d8f3728b', '791d8692600cc2b1b6145098e8082304', '5', null, null, null, null, null, null, 'd7e7d06d12e6a64cb669be7489f65651', null);
+<<<<<<< HEAD
 SET FOREIGN_KEY_CHECKS=1;
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118

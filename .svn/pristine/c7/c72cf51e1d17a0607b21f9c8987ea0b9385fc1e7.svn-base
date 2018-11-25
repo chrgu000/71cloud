@@ -1,0 +1,92 @@
+.ffcl{
+    margin-top: 0.8rem;
+}
+.ffclTab{
+    width: 100%;
+    height: 0.88rem;
+    background: white;
+    font-size: 0;
+}
+.ffclTab p{
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    line-height: 0.88rem;
+    font-size: 0.32rem;
+    color: #999999;
+    text-align: center;
+}
+
+
+
+.ffclTab p a{
+    color: #999999;
+}
+.ffclTab p.active  a{
+    color: #e83329;
+
+}
+
+.ffclTab p.active{
+    border-bottom: 0.02rem solid #e83329;
+
+}
+
+
+.ffclContent{
+    padding: 0.2rem 0.32rem;
+    background:#f9f5f5;
+}
+.ffclItemList{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    border-radius: 0.1rem;
+    -webkit-border-radius: 0.1rem;
+    background: white;
+    padding: 0.2rem;
+    margin-bottom: 0.2rem;
+
+}
+.ffclContentItem{
+    display: none;
+}
+.ffclContentItem.active{
+    display: block;
+}
+.ffclItemLeft,.ffclItemLeft img{
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-right: 0.22rem;
+}
+.ffclItemRight{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.ffclTitle{
+    font-size: 0.32rem;
+    color: #333333;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: justify;
+}
+.ffclDate{
+    font-size: 0.26rem;
+    color: #999;
+    padding-top: 0.2rem;
+}
+.ffclTopic{
+    float: right;
+}
+.ffclScroll{
+    width: 100%;
+    overflow-x: scroll;
+    height: 0.88rem;
+}

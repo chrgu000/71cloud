@@ -8,6 +8,7 @@
  * 考试积分接口
  *
  */
+<<<<<<< HEAD
 namespace app\home\controller;
 use think\Controller;
 use think\Request;
@@ -98,9 +99,40 @@ class Exam extends Base{
             return json(['code'=>0,'data'=>'请登录!']);
             //print($errCode . "\n");
         }
+=======
+
+namespace app\home\controller;
+
+
+class Exam extends Base{
+    /**
+     * 小程序使用
+     * @param $tel string 用户手机号
+     * @param $name string 考试名称
+     *
+     */
+    public function score(){
+        $tel = trim(input('post.tel'));
+        $name = trim(input('post.name'));
+
+        if(empty($tel) || empty($name)){
+            return json(['code'=>0,'msg'=>'参数错误','data'=>'']);
+            exit();
+        }
+
+        $uid = db('User')->where("tel = '$tel'")->getField('id');
+
+        model('home/UserScore')->addScore($uid,$name,$type=5);
+
+        return json(['code'=>1,'msg'=>'积分成功','data'=>'']);
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     }
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 }

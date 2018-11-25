@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StoryRootCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wdx_ad.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q0f-jZ-isQ">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="nQg-hs-FTz"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dET-O4-YQU">
+                        <rect key="frame" x="0.0" y="111" width="200" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="QjJ-5R-iwT"/>
+                        </constraints>
+                        <string key="text">第1集
+</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="瓦窑决策 联合抗日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4e-5x-DFM">
+                        <rect key="frame" x="0.0" y="126" width="200" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="GRV-V7-2Zi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="dET-O4-YQU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KXb-VG-ytm"/>
+                <constraint firstAttribute="trailing" secondItem="Q0f-jZ-isQ" secondAttribute="trailing" id="LDh-AB-M9O"/>
+                <constraint firstItem="J4e-5x-DFM" firstAttribute="top" secondItem="dET-O4-YQU" secondAttribute="bottom" constant="1" id="PZC-et-KPl"/>
+                <constraint firstAttribute="trailing" secondItem="dET-O4-YQU" secondAttribute="trailing" id="Qw7-Es-69m"/>
+                <constraint firstItem="Q0f-jZ-isQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XNv-9v-ixM"/>
+                <constraint firstItem="Q0f-jZ-isQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YkP-le-Cvr"/>
+                <constraint firstItem="J4e-5x-DFM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cOG-Kp-2Nd"/>
+                <constraint firstItem="dET-O4-YQU" firstAttribute="top" secondItem="Q0f-jZ-isQ" secondAttribute="bottom" constant="11" id="mHL-aX-Fbd"/>
+                <constraint firstAttribute="trailing" secondItem="J4e-5x-DFM" secondAttribute="trailing" id="xkj-Zp-sUr"/>
+            </constraints>
+            <connections>
+                <outlet property="ImgaeV" destination="Q0f-jZ-isQ" id="76s-Wu-uMa"/>
+                <outlet property="subjectL" destination="J4e-5x-DFM" id="6RJ-4L-vEK"/>
+                <outlet property="titleLnum" destination="dET-O4-YQU" id="Qw6-wY-zep"/>
+            </connections>
+            <point key="canvasLocation" x="-125" y="3"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="wdx_ad.png" width="164" height="100"/>
+    </resources>
+</document>

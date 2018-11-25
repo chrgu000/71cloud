@@ -1,0 +1,27 @@
+<?php
+namespace app\home\controller;
+
+use think\Controller;
+use think\Request;
+
+class Base extends Controller
+{
+    public $rest = array();
+
+    //构造方法
+    public function __construct(Request $request)
+    {
+        parent::__construct($request);
+        //登录判断
+        if(!session('?admin_info')){
+            //没有登录，跳转到登录页
+            $this->redirect('admin/login/index');
+        }
+
+
+
+    }
+
+
+
+}

@@ -1,0 +1,239 @@
+//
+//  NewRootViewController.m
+//  TheParty
+//
+//  Created by macmini on 2018/7/31.
+//  Copyright © 2018年 macmini. All rights reserved.
+//
+
+#import "NewRootViewController.h"
+#import "NewsWebViewController.h"
+#import "NewTableViewCell.h"
+#import "SDCycleScrollView.h"
+@interface NewRootViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+{
+    UITableView *tableView;
+    NSMutableArray *dataArr;
+    NSArray *bannerArr;
+    NSInteger page;
+    NSString *NewsID;
+}
+@end
+
+@implementation NewRootViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createFormData:) name:@"NewsWebData" object:nil];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+   
+    [super viewWillDisappear:animated];
+    
+}
+
+
+-(void)dealloc
+{
+    NSLog(@"RootViewController dealloc--");
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NewsID = @"";
+    bannerArr = [[NSArray alloc] init];
+    dataArr = [[NSMutableArray alloc] init];
+    self.view.backgroundColor =COLOR(249, 245, 245);
+    [self ctreatTableView];
+}
+
+///加载数据
+-(void)rootLoadData:(NSInteger)index andArr:(NSDictionary *)dic
+{
+    [dataArr removeAllObjects];
+    NewsID = [NSString stringWithFormat:@"%@",dic[@"id"]];
+    page = 1;
+    
+    
+    [self createData];
+}
+
+
+
+- (void)createFormData:(NSNotification *)dic{
+    if ([dic.userInfo[@"type"]  isEqualToString: NewsID]) {
+        [dataArr removeAllObjects];
+        page = 1;
+        [self createData];
+    }
+}
+
+- (void)refresh {
+    page = 1;
+    [dataArr removeAllObjects];
+    [self createData];
+    
+}
+
+- (void)loadMore {
+    page++;
+    [self createData];
+}
+
+
+- (void)createData{
+    [self showHUD:nil];
+    WEAKSELF
+    NSString *biz=[NSString stringWithFormat:@"&cate_id=%@&p=%zd&pageSize=10",NewsID,page];
+    [ConnectionRequestMgr GetSessionWithUrl:PartyNewList parameter:biz successBlock:^(NSDictionary *dict) {
+        [weakSelf cancelStatus];
+        [weakSelf hideHUD];
+        if ([dict[@"code"] integerValue] == 1) {
+            for (int i = 0; i< [dict[@"data"][@"news"] count]; i++) {
+                [dataArr addObject:dict[@"data"][@"news"][i]];
+                
+            }
+            bannerArr =dict[@"data"][@"recommend"];
+            if (page ==1) {
+                tableView.tableHeaderView = [self createHeadView];
+            }
+            if (dataArr.count == 0) {
+                [weakSelf viewthephoto:@"NoList" andtitle:@"暂无内容"];
+            }else{
+                [weakSelf removeView];
+            }
+            [tableView reloadData];
+        }else{
+            [weakSelf showError:dict[@"msg"]];
+        }
+    } failBlock:^(NSString *errorStr) {
+        [weakSelf cancelStatus];
+        [weakSelf hideHUD];
+        [weakSelf showError:errorStr];
+    }];
+
+}
+
+- (UIView *)createHeadView{
+
+    if ([NewsID isEqualToString:@"all"]) {
+        
+        NSMutableArray *imageNames = [NSMutableArray new];
+        NSMutableArray *titles = [NSMutableArray new];
+        for (int i = 0; i<bannerArr.count; i++) {
+            [imageNames addObject:bannerArr[i][@"thumb"]];
+            [titles addObject:bannerArr[i][@"title"]];
+        }
+        
+        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_W, 200) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        cycleScrollView2.imageURLStringsGroup =[imageNames copy];
+        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+        cycleScrollView2.titlesGroup = [titles copy];
+        cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+        return cycleScrollView2;
+    }else{
+        UIView *headView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 5)];
+        headView.backgroundColor = UIColorFromRGBA(0xf9f5f5, 1);
+        return headView;
+    }
+   
+}
+
+- (void)ctreatTableView{
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H -64-44) style:UITableViewStyleGrouped];
+    tableView.delegate = self;
+    tableView.separatorStyle = NO;
+    tableView.dataSource = self;
+    tableView.showsVerticalScrollIndicator = FALSE;
+    tableView.showsHorizontalScrollIndicator = FALSE;
+    tableView.backgroundColor =COLOR(249, 245, 245);
+    [self.view addSubview:tableView];
+    tableView.estimatedRowHeight = 0;
+    tableView.estimatedSectionHeaderHeight = 0;
+    tableView.estimatedSectionFooterHeight = 0;
+    
+    [tableView registerNib:[UINib nibWithNibName:@"NewTableViewCell" bundle:nil] forCellReuseIdentifier:@"NewTableViewCell"];
+    tableView.mj_header =[FunClubGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+    tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+}
+
+
+#pragma mark UItableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return dataArr.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewTableViewCell"];
+    if (dataArr.count >indexPath.row) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:dataArr[indexPath.row][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+        cell.titleL.text = dataArr[indexPath.row][@"title"];
+        cell.subjectL.text = dataArr[indexPath.row][@"content"];
+        cell.deline.text =  dataArr[indexPath.row][@"ctime"];
+    }
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 110;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 0.1)];
+    return view;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 0.1)];
+    return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":dataArr[indexPath.row][@"url"],@"Titlestr":dataArr[indexPath.row][@"title"],@"ID":dataArr[indexPath.row][@"id"],@"Islike":dataArr[indexPath.row][@"is_praise"],@"type":NewsID}];
+}
+
+
+#pragma mark - SDCycleScrollViewDelegate
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    [[UIHelper sharedSingleton] pushVC:@"NewsWebViewController" vc:self parames:@{@"str":bannerArr[index][@"url"],@"Titlestr":bannerArr[index][@"title"],@"ID":bannerArr[index][@"id"],@"Islike":bannerArr[index][@"is_praise"]}];
+
+}
+
+
+- (void)cancelStatus
+{
+    if ([tableView.mj_header isRefreshing]) {
+        [tableView.mj_header endRefreshing];
+    }else if ([tableView.mj_footer isRefreshing]) {
+        [tableView.mj_footer endRefreshing];
+    }
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

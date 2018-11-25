@@ -17,11 +17,16 @@ class Roles extends Base
     {
         //关闭临时模板
         $this->view->engine->layout(false);
+<<<<<<< HEAD
         $company_id = session('branchadmin_info.company_id');
         $where      = ["company_id" => $company_id];
         //查询角色表的所有数据
 //        $list = \app\branchadmin\model\Roles::select();
         $list = Db::name('roles')->where($where)->select();
+=======
+        //查询角色表的所有数据
+        $list = \app\branchadmin\model\Roles::select();
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         // var_dump($list);die;
         return view('index', ['list' => $list]);
@@ -83,7 +88,11 @@ class Roles extends Base
 
         //定义提示信息
         $msg = [
+<<<<<<< HEAD
             'roles_name.require' => '角色名称不能为空',
+=======
+            'roles_name.require' => 'j角色名称不能为空',
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             'roles_note.require' => '角色介绍不能为空',
         ];
         //实例化验证类

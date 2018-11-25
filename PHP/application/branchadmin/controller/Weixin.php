@@ -46,8 +46,13 @@ class Weixin extends Base
         //关闭临时模板
         $this->view->engine->layout(false);
         $id  = session('branchadmin_info.id');
+<<<<<<< HEAD
         $res = Db::name('branch_admin')->where('id', $id)->field('appid,appsecret,token,branchs_id')->find();
         $res['url'] = "https://api.cloudcpc.com/index/index/link?id=".$res['branchs_id'];
+=======
+        $res = Db::name('branch_admin')->where('id', $id)->field('appid,appsecret,token')->find();
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         //print_r($role_name);die;
         return view('create', ['res' => $res]);
     }
@@ -91,8 +96,13 @@ class Weixin extends Base
 //        \app\branchadmin\model\Weixin::create($data, true);
         $id  = session('branchadmin_info.id');
         $res = Db::name('branch_admin')->where('id', $id)->update($data);
+<<<<<<< HEAD
 //        dump($res);
 //        die();
+=======
+        dump($res);
+        die();
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         //页面跳转
         //$this->success('添加成功','index');
         $this->redirect('index');
@@ -244,11 +254,15 @@ class Weixin extends Base
     {
         //关闭临时模板
         $this->view->engine->layout(false);
+<<<<<<< HEAD
         $id  = session('branchadmin_info.company_id');
 //        dump(session('branchadmin_info'));
 //        dump($id);
 //        die;
 
+=======
+        $id  = session('branchadmin_info.id');
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         $res = Db::name('menu')->where('company_id', $id)
             ->where('p_lv_id', 0)
             ->field('id,menu_name')
@@ -552,6 +566,7 @@ class Weixin extends Base
         return $count;
     }
 
+<<<<<<< HEAD
 
 
     /**
@@ -588,4 +603,6 @@ class Weixin extends Base
             return false;
         }
     }
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 }

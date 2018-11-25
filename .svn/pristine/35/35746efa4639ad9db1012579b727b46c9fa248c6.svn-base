@@ -1,0 +1,104 @@
+.newsCenter{
+    background: #fff;
+}
+.flexs{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+}
+.flex1{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.newsCenter .newsheader{
+    padding: 0 0.32rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    justify-content: space-around;
+    background: #e83329;
+}
+.newsCenter .newsheader .headerText{
+    font-size: 0.32rem;
+    color: white;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.newsCenter .newsheader .iconfont{
+    font-size :0.36rem;
+    color:white;
+    width: 0.5rem;
+
+}
+.newsContent{
+    height: 3.52rem;
+    background-image: url(../images/rank.png);
+    background-position: 0 0 ;
+    background-repeat: no-repeat;
+    background-size: 7.5rem 3.58rem;
+    margin-top: -0.8rem;
+    overflow: hidden;
+    background-color: white;
+}
+.userInfo{
+    margin-left: 0.8rem;
+    margin-top:1.34rem;
+
+}
+.userInfo .p1{
+    font-size: 0.28rem;
+    color: white;
+}
+.userInfo .p2{
+    font-size: 0.66rem;
+    color: white;
+}
+.rankList{
+    padding: 0 .32rem;
+
+}
+.rankList .rankListItem{
+    border-bottom: 1px solid  #f6f5f5;
+    padding: 0.25rem 0;
+
+}
+.rankListItem .t1{
+    justify-content: space-between;
+    margin-bottom: 0.15rem;
+ }
+.operate{
+    color: #474646;
+    font-size: 0.3rem;
+}
+.date{
+    color: #adacac;
+    font-size: 0.24rem;
+}
+.rankListItem .t2{
+    justify-content: space-between
+}
+.rankListItem .rankTitle{
+    font-size: 0.3rem;
+    color: #adacac;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: justify;
+
+}
+.rankListItem .rankScore{
+    display: inline-block;
+    width: 0.5rem;
+    color: #ed5b53;
+    font-size: 0.26rem;
+    text-align: right;
+}

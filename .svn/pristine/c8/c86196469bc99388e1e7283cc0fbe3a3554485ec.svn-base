@@ -1,0 +1,172 @@
+
+
+.swiper-container{
+  height: 5.3rem;
+  /* background: white; */
+}
+
+
+
+
+
+
+
+.partTab{
+  position: relative;
+  /* height: calc(100% - 0.8rem - 40px); */
+}
+.partItem{
+  display: none;
+}
+.partItem.active{
+  display: block;
+}
+/*选集*/
+/*左侧*/
+.anthologyLeft{
+  display: inline-block;
+  width: 2.5rem;
+  position: absolute;
+  left: 0;
+  top:0;
+  bottom: 0;
+  background: #f9f5f5;
+}
+.anthologyList{
+  font-size: 0.32rem;
+  color: #000000;
+  text-align: center;
+  line-height: 0.86rem;
+  height: 0.86rem;
+  width: 100%;
+}
+.anthologyList.active{
+  color: #e83329;
+  border-bottom: 1px solid #e83329;
+  background: white;
+}
+.anthologyRight{
+  padding-top: 0.3rem;
+  display: inline-block;
+  width: 5rem;
+  background: white;
+  position: absolute;
+  left: 2.5rem;
+  right: 0;
+  top:0;
+  bottom: 0;
+  padding: 0 0.32rem;
+  padding-top: 0.3rem;
+  background: white;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.anthologyImgList{
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  font-size: 0.32rem;
+  color: white;
+
+  padding-bottom: 0.3rem;
+}
+.anthologyImgList:nth-child(odd){
+  margin-right: 0.1rem;
+}
+.anthologyImgList:nth-child(even){
+  margin-left: 0.1rem;
+}
+.anthologyImgList p{
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+}
+.anthologyRightItem{
+  display: none;
+}
+.anthologyRightItem.active{
+  display: block;
+}
+/*我的*/
+.studyTab{
+  height: 0.82rem;
+  line-height: 0.82rem;
+  font-size: 0;
+  background: #ffffff;
+}
+.studyTab p{
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  font-size: 0.32rem;
+  color: #999999;
+}
+.studyTab p.active span{
+  display: inline-block;
+  height: 0.8rem;
+  color:#e83329 ;
+  border-bottom: 0.02rem solid #e83329;
+}
+.partItem3{
+  background: #f9f5f5;
+}
+.studyContentTab{
+  margin-top: 0.1rem;
+  background: white;
+  padding:  0 0.32rem;
+}
+.studyItem{
+  display: none;
+}
+.studyItem.active{
+  display: block;
+}
+.studyList:nth-child(1){
+  padding-top: 0.4rem;
+}
+.studyList{
+  padding-bottom: 0.4rem;
+  font-size: 0;
+}
+.studyLeft{
+  display: inline-block;
+  width: 2.4rem;
+  height: 1.8rem;
+  margin-right: 0.3rem;
+  vertical-align: top;
+}
+.studyRight{
+  display: inline-block;
+  width: 4.1rem;
+  vertical-align: top;
+
+}
+.studyTitle{
+  min-height: 0.88rem;
+  font-size: 0.32rem;
+  color: #333333;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.studyProgress{
+  font-size: 0.28rem;
+  color: #333333;
+  padding-bottom: 0.1rem;
+
+}
+.studyProgress span{
+  color: #e83329;
+}
+.studyDeadLine{
+  font-size: 0.22rem;
+  color: #999999;
+}

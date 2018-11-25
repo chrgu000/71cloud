@@ -30,7 +30,11 @@ class Examapi extends Controller
             ->field('id as activity_id,exam_activity_name,img_src')
             ->select();
 
+<<<<<<< HEAD
         print_r($activity);die;
+=======
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         //通过活动信息id获取对应关卡试题
         foreach ($activity as $k=>&$v)
         {
@@ -86,7 +90,11 @@ class Examapi extends Controller
             ->field('id')
             ->value('id');
         //查找下一关名称
+<<<<<<< HEAD
         $exampaper_name=db('exampaper')->where(['id'=>$next_id,'exam_activity_id'=>$activity_id,'company_id'=>$company_id])->field('exampaper_name')->value('exampaper_name');
+=======
+        $exampaper_name=db('exampaper')->where(['id'=>$next_id])->field('exampaper_name')->value('exampaper_name');
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         //查找判断是否是最后一关
         $max_id=db('exampaper')
@@ -128,8 +136,11 @@ class Examapi extends Controller
             ];
             return json($res);
         }else{
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             //判断当前是否是第一关
             if($paper_id==$first){
                 //是第一关直接进入答题引导
@@ -152,6 +163,7 @@ class Examapi extends Controller
                     ->field('id')
                     ->value('id');
                 $prev=$prev-1;
+<<<<<<< HEAD
 
                 //查找该用户是否有答题记录
                 $current=db('exam_info')->where(['user_id'=>$user_id,'exam_activity_id'=>$activity_id,'exampaper_id'=>$prev])->select();
@@ -163,6 +175,12 @@ class Examapi extends Controller
 
                 //判断上一关是否通过
                     if($row==0 || empty($current)){
+=======
+                //查找上一关的is_pass值
+                $row=db('exam_info')->where(['exampaper_id'=>$prev])->field('is_pass')->value('is_pass');
+                //判断上一关是否通过
+                    if($row==0){
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
                         //上一关没通过就提示
                         $res = [
                             'code'=>'1',
@@ -516,6 +534,7 @@ class Examapi extends Controller
 
 
         //当前活动下的关卡总数量
+<<<<<<< HEAD
         $num=db('exampaper')->where(['exam_activity_id'=>$activity_id,'company_id'=>$company_id])->count();
 
         /*//查找当前用户在该活动下答了几题
@@ -548,6 +567,15 @@ class Examapi extends Controller
 
         //print_r($all);die;
 
+=======
+        $num=db('exampaper')->where(['exam_activity_id'=>$activity_id])->count();
+
+        //查找所有以用户为组的成绩和答题耗时
+        $sql = "select user_id ,sum(result_score) as score ,sum(use_time) as long_time from c_exam_info where company_id = $company_id and exam_activity_id=$activity_id group by user_id order by score desc,use_time asc limit 50";
+
+        $use=db('exam_info')->query($sql);
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         //定义排名
         $ranking='';
         //定义当前用户得分
@@ -561,6 +589,7 @@ class Examapi extends Controller
             $v['username']=db('user')->where(['id'=>$v['user_id']])->field('username')->value('username');
             //平均得分
             $v['score']=$v['score']/$num;
+<<<<<<< HEAD
             //判断得分是否大于通过分数
             if($v['score'] <= $pass_score){
 
@@ -569,6 +598,8 @@ class Examapi extends Controller
                 unset($use[$k]);
 
             }
+=======
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
             $v['score']=round($v['score'],2);
             $v['time']=time();
         }

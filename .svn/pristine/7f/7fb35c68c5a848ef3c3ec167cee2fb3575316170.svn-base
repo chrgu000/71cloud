@@ -1,0 +1,100 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/16
+ * Time: 8:41
+ *
+ * 前台首页
+ *
+ */
+
+namespace app\home\controller;
+
+use think\Db;
+
+class Index extends Base
+{
+
+    /**
+     *
+     * 首页数据 GET
+     *
+     * @param $uid int 用户id
+     *
+     */
+    public function getIndex()
+    {
+
+
+        $uid = intval(input('get.uid'));
+        //所有内容分公司完成
+        $company_id = session('branchadmin_info.company_id');
+        //通知通告
+        $notice = db('Notice')->field('id,title')->where('is_del=0')->order('istop desc,ctime desc')->limit(2)->select();
+
+        foreach ($notice as &$v) {
+            $v['url'] = addDomain('home/Article/getNoticeDetail/id/' . $v['id']);
+        }
+
+        //党建要闻
+
+        $cate = db('NewCate')->field('id,name,pid')->where('pid = 1')->select();
+
+        $news = model('home/News')->getRecommendNews(getSon($cate, 1));
+        //用户点赞的新闻
+        $news_names = [];
+        if (!empty($uid)) {
+           $news_names = db('UserScore')->where('uid='.$uid.' AND type=1 ')->column('name');
+            $where['uid'] = $uid;
+            $where['type'] = 1;
+            $news_names = Db::name("user_score")->where($where)->select('name');
+            foreach ($news_names as $k => &$v) {
+                $news_names[$k] = $v['name'];
+            }
+        }
+        foreach ($news as &$v) {
+            //富文本转化为纯文本  并截取中文字符串
+            $v["content"] = str_replace(' ', "", convertContent($v['content']));
+            //$v["content"] =preg_replace('/[ ]/',"",convertContent($v['content']));
+
+            $v['thumb'] = addDomain($v['thumb']);
+            $v['url']   = addDomain('home/Article/getNewsDetail/id/' . $v['id']);
+
+            //点赞状态 0未点赞 1已点赞
+            $v['is_praise'] = in_array($v['title'], $news_names) ? 1 : 0;
+        }
+
+
+        //微党校
+        $p        = 1;
+        $pageSize = 4;
+        $school   = model('home/Clas')->getClassList($p, $pageSize);
+        foreach ($school as &$v) {
+            $v['thumb'] = addDomain($v['thumb']);
+        }
+
+        //一颗红心
+        $heart = db('Heart')->field('id,title')->where('recommend = 1 AND is_del = 0 AND status = 2')->order('ctime desc')->limit(4)->select();
+        foreach ($heart as &$v) {
+            $v['url'] = addDomain('home/Article/getHeartDetail/id/' . $v['id']);
+        }
+
+        //banner 广告位
+        $data = db('Ad')->select();
+        foreach ($data as &$v) {
+
+            $v['thumb'] = addDomain($v['thumb']);
+
+            if ($v['type'] == 1) {
+                $ad[] = $v;
+            } elseif ($v['type'] == 2) {
+
+                $banner[] = $v;
+            }
+        }
+
+        return json(['code' => 1, 'msg' => '', 'data' => ['notice' => $notice, 'news' => $news, 'school' => $school, 'heart' => $heart, 'ad' => $ad, 'banner' => $banner]]);
+    }
+
+}

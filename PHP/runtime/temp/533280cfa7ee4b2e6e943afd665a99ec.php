@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\login\login.html";i:1542792299;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/admin\view\login\login.html";i:1541496305;s:65:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\layout.html";i:1539913150;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\header.html";i:1541574066;s:72:"D:\PHPTutorial\WWW\71cloud\PHP\application\admin\view\public\footer.html";i:1541387770;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -59,17 +63,26 @@
   <div id="loginform" class="loginBox">
     <form action="<?php echo url('login/index'); ?>" class="form" method="post">
       <div class="row cl">
+<<<<<<< HEAD
         <label class="form-label col-xs-2"><i class="Hui-iconfont"></i></label>
+=======
+        <label class="form-label col-xs-3"><i class="Hui-iconfont"></i></label>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         <div class="formControls col-xs-8">
           <input id="username" name="username" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
+<<<<<<< HEAD
         <label class="form-label col-xs-2"><i class="Hui-iconfont"></i></label>
+=======
+        <label class="form-label col-xs-3"><i class="Hui-iconfont"></i></label>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         <div class="formControls col-xs-8">
           <input id="password" name="password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
+<<<<<<< HEAD
       <div class="row cl" style="margin-left: 108px;">
         <input type="text" id='verify' class="input-text size-L" name="code" placeholder="这里输入验证码" style="width:150px;">
         <img class="pull-right" style="width: 110px;height: 41px;" src="<?php echo captcha_src(); ?>" onclick="this.src='<?php echo captcha_src(); ?>' + '?' + Math.random()">
@@ -81,6 +94,19 @@
             <input type="checkbox" name="online" id="online" value="">
             使我保持登录状态</label>
         </div>
+=======
+      <div class="formControls col-xs-8 col-xs-offset-3">
+        <input type="text" id='verify' class="input-text size-L" name="code" placeholder="这里输入验证码" style="width:150px;">
+        <img class="pull-right" style="width: 120px;height: 50px;" src="<?php echo captcha_src(); ?>" onclick="this.src='<?php echo captcha_src(); ?>' + '?' + Math.random()">
+      </div>
+      <div class="row cl">
+
+       <!-- <div class="formControls col-xs-8 col-xs-offset-3">
+          <label for="online">
+            <input type="checkbox" name="online" id="online" value="">
+            使我保持登录状态</label>
+        </div>-->
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
         <div class="formControls col-xs-8 col-xs-offset-3">
           <label for="online">
@@ -88,9 +114,15 @@
             使我保持登录状态</label>
         </div>
 
+<<<<<<< HEAD
       </div>-->
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-2">
+=======
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
           <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
           <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
         </div>

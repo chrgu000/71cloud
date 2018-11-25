@@ -1,0 +1,282 @@
+<?php
+namespace app\admin\controller;
+
+use think\Controller;
+use think\Request;
+use think\Db;
+
+
+
+class Company extends Controller{
+    public $branch = array();
+    public  $rand = array(); //随机数数组
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $branch =  db('branch')->select();
+        $this->rand  = array_merge(range("A","Z"),range("a","z"),range(0,9));
+    }
+
+
+    //公司管理员列表
+    public function adminlist(){
+        //查询共有多少条数据
+        $num=db('branch_admin')->count();
+
+        //查询branch_admin表
+        $res=db('branch_admin')->select();
+        //把公司名称放到$res中
+        foreach ($res as $k=>&$v){
+            $v['company_name']=db('company')->where(array('id'=>$v['company_id']))->field('company_name,phone')->find();
+        }
+
+        //查询角色名称
+        foreach ($res as $k=>&$v){
+            $v['rolename']=db('role')->where(array('id'=>$v['role_id']))->field('name')->find();
+        }
+
+
+
+        $this->assign('res',$res);
+        $this->assign('num',$num);
+        return $this->fetch('company/company-admin-list');
+    }
+
+
+    //添加公司管理员
+    public function adminadd()
+    {
+        //查找角色
+        $role = db('role')->field("id,name")->select();
+        //查找公司
+        $company=db('company')->field('id,company_name')->select();
+
+        //查找已经绑定的公司id
+        $cid=db('branch_admin')->distinct("company_id")->column('company_id');
+        $cid = implode(",",$cid);
+        $name=db('company')->where(array('id'=>array('not in',$cid)))->field('id,company_name')->select();
+
+        if (Request::instance()->isPost()){
+            //获取post数据
+            $res = input('post.');
+
+            //把当前时间戳存到$res里
+            $res['ctime'] = time();
+
+            //获取后台管理员登录的id
+            $admin_id = input('session.admin.id');
+
+            //把pid=0存到$res里
+            $res['pid']=0;
+
+            //把管理员id存入$res里
+            $res['admin_id'] = $admin_id;
+
+
+            if($res['bradmin_password'] != $res['bradmin_password2']){
+
+                echo '<script>alert("两次输入密码不一致，请重新输入")</script>';
+            }else{
+                if(strlen($res['bradmin_password'])<6){
+                    echo '<script>alert("请输入6位数以上密码")</script>';
+                }else{
+
+                    //加密密码
+                    $res['bradmin_password'] = encrypt_password($res['bradmin_password']);
+
+                    //去掉$res中bradmin_password2字段
+                    unset($res['bradmin_password2']);
+
+                    //将post里的数据插入到数据库
+                    $rows = db('branch_admin')->insert($res);
+                    $this->redirect('adminlist');
+                }
+            }
+            /*$this->assign('rows', $rows);*/
+        }
+        $this->assign('role',$role);
+        $this->assign('company',$company);
+        $this->assign('name',$name);
+        return $this->fetch('company/company-admin-add');
+    }
+
+
+
+    //公司管理员修改
+    public function adminedit(){
+        $id = input('id');
+        //查找公司
+        $company=db('company')->field('id,company_name')->select();
+
+        //查找角色
+        $role = db('role')->field("id,name")->select();
+        //查找当前修改的角色id
+        $crole=db('branch_admin')->where(array('id'=>$id))->field('role_id,company_id')->find();
+        //查找修改的数据
+        $res=db('branch_admin')->where(array('id'=>$id))->find();
+
+        $companyname=db('company')->where(array('id'=>$res['company_id']))->field('id,company_name,company_email')->find();
+
+        //查找已经绑定的公司id
+        $cid=db('branch_admin')->distinct("company_id")->where(array("id"=>array("neq",$id)))->column('company_id');
+
+        $cid = implode(",",$cid);
+        $name=db('company')->where(array('id'=>array('not in',$cid)))->field('id,company_name')->select();
+         if(Request::instance()->isPost()) {
+            $post=input('post.');
+            $post['utime']=time();
+            $rows=db('branch_admin')->where(array('id'=>$id))->update($post);
+            $this->redirect('adminlist');
+        }
+        $this->assign('res',$res);
+        $this->assign('role',$role);
+        $this->assign('crole',$crole);
+        $this->assign('company',$company);
+        $this->assign('companyname',$companyname);
+        $this->assign('name',$name);
+
+        return $this->fetch('company/company-admin-edit');
+    }
+
+    //公司管理员删除
+    public function admindel(){
+        $id=input('id');
+        $res=db('branch_admin')->where(array('id'=>$id))->delete();
+        /*if($res){
+            $message=array(
+                "error"=>0,
+                "message"=>"删除成功"
+            );
+        }else{
+            $message=array(
+                "error"=>1,
+                "message"=>"删除失败"
+            );
+        }*/
+
+        $this->redirect('adminlist');
+    }
+
+
+    //公司管理员密码修改
+    public function passedit(){
+        $id=input('id');
+        //查询修改的数据
+        $res=db('branch_admin')->where(array('id'=>$id))->find();
+        if(Request::instance()->isPost()) {
+            $row = input('post.');
+            //加密post传过来的密码
+            $admin_password = encrypt_password($row['bradmin_password']);
+
+            $result = db('branch_admin')->where(array('id' => $id, 'bradmin_password' => $admin_password))->select();
+            //查询当前修改记录的密码
+            $pass = db('branch_admin')->where(array('id' => $id))->field('bradmin_password')->find();
+            //判断输入的原密码是否和数据库密码一致
+            if ($admin_password == $pass['bradmin_password']) {
+
+                unset($row['bradmin_password']);//删除原密码
+                unset($row['bradmin_password2']);//删除确认密码
+                $row['bradmin_password'] = encrypt_password($row['bradmin_password1']);
+                unset($row['bradmin_password1']);//删除新密码
+
+                $row['utime'] = time();//获取时间
+                //将修改的结果插入数据库
+                $rows = db('branch_admin')->where(array('id' => $id))->update($row);
+
+                //对结果判断
+                if ($rows) {
+                    $this->redirect('adminlist');
+                } else {
+                    echo "<script>alert('操作失败');</script>";
+                }
+
+            } else {
+                echo '<script>alert("原密码错误")</script>';
+            }
+        }
+
+        return $this->fetch('company/admin-password-edit');
+    }
+
+
+    //公司列表
+    public function companylist(){
+        //查询总记录条数
+        $num=db('company')->count();
+        //查找公司
+        $rows=db('company')->select();
+        $this->assign('rows',$rows);
+        $this->assign('num',$num);
+        return $this->fetch('company/company-list');
+    }
+
+    //公司添加
+    public function companyadd(){
+        if (Request::instance()->isPost()) {
+            $_post = input('post.');
+            //把当前时间存到$_post里
+            $_post['ctime'] = time();
+
+            //生成公司唯一标识符并存进$_post
+            $identifier = $this->getnonce();
+            $_post['identifier'] = $identifier;
+            //把数据插入数据库
+            db('company')->insert($_post);
+            $this->redirect('companylist');
+        }
+
+        return $this->fetch('company/company-add');
+    }
+
+    //公司修改
+    public function companyedit(){
+        //获取当前修改的id
+        $id=input('id');
+        //查找当前修改的数据显示出来
+        $res=db('company')->where(array('id'=>$id))->find();
+        //判断修改数据是否是post提交
+        if (Request::instance()->isPost()) {
+            $_post=input('post.');
+            //把当前时间存进$_post
+            $_post['utime']=time();
+            db('company')->where(array('id'=>$id))->update($_post);
+            $this->redirect('companylist');
+        }
+
+        $this->assign('res',$res);
+        return $this->fetch('company/company-edit');
+    }
+    //公司删除
+    public function companydel(){
+        //获取当前修改的id
+        $id=input('id');
+        $res=db('company')->where(array('id'=>$id))->delete();
+        if($res){
+            $this->redirect('companylist');
+        }else{
+            $this->error('删除失败');
+        }
+
+    }
+
+    //随机生成随机数
+    public function getnonce($length = 8){
+        $token ="";
+        $token_arr = $this->rand;
+        shuffle($token_arr);
+        $count = count($token_arr);
+        for($i=0;$i<=$length;$i++){
+            $index = rand(0,$count-1);
+            $token.=$token_arr[$index];
+        }
+        return $token;
+    }
+    //用当前毫秒拼接随机数
+    function geturlnonce(){
+        $time = microtime(true);
+        $str= $time.$this->getnonce(8);
+        return md5($str);
+
+    }
+
+}

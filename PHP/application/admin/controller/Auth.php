@@ -7,7 +7,11 @@ use think\Request;
 class Auth extends Base
 {
     /**
+<<<<<<< HEAD
      * 用户后台权限管理
+=======
+     * 显示资源列表
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
      *
      * @return \think\Response
      */
@@ -167,6 +171,10 @@ class Auth extends Base
             $data['pid']=0;
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         db('auth')->where(array('id'=>$id))->update($data);
         //页面跳转
         $this->success('更新成功', 'index','','1');

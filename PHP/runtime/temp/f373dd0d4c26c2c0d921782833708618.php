@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\examrecord\index.html";i:1540439357;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"D:\PHPTutorial\WWW\71cloud\PHP\public/../application/branchadmin\view\exampaper\index.html";i:1540439357;}*/ ?>
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
 
 <style type="text/css">
 	/* 分页部分的css代码 */

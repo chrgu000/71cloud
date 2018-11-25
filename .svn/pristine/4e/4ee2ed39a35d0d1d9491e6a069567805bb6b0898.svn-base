@@ -1,0 +1,352 @@
+//
+//  XDX_PartySchoolViewController.m
+//  TheParty
+//
+//  Created by macmini on 2018/8/1.
+//  Copyright © 2018年 macmini. All rights reserved.
+//
+
+#import "XDX_PartySchoolViewController.h"
+#import "ParthSchoolCollectionViewCell.h"
+#import "XDX_AllViewController.h"
+#import "PartyBannerCollectionView.h"
+#import "XDX_DetailViewController.h"
+
+#define KCellSpace    55
+#define KCellWidth    SCREEN_W - 55
+#define KCellHeight   270
+
+@interface XDX_PartySchoolViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PartyBannerCollectionViewDelegate,UIScrollViewDelegate>
+{
+    UICollectionView *collection;
+    NSMutableArray *dataArr;
+    NSArray *classArr;
+    UIView *Backview;
+    PartyBannerCollectionView *bannerView;
+    CGFloat _offer;
+}
+
+@end
+
+@implementation XDX_PartySchoolViewController
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    dataArr = [[NSMutableArray alloc] init];
+    classArr = [[NSArray alloc] init];
+    [self CreateData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.title = @"党校";
+    
+    
+    
+}
+
+- (void)CreateData{
+    [self showHUD:nil];
+    WEAKSELF
+    ThePartySingTon *instance = [ThePartySingTon SharedInstance];
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 创建信号量
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        NSString *biz = [NSString stringWithFormat:@"&cate_id=all&p=%zd&pageSize=10",@(1)];
+        [ConnectionRequestMgr GetSessionWithUrl:SchoolList parameter:biz successBlock:^(NSDictionary *dict) {
+            
+            if ([dict[@"code"] integerValue] == 1) {
+                for (int i = 0; i< [dict[@"data"] count]; i++) {
+                    NSDictionary *dic = dict[@"data"][i];
+                    [dataArr addObject:dic];
+                }
+                // 如果请求成功，发送信号量
+                dispatch_semaphore_signal(semaphore);
+            }else{
+                [weakSelf showError:dict[@"msg"]];
+                dispatch_semaphore_signal(semaphore);
+            }
+        } failBlock:^(NSString *errorStr) {
+            // 如果请求失败，也发送信号量
+            dispatch_semaphore_signal(semaphore);
+        }];
+        // 在网络请求任务成功之前，信号量等待中
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    });
+    // 将第二个网络请求任务添加到组中
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 创建信号量
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        NSString *biz=@"&type=1";
+        [ConnectionRequestMgr GetSessionWithUrl:SchoolUser parameter:biz successBlock:^(NSDictionary *dict){
+    
+            if ([dict[@"code"] integerValue] == 1) {
+                classArr = dict[@"data"];
+                // 如果请求成功，发送信号量
+               
+            }else{
+//                [weakSelf showError:dict[@"msg"]];
+            }
+             dispatch_semaphore_signal(semaphore);
+        } failBlock:^(NSString *errorStr) {
+            // 如果请求失败，也发送信号量
+            dispatch_semaphore_signal(semaphore);
+        }];
+        // 在网络请求任务成功之前，信号量等待中
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    });
+
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf hideHUD];
+            if ((classArr == nil || classArr == 0) && ( dataArr== nil || dataArr.count == 0)) {
+                [self setEmptyPlaceholder];
+            }else{
+                [weakSelf CreateUI];
+            }
+        });
+    });
+}
+
+- (void)setEmptyPlaceholder{
+    Backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H - 64 - 44)];
+    Backview.userInteractionEnabled = YES;
+    UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 184, 137)];
+    imgV.center = Backview.center;
+    imgV.image = [UIImage imageNamed:@"NoInter"];
+    imgV.userInteractionEnabled = YES;
+    [Backview addSubview:imgV];
+    
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(imgV.frame)+ 12, SCREEN_W, 15)];
+    lab.font = Font(15);
+    lab.textColor = UIColorFromRGBA(0x000000, 1);
+    lab.text = @"点击屏幕，重新加载";
+    lab.textAlignment = 1;
+    [Backview addSubview:lab];
+    
+    UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refresh)];
+    [Backview addGestureRecognizer:click];
+    
+    [self.view addSubview:Backview];
+    
+}
+
+- (void)refresh{
+    [Backview removeFromSuperview];
+    Backview = nil;
+    [self CreateData];
+}
+
+
+- (void)CreateUI{
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
+    layout.minimumInteritemSpacing = 16;
+    layout.minimumLineSpacing = 5;
+    layout.itemSize=CGSizeMake((SCREEN_W -48)/2, 180);  //设置每个单元格的大小
+    if (classArr != nil && ![classArr isKindOfClass:[NSNull class]] && classArr.count != 0){
+        layout.headerReferenceSize=CGSizeMake(self.view.frame.size.width, 372);
+    }else{
+        layout.headerReferenceSize=CGSizeMake(self.view.frame.size.width, 60);
+    }
+    //设置collectionView头视图的大小
+    
+    collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H -tabbarH -64 - 10) collectionViewLayout:layout];
+    collection.backgroundColor = [UIColor whiteColor];
+    collection.delegate=self;
+    collection.dataSource=self;
+    collection.showsVerticalScrollIndicator = FALSE;
+    collection.showsHorizontalScrollIndicator = FALSE;
+    [self.view addSubview:collection];
+    
+    [collection registerNib:[UINib nibWithNibName:@"ParthSchoolCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ParthSchoolCollectionViewCell"];
+    [collection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Header"];
+    
+}
+
+#pragma mark UICollectionView
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return dataArr.count;
+}
+
+//定义展示的Section的个数
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+-(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+   ParthSchoolCollectionViewCell *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ParthSchoolCollectionViewCell" forIndexPath:indexPath];
+    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:dataArr[indexPath.row][@"thumb"]] placeholderImage:[UIImage imageNamed:@"photoLoading"]];
+    cell.titleL.text = dataArr[indexPath.row][@"name"];
+    cell.lookNum.text = [NSString stringWithFormat:@"%zd",(int)dataArr[indexPath.row][@"visit"]];
+    return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    UICollectionReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                            withReuseIdentifier:@"Header"
+                                                                                   forIndexPath:indexPath];
+    for (UIView *view in headView.subviews) {
+        [view removeFromSuperview];
+    }
+    [headView addSubview:[self slideView]];
+    return headView;
+}
+
+- ( UIEdgeInsets )collectionView:( UICollectionView *)collectionView layout:( UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:( NSInteger )section {
+    
+    return UIEdgeInsetsMake (  0,16  , 0 , 16 );
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [[UIHelper sharedSingleton] pushVC:@"XDX_DetailViewController" vc:self parames:@{@"istype":@(1),@"playerID":dataArr[indexPath.row][@"id"],@"titleStr":dataArr[indexPath.row][@"name"]}];
+   
+}
+
+- (UIView *)slideView{
+    UIView *headview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 372)];
+    
+    CGFloat h = 0;
+    if (classArr != nil && ![classArr isKindOfClass:[NSNull class]] && classArr.count != 0){
+        UIImageView *backImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 312)];
+        backImageV.image = [UIImage imageNamed:@"wdx_back"];
+        [headview addSubview:backImageV];
+        
+        UILabel *headL = [[UILabel alloc] initWithFrame:CGRectMake(0, 16, SCREEN_W, 18)];
+        headL.text =[NSString stringWithFormat:@"正在学习%zd门课程 >",classArr.count] ;
+        headL.textAlignment = 1;
+        headL.font = Font(16);
+        headL.textColor = [UIColor whiteColor];
+        [headview addSubview:headL];
+        
+        
+        PartyBannerCollectionView *bannerView = [[PartyBannerCollectionView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_W, 270) withDataAry:classArr];
+        bannerView.Actiondelegate = self;
+        [headview addSubview:bannerView];
+        h = CGRectGetMaxY(backImageV.frame);
+    }else{
+        
+        headview.frame = CGRectMake(0, 0, SCREEN_W, 60);
+    }
+    
+    
+    UIImageView *imageVleft = [[UIImageView alloc] initWithFrame:CGRectMake(16, h +20, 23, 21 )];
+    imageVleft.image = [UIImage imageNamed:@"home_xingxing"];
+    [headview addSubview:imageVleft];
+    
+    UILabel *StarL = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageVleft.frame) + 10, h +22, 100, 17)];
+    StarL.text = @"最新课程";
+    StarL.font = FontBold(17);
+    StarL.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    [headview addSubview:StarL];
+    
+    UIButton *StarB = [UIButton buttonWithType:UIButtonTypeCustom];
+    StarB.frame = CGRectMake(SCREEN_W - 80,h +22, 62, 17);
+    [StarB setTitle:@"全部" forState:UIControlStateNormal];
+    [StarB setTitleColor:UIColorFromRGBA(0xE32B2C, 1) forState:UIControlStateNormal];
+    StarB.tag = 904;
+    StarB.titleLabel.font = Font(13);
+    StarB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [StarB addTarget:self action:@selector(ALLAction) forControlEvents:UIControlEventTouchUpInside];
+    [headview addSubview:StarB];
+    
+    return headview;
+}
+
+- (void)PartyBannerSection:(NSInteger)indexSection{
+    
+    [[UIHelper sharedSingleton] pushVC:@"XDX_DetailViewController" vc:self parames:@{@"istype":@(1),@"playerID":classArr[indexSection][@"id"],@"titleStr":classArr[indexSection][@"name"]}];
+    
+}
+
+
+- (void)ALLAction{
+    [[UIHelper sharedSingleton] pushVC:@"XDX_AllViewController" vc:self parames:@{@"classID":@"all",@"Heardname":@"全部"}];
+}
+
+
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    _offer = scrollView.contentOffset.x;
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    
+    if (fabs(scrollView.contentOffset.x -_offer) > 10) {
+        
+        if (scrollView.contentOffset.x > _offer) {
+            
+            int i = scrollView.contentOffset.x/([UIScreen mainScreen].bounds.size.width - KCellSpace/2)+1;
+            
+            NSIndexPath * index =  [NSIndexPath indexPathForRow:i inSection:0];
+            
+            [bannerView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+            
+        }else{
+            
+            int i = scrollView.contentOffset.x/([UIScreen mainScreen].bounds.size.width - KCellSpace/2)+1;
+            
+            NSIndexPath * index =  [NSIndexPath indexPathForRow:i-1 inSection:0];
+            
+            [bannerView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+            
+        }
+        
+    }
+    
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    
+    if (fabs(scrollView.contentOffset.x -_offer) > 20) {
+        
+        if (scrollView.contentOffset.x > _offer) {
+            
+            int i = scrollView.contentOffset.x/([UIScreen mainScreen].bounds.size.width - KCellSpace/2)+1;
+            
+            NSIndexPath * index =  [NSIndexPath indexPathForRow:i inSection:0];
+            
+            [bannerView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+            
+        }else{
+            
+            int i = scrollView.contentOffset.x/([UIScreen mainScreen].bounds.size.width - KCellSpace/2)+1;
+            i = (i - 1)<0?0:(i - 1);
+            NSIndexPath * index =  [NSIndexPath indexPathForRow:i inSection:0];
+            
+            [bannerView scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+            
+        }
+        
+    }
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

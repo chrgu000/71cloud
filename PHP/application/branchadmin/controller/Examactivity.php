@@ -8,7 +8,11 @@ use think\Request;
 class Examactivity extends Controller
 {
     /**
+<<<<<<< HEAD
      * 活动列表
+=======
+     * 显示资源列表
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
      *
      * @return \think\Response
      */
@@ -16,12 +20,25 @@ class Examactivity extends Controller
     {
         //从session中获取当前的组织id
         $company_id = session('branchadmin_info.company_id');
+<<<<<<< HEAD
         $data=db('exam_activity')->where(['company_id'=>$company_id])->select();
 
+=======
+        $data       = model('ExamActivity')->where('company_id', $company_id)->select();
+        foreach($data as &$v)
+        {
+            if(empty($v['id']))
+            {
+                continue;
+            }
+            $v['exampaperinfo'] = model('Exampaper')->where('exam_activity_id',$v['id'])->select();
+        }
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         return view('index',['data'=>$data]);
     }
 
     /**
+<<<<<<< HEAD
      * 活动添加
      *
      */
@@ -112,6 +129,84 @@ class Examactivity extends Controller
         db('exam_activity')->where(['id'=>$id,'company_id'=>$company_id])->delete();
         //db('examrecord')->
         return json(['code'=>1,'msg'=>'删除成功']);
+=======
+     * 显示创建资源表单页.
+     *
+     * @return \think\Response
+     */
+    public function create()
+    {
+       return view();
+    }
+
+    /**
+     * 保存新建的资源
+     *
+     * @param  \think\Request  $request
+     * @return \think\Response
+     */
+    public function save(Request $request)
+    {
+        // 通过session获取组织id
+        $company_id         = session('branchadmin_info.company_id');
+        $data               = $request->param();
+        $data['company_id'] = $company_id;
+        $res                = model('ExamActivity')->data($data)->save();
+        if ($res)
+        {
+            $this->success("活动添加成功",'index');
+        }
+    }
+
+    /**
+     * 显示指定的资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function read($id)
+    {
+        //
+    }
+
+    /**
+     * 显示编辑资源表单页.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * 保存更新的资源
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function delete($id)
+    {
+        //
+    }
+
+    public function test()
+    {
+        // 通过组织id获取对应的
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
     }
 
 }

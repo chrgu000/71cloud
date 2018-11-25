@@ -1,0 +1,239 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lwen_phper@163.com
+ * Date: 2018/7/26
+ * Time: 16:08
+ *
+ * 课程视频
+ *
+ */
+namespace Admin\Controller;
+
+
+class ClassChapterController extends BaseController{
+
+    /**
+     *
+     * 课程视频列表
+     *
+     */
+    public function index(){
+        $logmin = strtotime(trim(I('get.logmin')));
+        $logmax = strtotime(trim(I('get.logmax')));
+        $class_id = intval(I('get.class_id'));
+        $name = trim(I('get.name'));
+
+        //课程
+        $class = M('Class')->field('id,name')->select();
+
+
+        $map = [];
+        $map['is_del'] = 0;
+        //日期筛选
+        if ($logmin && $logmax) $map['a.ctime'] = ['between', "$logmin,$logmax"];
+
+        //分类筛选
+        if ($class_id) $map['a.class_id'] = $class_id;
+
+        //名称筛选
+        if ($name) $map['a.name'] = ['LIKE', "%$name%"];
+
+        $data = M('ClassChapter')->alias('a')
+            ->field('a.id,a.name,a.thumb,a.path,a.vtime,a.episode,a.ctime,b.name as class_name')
+            ->join('LEFT JOIN p_class as b on a.class_id = b.id')
+            ->where($map)
+            ->select();
+
+        $count = count($data);
+
+
+        $this->assign('classCourse', $class);
+        $this->assign('count', $count);
+        $this->assign('data', $data);
+        $this->display();
+
+    }
+
+    /**
+     *
+     * 添加视频
+     *
+     *
+     */
+    public function add(){
+        if(IS_GET){
+            //课程
+            $class = M('Class')->field('id,name')->select();
+
+            $this->assign('classCourse',$class);
+            $this->display();
+
+        }else{
+            $name = trim(I('post.name'));
+            $class_id = trim(I('post.class_id'));
+            $path = trim(I('post.path'));
+            $episode = trim(I('post.episode'));
+            $vtime = trim(I('post.vtime'));
+
+            if(empty($name) || empty($class_id) || empty($episode) || empty($path) || empty($vtime)){
+                $this->ajaxReturn(['code' => 0,'msg' => '请将信息填写完整！']);
+            }
+
+            if(empty($_FILES['thumb'])){
+                $this->ajaxReturn(['code' => 0,'msg' => '请上传缩略图！']);
+            }
+
+            //检测重名
+            $classChapterModel = M('ClassChapter');
+            if($classChapterModel->where("name = '$name'")->find()){
+                $this->ajaxReturn(['code' => 0,'msg' => '名称重复！']);
+            }
+
+            //上传缩略图
+            $thumb = $this -> uploadOne('thumb');
+
+            $data = [
+                'name'      =>  $name,
+                'class_id'  =>  $class_id,
+                'thumb'     =>  $thumb,
+                'path'      =>  $path,
+                'vtime'     =>  $vtime,
+                'episode'   =>  $episode,
+                'ctime'     =>  time()
+            ];
+
+            //开启事务
+            M()->startTrans();
+            $res = $classChapterModel->add($data);
+
+            if($res){
+                //课时+1
+                $res1 = M('Class')->where('id='.$class_id)->setInc('period');
+            }
+
+
+            if($res && $res1){
+                M('')->commit();
+                $this->ajaxReturn(['code' => 1,'msg' => '添加成功！']);
+            }else{
+                M('')->rollback();
+                $this->ajaxReturn(['code' => 0,'msg' => '添加失败！']);
+            }
+
+            $this->ajaxReturn(['code' => 1,'msg' => '添加成功！']);
+
+        }
+
+
+    }
+
+
+    /**
+     *
+     * 编辑视频
+     * @param       $id     int     视频id
+     *
+     */
+    public function edit(){
+        $id = intval(I('request.id'));
+        if($id <= 0){
+            $this->error('参数错误!');
+        }
+
+        if(IS_GET){
+            $data = M('ClassChapter')->where('id='.$id)->find();
+            if($data['is_del'] == 1){
+                $this->error('该视频已删除!');
+            }
+
+            //课程
+            $class = M('Class')->field('id,name')->select();
+
+
+            $this->assign('classCourse',$class);
+            $this->assign('data',$data);
+
+            $this->display();
+
+        }else{
+            $name = trim(I('post.name'));
+            $class_id = trim(I('post.class_id'));
+            $path = trim(I('post.path'));
+            $episode = trim(I('post.episode'));
+            $vtime = trim(I('post.vtime'));
+
+            if(empty($name) || empty($class_id) || empty($episode) || empty($path) || empty($vtime)){
+                $this->ajaxReturn(['code' => 0,'msg' => '请将信息填写完整！']);
+            }
+
+            //检测重名
+            $classChapterModel = M('ClassChapter');
+            if($classChapterModel->where("name = '$name' AND id != $id")->find()){
+                $this->ajaxReturn(['code' => 0,'msg' => '名称重复！']);
+            }
+
+            //上传缩略图
+            if($_FILES['thumb']){
+                $thumb = $this -> uploadOne('thumb');
+                if(!empty($thumb)) $classChapterModel->where('id='.$id)->setField('thumb',$thumb);
+            }
+
+
+            $data = [
+                'name'      =>  $name,
+                'class_id'  =>  $class_id,
+                'path'      =>  $path,
+                'vtime'     =>  $vtime,
+                'episode'   =>  $episode,
+            ];
+
+
+            $classChapterModel->where('id='.$id)->save($data);
+
+            $this->ajaxReturn(['code' => 1,'msg' => '修改成功！']);
+
+
+
+        }
+    }
+
+    /**
+     *
+     * 删除视频
+     * @param       $id     int     视频id
+     *
+     *
+     */
+    public function del(){
+        $id = intval(I('post.id'));
+        if($id <= 0)  $this->error('参数错误!');
+
+        M()->startTrans();
+        $classChapterModel = M('ClassChapter');
+
+        $res = $classChapterModel->where('id='.$id)->setField(['dtime' => time(),'is_del' => 1]);
+
+        if($res){
+            //课时-1
+            $class_id = $classChapterModel->where('id='.$id)->getField('class_id');
+            $res1 = M('Class')->where('id='.$class_id)->setDec('period');
+        }
+
+
+        if($res && $res1){
+            M()->commit();
+            $this->ajaxReturn(['code' => 1,'msg' => '删除成功！']);
+        }else{
+            M()->rollback();
+            $this->ajaxReturn(['code' => 0,'msg' => '删除失败！']);
+        }
+
+
+
+
+
+
+    }
+
+}

@@ -21,6 +21,10 @@ class NewCate extends Base{
     *
     */
     public function index(){
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 785d9aef838ee57f91184b4930cfeff4e8641118
         $data = getTree(db('NewCate') ->select());
         $this->assign('data',$data);
         return $this->fetch('NewCate/index');

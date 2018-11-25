@@ -1,0 +1,220 @@
+<?php
+
+namespace app\home\controller;
+
+use think\Controller;
+use think\Request;
+
+class Examapi extends Controller
+{
+    /**
+     * 答题系统小程序使用
+     * 答题小程序首页返回活动信息和关卡信息
+     */
+    public function index()
+    {
+        // 接收用户id
+        $user_id = request()->param('uid');
+        // 1.通过用户id获取组织id
+        $branchs_id = model('User')->find($user_id)->branchs_id;
+        // 通过组织id获取对应的活动信息
+        $activity = model('ExamActivity')->where('branchs_id',$branchs_id)->select();
+        // 将活动记录转换为标准的二维数组
+        $activity = (new \think\Collection($activity))->toArray();
+        foreach ($activity as $k=>&$v)
+        {
+            $paper_info = model('Exampaper')->where(['exam_activity_id'=>$v['id'],'branchs_id'=>$branchs_id])->select();
+            $paper_info = (new \think\Collection($paper_info))->toArray();
+            $v['paper_info'] = $paper_info;
+        }
+        return json(['code'=>1,'data'=>$activity]);
+    }
+
+
+
+    // 通过用户uid，uid，关卡id(paper_id)，和branchs_id从考试记录表查询，如果存在分数记录就返回code 1，并附带分数记录，不存在就返回code为2，并返回对应此关卡的题目
+    // 用户考试未通过还需要返回一个code值
+
+    public function getScoreQuestions()
+    {
+        $data = request()->param();
+        $user_id = $data['uid'];
+        // 1.通过用户id获取组织id
+        $branchs_id = model('User')->find($user_id)->branchs_id;
+        // 通过用户id，关卡id，和branchs_id获取最近一次的考试结果记录
+        $data = model('ExamInfo')->where(['user_id'=>$data['uid'],'exampaper_id'=>$data['paper_id']])->order('create_time desc')->limit(1)->find();
+        if (empty($data))
+        {
+            $res = [
+                'code'=>'1',
+                'msg'=>'无此关卡考试成绩记录',
+                'data'=>'',
+            ];
+            return json($res);
+        }elseif ($data->is_pass == 1)
+        {
+            $res = [
+                'code'=>'2',
+                'msg'=>'考试成绩获取成功！，继续下一关考试',
+                'data'=>$data,
+            ];
+            return json($res);
+        }elseif ($data->is_pass == 0)
+        {
+            // 通过关卡id获取关卡对应的信息
+            $paper_info = model('exampaper')->find($data['paper_id']);
+            // 通过关卡信息获取questions_ids
+            $questions_ids = $paper_info->questions_ids;
+            // 通过questions_ids获取所有的题目信息
+            $questions_info = model('ExamQuestions')->where('id','in',$questions_ids)->select();
+            // 关卡的题目信息整合数组
+            $paper_info['questions_info'] = $questions_info;
+            // 通过
+            $res = [
+                'code'=>'3',
+                'msg'=>'该关卡考试成绩不及格，请重新考试！',
+                'data'=>$data,
+                'paper'=>$paper_info
+            ];
+            return json($res);
+        }
+    }
+
+
+
+
+    /**要传入的参数
+     * @param uid 用户id ， branchs_id 组织id
+     * 通过用户id、和组织id、获取用户当前所在关卡的位置，
+     * @return false|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 获取已登录用户关卡信息
+     */
+    public function getUserPage(Request $request)
+    {
+        // 接收用户传递的数据
+        $data = $request->param();
+        $data = request()->param();
+        $user_id = $data['uid'];
+        // 1.通过用户id获取组织id
+        $branchs_id = model('User')->find($user_id)->branchs_id;
+        $data['branchs_id'] = $branchs_id;
+        // 通过用户id获取用户最近一次的考试记录
+        $examobj = model('ExamInfo')->where('user_id', $data['uid'])->order('create_time desc')->limit(1)->find();
+        // 如果考试记录为空直接返回对应用户组织id的第一个关卡信息即可
+        if (empty($examobj)) {  // 先去活动表查询对应的第一个获取
+            $activity = model('ExamActivity')->where('branchs_id', $data['branchs_id'])->order('id')->find();
+            if (empty($activity))
+            {
+                $res = [
+                    'code'=>2,
+                    'msg'=>"此用户所属的组织暂时没有活动",
+                    'data'=>''
+                ];
+                return json($res);
+            }
+            // 然后通过活动信息获取对应的第一个关卡信息
+            $paperinfo = model('exampaper')->where('exam_activity_id', $activity->id)->order('id')->find();
+//            dump($paperinfo);die;
+        } elseif ($examobj->is_pass == 1){
+            //        echo  \think\Db::table('exam_info')->getLastSql();
+            // 判断用户最近一次的关卡是否通过，通过就进行下一关的关卡，不通过就继续开启当前关卡
+                // 已通过情况,获取当前的关卡id
+                $paper_id = $examobj->exampaper_id;
+                // 通过当前关卡id，获取下一个关卡信息，用户组织id，以及当前关卡id去获取
+                $paperinfo = model('Exampaper')->where('id', '>', $paper_id)->where('branchs_id', $data['branchs_id'])->limit(1)->find();
+//            echo \think\Db::table('exampaper')->getLastSql();
+            } elseif ($examobj->is_pass == 0){
+                // 未通过情况继续返回当前未通过的试卷（关卡）对应的考题信息
+                $paper_id = $examobj->exampaper_id;
+                // 通过当前关卡id，获取对应的关卡信息
+                $paperinfo = model('Exampaper')->where('id', $paper_id)->where('branchs_id', $data['branchs_id'])->limit(1)->find();
+            }
+            // 通过试卷id获取所有的题目ids
+            $questions_info = model('ExamQuestions')->where('id', 'in', $paperinfo->questions_ids)->select();
+            $paperinfo['questions_info'] = $questions_info;
+            // 通过关卡id获取对应的活动消息
+            $activity = model('ExamActivity')->find($paperinfo->exam_activity_id);
+            // 将关卡名称对应的活动消息存入$paperinifo中并一并返回
+            $paperinfo['activity_info'] = $activity;
+            return json($paperinfo);
+    }
+
+
+
+
+
+
+
+    
+    
+
+    /**
+     * 显示创建资源表单页.
+     *
+     * @return \think\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * 保存新建的资源
+     *
+     * @param  \think\Request  $request
+     * @return \think\Response
+     */
+    public function save(Request $request)
+    {
+        //
+    }
+
+    /**
+     * 显示指定的资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function read($id)
+    {
+        //
+    }
+
+    /**
+     * 显示编辑资源表单页.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * 保存更新的资源
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function delete($id)
+    {
+        //
+    }
+
+}

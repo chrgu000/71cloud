@@ -1,0 +1,143 @@
+body,html{
+    height: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    overflow: scroll
+}
+.container{
+    height: auto;
+}
+.formItem{
+    height: 0.92rem;
+    border: 1px solid #f5f5f5;
+    padding-left: 0.32rem;
+    padding-right: 0.3rem;
+    border-radius: 0.15rem;
+    line-height: 0.92rem;
+    margin-bottom: 0.18rem;
+    background: white;
+    font-size: 0
+}
+.formQuestion{
+    width: 6.88rem;
+    margin-left: 0.32rem;
+    margin-top: 4.17rem;
+    border-radius: 0.16rem;
+}
+.formItem span:nth-child(1){
+    display: inline-block;
+    color: #333;
+    font-size: 0.3rem;
+    font-weight: bold;
+    width: 2.2rem;
+    height: 100%;
+    vertical-align: top
+}
+.formItem span:nth-child(2){
+    display: inline-block;
+    color: #333;
+    font-size: 0.28rem;
+    height: 100%;
+    width: 4rem;
+    overflow: hidden;
+    vertical-align: top
+}
+.formItem span:nth-child(2) input{
+    display: inline-block;
+    border: none;
+    outline: none;
+    color: #999999;
+    height: 100%;
+    width: 100%;
+    line-height: 0.92rem
+}
+
+.formItem span:nth-child(2) input::-webkit-input-placeholder {
+         /* placeholder颜色  */
+        color: #999999;
+         /* placeholder字体大小  */
+         font-size: 0.28rem;
+         /* placeholder位置  */
+        
+     }
+.formTextarea{
+    position: relative;
+    margin-bottom: 0.2rem
+}
+.formTextarea .formItem{
+    position: absolute;
+    top: 0;
+    height: 0.92rem;
+    width: 100%;
+    padding: 0;
+    z-index: 22;
+    border: none
+}
+.formTextarea .formItem span:nth-child(1){
+    padding-left: 0.30rem
+}
+.weui-cells{
+    margin-top: 0;
+    padding-top: 0.94rem
+}
+.enClosure{
+    font-size: 0
+}
+.weui-textarea-counter{
+    text-align: left !important;
+    padding-bottom: 1.3rem;
+    font-size: 0.24rem;
+    color: #999999
+}
+.enClosure span:nth-child(1){
+    position: relative;
+    top: 0;
+    vertical-align: top
+}
+.enClosure span:nth-child(2){
+    display: inline-block;
+    width: 4rem;
+    position: relative;
+    height: 100%;
+}
+.enClosure input{
+    position: absolute;
+    right: 0;
+    top: 0.15rem;
+    width: 2.2rem;
+    height: 0.6rem;
+    width: 2.2rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    color: white;
+    font-size: 0.3rem;
+    cursor: pointer;
+    -webkit-appearance: none;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+}
+.enClosure span:nth-child(2) label{
+    position: absolute;
+    right: 0;
+    top: 0.15rem;
+    width: 2.2rem;
+    height: 0.6rem;
+    background: #e33123;
+    text-align: center;
+    line-height: 0.6rem;
+    color: white;
+    border-radius: 0.12rem;
+    -webkit-border-radius:0.12rem;
+    z-index: 0;
+}
+.formTips{
+    padding-left: 0.32rem;
+    padding-right: 0.3rem;
+    color: #666666;
+    font-size: 0.24rem
+}
+.formTips span{
+    color: #e33123
+}
+::-webkit-scrollbar {display:none}

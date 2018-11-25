@@ -1,0 +1,85 @@
+.inform{
+    margin-top: 0.8rem;
+}
+
+.inform .informTab{
+    height: 0.9rem;
+    background: white;
+    font-size:0;
+    min-width: 600px;
+}
+.inform .informTab span{
+    display: inline-block;
+    width: 93.75px;
+    text-align: center;
+    line-height: 0.88rem;
+    color: #999;
+    font-size: 0.32rem;
+    box-sizing: border-box;
+}
+.inform .informTab span.active{
+    color: #e32b2c;
+    border-bottom: 0.02rem solid #e32b2c;
+}
+.informContent{
+    background: #ffffff;
+}
+.informItem{
+    display: none;
+}
+.informItem.active{
+    display: block;
+}
+.informContent{
+    padding: 0.2rem 0.32rem;
+    background:#f9f5f5;
+}
+.ffclItemList{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    border-radius: 0.1rem;
+    -webkit-border-radius: 0.1rem;
+    background: white;
+    padding: 0.2rem;
+    margin-bottom: 0.08rem;
+
+}
+.ffclContentItem{
+    display: none;
+}
+.ffclContentItem.active{
+    display: block;
+}
+.ffclItemLeft,.ffclItemLeft img{
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-right: 0.22rem;
+    border-radius: 50%;
+}
+.ffclItemRight{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+.ffclTitle{
+    font-size: 0.32rem;
+    color: #333333;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: justify;
+}
+.ffclDate{
+    font-size: 0.26rem;
+    color: #999;
+    padding-top: 0.2rem;
+}
+.ffclTopic{
+    float: right;
+}
